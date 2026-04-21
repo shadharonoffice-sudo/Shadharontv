@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গানে গানে সেরা এশিয়া | Registration Season-3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@800&display=swap');
+
+        :root {
+            --primary: #ff0055;
+            --secondary: #00ffcc;
+            --dark: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: radial-gradient(circle at top, #1a1a1a, #050505);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.1; z-index: -1;
+        }
+
+        .container { max-width: 800px; margin: 50px auto; padding: 20px; }
+
+        .header-box {
+            text-align: center; margin-bottom: 40px;
+            animation: zoomIn 1s ease;
+        }
+        .header-box h1 { 
+            font-family: 'Poppins', sans-serif; font-size: 2.5rem; 
+            color: var(--secondary); text-transform: uppercase;
+        }
+        .season-badge {
+            display: inline-block; background: var(--primary);
+            padding: 5px 20px; border-radius: 50px; font-weight: bold;
+            margin-top: 10px; box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Form Styling */
+        .reg-card {
+            background: var(--glass); backdrop-filter: blur(15px);
+            padding: 40px; border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .section-title {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px; margin: 30px 0 20px;
+            color: var(--secondary); font-size: 1.2rem;
+        }
+
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; color: #ddd; }
+        
+        input, select, textarea {
+            width: 100%; padding: 12px 15px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; color: white;
+            transition: 0.3s; font-family: 'Hind Siliguri';
+        }
+
+        input:focus { border-color: var(--secondary); outline: none; background: rgba(255,255,255,0.12); }
+
+        .radio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .radio-item {
+            background: rgba(255,255,255,0.05); padding: 10px;
+            border-radius: 10px; cursor: pointer; border: 1px solid transparent;
+            text-align: center; transition: 0.3s;
+        }
+        .radio-item:hover { border-color: var(--primary); }
+
+        /* Payment Box */
+        .payment-notice {
+            background: linear-gradient(135deg, rgba(226, 19, 110, 0.2), rgba(243, 75, 34, 0.2));
+            padding: 25px; border-radius: 15px; border: 1px solid var(--primary);
+            margin-top: 30px; text-align: center;
+        }
+
+        .submit-btn {
+            width: 100%; padding: 18px; margin-top: 30px;
+            background: linear-gradient(45deg, var(--primary), #8000ff);
+            border: none; border-radius: 50px; color: white;
+            font-size: 1.2rem; font-weight: bold; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255,0,85,0.3); transition: 0.4s;
+        }
+        .submit-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255,0,85,0.5); }
+
+        /* Question Box */
+        .ask-box {
+            margin-top: 50px; background: rgba(0, 255, 204, 0.05);
+            padding: 30px; border-radius: 20px; border: 1px solid var(--secondary);
+        }
+
+        /* Success Animation */
+        #success-msg { display: none; text-align: center; padding: 50px; }
+
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-box">
+        <h1>গানে গানে সেরা এশিয়া</h1>
+        <div class="season-badge">Season-3 Registration</div>
+        <p style="margin-top: 15px; color: #aaa;">আপনার কণ্ঠ দিয়ে বিশ্ব জয়ের মঞ্চে আপনাকে স্বাগতম</p>
+    </div>
+
+    <div class="reg-card" id="formCard">
+        <form id="megaForm">
+            <div class="section-title">ব্যক্তিগত তথ্য</div>
+            <div class="input-group">
+                <label>আপনার পূর্ণ নাম *</label>
+                <input type="text" required placeholder="নাম লিখুন">
+            </div>
+
+            <div class="input-group">
+                <label>সচল WhatsApp নাম্বার *</label>
+                <input type="tel" required placeholder="01XXX XXXXXX">
+            </div>
+
+            <div class="input-group">
+                <label>বর্তমানে কোথায় বসবাস করছেন? *</label>
+                <div class="radio-grid">
+                    <label class="radio-item"><input type="radio" name="residence" value="বাংলাদেশ" required> বাংলাদেশ</label>
+                    <label class="radio-item"><input type="radio" name="residence" value="প্রবাসে"> প্রবাসে</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>আপনার বয়স *</label>
+                <input type="date" required>
+            </div>
+
+            <div class="input-group">
+                <label>বিভাগ নির্বাচন করুন *</label>
+                <select required>
+                    <option value="">নির্বাচন করুন</option>
+                    <option>ঢাকা</option><option>চট্টগ্রাম</option><option>রাজশাহী</option>
+                    <option>খুলনা</option><option>বরিশাল</option><option>সিলেট</option>
+                    <option>রংপুর</option><option>ময়মনসিংহ</option>
+                </select>
+            </div>
+
+            <div class="section-title">ঠিকানা ও পরিচয়</div>
+            <div class="input-group">
+                <input type="text" placeholder="বাবার নাম" style="margin-bottom: 10px;">
+                <input type="text" placeholder="মায়ের নাম" style="margin-bottom: 10px;">
+                <input type="text" placeholder="জেলা" style="margin-bottom: 10px;">
+                <input type="text" placeholder="থানা" style="margin-bottom: 10px;">
+                <input type="text" placeholder="গ্রাম / মহল্লা">
+            </div>
+
+            <div class="input-group">
+                <label>অভিভাবকের ফোন নম্বর *</label>
+                <input type="tel" required placeholder="জরুরি যোগাযোগের জন্য">
+            </div>
+
+            <div class="input-group">
+                <label>NID অথবা জন্ম নিবন্ধন নম্বর *</label>
+                <input type="text" required>
+            </div>
+
+            <div class="section-title">গানের তথ্য</div>
+            <div class="input-group">
+                <label>পছন্দের গানের ধরন *</label>
+                <select required>
+                    <option>রোমান্টিক</option><option>লোকগীতি</option>
+                    <option>ইসলামিক</option><option>আধুনিক</option><option>অন্যান্য</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>গানের অভিজ্ঞতা কেমন? *</label>
+                <div class="radio-grid">
+                    <label class="radio-item"><input type="radio" name="exp" value="নতুন"> নতুন</label>
+                    <label class="radio-item"><input type="radio" name="exp" value="মধ্যম"> মধ্যম</label>
+                    <label class="radio-item"><input type="radio" name="exp" value="পেশাদার"> পেশাদার</label>
+                </div>
+            </div>
+
+            <div class="payment-notice">
+                <h3 style="color: var(--secondary);">💰 রেজিস্ট্রেশন ফি: ১০০০ টাকা</h3>
+                <p style="font-size: 14px; margin: 10px 0;">বিকাশ / নগদ (Send Money): <strong>01757331663</strong></p>
+                
+                <div class="input-group" style="text-align: left; margin-top: 20px;">
+                    <label>পেমেন্ট অপারেটর *</label>
+                    <select required id="op">
+                        <option value="bkash">বিকাশ (bKash)</option>
+                        <option value="nagad">নগদ (Nagad)</option>
+                    </select>
+                </div>
+
+                <div class="input-group" style="text-align: left;">
+                    <label>ট্রানজেকশন আইডি (Transaction ID) *</label>
+                    <input type="text" required id="trx" placeholder="Ex: 8N77XPS2">
+                </div>
+                
+                <div class="input-group" style="text-align: left;">
+                    <label>যে নম্বর থেকে টাকা পাঠিয়েছেন *</label>
+                    <input type="tel" required id="sender" placeholder="017XXXXXXXX">
+                </div>
+            </div>
+
+            <div class="input-group" style="margin-top: 20px;">
+                <label><input type="checkbox" required> আমি যাচাই করেছি যে উপরের সকল তথ্য সঠিক। ✅</label>
+            </div>
+
+            <button type="submit" class="submit-btn">রেজিস্ট্রেশন জমা দিন</button>
+        </form>
+    </div>
+
+    <div class="ask-box">
+        <h3 style="color: var(--secondary); margin-bottom: 15px;">আপনার কি কোন প্রশ্ন আছে?</h3>
+        <textarea id="userQuestion" rows="3" placeholder="এখানে আপনার প্রশ্নটি লিখুন..."></textarea>
+        <button onclick="sendToWhatsApp()" class="submit-btn" style="background: #25d366; margin-top: 15px; padding: 12px;">
+            হোয়াটসঅ্যাপে প্রশ্ন পাঠান
+        </button>
+    </div>
+
+    <div id="success-msg">
+        <h2 style="color: var(--secondary);">ধন্যবাদ!</h2>
+        <p>আপনার রেজিস্ট্রেশন সফলভাবে সম্পন্ন হয়েছে। আমাদের টিম শীঘ্রই আপনার সাথে যোগাযোগ করবে।</p>
+        <br>
+        <a href="index.html" style="color: var(--primary);">হোম পেজে ফিরে যান</a>
+    </div>
+</div>
+
+<script>
+    // ফর্ম সাবমিট হ্যান্ডলার
+    document.getElementById('megaForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('formCard').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+        window.scrollTo(0,0);
+    });
+
+    // হোয়াটসঅ্যাপে প্রশ্ন পাঠানোর ফাংশন
+    function sendToWhatsApp() {
+        const question = document.getElementById('userQuestion').value;
+        const phone = "8801757331663";
+        
+        if(question.trim() === "") {
+            alert("অনুগ্রহ করে আপনার প্রশ্নটি লিখুন।");
+            return;
+        }
+
+        const encodedMsg = encodeURIComponent("গানে গানে সেরা এশিয়া সিজন-৩ সম্পর্কে আমার প্রশ্ন: \n" + question);
+        window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank');
+    }
+</script>
+
+</body>
+</html>

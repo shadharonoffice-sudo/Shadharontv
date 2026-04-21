@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Hub | Shadharon TV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Poppins:wght@600;800&display=swap');
+
+        :root {
+            --primary: #ff0055;
+            --secondary: #00ffcc;
+            --bg: #050505;
+            --card-bg: #111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- Page Header --- */
+        .video-header {
+            padding: 80px 10% 40px;
+            text-align: center;
+            background: linear-gradient(to bottom, #111, var(--bg));
+        }
+
+        .video-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .video-header h1 span { color: var(--primary); }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 25px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* --- Video Grid --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 10%;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .video-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            border-color: var(--primary);
+        }
+
+        .thumbnail-box {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #222;
+        }
+
+        .thumbnail-box img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        /* Play Button Overlay */
+        .play-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 0, 85, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 50px; height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-size: 20px;
+        }
+
+        .video-details {
+            padding: 15px;
+        }
+
+        .video-details h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .video-details p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .video-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--primary);
+            padding: 2px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            color: #444;
+            border-top: 1px solid #111;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .video-grid { grid-template-columns: 1fr; }
+            .video-header h1 { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="video-header">
+        
+        <p style="color: #666; margin-top: 10px;">সাধারণ টিভির সব জনপ্রিয় এপিসোড এখন এক জায়গায়</p>
+        
+        <div class="category-filter">
+            <button class="filter-btn active">সব ভিডিও</button>
+            <button class="filter-btn">অডিশন</button>
+            <button class="filter-btn">পারফরম্যান্স</button>
+            <button class="filter-btn">বিহাইন্ড দ্য সিন</button>
+        </div>
+    </section>
+
+    <div class="video-grid">
+        
+        <div class="video-card">
+            <span class="video-tag">NEW</span>
+            <div class="thumbnail-box">
+                <img src="https://via.placeholder.com/400x225/111/fff?text=Episode+1" alt="Thumbnail">
+                <div class="play-overlay">
+                    <div class="play-icon">▶</div>
+                </div>
+            </div>
+            <div class="video-details">
+                <h3>গানে গানে সেরা - সিজন ২ - এপিসোড ০১</h3>
+                <p>২০ এপ্রিল, ২০২৬ • ১২ মিনিট</p>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumbnail-box">
+                <img src="https://via.placeholder.com/400x225/111/fff?text=Episode+2" alt="Thumbnail">
+                <div class="play-overlay">
+                    <div class="play-icon">▶</div>
+                </div>
+            </div>
+            <div class="video-details">
+                <h3>সেরা কণ্ঠের লড়াই - মেগা অডিশন</h3>
+                <p>১৮ এপ্রিল, ২০২৬ • ১৫ মিনিট</p>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumbnail-box">
+                <img src="https://via.placeholder.com/400x225/111/fff?text=Episode+3" alt="Thumbnail">
+                <div class="play-overlay">
+                    <div class="play-icon">▶</div>
+                </div>
+            </div>
+            <div class="video-details">
+                <h3>বিহাইন্ড দ্য সিন - সিজন ৩ অডিশন</h3>
+                <p>১৫ এপ্রিল, ২০২৬ • ৮ মিনিট</p>
+            </div>
+        </div>
+
+        </div>
+
+    <footer>
+        <p>&copy; 2026 Shadharon TV Video Portal</p>
+    </footer>
+
+</body>
+</html>

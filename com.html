@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের চেয়ারম্যান - Akash Joarddar | Shadharon TV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;700&display=swap');
+
+        :root {
+            --primary: #ff1a1a;
+            --secondary: #2b0000;
+            --gold: #fcc200;
+            --bg: #000000;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-sub: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: radial-gradient(circle at center, #1a0000 0%, var(--bg) 100%);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #cursor-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 26, 26, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            transition: 0.1s ease-out;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 5%;
+        }
+
+        .chairman-card {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            padding: 60px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            animation: cardAppear 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        /* ডান পাশ: ছবি */
+        .photo-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-wrapper {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 12px solid var(--glass);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            transition: 0.5s;
+            animation: borderGlow 3s infinite alternate, float 6s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        .chairman-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        /* বাম পাশ: কন্টেন্ট */
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .greeting { font-size: 1.1rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 10px; opacity: 0; animation: fadeInUp 0.8s 0.8s forwards; }
+        .chairman-name { font-size: 3.2rem; font-weight: 700; line-height: 1.1; margin-bottom: 10px; background: linear-gradient(to bottom, #fff 30%, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0; animation: fadeInUp 0.8s 1s forwards; }
+        .chairman-title { font-size: 1.2rem; color: #ddd; margin-bottom: 25px; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; opacity: 0; animation: fadeInUp 0.8s 1.2s forwards; }
+
+        /* কন্টাক্ট সেকশন (নতুন যুক্ত করা হয়েছে) */
+        .contact-info-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: fadeInUp 0.8s 1.4s forwards;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+        }
+
+        .info-card:hover { background: rgba(255, 26, 26, 0.1); border-color: var(--primary); }
+
+        .info-icon { font-size: 20px; color: var(--gold); }
+        .info-text h4 { font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 2px; }
+        .info-text p { font-size: 14px; font-weight: bold; color: #fff; }
+
+        .welcome-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.8s 1.6s forwards;
+        }
+
+        .welcome-text { font-size: 1.1rem; line-height: 1.6; color: var(--text-sub); font-style: italic; }
+
+        .btn-group { margin-top: 30px; display: flex; gap: 15px; opacity: 0; animation: fadeInUp 0.8s 1.8s forwards; }
+        .glow-btn { padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1rem; transition: 0.4s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-primary { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3); }
+        .btn-secondary { background: transparent; border: 2px solid white; color: white; }
+
+        footer { position: absolute; bottom: 20px; width: 100%; text-align: center; font-size: 0.8rem; color: #444; opacity: 0; animation: fadeIn 0.8s 2s forwards; }
+
+        /* এনিমেশনস */
+        @keyframes cardAppear { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes borderGlow { from { box-shadow: 0 0 20px rgba(255, 0, 0, 0.2); } to { box-shadow: 0 0 50px rgba(255, 0, 0, 0.5); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        @media (max-width: 900px) {
+            .chairman-card { grid-template-columns: 1fr; padding: 30px; text-align: center; }
+            .photo-panel { order: -1; }
+            .photo-wrapper { width: 250px; height: 250px; }
+            .contact-info-box { grid-template-columns: 1fr; }
+            .info-card { justify-content: center; }
+            .btn-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor-glow"></div>
+
+    <section class="page-wrapper">
+        <div class="chairman-card">
+            
+            <div class="photo-panel">
+                <div class="photo-wrapper" onclick="toggleZoom()">
+                    <img src="C:\Users\user\Downloads\518378698_4229298654020527_7867525510648786444_n.jpg"  alt="Akash Joarddar" class="chairman-photo" id="main-photo">
+                </div>
+            </div>
+<div>
+   
+
+</div>
+            <div class="info-panel">
+                <p class="greeting">আপনাদের সবাইকে জানাচ্ছি শুভেচ্ছা</p>
+                <h1 class="chairman-name">AKASH JOARDDAR</h1>
+                <p class="chairman-title">CHAIRMAN OF SHADHARON TV</p>
+                
+                <div class="contact-info-box">
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <h4>Primary Call</h4>
+                            <p>01577291237</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">📱</div>
+                        <div class="info-text">
+                            <h4>WhatsApp</h4>
+                            <p>+880 1757 331663</p>
+                        </div>
+                     </div>
+
+                <div class="btn-group">
+                    <a href="https://www.facebook.com/sd.akash.12" class="glow-btn btn-primary">Facebook</a>
+                  
+                </div>
+            </div>
+
+                    
+                    </div>
+                    <div class="info-card" style="grid-column: span 2;">
+                        <div class="info-icon">📧</div>
+                        <div class="info-text">
+                            <h4>Official Email</h4>
+                            <p>shadharonoffice@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+<div class="contact-info-box">
+                    <div class="info-card">
+                        <div class="info-icon"></div>
+                        <div class="info-text">
+                            <h4>ঠিকানা</h4>
+                            <p>মিরপুর ১০ , ঢাকা , বাংলাদেশ</p>
+                        </div>
+                    </div>
+                <div class="welcome-card">
+                    <p class="welcome-text">
+                        "Shadharon TV আপনাদের জন্য নিয়ে আসছে নতুন একটি প্ল্যাটফর্ম, যেখানে আপনার প্রতিভা স্বীকৃতি পাবে। আমাদের সাথে থাকুন।"
+                    </p>
+                </div>
+
+                <div class="btn-group">
+                    <a href="#" class="glow-btn btn-primary">এখনই অংশ নিন</a>
+                    <a href="about.html" class="glow-btn btn-secondary">আমাদের সম্পর্কে</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Shadharon TV. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const glow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        let isZoomed = false;
+        function toggleZoom() {
+            const photo = document.getElementById('main-photo');
+            photo.style.transform = isZoomed ? 'scale(1)' : 'scale(1.15)';
+            isZoomed = !isZoomed;
+        }
+    </script>
+</body>
+</html>

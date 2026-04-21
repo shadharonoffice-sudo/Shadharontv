@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadharon TV | হৃদয়ে বাংলা সংস্কৃতি</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        :root {
+            --gold: #FFD700;
+            --deep-red: #8B0000;
+            --vibrant-red: #FF3131;
+            --glass: rgba(255, 255, 255, 0.1);
+            --dark-bg: #0a0a0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--dark-bg);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e0505 0%, #0a0a0a 100%);
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), var(--dark-bg)),
+                        url('https://www.facebook.com/photo.php?fbid=1469699665167660&set=pb.100063829221957.-2207520000&type=3');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        /* Main Glass Card */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: -100px auto 100px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .section-tag {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .main-para {
+            font-size: 1.25rem;
+            color: #ddd;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* Genre Grid */
+        .genre-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .genre-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px 15px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid transparent;
+        }
+
+        .genre-item:hover {
+            background: var(--vibrant-red);
+            transform: scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 0 10px 20px rgba(255, 49, 49, 0.3);
+        }
+
+        .genre-item i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        /* Floating Stats */
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 40px;
+        }
+
+        .stat-box h2 {
+            font-size: 3rem;
+            color: var(--vibrant-red);
+        }
+
+        .stat-box p {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            text-align: center;
+            background: #000;
+            border-top: 2px solid var(--vibrant-red);
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin: 0 15px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+
+        /* Pulse Animation for Logo */
+        .pulse {
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); text-shadow: 0 0 0 rgba(255, 49, 49, 0.7); }
+            70% { transform: scale(1); text-shadow: 0 0 20px rgba(255, 49, 49, 0); }
+            100% { transform: scale(0.95); text-shadow: 0 0 0 rgba(255, 49, 49, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .glass-card { padding: 30px 20px; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient"></div>
+
+    <section class="hero-section">
+        <div data-aos="zoom-out" data-aos-duration="1500">
+            <span class="section-tag pulse">Welcome to the future of Media</span>
+            <h1 class="hero-title">Shadharon TV</h1>
+            <p style="font-size: 1.2rem; letter-spacing: 2px;">সংগীত ও সংস্কৃতির শৈল্পিক যাত্রা</p>
+        </div>
+    </section>
+
+    <div class="content-wrapper">
+        <div class="glass-card" data-aos="fade-up">
+            <span class="section-tag">আমাদের গল্প</span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: var(--gold);">ঐতিহ্যের নতুন দিগন্ত</h2>
+            
+            <p class="main-para">
+                <strong style="color: var(--vibrant-red);">Shadharon TV</strong> হলো একটি বিশ্বমানের বিনোদন প্ল্যাটফর্ম, যা বাংলা মিউজিক ও সংস্কৃতির অমূল্য সম্পদকে বিশ্বব্যাপী ছড়িয়ে দিতে কাজ করছে। আমাদের যাত্রা শুরু হয়েছিল ২০২০ সালে <strong>Shadharon Multimedia</strong> হিসেবে। অত্যন্ত অল্প সময়ে আমরা নিজেদেরকে মিডিয়া প্রোডাকশন ইন্ডাস্ট্রিতে সৃজনশীলতা ও উদ্ভাবনের এক অনন্য প্রতীক হিসেবে প্রতিষ্ঠিত করেছি।
+            </p>
+
+            <p class="main-para">
+                আমরা শুধু গান শোনাই না, আমরা প্রতিটি সুরের মাধ্যমে বাংলার ইতিহাস ও মাটির টানকে ফুটিয়ে তুলি। আধুনিক প্রযুক্তির সাথে লোকজ ও ধ্রুপদী সংগীতের মেলবন্ধন ঘটানোই আমাদের প্রধান লক্ষ্য।
+            </p>
+
+            <div class="genre-container">
+                <div class="genre-item" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-leaf"></i>
+                    <p>ফোক মিউজিক</p>
+                </div>
+                <div class="genre-item" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-vihara"></i>
+                    <p>লালন গীতি</p>
+                </div>
+                <div class="genre-item" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-guitar"></i>
+                    <p>ব্যান্ড সংগীত</p>
+                </div>
+                <div class="genre-item" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-heart"></i>
+                    <p>রোমান্টিক</p>
+                </div>
+                <div class="genre-item" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fas fa-microphone-alt"></i>
+                    <p>রবীন্দ্র সংগীত</p>
+                </div>
+                <div class="genre-item" data-aos="zoom-in" data-aos-delay="600">
+                    <i class="fas fa-music"></i>
+                    <p>শাস্ত্রীয় সংগীত</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box" data-aos="fade-right">
+                    <h2>2020</h2>
+                    <p>স্থাপিত</p>
+                </div>
+                <div class="stat-box" data-aos="fade-up">
+                    <h2>Millions</h2>
+                    <p>গ্লোবাল ভিউয়ার্স</p>
+                </div>
+                <div class="stat-box" data-aos="fade-left">
+                    <h2>Innovation</h2>
+                    <p>আমাদের লক্ষ্য</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons" style="margin-bottom: 20px;">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="color: #666;">&copy; 2026 Shadharon TV. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; color: var(--gold); margin-top: 10px;">Promoting Bengali Culture to the World</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+        });
+    </script>
+</body>
+</html>
