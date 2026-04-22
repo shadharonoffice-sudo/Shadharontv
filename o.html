@@ -3,176 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>গানে গানে সেরা এশিয়া | Registration Season-3</title>
+    <title>গানে গানে সেরা এশিয়া | Secure Registration</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap');
 
         :root {
             --primary: #ff0055;
             --secondary: #00ffcc;
-            --dark: #050505;
-            --glass: rgba(255, 255, 255, 0.05);
-            --locked: rgba(255, 255, 255, 0.1);
+            --dark: #0a0a0a;
+            --overlay: rgba(0, 0, 0, 0.85);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background: radial-gradient(circle at top, #1a1a1a, #050505);
+            background: #050505;
             color: white;
-            line-height: 1.6;
+            margin: 0;
+            overflow-x: hidden;
         }
 
-        .container { max-width: 800px; margin: 50px auto; padding: 20px; }
+        .container { max-width: 600px; margin: 40px auto; padding: 20px; }
 
-        .header-box { text-align: center; margin-bottom: 40px; }
-        .header-box h1 { font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: var(--secondary); }
-
-        /* Payment First Section */
-        .payment-lock-screen {
-            background: rgba(255, 0, 85, 0.1);
-            border: 2px solid var(--primary);
+        /* --- Payment Verification Box --- */
+        #payment-gateway {
+            background: #111;
             padding: 30px;
-            border-radius: 25px;
-            margin-bottom: 30px;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
             text-align: center;
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.2);
         }
 
-        .reg-card {
-            background: var(--glass);
-            padding: 40px;
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.3; /* Initially locked */
-            pointer-events: none; /* Disable interaction */
-            transition: 0.5s;
+        .step-title { color: var(--secondary); margin-bottom: 20px; font-size: 22px; }
+
+        .payment-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--secondary);
         }
 
-        .reg-card.unlocked {
-            opacity: 1;
-            pointer-events: all;
-            border-color: var(--secondary);
-        }
-
-        .input-group { margin-bottom: 20px; text-align: left; }
-        input, select, textarea {
-            width: 100%; padding: 12px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px; color: white;
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #222;
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box;
         }
 
         .verify-btn {
-            background: var(--secondary);
-            color: black;
-            padding: 10px 25px;
+            background: linear-gradient(45deg, var(--primary), #8000ff);
+            color: white;
             border: none;
+            padding: 15px 30px;
             border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 15px;
+            width: 100%;
+            font-size: 18px;
+            transition: 0.3s;
         }
 
-        .submit-btn {
-            width: 100%; padding: 18px;
-            background: linear-gradient(45deg, var(--primary), #8000ff);
-            border: none; border-radius: 50px; color: white;
-            font-size: 1.2rem; font-weight: bold; cursor: pointer;
+        .verify-btn:hover { transform: scale(1.02); opacity: 0.9; }
+
+        /* --- Main Registration Form (Initially Hidden) --- */
+        #main-form {
+            display: none; /* পুরোপুরি লুকিয়ে রাখা হয়েছে */
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            animation: slideUp 0.5s ease-out;
         }
 
-        .status-msg { margin-top: 10px; font-size: 14px; display: none; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .error-text {
+            color: #ff4444;
+            font-size: 14px;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header-box">
-        <h1>গানে গানে সেরা এশিয়া</h1>
-        <p>সিজন-৩ রেজিস্ট্রেশন ফরম</p>
-    </div>
-
-    <div class="payment-lock-screen" id="paymentSection">
-        <h3 style="color: var(--secondary);">ধাপ ১: পেমেন্ট সম্পন্ন করুন</h3>
-        <p>রেজিস্ট্রেশন ফরমটি আনলক করতে প্রথমে ১০০০ টাকা পেমেন্ট করুন।</p>
-        <div style="background: #000; padding: 15px; border-radius: 10px; margin: 15px 0;">
-            <p>বিকাশ / নগদ (Send Money): <strong>01757331663</strong></p>
-        </div>
-
-        <div class="input-group">
-            <label>যে নম্বর থেকে টাকা পাঠিয়েছেন:</label>
-            <input type="tel" id="pre_sender" placeholder="017XXXXXXXX">
-        </div>
-        <div class="input-group">
-            <label>ট্রানজেকশন আইডি (TrxID):</label>
-            <input type="text" id="pre_trx" placeholder="8N77XPS2">
-        </div>
+    
+    <div id="payment-gateway">
+        <h2 class="step-title">পেমেন্ট ভেরিফিকেশন</h2>
+        <p>রেজিস্ট্রেশন ফরমটি এক্সেস করতে ১০০০ টাকা পেমেন্ট সম্পন্ন করুন।</p>
         
-        <button type="button" class="verify-btn" onclick="verifyPayment()">পেমেন্ট ভেরিফাই করুন</button>
-        <p id="error-msg" class="status-msg" style="color: #ff4444;">অনুগ্রহ করে সঠিক তথ্য দিন।</p>
+        <div class="payment-info">
+            <strong>বিকাশ/নগদ (Send Money):</strong><br>
+            <span style="font-size: 20px; color: var(--secondary);">01757331663</span>
+        </div>
+
+        <div style="text-align: left;">
+            <label>যে নম্বর থেকে টাকা পাঠিয়েছেন (১১ ডিজিট)</label>
+            <input type="tel" id="senderNum" placeholder="01XXXXXXXXX" maxlength="11">
+            
+            <label>ট্রানজেকশন আইডি (TrxID)</label>
+            <input type="text" id="trxID" placeholder="যেমন: 8N77XPS2" maxlength="12">
+        </div>
+
+        <p id="payment-error" class="error-text">ভুল তথ্য! সঠিক নম্বর এবং TrxID দিন।</p>
+        
+        <button class="verify-btn" onclick="checkPayment()">পেমেন্ট যাচাই করে ফরমটি খুলুন</button>
     </div>
 
-    <div class="reg-card" id="formCard">
-        <h2 style="color: var(--secondary); margin-bottom: 20px;">ধাপ ২: ব্যক্তিগত তথ্য পূরণ করুন (Unlocked)</h2>
-        <form id="megaForm">
-            <div class="input-group">
-                <label>আপনার পূর্ণ নাম *</label>
-                <input type="text" required>
-            </div>
+    <div id="main-form">
+        <h2 style="color: var(--secondary); text-align: center;">রেজিস্ট্রেশন ফরম</h2>
+        <hr style="border: 0.5px solid #333; margin-bottom: 20px;">
+        
+        <form id="finalRegForm">
+            <label>আপনার নাম</label>
+            <input type="text" required>
 
-            <div class="input-group">
-                <label>সচল WhatsApp নম্বর *</label>
-                <input type="tel" required>
-            </div>
+            <label>বর্তমান ঠিকানা</label>
+            <input type="text" required>
 
-            <div class="input-group">
-                <label>NID অথবা জন্ম নিবন্ধন নম্বর *</label>
-                <input type="text" required>
-            </div>
+            <label>পছন্দের গানের ধরন</label>
+            <select style="width:100%; padding:12px; background:#222; color:white; border-radius:8px; border:1px solid #333;">
+                <option>লোকগীতি</option>
+                <option>আধুনিক</option>
+                <option>ইসলামিক</option>
+            </select>
 
-            <input type="hidden" id="final_sender" name="sender_number">
-            <input type="hidden" id="final_trx" name="transaction_id">
-
-            <button type="submit" class="submit-btn">রেজিস্ট্রেশন জমা দিন</button>
+            <br><br>
+            <button type="submit" class="verify-btn">আবেদন জমা দিন</button>
         </form>
     </div>
 
-    <div id="success-msg" style="display:none; text-align:center; padding: 50px;">
-        <h1 style="color: var(--secondary);">অভিনন্দন!</h1>
-        <p>আপনার আবেদনটি গ্রহণ করা হয়েছে।</p>
+    <div id="success-screen" class="success-screen">
+        <h1 style="color: var(--secondary);">ধন্যবাদ!</h1>
+        <p>আপনার রেজিস্ট্রেশন এবং পেমেন্ট সফলভাবে গ্রহণ করা হয়েছে।</p>
     </div>
+
 </div>
 
 <script>
-    function verifyPayment() {
-        const sender = document.getElementById('pre_sender').value;
-        const trx = document.getElementById('pre_trx').value;
-        const errorMsg = document.getElementById('error-msg');
-        const formCard = document.getElementById('formCard');
-        const paymentSection = document.getElementById('paymentSection');
+    function checkPayment() {
+        const num = document.getElementById('senderNum').value;
+        const trx = document.getElementById('trxID').value;
+        const error = document.getElementById('payment-error');
+        const gateway = document.getElementById('payment-gateway');
+        const mainForm = document.getElementById('main-form');
 
-        // Logic: পেমেন্ট ফিল্ড খালি থাকলে বা নির্দিষ্ট দৈর্ঘ্যের কম হলে আটকাবে
-        if(sender.length < 11 || trx.length < 6) {
-            errorMsg.style.display = 'block';
-            errorMsg.innerText = "ভুল নম্বর বা TrxID! আবার চেষ্টা করুন।";
+        // পেমেন্ট লজিক: নম্বর অবশ্যই ১১ ডিজিট হতে হবে এবং TrxID কমপক্ষে ৭ অক্ষরের হতে হবে
+        if (num.length === 11 && trx.length >= 7) {
+            
+            // এখানে আপনি চাইলে নির্দিষ্ট কোনো TrxID প্যাটার্ন চেক করতে পারেন
+            // বর্তমানে এটি সঠিক ফরম্যাট পেলেই ফরম ওপেন করবে
+            
+            error.style.display = 'none';
+            gateway.style.display = 'none'; // পেমেন্ট বক্স ভ্যানিশ হয়ে যাবে
+            mainForm.style.display = 'block'; // মেইন ফরম স্লাইড করে আসবে
+            
+            window.scrollTo(0, 0);
         } else {
-            // পেমেন্ট তথ্য সঠিক মনে হলে ফরম আনলক হবে
-            alert("পেমেন্ট তথ্য যাচাই করা হচ্ছে... ফরমটি এখন আনলক করা হলো।");
-            
-            paymentSection.style.display = 'none'; // পেমেন্ট সেকশন হাইড হবে
-            formCard.classList.add('unlocked'); // ফরম আনলক হবে
-            
-            // ডাটাগুলো হিডেন ইনপুটে সেট করা যাতে সাবমিট হয়
-            document.getElementById('final_sender').value = sender;
-            document.getElementById('final_trx').value = trx;
-
-            window.scrollTo(0, formCard.offsetTop - 50);
+            error.style.display = 'block';
+            document.getElementById('payment-gateway').style.borderColor = 'red';
         }
     }
 
-    document.getElementById('megaForm').addEventListener('submit', function(e) {
+    document.getElementById('finalRegForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        document.getElementById('formCard').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
+        document.getElementById('main-form').style.display = 'none';
+        document.getElementById('success-screen').style.display = 'block';
     });
 </script>
 
