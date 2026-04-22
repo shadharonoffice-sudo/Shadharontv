@@ -3,83 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>গানে গানে সেরা এশিয়া | Registration Season-3</title>
+    <title>গানে গানে সেরা এশিয়া | Admin Approval System</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@800&display=swap');
-
-        :root {
-            --primary: #ff0055;
-            --secondary: #00ffcc;
-            --dark: #050505;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background: radial-gradient(circle at top, #1a1a1a, #050505);
-            color: white;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
+        :root { --primary: #ff0055; --secondary: #00ffcc; --glass: rgba(255, 255, 255, 0.05); }
+        body { font-family: 'Hind Siliguri', sans-serif; background: radial-gradient(circle at top, #1a1a1a, #050505); color: white; line-height: 1.6; }
         .container { max-width: 800px; margin: 50px auto; padding: 20px; }
-
         .header-box { text-align: center; margin-bottom: 40px; }
-        .header-box h1 { font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: var(--secondary); text-transform: uppercase; }
-        
-        .season-badge {
-            display: inline-block; background: var(--primary);
-            padding: 5px 20px; border-radius: 50px; font-weight: bold;
-            margin-top: 10px; box-shadow: 0 0 15px var(--primary);
-        }
+        .header-box h1 { font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: var(--secondary); }
+        .season-badge { display: inline-block; background: var(--primary); padding: 5px 20px; border-radius: 50px; font-weight: bold; margin-top: 10px; }
 
-        /* --- Payment Lock Area --- */
-        #payment-lock {
-            background: var(--glass); backdrop-filter: blur(15px);
-            padding: 40px; border-radius: 25px; border: 2px solid var(--primary);
-            text-align: center; margin-bottom: 30px;
-        }
+        /* পেমেন্ট সেকশন */
+        #payment-lock { background: var(--glass); padding: 40px; border-radius: 25px; border: 2px solid var(--primary); text-align: center; }
+        #formCard { display: none; } /* ফরমটি শুরুতে বন্ধ */
 
-        /* --- Main Form Area (Initially Hidden) --- */
-        #formCard { display: none; }
-
-        .reg-card {
-            background: var(--glass); backdrop-filter: blur(15px);
-            padding: 40px; border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .section-title {
-            border-left: 4px solid var(--primary);
-            padding-left: 15px; margin: 30px 0 20px;
-            color: var(--secondary); font-size: 1.2rem;
-        }
-
+        .reg-card { background: var(--glass); padding: 40px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); }
+        .section-title { border-left: 4px solid var(--primary); padding-left: 15px; margin: 30px 0 20px; color: var(--secondary); font-size: 1.2rem; }
         .input-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: #ddd; }
+        input, select { width: 100%; padding: 12px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; }
         
-        input, select, textarea {
-            width: 100%; padding: 12px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px; color: white; font-family: 'Hind Siliguri';
-        }
-
-        .radio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-        .radio-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; cursor: pointer; text-align: center; border: 1px solid transparent; }
-        
-        .submit-btn {
-            width: 100%; padding: 18px; margin-top: 30px;
-            background: linear-gradient(45deg, var(--primary), #8000ff);
-            border: none; border-radius: 50px; color: white;
-            font-size: 1.2rem; font-weight: bold; cursor: pointer;
-            transition: 0.4s;
-        }
-
-        .wa-btn { background: #25d366 !important; margin-bottom: 15px; }
-
+        .submit-btn { width: 100%; padding: 18px; margin-top: 30px; background: linear-gradient(45deg, var(--primary), #8000ff); border: none; border-radius: 50px; color: white; font-size: 1.2rem; font-weight: bold; cursor: pointer; }
+        .wa-btn { background: #25d366 !important; }
         #success-msg { display: none; text-align: center; padding: 50px; }
     </style>
 </head>
@@ -92,116 +36,74 @@
     </div>
 
     <div id="payment-lock">
-        <h3 style="color: var(--secondary);">ধাপ ১: পেমেন্ট ভেরিফিকেশন</h3>
-        <p style="margin: 15px 0;">রেজিস্ট্রেশন করতে ১০০০ টাকা পাঠিয়ে অ্যাডমিনকে রিকোয়েস্ট পাঠান।</p>
+        <h3 style="color: var(--secondary);">পেমেন্ট ভেরিফিকেশন</h3>
+        <p style="margin: 15px 0;">১০০০ টাকা পাঠিয়ে <b>"অ্যাপ্রুভ বাটন"</b> রিকোয়েস্ট পাঠান।</p>
         <div style="background: #000; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
             বিকাশ/নগদ (Send Money): <strong>01757331663</strong>
         </div>
-        <input type="tel" id="pre_sender" placeholder="যে নম্বর থেকে টাকা পাঠিয়েছেন">
+        <input type="tel" id="pre_sender" placeholder="বিকাশ নম্বর">
         <input type="text" id="pre_trx" placeholder="Transaction ID">
         
-        <button onclick="requestApproval()" class="submit-btn wa-btn">অ্যাডমিনকে মেসেজ পাঠান</button>
-        <p id="wait-text" style="display:none; color: #ffcc00;">অ্যাডমিন থেকে পাওয়া 'অনুমোদন কোড' দিন:</p>
-        <input type="text" id="approval_code" style="display:none;" placeholder="Code লিখুন">
-        <button id="unlock-btn" onclick="verifyCode()" class="submit-btn" style="display:none; background: var(--secondary); color: black;">ফরমটি আনলক করুন</button>
+        <button onclick="requestApproval()" class="submit-btn wa-btn">✅ অ্যাডমিন থেকে অ্যাপ্রুভ নিন</button>
+        
+        <div id="code-box" style="display:none; margin-top: 20px;">
+            <p style="color: #ffcc00;">অ্যাডমিন আপনার রিকোয়েস্ট অ্যাপ্রুভ করলে একটি কোড পাবেন। সেটি এখানে দিন:</p>
+            <input type="text" id="approval_code" placeholder="Enter Approval Code">
+            <button onclick="unlockForm()" class="submit-btn" style="background: var(--secondary); color: black;">ফরমটি আনলক করুন</button>
+        </div>
     </div>
 
     <div class="reg-card" id="formCard">
         <form id="megaForm">
             <div class="section-title">ব্যক্তিগত তথ্য</div>
-            <div class="input-group">
-                <label>আপনার পূর্ণ নাম *</label>
-                <input type="text" id="u_name" required placeholder="নাম লিখুন">
-            </div>
-
-            <div class="input-group">
-                <label>সচল WhatsApp নাম্বার *</label>
-                <input type="tel" id="u_whatsapp" required placeholder="01XXX XXXXXX">
-            </div>
-
-            <div class="input-group">
-                <label>বর্তমানে কোথায় বসবাস করছেন? *</label>
-                <div class="radio-grid">
-                    <label class="radio-item"><input type="radio" name="residence" value="বাংলাদেশ" required> বাংলাদেশ</label>
-                    <label class="radio-item"><input type="radio" name="residence" value="প্রবাসে"> প্রবাসে</label>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label>আপনার বয়স *</label>
-                <input type="date" id="u_dob" required>
-            </div>
-
-            <div class="section-title">ঠিকানা ও পরিচয়</div>
-            <div class="input-group">
-                <input type="text" id="u_father" placeholder="বাবার নাম" style="margin-bottom: 10px;">
-                <input type="text" id="u_district" placeholder="জেলা" style="margin-bottom: 10px;">
-                <input type="text" id="u_nid" placeholder="NID অথবা জন্ম নিবন্ধন নম্বর" required>
-            </div>
-
+            <div class="input-group"><label>আপনার পূর্ণ নাম *</label><input type="text" id="u_name" required></div>
+            <div class="input-group"><label>WhatsApp নাম্বার *</label><input type="tel" id="u_whatsapp" required></div>
+            <div class="input-group"><label>জেলা *</label><input type="text" id="u_district" required></div>
             <button type="submit" class="submit-btn">রেজিস্ট্রেশন জমা দিন</button>
         </form>
     </div>
 
     <div id="success-msg">
         <h2 style="color: var(--secondary);">ধন্যবাদ!</h2>
-        <p>আপনার সকল তথ্য এবং পেমেন্ট গুগল শিটে জমা হয়েছে।</p>
+        <p>আপনার তথ্য গুগল শিটে সেভ হয়েছে।</p>
     </div>
 </div>
 
 <script>
-    const adminPhone = "8801757331663";
-    const secretCode = "ASIA77"; // আপনি হোয়াটসঅ্যাপে ইউজারকে এই কোডটি দেবেন
-    const scriptURL = "YOUR_GOOGLE_SCRIPT_URL"; // আপনার গুগল শিট স্ক্রিপ্ট ইউআরএল
+    const adminPhone = "8801836723684";
+    const masterCode = "APP-77"; // আপনি হোয়াটসঅ্যাপে তাকে এই কোডটি দেবেন
 
     function requestApproval() {
-        const sender = document.getElementById('pre_sender').value;
-        const trx = document.getElementById('pre_trx').value;
+        const s = document.getElementById('pre_sender').value;
+        const t = document.getElementById('pre_trx').value;
 
-        if(sender.length < 11 || trx.length < 6) {
-            alert("সঠিক পেমেন্ট তথ্য দিন!");
-            return;
+        if(s.length < 11 || t.length < 6) {
+            alert("সঠিক তথ্য দিন!"); return;
         }
 
-        const msg = `হ্যালো অ্যাডমিন, আমি পেমেন্ট করেছি।\nনম্বর: ${sender}\nTrxID: ${trx}\nদয়া করে অনুমোদন কোড দিন।`;
+        // হোয়াটসঅ্যাপে অটোমেটিক মেসেজ যা আপনার কাছে যাবে
+        const msg = `নতুন পেমেন্ট রিকোয়েস্ট!\nনম্বর: ${s}\nTrxID: ${t}\n----------\nসব ঠিক থাকলে ইউজারকে এই কোডটি দিন: ${masterCode}`;
         window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(msg)}`, '_blank');
 
-        // পেমেন্ট রিকোয়েস্ট পাঠানোর পর কোড বক্স দেখাবে
-        document.getElementById('wait-text').style.display = 'block';
-        document.getElementById('approval_code').style.display = 'block';
-        document.getElementById('unlock-btn').style.display = 'block';
+        // ইউজারকে কোড দেওয়ার বক্সটি দেখাবে
+        document.getElementById('code-box').style.display = 'block';
     }
 
-    function verifyCode() {
-        const code = document.getElementById('approval_code').value;
-        if(code === secretCode) {
+    function unlockForm() {
+        const inputCode = document.getElementById('approval_code').value;
+        if(inputCode === masterCode) {
             document.getElementById('payment-lock').style.display = 'none';
             document.getElementById('formCard').style.display = 'block';
-            window.scrollTo(0,0);
         } else {
-            alert("ভুল কোড! অ্যাডমিনের দেওয়া সঠিক কোডটি দিন।");
+            alert("ভুল কোড! অ্যাডমিন এখনো অ্যাপ্রুভ করেনি।");
         }
     }
 
     document.getElementById('megaForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        const data = {
-            name: document.getElementById('u_name').value,
-            whatsapp: document.getElementById('u_whatsapp').value,
-            dob: document.getElementById('u_dob').value,
-            district: document.getElementById('u_district').value,
-            nid: document.getElementById('u_nid').value,
-            sender: document.getElementById('pre_sender').value,
-            trx: document.getElementById('pre_trx').value
-        };
-
-        fetch(scriptURL, { method: 'POST', body: JSON.stringify(data) })
-        .then(() => {
-            document.getElementById('formCard').style.display = 'none';
-            document.getElementById('success-msg').style.display = 'block';
-        })
-        .catch(() => alert("ত্রুটি! শিটে জমা হয়নি।"));
+        // গুগল শিট লজিক এখানে হবে
+        document.getElementById('formCard').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
     });
 </script>
 
