@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>গানে গানে সেরা এশিয়া | Registration Step-by-Step</title>
+    <title>গানে গানে সেরা এশিয়া | Full Registration</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@800&display=swap');
 
@@ -21,34 +21,38 @@
             line-height: 1.6;
         }
 
-        .container { max-width: 600px; margin: 40px auto; padding: 20px; }
+        .container { max-width: 700px; margin: 30px auto; padding: 20px; }
 
         .header-box { text-align: center; margin-bottom: 30px; }
         .header-box h1 { font-family: 'Poppins', sans-serif; font-size: 2.2rem; color: var(--secondary); text-transform: uppercase; }
         
         .reg-card {
             background: var(--glass); backdrop-filter: blur(15px);
-            padding: 35px; border-radius: 25px;
+            padding: 30px; border-radius: 25px;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .section-title {
             border-left: 4px solid var(--primary);
-            padding-left: 15px; margin: 20px 0;
+            padding-left: 15px; margin: 25px 0 15px;
             color: var(--secondary); font-size: 1.2rem;
         }
 
         .input-group { margin-bottom: 15px; text-align: left; }
-        label { display: block; margin-bottom: 8px; color: #ddd; }
+        label { display: block; margin-bottom: 8px; color: #ccc; font-size: 14px; }
         
         input, select, textarea {
             width: 100%; padding: 12px;
             background: rgba(255,255,255,0.07);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px; color: white; font-family: 'Hind Siliguri';
+            border-radius: 10px; color: white; font-family: 'Hind Siliguri';
         }
 
+        .radio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px; }
+        .radio-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; border: 1px solid #333; }
+
+        /* Sections hidden by default */
         #payment-section, #approval-section, #final-card { display: none; animation: fadeIn 0.5s ease; }
 
         .submit-btn {
@@ -56,15 +60,13 @@
             background: linear-gradient(45deg, var(--primary), #8000ff);
             border: none; border-radius: 50px; color: white;
             font-size: 1.1rem; font-weight: bold; cursor: pointer;
-            transition: 0.3s;
         }
 
         .wa-btn { background: #25d366 !important; color: black; }
 
         #final-card {
             background: linear-gradient(135deg, #1e1e1e, #111);
-            padding: 30px; border-radius: 20px; border: 2px gold solid;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            padding: 30px; border-radius: 20px; border: 2px gold solid; text-align: center;
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -75,41 +77,73 @@
 <div class="container">
     <div class="header-box">
         <h1>গানে গানে সেরা এশিয়া</h1>
-        <p style="color: #aaa;">Season-3 Registration</p>
+        <div style="background: var(--primary); display: inline-block; padding: 2px 15px; border-radius: 20px; font-size: 12px;">Season-3 Registration</div>
     </div>
 
     <div class="reg-card">
         <div id="registration-form">
             <div class="section-title">ব্যক্তিগত তথ্য</div>
+            
             <div class="input-group">
                 <label>আপনার পূর্ণ নাম *</label>
-                <input type="text" id="u_name" placeholder="নাম লিখুন">
+                <input type="text" id="u_name" placeholder="যেমন: আব্দুল করিম">
             </div>
+
             <div class="input-group">
-                <label>আপনার হোয়াটসঅ্যাপ নাম্বার *</label>
+                <label>পিতার নাম *</label>
+                <input type="text" id="u_father" placeholder="পিতার নাম লিখুন">
+            </div>
+
+            <div class="input-group">
+                <label>সচল WhatsApp নাম্বার *</label>
                 <input type="tel" id="u_wa" placeholder="01XXXXXXXXX">
             </div>
+
             <div class="input-group">
-                <label>জেলা ও ঠিকানা *</label>
-                <textarea id="u_address" placeholder="আপনার ঠিকানা লিখুন"></textarea>
+                <label>আপনার বয়স *</label>
+                <input type="date" id="u_dob">
             </div>
+
             <div class="input-group">
-                <label>গানের ক্যাটাগরি *</label>
+                <label>বসবাসের স্থান *</label>
+                <div class="radio-grid">
+                    <label class="radio-item"><input type="radio" name="res" value="বাংলাদেশ" checked> বাংলাদেশ</label>
+                    <label class="radio-item"><input type="radio" name="res" value="প্রবাস"> প্রবাস</label>
+                </div>
+            </div>
+
+            <div class="section-title">ঠিকানা ও পরিচয়</div>
+
+            <div class="input-group">
+                <label>জেলা *</label>
+                <input type="text" id="u_dist" placeholder="জেলার নাম">
+            </div>
+
+            <div class="input-group">
+                <label>NID অথবা জন্ম নিবন্ধন নম্বর *</label>
+                <input type="text" id="u_nid" placeholder="নম্বরটি লিখুন">
+            </div>
+
+            <div class="input-group">
+                <label>গানের ধরন (ক্যাটাগরি) *</label>
                 <select id="u_cat">
                     <option>লোকগীতি</option>
                     <option>আধুনিক</option>
                     <option>ইসলামিক</option>
+                    <option>অন্যান্য</option>
                 </select>
             </div>
+
             <button type="button" onclick="showPayment()" class="submit-btn">পরবর্তী ধাপ (পেমেন্ট)</button>
         </div>
 
         <div id="payment-section">
-            <div class="section-title">পেমেন্ট মেথড</div>
+            <div class="section-title">পেমেন্ট সম্পন্ন করুন</div>
             <div style="background: rgba(255, 0, 85, 0.1); padding: 15px; border-radius: 15px; border: 1px solid var(--primary); text-align: center; margin-bottom: 20px;">
-                <p>বিকাশ/নগদ (Send Money): <br><strong>01757331663</strong></p>
-                <h3 style="color: var(--secondary); margin-top:10px;">ফি: ১০০০ টাকা</h3>
+                <p>বিকাশ/নগদ (Send Money): <br><strong style="font-size: 20px; color: var(--secondary);">01757331663</strong></p>
+                <p style="margin-top: 5px;">ফি: <strong>১০০০ টাকা</strong></p>
             </div>
+            
             <div class="input-group">
                 <label>যে নাম্বার থেকে টাকা পাঠিয়েছেন *</label>
                 <input type="tel" id="p_sender" placeholder="০১৮XXXXXXXX">
@@ -118,51 +152,54 @@
                 <label>Transaction ID (TrxID) *</label>
                 <input type="text" id="p_trx" placeholder="Ex: 8N77XPS2">
             </div>
-            <button type="button" onclick="sendToWhatsApp()" class="submit-btn wa-btn">তথ্য নিশ্চিত করুন ও অ্যাডমিনকে পাঠান</button>
+            <button type="button" onclick="sendToWhatsApp()" class="submit-btn wa-btn">তথ্য নিশ্চিত করুন ও হোয়াটসঅ্যাপে পাঠান</button>
         </div>
 
         <div id="approval-section">
-            <div class="section-title">অনুমোদন সম্পন্ন করুন</div>
-            <p style="margin-bottom: 15px;">অ্যাডমিন আপনাকে হোয়াটসঅ্যাপে যে **পারমিশন কোডটি** দিয়েছে সেটি এখানে বসান:</p>
-            <input type="text" id="input_code" placeholder="Enter Code Here">
-            <button type="button" onclick="verifyPermission()" class="submit-btn">কার্ডটি জেনারেট করুন</button>
+            <div class="section-title">অনুমোদন কোড</div>
+            <p style="margin-bottom: 15px; font-size: 14px;">অ্যাডমিন আপনার পেমেন্ট যাচাই করে হোয়াটসঅ্যাপে একটি **পারমিশন কোড** পাঠিয়েছেন। সেটি এখানে দিন:</p>
+            <input type="text" id="input_code" placeholder="কোডটি এখানে লিখুন">
+            <button type="button" onclick="verifyPermission()" class="submit-btn">কার্ডটি দেখুন</button>
         </div>
 
         <div id="final-card">
-            <h3 style="color: gold;">ADMIT CARD ✅</h3>
-            <p style="font-size: 13px; color: #888; margin-bottom: 15px;">Gane Gane Sera Asia | Season-3</p>
-            <hr style="border: 0.5px solid #333; margin-bottom: 15px;">
-            <div style="text-align: left; font-size: 15px;">
-                <p>নাম: <span id="card_name" style="color: var(--secondary);"></span></p>
+            <h3 style="color: gold;">REGISTRATION CARD ✅</h3>
+            <p style="font-size: 12px; color: #888;">Gane Gane Sera Asia | Season-3</p>
+            <hr style="border: 0.5px solid #333; margin: 15px 0;">
+            <div style="text-align: left; font-size: 15px; color: #eee;">
+                <p>নাম: <span id="card_name" style="color: var(--secondary); font-weight: bold;"></span></p>
                 <p>আইডি: <span id="card_id" style="color: #fff;"></span></p>
-                <p>স্ট্যাটাস: <span style="color: #25d366;">অ্যাপ্রুভড (Verified)</span></p>
+                <p>জেলা: <span id="card_dist"></span></p>
+                <p>স্ট্যাটাস: <span style="color: #25d366;">Verified ✅</span></p>
             </div>
-            <button class="submit-btn" style="background: #333;" onclick="window.print()">Save/Download</button>
+            <button class="submit-btn" style="background: #333; font-size: 14px;" onclick="window.print()">Download / Screenshot</button>
         </div>
     </div>
 </div>
 
 <script>
     const adminPhone = "8801836723684"; // আপনার টেস্ট নাম্বার
-    const MASTER_CODE = "ASIA26"; // আপনি হোয়াটসঅ্যাপে এই কোডটি ইউজারকে দিবেন
+    const MASTER_CODE = "ASIA26"; // হোয়াটসঅ্যাপে আপনি এই কোডটি ইউজারকে দিবেন
 
     function showPayment() {
         const name = document.getElementById('u_name').value;
-        const wa = document.getElementById('u_wa').value;
-        if(!name || !wa) return alert("দয়া করে ফরমটি পূরণ করুন।");
+        const nid = document.getElementById('u_nid').value;
+        if(!name || !nid) return alert("দয়া করে ফরমের সব তথ্য পূরণ করুন।");
         
         document.getElementById('registration-form').style.display = 'none';
         document.getElementById('payment-section').style.display = 'block';
+        window.scrollTo(0,0);
     }
 
     function sendToWhatsApp() {
         const name = document.getElementById('u_name').value;
         const sender = document.getElementById('p_sender').value;
         const trx = document.getElementById('p_trx').value;
+        const dist = document.getElementById('u_dist').value;
 
         if(!sender || !trx) return alert("পেমেন্ট তথ্য দিন।");
 
-        const msg = `হ্যালো অ্যাডমিন,\nআমি রেজিস্ট্রেশন ফরম পূরণ করেছি।\n\n👤 নাম: ${name}\n💰 পেমেন্ট নাম্বার: ${sender}\n🆔 TrxID: ${trx}\n\nদয়া করে আমাকে অনুমোদন কোডটি দিন।`;
+        const msg = `নতুন রেজিস্ট্রেশন!\n\n👤 নাম: ${name}\n🏡 জেলা: ${dist}\n💰 পেমেন্ট নাম্বার: ${sender}\n🆔 TrxID: ${trx}\n\nদয়া করে আমাকে অনুমোদন কোড দিন।`;
         window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(msg)}`, '_blank');
 
         document.getElementById('payment-section').style.display = 'none';
@@ -175,7 +212,8 @@
             document.getElementById('approval-section').style.display = 'none';
             document.getElementById('final-card').style.display = 'block';
             document.getElementById('card_name').innerText = document.getElementById('u_name').value;
-            document.getElementById('card_id').innerText = "GSA-" + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('card_dist').innerText = document.getElementById('u_dist').value;
+            document.getElementById('card_id').innerText = "GSA-S3-" + Math.floor(1000 + Math.random() * 9000);
         } else {
             alert("ভুল কোড! অ্যাডমিনের দেওয়া সঠিক কোডটি দিন।");
         }
