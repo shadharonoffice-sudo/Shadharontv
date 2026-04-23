@@ -3,277 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV | হৃদয়ে বাংলা সংস্কৃতি</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+    <title>About Us | গানে গানে সেরা এশিয়া</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@800&display=swap');
+
         :root {
-            --gold: #FFD700;
-            --deep-red: #8B0000;
-            --vibrant-red: #FF3131;
-            --glass: rgba(255, 255, 255, 0.1);
-            --dark-bg: #0a0a0a;
+            --primary: #ff0055;
+            --secondary: #00ffcc;
+            --accent: #8000ff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background-color: var(--dark-bg);
+            background: #050505;
             color: #fff;
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.7;
         }
 
-        /* Animated Background */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, #1e0505 0%, #0a0a0a 100%);
+        /* ব্যাকগ্রাউন্ড অ্যানিমেশন */
+        .bg-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 0, 85, 0.15), transparent),
+                        radial-gradient(circle at 80% 70%, rgba(0, 255, 204, 0.1), transparent);
             z-index: -1;
         }
 
-        /* Hero Section */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), var(--dark-bg)),
-                        url('https://www.facebook.com/photo.php?fbid=1469699665167660&set=pb.100063829221957.-2207520000&type=3');
-            background-size: cover;
-            background-attachment: fixed;
-            padding: 20px;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
 
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 700;
-            background: linear-gradient(to right, #fff, var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* হিরো সেকশন */
+        .about-header { text-align: center; margin-bottom: 60px; animation: fadeInDown 1s ease; }
+        .about-header h1 { 
+            font-family: 'Poppins', sans-serif; font-size: 3rem; 
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
         }
+        .divider { width: 80px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 10px; }
 
-        /* Main Glass Card */
-        .content-wrapper {
-            max-width: 1200px;
-            margin: -100px auto 100px;
-            padding: 20px;
-            position: relative;
-        }
-
+        /* কার্ড লেআউট */
         .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 60px 40px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px;
+            padding: 40px; margin-bottom: 40px; transition: 0.3s;
         }
+        .glass-card:hover { transform: translateY(-5px); border-color: var(--primary); }
 
-        .section-tag {
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 20px;
-        }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
 
-        .main-para {
-            font-size: 1.25rem;
-            color: #ddd;
-            margin-bottom: 30px;
-            text-align: justify;
-        }
+        h2 { color: var(--secondary); margin-bottom: 20px; font-size: 24px; display: flex; align-items: center; gap: 10px; }
+        p { color: #ccc; font-size: 16px; margin-bottom: 15px; }
 
-        /* Genre Grid */
-        .genre-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 50px;
+        /* ফিচার হাইলাইট */
+        .feature-box {
+            background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px;
+            text-align: center; border: 1px solid rgba(255, 255, 255, 0.05);
         }
+        .feature-box i { font-size: 30px; color: var(--primary); display: block; margin-bottom: 10px; }
+        .feature-box h3 { font-size: 18px; color: #fff; }
 
-        .genre-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px 15px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid transparent;
+        /* বাটন */
+        .btn-home {
+            display: inline-block; padding: 15px 40px; background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: #fff; text-decoration: none; border-radius: 50px; font-weight: bold;
+            margin-top: 40px; transition: 0.4s; box-shadow: 0 10px 20px rgba(255, 0, 85, 0.3);
+            animation: pulse 2s infinite;
         }
+        .btn-home:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(255, 0, 85, 0.5); }
 
-        .genre-item:hover {
-            background: var(--vibrant-red);
-            transform: scale(1.05);
-            border-color: var(--gold);
-            box-shadow: 0 10px 20px rgba(255, 49, 49, 0.3);
-        }
-
-        .genre-item i {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--gold);
-        }
-
-        /* Floating Stats */
-        .stats-grid {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 60px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 40px;
-        }
-
-        .stat-box h2 {
-            font-size: 3rem;
-            color: var(--vibrant-red);
-        }
-
-        .stat-box p {
-            color: var(--gold);
-            font-weight: bold;
-        }
-
-        /* Footer */
-        footer {
-            padding: 50px;
-            text-align: center;
-            background: #000;
-            border-top: 2px solid var(--vibrant-red);
-        }
-
-        .social-icons a {
-            color: #fff;
-            margin: 0 15px;
-            font-size: 1.5rem;
-            transition: 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: var(--gold);
-        }
-
-        /* Pulse Animation for Logo */
-        .pulse {
-            animation: pulse-red 2s infinite;
-        }
-
-        @keyframes pulse-red {
-            0% { transform: scale(0.95); text-shadow: 0 0 0 rgba(255, 49, 49, 0.7); }
-            70% { transform: scale(1); text-shadow: 0 0 20px rgba(255, 49, 49, 0); }
-            100% { transform: scale(0.95); text-shadow: 0 0 0 rgba(255, 49, 49, 0); }
-        }
+        /* অ্যানিমেশন */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(255, 0, 85, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); } }
 
         @media (max-width: 768px) {
-            .glass-card { padding: 30px 20px; }
-            .hero-title { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-header h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-gradient"></div>
+<div class="bg-glow"></div>
 
-    <section class="hero-section">
-        <div data-aos="zoom-out" data-aos-duration="1500">
-            <span class="section-tag pulse">Welcome to the future of Media</span>
-            <h1 class="hero-title">Shadharon TV</h1>
-            <p style="font-size: 1.2rem; letter-spacing: 2px;">সংগীত ও সংস্কৃতির শৈল্পিক যাত্রা</p>
+<div class="container">
+    <header class="about-header">
+        <h1>আমাদের সম্পর্কে</h1>
+        <div class="divider"></div>
+        <p style="margin-top: 20px; font-size: 18px; color: #eee;">গানে গানে সেরা এশিয়া: সুরের ছোঁয়ায় নতুন প্রতিভার সন্ধানে</p>
+    </header>
+
+    <div class="glass-card">
+        <h2>🎵 আমাদের যাত্রা</h2>
+        <p><strong>"গানে গানে সেরা এশিয়া"</strong> বাংলাদেশের অন্যতম একটি জনপ্রিয় গানের রিয়েলিটি শো। আমাদের মূল লক্ষ্য হলো শহর থেকে গ্রাম, দেশ থেকে প্রবাস—সবখানে লুকিয়ে থাকা প্রতিভাগুলোকে খুঁজে বের করা এবং তাদের জন্য একটি শক্তিশালী প্ল্যাটফর্ম তৈরি করা।</p>
+        <p>সিজন ১ ও ২-এর বিশাল সাফল্যের পর, আমরা এখন নিয়ে এসেছি <strong>সিজন ৩</strong>। এবারের আয়োজনে থাকছে আরও আধুনিক প্রযুক্তি, দক্ষ বিচারক এবং বিশ্বমানের সম্প্রচার ব্যবস্থা।</p>
+    </div>
+
+    <div class="about-grid">
+        <div class="glass-card">
+            <h2>🎯 আমাদের লক্ষ্য</h2>
+            <p>আমাদের মূল লক্ষ্য হলো শুদ্ধ সংগীত চর্চাকে উৎসাহিত করা এবং নতুন প্রজন্মের শিল্পীদের জাতীয় ও আন্তর্জাতিক স্তরে পরিচিত করে তোলা। আমরা চাই প্রতিটি কণ্ঠের জাদু পৌঁছে যাক বিশ্বের প্রতিটি প্রান্তে।</p>
         </div>
-    </section>
-
-    <div class="content-wrapper">
-        <div class="glass-card" data-aos="fade-up">
-            <span class="section-tag">আমাদের গল্প</span>
-            <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: var(--gold);">ঐতিহ্যের নতুন দিগন্ত</h2>
-            
-            <p class="main-para">
-                <strong style="color: var(--vibrant-red);">Shadharon TV</strong> হলো একটি বিশ্বমানের বিনোদন প্ল্যাটফর্ম, যা বাংলা মিউজিক ও সংস্কৃতির অমূল্য সম্পদকে বিশ্বব্যাপী ছড়িয়ে দিতে কাজ করছে। আমাদের যাত্রা শুরু হয়েছিল ২০২০ সালে <strong>Shadharon Multimedia</strong> হিসেবে। অত্যন্ত অল্প সময়ে আমরা নিজেদেরকে মিডিয়া প্রোডাকশন ইন্ডাস্ট্রিতে সৃজনশীলতা ও উদ্ভাবনের এক অনন্য প্রতীক হিসেবে প্রতিষ্ঠিত করেছি।
-            </p>
-
-            <p class="main-para">
-                আমরা শুধু গান শোনাই না, আমরা প্রতিটি সুরের মাধ্যমে বাংলার ইতিহাস ও মাটির টানকে ফুটিয়ে তুলি। আধুনিক প্রযুক্তির সাথে লোকজ ও ধ্রুপদী সংগীতের মেলবন্ধন ঘটানোই আমাদের প্রধান লক্ষ্য।
-            </p>
-
-            <div class="genre-container">
-                <div class="genre-item" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-leaf"></i>
-                    <p>ফোক মিউজিক</p>
-                </div>
-                <div class="genre-item" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-vihara"></i>
-                    <p>লালন গীতি</p>
-                </div>
-                <div class="genre-item" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-guitar"></i>
-                    <p>ব্যান্ড সংগীত</p>
-                </div>
-                <div class="genre-item" data-aos="zoom-in" data-aos-delay="400">
-                    <i class="fas fa-heart"></i>
-                    <p>রোমান্টিক</p>
-                </div>
-                <div class="genre-item" data-aos="zoom-in" data-aos-delay="500">
-                    <i class="fas fa-microphone-alt"></i>
-                    <p>রবীন্দ্র সংগীত</p>
-                </div>
-                <div class="genre-item" data-aos="zoom-in" data-aos-delay="600">
-                    <i class="fas fa-music"></i>
-                    <p>শাস্ত্রীয় সংগীত</p>
-                </div>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-box" data-aos="fade-right">
-                    <h2>2020</h2>
-                    <p>স্থাপিত</p>
-                </div>
-                <div class="stat-box" data-aos="fade-up">
-                    <h2>Millions</h2>
-                    <p>গ্লোবাল ভিউয়ার্স</p>
-                </div>
-                <div class="stat-box" data-aos="fade-left">
-                    <h2>Innovation</h2>
-                    <p>আমাদের লক্ষ্য</p>
-                </div>
-            </div>
+        <div class="glass-card">
+            <h2>🌟 আমাদের বৈশিষ্ট্য</h2>
+            <p>আমরা শুধুমাত্র একটি প্রতিযোগিতাই আয়োজন করি না, বরং প্রতিযোগীদের কণ্ঠশৈলী উন্নত করার জন্য গ্রুমিং এবং অভিজ্ঞ শিল্পীদের মাধ্যমে দিকনির্দেশনা প্রদান করে থাকি।</p>
         </div>
     </div>
 
-    <footer>
-        <div class="social-icons" style="margin-bottom: 20px;">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+        <div class="feature-box">
+            <h3>১০০% স্বচ্ছতা</h3>
+            <p style="font-size: 12px; margin-top: 5px;">সঠিক বিচার প্রক্রিয়ার নিশ্চয়তা</p>
         </div>
-        <p style="color: #666;">&copy; 2026 Shadharon TV. All Rights Reserved.</p>
-        <p style="font-size: 0.8rem; color: var(--gold); margin-top: 10px;">Promoting Bengali Culture to the World</p>
-    </footer>
+        <div class="feature-box">
+            <h3>টিভি সম্প্রচার</h3>
+            <p style="font-size: 12px; margin-top: 5px;">আমাদের চ্যানেলে আপনার গান দেখার সুযোগ</p>
+        </div>
+        <div class="feature-box">
+            <h3>প্রবাসীদের সুযোগ</h3>
+            <p style="font-size: 12px; margin-top: 5px;">বিশ্বের যেকোনো প্রান্ত থেকে অংশগ্রহণ</p>
+        </div>
+    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: false,
-        });
-    </script>
+    <div class="glass-card" style="margin-top: 40px; border-left: 5px solid var(--secondary);">
+        <h2>✉️ চেয়ারম্যানের বার্তা</h2>
+        <p><i>"সংগীত হলো মনের ভাষা। আমরা চাই এই ভাষার মাধ্যমে একটি সুন্দর সমাজ গড়তে। 'গানে গানে সেরা এশিয়া' সেই সব স্বপ্নবাজদের জন্য যারা সুরের জগতে নিজেদের নাম অমর করে রাখতে চান। আপনাদের প্রতিভা বিকশিত করতে আমরা সবসময় পাশে আছি।"</i></p>
+        <p style="margin-top: 15px; color: var(--secondary); font-weight: bold;">— চেয়ারম্যান, গানে গানে সেরা এশিয়া</p>
+    </div>
+
+    <center>
+        <p style="margin-top: 40px;">আমাদের সাথে যুক্ত থাকুন সোশ্যাল মিডিয়ায়: <br> <strong>সাধারণ টিভি - ফেসবুক ও ইউটিউব</strong></p>
+        <a href="index.html" class="btn-home">🏠 মূল পাতায় ফিরে যান</a>
+    </center>
+</div>
+
 </body>
 </html>
