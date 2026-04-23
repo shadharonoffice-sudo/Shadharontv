@@ -12,15 +12,14 @@
         .container { max-width: 550px; margin: 0 auto; }
         .reg-card { background: var(--glass); backdrop-filter: blur(15px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
         .header { text-align: center; margin-bottom: 25px; }
-        .header h1 { font-family: 'Poppins', sans-serif; color: var(--secondary); font-size: 1.8rem; text-transform: uppercase; }
+        .header h1 { font-family: 'Poppins', sans-serif; color: var(--secondary); font-size: 1.6rem; text-transform: uppercase; line-height: 1.4; }
         .section-title { background: rgba(255, 0, 85, 0.15); color: var(--primary); padding: 8px 12px; border-radius: 8px; font-weight: bold; margin: 20px 0 10px; border-left: 5px solid var(--primary); }
         .input-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-size: 14px; color: #ccc; }
-        input, select { width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: white; outline: none; }
-        .payment-box { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border: 1px dashed gold; padding: 15px; border-radius: 12px; text-align: center; margin: 20px 0; }
-        .payment-box h2 { color: gold; font-size: 22px; }
-        .btn { width: 100%; padding: 15px; border: none; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.4s; margin-top: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; }
-        .btn-submit { background: linear-gradient(45deg, var(--primary), #8000ff); }
+        input, select { width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: white; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--secondary); }
+        .btn { width: 100%; padding: 15px; border: none; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.4s; margin-top: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; background: linear-gradient(45deg, var(--primary), #8000ff); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 0, 85, 0.5); }
     </style>
 </head>
 <body>
@@ -28,101 +27,94 @@
 <div class="container">
     <div class="reg-card">
         <div class="header">
-            <h1>গানে গানে সেরা এশিয়া</h1>
-            <p>সিজন ৩ রেজিস্ট্রেশন ফরম</p>
+            <h1>গানে গানে সেরা সিজন থ্রি এশিয়া</h1>
+            <p style="color: #bbb;">অফিসিয়াল রেজিস্ট্রেশন ফরম</p>
         </div>
 
-        <form id="asiaFinalForm">
+        <form id="asiaFullForm">
             <div class="section-title">ব্যক্তিগত তথ্য</div>
-            <div class="input-group"><label>পূর্ণ নাম *</label><input type="text" id="name" required></div>
-            <div class="input-group"><label>WhatsApp নাম্বার *</label><input type="tel" id="whatsapp" required></div>
+            <div class="input-group"><label>পূর্ণ নাম *</label><input type="text" id="node_name" required></div>
+            <div class="input-group"><label>WhatsApp নাম্বার *</label><input type="tel" id="node_whatsapp" required></div>
             <div class="input-group"><label>বসবাস *</label>
-                <select id="residence">
+                <select id="node_res">
                     <option value="বাংলাদেশ">বাংলাদেশ</option>
                     <option value="প্রবাসে">প্রবাসে</option>
                 </select>
             </div>
-            <div class="input-group"><label>পেশা</label><input type="text" id="job"></div>
-            <div class="input-group"><label>জন্ম তারিখ *</label><input type="date" id="dob" required></div>
+            <div class="input-group"><label>পেশা</label><input type="text" id="node_job"></div>
+            <div class="input-group"><label>জন্ম তারিখ *</label><input type="date" id="node_dob" required></div>
             <div class="input-group">
                 <label>লিঙ্গ *</label>
-                <select id="gender">
+                <select id="node_gender">
                     <option value="পুরুষ">পুরুষ</option>
                     <option value="নারী">নারী</option>
                 </select>
             </div>
 
             <div class="section-title">ঠিকানা</div>
-            <div class="input-group"><label>জেলা *</label><input type="text" id="district" required></div>
-            <div class="input-group"><label>গ্রাম/মহল্লা *</label><input type="text" id="village" required></div>
+            <div class="input-group"><label>জেলা *</label><input type="text" id="node_dist" required></div>
+            <div class="input-group"><label>গ্রাম/মহল্লা *</label><input type="text" id="node_vill" required></div>
 
-            <div class="section-title">💰 পেমেন্ট (১০০০ টাকা)</div>
-            <div class="payment-box">
-                <p>Send Money করুন নিচের নাম্বারে</p>
-                <h2>০১৭৫৭৩৩১৬৬৩</h2>
+            <div class="section-title">💰 পেমেন্ট ডিটেইলস (১০০০ টাকা)</div>
+            <div style="text-align: center; margin-bottom: 15px; color: gold; font-size: 14px;">
+                বিকাশ/নগদ/রকেট (Send Money): 01757331663
             </div>
-            
             <div class="input-group">
-                <label>পেমেন্ট মেথড সিলেক্ট করুন *</label>
-                <select id="method">
-                    <option value="Bkash">বিকাশ (Bkash)</option>
-                    <option value="Nagad">নগদ (Nagad)</option>
-                    <option value="Rocket">রকেট (Rocket)</option>
+                <label>পেমেন্ট মেথড *</label>
+                <select id="node_method">
+                    <option value="বিকাশ">বিকাশ (Bkash)</option>
+                    <option value="নগদ">নগদ (Nagad)</option>
+                    <option value="রকেট">রকেট (Rocket)</option>
                 </select>
             </div>
-            
-            <div class="input-group"><label>যে নাম্বার থেকে টাকা পাঠিয়েছেন *</label><input type="tel" id="sender" required></div>
-            <div class="input-group"><label>ট্রানজেকশন আইডি (TrxID) *</label><input type="text" id="trx" required></div>
+            <div class="input-group"><label>পেমেন্টকৃত নাম্বার *</label><input type="tel" id="node_sender" required></div>
+            <div class="input-group"><label>TrxID *</label><input type="text" id="node_trx" required></div>
 
-            <button type="submit" class="btn btn-submit">তথ্য জমা দিন ও গান পাঠান</button>
+            <button type="submit" class="btn">তথ্য জমা দিন ও গান পাঠান</button>
         </form>
     </div>
 </div>
 
 <script>
-    document.getElementById('asiaFinalForm').addEventListener('submit', function(e) {
+    document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // সব ডাটা সংগ্রহ
-        const name = document.getElementById('name').value;
-        const whatsapp = document.getElementById('whatsapp').value;
-        const residence = document.getElementById('residence').value;
-        const job = document.getElementById('job').value || "N/A";
-        const dob = document.getElementById('dob').value;
-        const gender = document.getElementById('gender').value;
-        const district = document.getElementById('district').value;
-        const village = document.getElementById('village').value;
-        const method = document.getElementById('method').value;
-        const sender = document.getElementById('sender').value;
-        const trx = document.getElementById('trx').value;
+        // সব তথ্য সংগ্রহ
+        const name = document.getElementById('node_name').value;
+        const wa = document.getElementById('node_whatsapp').value;
+        const res = document.getElementById('node_res').value;
+        const job = document.getElementById('node_job').value || "N/A";
+        const dob = document.getElementById('node_dob').value;
+        const gen = document.getElementById('node_gender').value;
+        const dist = document.getElementById('node_dist').value;
+        const vill = document.getElementById('node_vill').value;
+        const method = document.getElementById('node_method').value;
+        const sender = document.getElementById('node_sender').value;
+        const trx = document.getElementById('node_trx').value;
 
-        // হোয়াটসঅ্যাপ মেসেজ ফরম্যাট (সব ডিটেইলস সহ)
-        const msg = `*নতুন আবেদন - গানে গানে সেরা সিজন ৩ (এশিয়া)  *%0A` +
-                    `----------------------------%0A` +
-                    `👤 নাম: ${name}%0A` +
-                    `📱 WhatsApp: ${whatsapp}%0A` +
-                    `🌍 বসবাস: ${residence}%0A` +
-                    `💼 পেশা: ${job}%0A` +
-                    `📅 জন্ম তারিখ: ${dob}%0A` +
-                    `🚻 লিঙ্গ: ${gender}%0A` +
-                    `📍 জেলা: ${district}%0A` +
-                    `🏠 গ্রাম: ${village}%0A` +
-                    `----------------------------%0A` +
-                    `💰 *পেমেন্ট ডিটেইলস:*%0A` +
-                    `💳 মাধ্যম: ${method}%0A` +
-                    `📞 পেমেন্ট নম্বর: ${sender}%0A` +
-                    `🆔 TrxID: ${trx}%0A` +
-                    `----------------------------%0A` +
-                    `📣 *জরুরি নির্দেশ:* দয়া করে এখন আপনার অডিশন গানটি (ভিডিও/অডিও) এই চ্যাটে সেন্ড করুন।`;
+        // হোয়াটসঅ্যাপ মেসেজ বডি
+        const finalMsg = `*গানে গানে সেরা সিজন থ্রি এশিয়া*%0A` +
+                         `----------------------------%0A` +
+                         `👤 নাম: ${name}%0A` +
+                         `📱 WhatsApp: ${wa}%0A` +
+                         `🌍 বসবাস: ${res}%0A` +
+                         `💼 পেশা: ${job}%0A` +
+                         `📅 জন্ম তারিখ: ${dob}%0A` +
+                         `🚻 লিঙ্গ: ${gen}%0A` +
+                         `📍 জেলা: ${dist}%0A` +
+                         `🏠 গ্রাম: ${vill}%0A` +
+                         `----------------------------%0A` +
+                         `💰 *পেমেন্ট ডিটেইলস:*%0A` +
+                         `💳 মাধ্যম: ${method}%0A` +
+                         `📞 নম্বর: ${sender}%0A` +
+                         `🆔 TrxID: ${trx}%0A` +
+                         `----------------------------%0A` +
+                         `📣 *নির্দেশ:* দয়া করে আপনার অডিশন ভিডিওটি এখন এখানে পাঠান।`;
 
-        // আপনার হোয়াটসঅ্যাপ নাম্বার
-        const adminNumber = "8801757331663";
+        const targetNumber = "8801757331663";
+        window.open(`https://wa.me/${targetNumber}?text=${finalMsg}`, '_blank');
         
-        // হোয়াটসঅ্যাপে রিডাইরেক্ট
-        const waURL = `https://wa.me/${adminNumber}?text=${msg}`;
-        window.open(waURL, '_blank');
-        
-        alert("আপনার তথ্যগুলো রেডি। এখন হোয়াটসঅ্যাপে গিয়ে মেসেজটি পাঠিয়ে দিন এবং আপনার গানটি আপলোড করুন।");
+        alert("আপনার তথ্যগুলো হোয়াটসঅ্যাপে পাঠানো হচ্ছে। দয়া করে 'Send' বাটনটি চাপুন এবং আপনার গানটি আপলোড করুন।");
     });
 </script>
 
