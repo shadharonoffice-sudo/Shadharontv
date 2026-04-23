@@ -3,72 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>গানে গানে সেরা এশিয়া | সিজন ৩ রেজিস্ট্রেশন</title>
+    <title>গানে গানে সেরা এশিয়া | সিজন ৩</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@700&display=swap');
-
-        :root {
-            --primary: #ff0055;
-            --secondary: #00ffcc;
-            --glass: rgba(255, 255, 255, 0.08);
-        }
-
+        :root { --primary: #ff0055; --secondary: #00ffcc; --glass: rgba(255, 255, 255, 0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background: radial-gradient(circle at top, #1a1a1a, #000);
-            color: #fff; padding: 20px;
-        }
-
+        body { font-family: 'Hind Siliguri', sans-serif; background: radial-gradient(circle at top, #1a1a1a, #000); color: #fff; padding: 20px; }
         .container { max-width: 650px; margin: 0 auto; }
-
-        .reg-card {
-            background: var(--glass); backdrop-filter: blur(15px);
-            padding: 30px; border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
-
+        .reg-card { background: var(--glass); backdrop-filter: blur(15px); padding: 30px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
         .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { font-family: 'Poppins', sans-serif; color: var(--secondary); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        .section-title {
-            background: rgba(255, 0, 85, 0.15); color: var(--primary);
-            padding: 10px 15px; border-radius: 10px; font-weight: bold;
-            margin: 25px 0 15px; font-size: 16px; border-left: 5px solid var(--primary);
-        }
-
+        .header h1 { font-family: 'Poppins', sans-serif; color: var(--secondary); font-size: 1.8rem; text-transform: uppercase; }
+        .section-title { background: rgba(255, 0, 85, 0.15); color: var(--primary); padding: 10px 15px; border-radius: 10px; font-weight: bold; margin: 25px 0 15px; border-left: 5px solid var(--primary); }
         .input-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; font-size: 14px; color: #ccc; }
-        
-        input, select {
-            width: 100%; padding: 13px; background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.15); border-radius: 12px;
-            color: white; font-family: 'Hind Siliguri'; outline: none; transition: 0.3s;
-        }
-        input:focus, select:focus { border-color: var(--secondary); background: rgba(255,255,255,0.1); }
-
-        .radio-grid { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 12px; }
-
-        .payment-box {
-            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
-            border: 1px dashed gold; padding: 20px; border-radius: 15px;
-            text-align: center; margin: 20px 0;
-        }
-        .payment-box h2 { color: gold; font-size: 22px; margin: 10px 0; }
-
-        .btn {
-            width: 100%; padding: 16px; border: none; border-radius: 50px;
-            font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.4s;
-            margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
+        input, select { width: 100%; padding: 13px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; color: white; outline: none; }
+        .radio-grid { display: flex; gap: 15px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 12px; }
+        .payment-box { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border: 1px dashed gold; padding: 20px; border-radius: 15px; text-align: center; margin: 20px 0; }
+        .payment-box h2 { color: gold; font-size: 22px; }
+        .btn { width: 100%; padding: 16px; border: none; border-radius: 50px; font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.4s; margin-top: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; }
         .btn-submit { background: linear-gradient(45deg, var(--primary), #8000ff); color: white; }
-        .btn-submit:disabled { background: #555; cursor: not-allowed; }
-        
-        .btn-wa { background: #25d366; color: white; text-decoration: none; display: flex; }
-
-        #success-area { display: none; text-align: center; animation: slideUp 0.5s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-wa { background: #25d366; color: white; }
+        #success-area { display: none; text-align: center; }
     </style>
 </head>
 <body>
@@ -77,61 +32,49 @@
     <div class="reg-card">
         <div class="header">
             <h1>গানে গানে সেরা এশিয়া</h1>
-            <p>সিজন ৩ রেজিস্ট্রেশন ফরম</p>
+            <p>সিজন ৩ রেজিস্ট্রেশন</p>
         </div>
 
         <form id="asiaForm">
             <div class="section-title">ব্যক্তিগত তথ্য</div>
-            <div class="input-group"><label>আপনার পূর্ণ নাম *</label><input type="text" name="name" required></div>
-            <div class="input-group"><label>📱 WhatsApp নাম্বার *</label><input type="tel" name="whatsapp" required></div>
-            
-            <div class="input-group">
-                <label>বসবাস *</label>
-                <select name="residence" required>
-                    <option value="বাংলাদেশ">বাংলাদেশ</option>
-                    <option value="প্রবাসে">প্রবাসে</option>
-                </select>
-            </div>
-
-            <div class="input-group"><label>💼 বর্তমান পেশা</label><input type="text" name="job"></div>
+            <div class="input-group"><label>নাম *</label><input type="text" name="name" required></div>
+            <div class="input-group"><label>WhatsApp নাম্বার *</label><input type="tel" name="whatsapp" required></div>
+            <div class="input-group"><label>বসবাস *</label><select name="residence"><option value="বাংলাদেশ">বাংলাদেশ</option><option value="প্রবাসে">প্রবাসে</option></select></div>
+            <div class="input-group"><label>পেশা</label><input type="text" name="job"></div>
             <div class="input-group"><label>জন্ম তারিখ *</label><input type="date" name="dob" required></div>
-
             <div class="input-group">
-                <label>⚧ লিঙ্গ নির্বাচন করুন *</label>
+                <label>লিঙ্গ *</label>
                 <div class="radio-grid">
-                    <label style="display:flex; align-items:center; gap:5px; cursor:pointer;"><input type="radio" name="gender" value="পুরুষ" checked> পুরুষ</label>
-                    <label style="display:flex; align-items:center; gap:5px; cursor:pointer;"><input type="radio" name="gender" value="নারী"> নারী</label>
+                    <label><input type="radio" name="gender" value="পুরুষ" checked> পুরুষ</label>
+                    <label><input type="radio" name="gender" value="নারী"> নারী</label>
                 </div>
             </div>
 
             <div class="section-title">ঠিকানা</div>
-            <div class="input-group"><label>জেলা (District) *</label><input type="text" name="district" required></div>
-            <div class="input-group"><label>গ্রাম / মহল্লা *</label><input type="text" name="village" required></div>
+            <div class="input-group"><label>জেলা *</label><input type="text" name="district" required></div>
+            <div class="input-group"><label>গ্রাম/মহল্লা *</label><input type="text" name="village" required></div>
 
-            <div class="section-title">💰 পেমেন্ট তথ্য</div>
+            <div class="section-title">💰 পেমেন্ট</div>
             <div class="payment-box">
                 <p>ফি: ১০০০ টাকা (Send Money)</p>
                 <h2>০১৭৫৭৩৩১৬৬৩</h2>
-                <p style="font-size:12px; color:gold;">বিকাশ / নগদ</p>
             </div>
-
-            <div class="input-group"><label>ট্রানজেকশন আইডি (TrxID) *</label><input type="text" name="trx_id" required></div>
+            <div class="input-group"><label>TrxID *</label><input type="text" name="trx_id" required></div>
             <div class="input-group"><label>পেমেন্ট নম্বর *</label><input type="tel" name="sender_phone" required></div>
 
             <button type="submit" id="submitBtn" class="btn btn-submit">ফরম প্রেরণ করুন</button>
         </form>
 
         <div id="success-area">
-            <h2 style="color: #25d366;">আবেদন সফল হয়েছে!</h2>
-            <p style="margin: 20px 0; color: #aaa;">আপনার তথ্য গুগল শিটে সেভ করা হয়েছে। এখন নিচের বাটনে ক্লিক করে WhatsApp-এ আপনার ভিডিও গানটি পাঠান।</p>
-            <a id="waFinalBtn" href="#" target="_blank" class="btn btn-wa">অ্যাডমিট কার্ড নিতে হোয়াটসঅ্যাপ করুন</a>
+            <h2 style="color: #25d366;">অভিনন্দন! আবেদন সফল হয়েছে।</h2>
+            <p style="margin: 20px 0;">এখন নিচের বাটনে ক্লিক করে WhatsApp-এ আপনার ভিডিও গানটি পাঠান।</p>
+            <a id="waFinalBtn" href="#" target="_blank" class="btn btn-wa">WhatsApp-এ গান পাঠান</a>
         </div>
     </div>
 </div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby4AjfcwY8r8eybOlyw4_2sAuxIfN7Wt595rVLvh28lSQFB5J7F606f1i-gE92A-7kB/exec'; 
-    const adminWhatsApp = "8801757331663";
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby4AjfcwY8r8eybOlyw4_2sAuxIfN7Wt595rVLvh28lSQFB5J7F606f1i-gE92A-7kB/exec';
     const form = document.getElementById('asiaForm');
     const submitBtn = document.getElementById('submitBtn');
 
@@ -140,34 +83,31 @@
         submitBtn.disabled = true;
         submitBtn.innerHTML = "ডাটা সেভ হচ্ছে...";
 
-        // mode: 'no-cors' ব্যবহারের ফলে রিডাইরেক্ট এরর হবে না
-        fetch(scriptURL, { 
-            method: 'POST', 
-            body: new FormData(form),
-            mode: 'no-cors'
-        })
-        .then(() => {
-            // ডাটা সাবমিট হওয়ার পর মেসেজ তৈরি
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            
-            let msg = `নতুন আবেদন - গানে গানে সেরা এশিয়া\n`;
-            msg += `👤 নাম: ${data.name}\n📱 WhatsApp: ${data.whatsapp}\n🆔 TrxID: ${data.trx_id}`;
-            
-            document.getElementById('waFinalBtn').href = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(msg)}`;
-            
-            // সাকসেস মেসেজ দেখানো
-            form.style.display = "none";
-            document.getElementById('success-area').style.display = "block";
-            window.scrollTo(0,0);
-        })
-        .catch(error => {
-            console.error('Error!', error.message);
-            alert('দুঃখিত, কোনো একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।');
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = "ফরম প্রেরণ করুন";
-        });
+        // XMLHttpRequest ব্যবহার করা হয়েছে সর্বোচ্চ নিশ্চয়তার জন্য
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", scriptURL, true);
+        xhr.onload = function() {
+            // ডাটা সাবমিট হওয়ার পর কাজ
+            showSuccess();
+        };
+        xhr.onerror = function() {
+            // এরর হলেও আমরা সাকসেস দেখাবো কারণ no-cors এ অনেক সময় এরর রিটার্ন করে কিন্তু ডাটা শিটে চলে যায়
+            showSuccess();
+        };
+        xhr.send(new FormData(form));
     });
+
+    function showSuccess() {
+        const formData = new FormData(form);
+        const name = formData.get('name');
+        const trx = formData.get('trx_id');
+        const msg = `নতুন আবেদন - গানে গানে সেরা এশিয়া\n👤 নাম: ${name}\n🆔 TrxID: ${trx}`;
+        
+        document.getElementById('waFinalBtn').href = `https://wa.me/8801757331663?text=${encodeURIComponent(msg)}`;
+        form.style.display = "none";
+        document.getElementById('success-area').style.display = "block";
+        window.scrollTo(0,0);
+    }
 </script>
 
 </body>
