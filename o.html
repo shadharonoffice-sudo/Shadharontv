@@ -52,7 +52,6 @@
         .radio-grid { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 12px; }
         .radio-item { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
 
-        /* Payment Box */
         .payment-box {
             background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
             border: 1px dashed gold; padding: 20px; border-radius: 15px;
@@ -60,33 +59,21 @@
         }
         .payment-box h2 { color: gold; font-size: 22px; margin: 10px 0; }
 
-        /* Buttons */
         .btn {
             width: 100%; padding: 16px; border: none; border-radius: 50px;
             font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.4s;
             margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
         .btn-submit { background: linear-gradient(45deg, var(--primary), #8000ff); color: white; box-shadow: 0 10px 20px rgba(255, 0, 85, 0.3); }
-        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 0, 85, 0.4); }
+        .btn-submit:disabled { background: #555; cursor: not-allowed; }
 
-        .btn-home {
-            background: transparent; border: 2px solid #444; color: #bbb;
-            animation: pulse 2.5s infinite;
-        }
-        .btn-home:hover { border-color: var(--secondary); color: var(--secondary); background: rgba(0, 255, 204, 0.05); }
-
-        .btn-wa { background: #25d366; color: white; display: none; text-decoration: none; }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.1); }
-            50% { transform: scale(1.02); box-shadow: 0 0 15px 0 rgba(255,255,255,0.1); }
-            100% { transform: scale(1); }
-        }
+        .btn-home { background: transparent; border: 2px solid #444; color: #bbb; }
+        .btn-wa { background: #25d366; color: white; text-decoration: none; display: flex; }
 
         #success-area { display: none; text-align: center; animation: slideUp 0.5s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
         .note-box { font-size: 13px; color: #aaa; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-top: 15px; line-height: 1.6; }
+        
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -100,227 +87,91 @@
 
         <form id="asiaForm">
             <div class="section-title">ব্যক্তিগত তথ্য</div>
+            <div class="input-group"><label>আপনার পূর্ণ নাম *</label><input type="text" name="name" required></div>
+            <div class="input-group"><label>📱 সচল WhatsApp নাম্বার *</label><input type="tel" name="whatsapp" required></div>
             
             <div class="input-group">
-                <label>আপনার পূর্ণ নাম *</label>
-                <input type="text" name="name" required placeholder="নাম লিখুন">
-            </div>
-
-            <div class="input-group">
-                <label>📱 আপনার সচল WhatsApp নাম্বার দিন *</label>
-                <input type="tel" name="whatsapp" required placeholder="01XXXXXXXXX">
-            </div>
-
-            <div class="input-group">
-                <label>আপনি বর্তমানে কোথায় বসবাস করছেন? *</label>
+                <label>বসবাস *</label>
                 <select name="residence" required>
                     <option value="বাংলাদেশ">বাংলাদেশ</option>
                     <option value="প্রবাসে">প্রবাসে</option>
                 </select>
             </div>
 
-            <div class="input-group">
-                <label>💼 বর্তমান পেশা</label>
-                <input type="text" name="job" placeholder="যেমন: ছাত্র, ব্যবসা">
-            </div>
+            <div class="input-group"><label>💼 বর্তমান পেশা</label><input type="text" name="job"></div>
+            <div class="input-group"><label>জন্ম তারিখ *</label><input type="date" name="dob" required></div>
 
             <div class="input-group">
-                <label>আপনার বয়স ও জন্ম তারিখ লিখুন *</label>
-                <input type="date" name="dob" required>
-            </div>
-
-            <div class="input-group">
-                <label>⚧ আপনার লিঙ্গ নির্বাচন করুন *</label>
+                <label>⚧ লিঙ্গ নির্বাচন করুন *</label>
                 <div class="radio-grid">
                     <label class="radio-item"><input type="radio" name="gender" value="পুরুষ" checked> পুরুষ</label>
                     <label class="radio-item"><input type="radio" name="gender" value="নারী"> নারী</label>
-                    <label class="radio-item"><input type="radio" name="gender" value="অন্যান্য"> অন্যান্য</label>
                 </div>
-            </div>
-
-            <div class="input-group">
-                <label>আপনার বাবার নাম *</label>
-                <input type="text" name="father" required>
-            </div>
-
-            <div class="input-group">
-                <label>আপনার মায়ের নাম *</label>
-                <input type="text" name="mother" required>
             </div>
 
             <div class="section-title">ঠিকানা</div>
+            <div class="input-group"><label>জেলা (District) *</label><input type="text" name="district" required></div>
+            <div class="input-group"><label>গ্রাম / মহল্লা *</label><input type="text" name="village" required></div>
 
-            <div class="input-group">
-                <label>বিভাগ (Division) *</label>
-                <select name="division" required>
-                    <option>ঢাকা (Dhaka)</option>
-                    <option>চট্টগ্রাম (Chattogram)</option>
-                    <option>রাজশাহী (Rajshahi)</option>
-                    <option>খুলনা (Khulna)</option>
-                    <option>বরিশাল (Barishal)</option>
-                    <option>সিলেট (Sylhet)</option>
-                    <option>রংপুর (Rangpur)</option>
-                    <option>ময়মনসিংহ (Mymensingh)</option>
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label>আপনার জেলা (District) *</label>
-                <input type="text" name="district" required>
-            </div>
-
-            <div class="input-group">
-                <label>আপনার থানা (Police Station) *</label>
-                <input type="text" name="police_station" required>
-            </div>
-
-            <div class="input-group">
-                <label>আপনার গ্রাম / মহল্লা (Village / Mohalla) *</label>
-                <input type="text" name="village" required>
-            </div>
-
-            <div class="input-group">
-                <label>📞 অভিভাবকের ফোন নম্বর *</label>
-                <input type="tel" name="guardian_phone" required>
-            </div>
-
-            <div class="input-group">
-                <label>জন্ম নিবন্ধন অথবা জাতীয় পরিচয়পত্র (NID) নম্বর *</label>
-                <input type="text" name="nid_no" required>
-            </div>
-
-            <div class="section-title">গানের তথ্য ও অভিজ্ঞতা</div>
-
-            <div class="input-group">
-                <label>আপনার পছন্দের গানের ধরন *</label>
-                <select name="song_style" required>
-                    <option>রোমান্টিক</option>
-                    <option>দুঃখের গান</option>
-                    <option>লোকগীতি</option>
-                    <option>ইসলামিক</option>
-                    <option>আধুনিক</option>
-                    <option>অন্যান্য</option>
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label>আপনার গানের অভিজ্ঞতা *</label>
-                <div class="radio-grid">
-                    <label class="radio-item"><input type="radio" name="exp" value="নতুন (Beginner)" checked> নতুন</label>
-                    <label class="radio-item"><input type="radio" name="exp" value="মধ্যম (Intermediate)"> মধ্যম</label>
-                    <label class="radio-item"><input type="radio" name="exp" value="পেশাদার (Professional)"> পেশাদার</label>
-                </div>
-            </div>
-
-            <div class="section-title">💰 রেজিস্ট্রেশন ফি ও পেমেন্ট</div>
+            <div class="section-title">💰 পেমেন্ট তথ্য</div>
             <div class="payment-box">
-                <p>ফি: ১০০০ টাকা</p>
-                <p>পেমেন্ট করুন (Send Money):</p>
+                <p>ফি: ১০০০ টাকা (Send Money)</p>
                 <h2>০১৭৫৭৩৩১৬৬৩</h2>
-                <p style="font-size: 12px; color: #aaa;">বিকাশ / নগদ</p>
+                <p style="font-size: 12px;">বিকাশ / নগদ</p>
             </div>
 
-            <div class="input-group">
-                <label>ফি পেমেন্ট স্ট্যাটাস *</label>
-                <select name="pay_confirm" required>
-                    <option>সেন্ড মানি করে টাকা পাঠিয়েছি</option>
-                    <option>সেন্ড মানি করতে পারিনি</option>
-                </select>
-            </div>
+            <div class="input-group"><label>ট্রানজেকশন আইডি (TrxID) *</label><input type="text" name="trx_id" required></div>
+            <div class="input-group"><label>পেমেন্ট নম্বর *</label><input type="tel" name="sender_phone" required></div>
 
-            <div class="input-group">
-                <label>📡 পেমেন্ট অপারেটর *</label>
-                <div class="radio-grid">
-                    <label class="radio-item"><input type="radio" name="operator" value="বিকাশ" checked> বিকাশ</label>
-                    <label class="radio-item"><input type="radio" name="operator" value="নগদ"> নগদ</label>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label>ট্রানজেকশন আইডি (Transaction ID) *</label>
-                <input type="text" name="trx_id" required placeholder="Ex: 9K88XPS3">
-            </div>
-
-            <div class="input-group">
-                <label>📱 পেমেন্টের নম্বর (যে নম্বর থেকে টাকা পাঠিয়েছেন) *</label>
-                <input type="tel" name="sender_phone" required placeholder="01XXXXXXXXX">
-            </div>
-
-            <div class="section-title">ভেরিফিকেশন</div>
-
-            <div class="input-group">
-                <label>আমাদের টিভি ফেসবুক পেজ ও ইউটিউব চ্যানেল ফলো করেছেন? *</label>
-                <div class="radio-grid">
-                    <label class="radio-item"><input type="radio" name="social" value="হ্যাঁ" checked> হ্যাঁ</label>
-                    <label class="radio-item"><input type="radio" name="social" value="না"> না</label>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label>আমি যাচাই করেছি, উপরে প্রদত্ত সকল তথ্য সঠিক। ✅ *</label>
-                <select name="agree" required>
-                    <option value="হ্যাঁ">হ্যাঁ</option>
-                    <option value="না">না</option>
-                </select>
-            </div>
-
-            <button type="button" onclick="submitForm()" class="btn btn-submit">ফরম প্রেরণ করুন</button>
-            <button type="button" onclick="location.reload()" class="btn btn-home">🏠 হোমে ফিরে যান</button>
+            <button type="submit" id="submitBtn" class="btn btn-submit">ফরম প্রেরণ করুন</button>
         </form>
 
         <div id="success-area">
-            <div style="background: rgba(37, 211, 102, 0.1); border: 1px solid #25d366; padding: 25px; border-radius: 20px; margin-top: 20px;">
-                <h2 style="color: #25d366;">আবেদন সফল হয়েছে!</h2>
-                <div class="note-box">
-                    এখন নিচের <strong>WhatsApp</strong> বাটনে ক্লিক করে যোগাযোগ করুন। খালি কণ্ঠে চেহারা দেখিয়ে ২ মিনিটের একটি ভিডিও রেকর্ড করে পাঠান। আপনার রেজিস্ট্রেশন নম্বর ও কার্ডটি বুঝে নিন।
-                </div>
-                <a id="waFinalBtn" href="#" target="_blank" class="btn btn-wa" style="display: flex;">অ্যাডমিট কার্ড নিতে হোয়াটসঅ্যাপ করুন</a>
-                <button type="button" onclick="location.reload()" class="btn btn-home">🏠 হোমে ফিরে যান</button>
+            <div style="border: 1px solid #25d366; padding: 25px; border-radius: 20px;">
+                <h2 style="color: #25d366;">আবেদন সফল হয়েছে!</h2>
+                <p class="note-box">আপনার তথ্য গুগল শিটে সেভ করা হয়েছে। এখন নিচের বাটনে ক্লিক করে WhatsApp-এ আপনার ভিডিও গানটি পাঠান।</p>
+                <a id="waFinalBtn" href="#" target="_blank" class="btn btn-wa">অ্যাডমিট কার্ড নিতে হোয়াটসঅ্যাপ করুন</a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    // গুরুত্বপূর্ণ: এখানে ধাপ ৩ থেকে পাওয়া Web App URL টি বসান
+    const scriptURL = 'আপনার_WEB_APP_URL_এখানে_দিন'; 
     const adminWhatsApp = "8801757331663";
-    const googleSheetScriptURL = "https://docs.google.com/spreadsheets/d/1fidCBdvePXiQJewQt9oBf0Gdf2vzwtyw1ehP5GsW-os/edit?pli=1&gid=0#gid=0"; // এক্সেল ডাটা সেভের জন্য
+    const form = document.getElementById('asiaForm');
+    const submitBtn = document.getElementById('submitBtn');
 
-    function submitForm() {
-        const form = document.getElementById('asiaForm');
-        
-        if(!form.checkValidity()) {
-            alert("অনুগ্রহ করে সব তথ্য সঠিক ভাবে পূরণ করুন।");
-            return;
-        }
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "ডাটা সেভ হচ্ছে...";
 
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            // ডাটা সফলভাবে সেভ হলে
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            // WhatsApp মেসেজ তৈরি
+            let msg = `নতুন আবেদন - গানে গানে সেরা এশিয়া\n`;
+            msg += `👤 নাম: ${data.name}\n`;
+            msg += `📱 WhatsApp: ${data.whatsapp}\n`;
+            msg += `🆔 TrxID: ${data.trx_id}\n`;
+            
+            const waLink = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(msg)}`;
+            document.getElementById('waFinalBtn').href = waLink;
 
-        // ১. ডাটা এক্সেল/গুগল শিটে সেভ করা (ঐচ্ছিক)
-        if(googleSheetScriptURL !== "আপনার_গুগল_শিট_স্ক্রিপ্ট_URL") {
-            fetch(googleSheetScriptURL, { method: 'POST', body: formData });
-        }
-
-        // ২. হোয়াটসঅ্যাপ মেসেজ ফরমেট
-        let msg = `নতুন আবেদন - গানে গানে সেরা এশিয়া\n`;
-        msg += `--------------------------\n`;
-        msg += `👤 নাম: ${data.name}\n`;
-        msg += `📱 WhatsApp: ${data.whatsapp}\n`;
-        msg += `🏠 ঠিকানা: ${data.village}, ${data.district}\n`;
-        msg += `🎤 গানের ধরন: ${data.song_style}\n`;
-        msg += `💰 পেমেন্ট: ${data.operator} (${data.sender_phone})\n`;
-        msg += `🆔 TrxID: ${data.trx_id}\n`;
-        msg += `--------------------------\n`;
-        msg += `আমি সব তথ্য যাচাই করে ফরম জমা দিয়েছি। আমার রেজিস্ট্রেশন কার্ডটি প্রয়োজন।`;
-
-        const waLink = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(msg)}`;
-        document.getElementById('waFinalBtn').href = waLink;
-
-        // ৩. UI পরিবর্তন
-        form.style.display = "none";
-        document.getElementById('success-area').style.display = "block";
-        window.scrollTo(0,0);
-    }
+            form.style.display = "none";
+            document.getElementById('success-area').style.display = "block";
+        })
+        .catch(error => {
+            alert('দুঃখিত! ডাটা সেভ করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "ফরম প্রেরণ করুন";
+        });
+    });
 </script>
 
 </body>
