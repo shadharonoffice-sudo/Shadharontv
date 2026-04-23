@@ -31,7 +31,6 @@
 
         .header { text-align: center; margin-bottom: 30px; }
         .header h1 { font-family: 'Poppins', sans-serif; color: var(--secondary); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .header p { font-size: 14px; color: #bbb; margin-top: 5px; }
 
         .section-title {
             background: rgba(255, 0, 85, 0.15); color: var(--primary);
@@ -42,7 +41,7 @@
         .input-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; font-size: 14px; color: #ccc; }
         
-        input, select, textarea {
+        input, select {
             width: 100%; padding: 13px; background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.15); border-radius: 12px;
             color: white; font-family: 'Hind Siliguri'; outline: none; transition: 0.3s;
@@ -50,7 +49,6 @@
         input:focus, select:focus { border-color: var(--secondary); background: rgba(255,255,255,0.1); }
 
         .radio-grid { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 12px; }
-        .radio-item { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
 
         .payment-box {
             background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
@@ -64,15 +62,12 @@
             font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.4s;
             margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-        .btn-submit { background: linear-gradient(45deg, var(--primary), #8000ff); color: white; box-shadow: 0 10px 20px rgba(255, 0, 85, 0.3); }
+        .btn-submit { background: linear-gradient(45deg, var(--primary), #8000ff); color: white; }
         .btn-submit:disabled { background: #555; cursor: not-allowed; }
-
-        .btn-home { background: transparent; border: 2px solid #444; color: #bbb; }
+        
         .btn-wa { background: #25d366; color: white; text-decoration: none; display: flex; }
 
         #success-area { display: none; text-align: center; animation: slideUp 0.5s ease; }
-        .note-box { font-size: 13px; color: #aaa; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-top: 15px; line-height: 1.6; }
-        
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -88,7 +83,7 @@
         <form id="asiaForm">
             <div class="section-title">ব্যক্তিগত তথ্য</div>
             <div class="input-group"><label>আপনার পূর্ণ নাম *</label><input type="text" name="name" required></div>
-            <div class="input-group"><label>📱 সচল WhatsApp নাম্বার *</label><input type="tel" name="whatsapp" required></div>
+            <div class="input-group"><label>📱 WhatsApp নাম্বার *</label><input type="tel" name="whatsapp" required></div>
             
             <div class="input-group">
                 <label>বসবাস *</label>
@@ -104,8 +99,8 @@
             <div class="input-group">
                 <label>⚧ লিঙ্গ নির্বাচন করুন *</label>
                 <div class="radio-grid">
-                    <label class="radio-item"><input type="radio" name="gender" value="পুরুষ" checked> পুরুষ</label>
-                    <label class="radio-item"><input type="radio" name="gender" value="নারী"> নারী</label>
+                    <label><input type="radio" name="gender" value="পুরুষ" checked> পুরুষ</label>
+                    <label><input type="radio" name="gender" value="নারী"> নারী</label>
                 </div>
             </div>
 
@@ -117,7 +112,6 @@
             <div class="payment-box">
                 <p>ফি: ১০০০ টাকা (Send Money)</p>
                 <h2>০১৭৫৭৩৩১৬৬৩</h2>
-                <p style="font-size: 12px;">বিকাশ / নগদ</p>
             </div>
 
             <div class="input-group"><label>ট্রানজেকশন আইডি (TrxID) *</label><input type="text" name="trx_id" required></div>
@@ -127,18 +121,16 @@
         </form>
 
         <div id="success-area">
-            <div style="border: 1px solid #25d366; padding: 25px; border-radius: 20px;">
-                <h2 style="color: #25d366;">আবেদন সফল হয়েছে!</h2>
-                <p class="note-box">আপনার তথ্য গুগল শিটে সেভ করা হয়েছে। এখন নিচের বাটনে ক্লিক করে WhatsApp-এ আপনার ভিডিও গানটি পাঠান।</p>
-                <a id="waFinalBtn" href="#" target="_blank" class="btn btn-wa">অ্যাডমিট কার্ড নিতে হোয়াটসঅ্যাপ করুন</a>
-            </div>
+            <h2 style="color: #25d366;">আবেদন সফল হয়েছে!</h2>
+            <p style="margin: 20px 0; color: #aaa;">তথ্য গুগল শিটে সেভ করা হয়েছে। এখন নিচের বাটনে ক্লিক করে WhatsApp-এ আপনার ভিডিও পাঠান।</p>
+            <a id="waFinalBtn" href="#" target="_blank" class="btn btn-wa">অ্যাডমিট কার্ড নিতে হোয়াটসঅ্যাপ করুন</a>
         </div>
     </div>
 </div>
 
 <script>
-    // গুরুত্বপূর্ণ: এখানে ধাপ ৩ থেকে পাওয়া Web App URL টি বসান
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyerARdgnRnnxO8mDgFcApIlEoOSqxZ8ngelB92v0_olyx7hmVE_PCcuTQ4VjO4B28-/exec'; 
+    // আপনার দেওয়া Web App URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby4AjfcwY8r8eybOlyw4_2sAuxIfN7Wt595rVLvh28lSQFB5J7F606f1i-gE92A-7kB/exec'; 
     const adminWhatsApp = "8801757331663";
     const form = document.getElementById('asiaForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -150,24 +142,21 @@
 
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
         .then(response => {
-            // ডাটা সফলভাবে সেভ হলে
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             
-            // WhatsApp মেসেজ তৈরি
+            // WhatsApp-এর মেসেজ সাজানো
             let msg = `নতুন আবেদন - গানে গানে সেরা এশিয়া\n`;
-            msg += `👤 নাম: ${data.name}\n`;
-            msg += `📱 WhatsApp: ${data.whatsapp}\n`;
-            msg += `🆔 TrxID: ${data.trx_id}\n`;
+            msg += `👤 নাম: ${data.name}\n📱 WhatsApp: ${data.whatsapp}\n🆔 TrxID: ${data.trx_id}`;
             
-            const waLink = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(msg)}`;
-            document.getElementById('waFinalBtn').href = waLink;
-
+            document.getElementById('waFinalBtn').href = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(msg)}`;
+            
             form.style.display = "none";
             document.getElementById('success-area').style.display = "block";
+            window.scrollTo(0,0);
         })
         .catch(error => {
-            alert('দুঃখিত! ডাটা সেভ করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+            alert('দুঃখিত, ডাটা সেভ হয়নি। আপনার ইন্টারনেট চেক করে আবার চেষ্টা করুন।');
             submitBtn.disabled = false;
             submitBtn.innerHTML = "ফরম প্রেরণ করুন";
         });
