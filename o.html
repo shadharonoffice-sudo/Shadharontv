@@ -8,95 +8,47 @@
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@700&display=swap');
         :root { --primary: #ff0055; --secondary: #00ffcc; --glass: rgba(255, 255, 255, 0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Hind Siliguri', sans-serif; background: radial-gradient(circle at top, #1a1a1a, #000); color: #fff; padding: 15px; overflow-x: hidden; }
-        
-        /* --- Pop-up Ad CSS --- */
-        #adOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-        .ad-content {
-            width: 90%;
-            max-width: 400px;
-            background: #222;
-            border: 2px solid var(--secondary);
-            border-radius: 15px;
-            position: relative;
-            text-align: center;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
-        }
-        .ad-image-area {
-            height: 200px;
-            background: linear-gradient(45deg, #ff0055, #8000ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-        }
-        .ad-body { padding: 20px; }
-        .ad-body h2 { color: var(--secondary); margin-bottom: 10px; font-size: 20px; }
-        .ad-body p { font-size: 14px; color: #ccc; margin-bottom: 20px; }
-        .ad-btn {
-            display: inline-block;
-            background: var(--secondary);
-            color: #000;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        .close-ad {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #fff;
-            color: #000;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 18px;
-            border: none;
-        }
+        body { font-family: 'Hind Siliguri', sans-serif; background: radial-gradient(circle at top, #1a1a1a, #000); color: #fff; padding: 15px; }
 
-        /* --- Registration Form CSS --- */
-        .container { max-width: 550px; margin: 0 auto; }
+        .container { max-width: 600px; margin: 0 auto; padding-bottom: 50px; }
         .reg-card { background: var(--glass); backdrop-filter: blur(15px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+        
         .header { text-align: center; margin-bottom: 25px; }
-        .header h1 { font-family: 'Poppins', sans-serif; color: var(--secondary); font-size: 1.6rem; text-transform: uppercase; line-height: 1.4; }
-        .section-title { background: rgba(255, 0, 85, 0.15); color: var(--primary); padding: 8px 12px; border-radius: 8px; font-weight: bold; margin: 20px 0 10px; border-left: 5px solid var(--primary); }
+        .header h1 { font-family: 'Poppins', sans-serif; color: var(--secondary); font-size: 1.8rem; text-transform: uppercase; }
+        
+        .section-title { background: rgba(255, 0, 85, 0.15); color: var(--primary); padding: 10px; border-radius: 8px; font-weight: bold; margin: 20px 0 10px; border-left: 5px solid var(--primary); }
+        
         .input-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-size: 14px; color: #ccc; }
-        input, select { width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: white; outline: none; }
-        .btn { width: 100%; padding: 15px; border: none; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.4s; margin-top: 15px; color: white; background: linear-gradient(45deg, var(--primary), #8000ff); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3); }
+        input, select { width: 100%; padding: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: white; outline: none; font-size: 15px; }
+        
+        .btn { width: 100%; padding: 16px; border: none; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; color: white; background: linear-gradient(45deg, var(--primary), #8000ff); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3); margin-top: 20px; }
+        
+        .ad-container { text-align: center; margin: 20px 0; overflow: hidden; }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.4rem; }
+            iframe { max-width: 100%; }
+        }
     </style>
 </head>
 <body>
 
-<div id="adOverlay">
-    <div class="ad-content">
-        <button class="close-ad" onclick="closeAd()">×</button>
-        <div class="ad-image-area">🎤</div>
-        <div class="ad-body">
-            <h2>অডিশন গাইডলাইন ও নিয়মাবলী</h2>
-            <p>আপনার অডিশন নিশ্চিত করতে এবং নিয়মগুলো জানতে নিচের বাটনে ক্লিক করুন। এটি দেখা বাধ্যতামূলক।</p>
-            <a href="https://www.profitablecpmratenetwork.com/wpz1azjwt?key=7704b95fc3c9103272df74f639fd276b" target="_blank" class="ad-btn" onclick="closeAd()">গাইডলাইন দেখুন</a>
-        </div>
-    </div>
-</div>
-
 <div class="container">
+    
+    <div class="ad-container">
+        <script>
+            atOptions = {
+                'key' : '4ce97525659d866a14506360d9560777',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/4ce97525659d866a14506360d9560777/invoke.js"></script>
+    </div>
+
     <div class="reg-card">
         <div class="header">
             <h1>গানে গানে সেরা সিজন থ্রি এশিয়া</h1>
@@ -105,16 +57,29 @@
 
         <form id="asiaFullForm">
             <div class="section-title">ব্যক্তিগত তথ্য</div>
-            <div class="input-group"><label>পূর্ণ নাম *</label><input type="text" id="node_name" required></div>
-            <div class="input-group"><label>WhatsApp নাম্বার *</label><input type="tel" id="node_whatsapp" required></div>
-            <div class="input-group"><label>বসবাস *</label>
+            <div class="input-group">
+                <label>পূর্ণ নাম *</label>
+                <input type="text" id="node_name" required>
+            </div>
+            <div class="input-group">
+                <label>WhatsApp নাম্বার *</label>
+                <input type="tel" id="node_whatsapp" required>
+            </div>
+            <div class="input-group">
+                <label>বসবাস *</label>
                 <select id="node_res">
                     <option value="বাংলাদেশ">বাংলাদেশ</option>
                     <option value="প্রবাসে">প্রবাসে</option>
                 </select>
             </div>
-            <div class="input-group"><label>পেশা</label><input type="text" id="node_job"></div>
-            <div class="input-group"><label>জন্ম তারিখ *</label><input type="date" id="node_dob" required></div>
+            <div class="input-group">
+                <label>পেশা</label>
+                <input type="text" id="node_job">
+            </div>
+            <div class="input-group">
+                <label>জন্ম তারিখ *</label>
+                <input type="date" id="node_dob" required>
+            </div>
             <div class="input-group">
                 <label>লিঙ্গ *</label>
                 <select id="node_gender">
@@ -124,36 +89,47 @@
             </div>
 
             <div class="section-title">ঠিকানা</div>
-            <div class="input-group"><label>জেলা *</label><input type="text" id="node_dist" required></div>
-            <div class="input-group"><label>গ্রাম/মহল্লা *</label><input type="text" id="node_vill" required></div>
+            <div class="input-group">
+                <label>জেলা *</label>
+                <input type="text" id="node_dist" required>
+            </div>
+            <div class="input-group">
+                <label>গ্রাম/মহল্লা *</label>
+                <input type="text" id="node_vill" required>
+            </div>
 
             <div class="section-title">💰 পেমেন্ট ডিটেইলস (১০০০ টাকা)</div>
-            <div style="text-align: center; margin-bottom: 15px; color: gold; font-size: 14px;">
+            <p style="text-align: center; color: gold; margin-bottom: 10px; font-size: 14px;">
                 বিকাশ/নগদ/রকেট (Send Money): 01757331663
-            </div>
+            </p>
             <div class="input-group">
                 <label>পেমেন্ট মেথড *</label>
                 <select id="node_method">
-                    <option value="বিকাশ">বিকাশ (Bkash)</option>
-                    <option value="নগদ">নগদ (Nagad)</option>
-                    <option value="রকেট">রকেট (Rocket)</option>
+                    <option value="বিকাশ (Bkash)">বিকাশ (Bkash)</option>
+                    <option value="নগদ (Nagad)">নগদ (Nagad)</option>
+                    <option value="রকেট (Rocket)">রকেট (Rocket)</option>
                 </select>
             </div>
-            <div class="input-group"><label>পেমেন্টকৃত নাম্বার *</label><input type="tel" id="node_sender" required></div>
-            <div class="input-group"><label>TrxID *</label><input type="text" id="node_trx" required></div>
+            <div class="input-group">
+                <label>পেমেন্টকৃত নাম্বার *</label>
+                <input type="tel" id="node_sender" required>
+            </div>
+            <div class="input-group">
+                <label>TrxID *</label>
+                <input type="text" id="node_trx" required>
+            </div>
 
             <button type="submit" class="btn">তথ্য জমা দিন ও গান পাঠান</button>
         </form>
     </div>
+
+    <div class="ad-container">
+        <script src="https://www.highperformanceformat.com/4ce97525659d866a14506360d9560777/invoke.js"></script>
+    </div>
+
 </div>
 
 <script>
-    // পপআপ বন্ধ করার ফাংশন
-    function closeAd() {
-        document.getElementById('adOverlay').style.display = 'none';
-    }
-
-    // ফরম সাবমিশন স্ক্রিপ্ট
     document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -162,36 +138,38 @@
         const res = document.getElementById('node_res').value;
         const job = document.getElementById('node_job').value || "N/A";
         const dob = document.getElementById('node_dob').value;
-        const gen = document.getElementById('node_gender').value;
+        const gender = document.getElementById('node_gender').value;
         const dist = document.getElementById('node_dist').value;
         const vill = document.getElementById('node_vill').value;
         const method = document.getElementById('node_method').value;
         const sender = document.getElementById('node_sender').value;
         const trx = document.getElementById('node_trx').value;
 
-        const finalMsg = `*গানে গানে সেরা সিজন থ্রি এশিয়া*%0A` +
+        const finalMsg = `*গানে গানে সেরা সিজন ৩ এশিয়া*%0A` +
                          `----------------------------%0A` +
                          `👤 নাম: ${name}%0A` +
                          `📱 WhatsApp: ${wa}%0A` +
                          `🌍 বসবাস: ${res}%0A` +
                          `💼 পেশা: ${job}%0A` +
                          `📅 জন্ম তারিখ: ${dob}%0A` +
-                         `🚻 লিঙ্গ: ${gen}%0A` +
+                         `🚻 লিঙ্গ: ${gender}%0A` +
                          `📍 জেলা: ${dist}%0A` +
                          `🏠 গ্রাম: ${vill}%0A` +
                          `----------------------------%0A` +
-                         `💰 *পেমেন্ট ডিটেইলস:*%0A` +
-                         `💳 মাধ্যম: ${method}%0A` +
-                         `📞 নম্বর: ${sender}%0A` +
+                         `💰 পেমেন্ট মেথড: ${method}%0A` +
+                         `📞 পেমেন্ট নম্বর: ${sender}%0A` +
                          `🆔 TrxID: ${trx}%0A` +
                          `----------------------------%0A` +
-                         `📣 *নির্দেশ:* দয়া করে আপনার অডিশন ভিডিওটি এখন এখানে পাঠান।`;
+                         `📣 এখন আপনার অডিশন ভিডিওটি এখানে পাঠান।`;
 
         const targetNumber = "8801757331663";
         window.open(`https://wa.me/${targetNumber}?text=${finalMsg}`, '_blank');
         
-        alert("আপনার তথ্যগুলো হোয়াটসঅ্যাপে পাঠানো হচ্ছে। দয়া করে 'Send' বাটনটি চাপুন।");
+        alert("আপনার তথ্যগুলো হোয়াটসঅ্যাপে পাঠানো হচ্ছে।");
     });
+<script src="https://pl29248170.profitablecpmratenetwork.com/8c/e3/74/8ce3744611afdfb799df043cd17e13ce.js"></script>
+
+
 </script>
 
 </body>
