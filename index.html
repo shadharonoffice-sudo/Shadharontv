@@ -1,377 +1,382 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV | Official Portal</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Poppins:wght@600;900&family=Orbitron:wght@500&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadharon TV | Official Portal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Poppins:wght@600;900&family=Orbitron:wght@500&display=swap');
 
-        :root {
-            --primary: #ff0055;
-            --secondary: #00ffcc;
-            --bg: #050505;
-            --card-bg: rgba(255, 255, 255, 0.05);
-        }
+        :root {
+            --primary: #ff0055;
+            --secondary: #00ffcc;
+            --bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background-color: var(--bg);
-            color: white;
-            overflow-x: hidden;
-        }
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
 
-        /* --- Master Header --- */
-        header {
-            position: fixed;
-            top: 0; width: 100%; z-index: 10000;
-            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* --- Master Header --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%; z-index: 10000;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-        .top-info-bar {
-            background: #000;
-            padding: 8px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        .top-info-bar {
+            background: #000;
+            padding: 8px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-        .date-box { font-size: 13px; color: #aaa; }
-        .live-clock {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--secondary);
-            background: rgba(0, 255, 204, 0.1);
-            padding: 2px 12px;
-            border-radius: 5px;
-            font-size: 14px;
-            border: 1px solid rgba(0, 255, 204, 0.2);
-        }
+        .date-box { font-size: 13px; color: #aaa; }
+        .live-clock {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+            background: rgba(0, 255, 204, 0.1);
+            padding: 2px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
 
-        .mid-branding {
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 15px 10%;
-            display: flex;
-            justify-content: center;
-        }
+        .mid-branding {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 15px 10%;
+            display: flex;
+            justify-content: center;
+        }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
 
-        .logo-frame {
-            width: 55px; height: 55px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            padding: 3px;
-            display: flex;
-            align-items: center; justify-content: center;
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
-            transition: 0.4s;
-        }
+        .logo-frame {
+            width: 55px; height: 55px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            padding: 3px;
+            display: flex;
+            align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+            transition: 0.4s;
+        }
 
-        .logo-frame img {
-            width: 100%; height: 100%;
-            border-radius: 50%; object-fit: cover;
-            background: #000;
-        }
+        .logo-frame img {
+            width: 100%; height: 100%;
+            border-radius: 50%; object-fit: cover;
+            background: #000;
+        }
 
-        .brand-name {
-            font-family: 'Poppins', sans-serif;
-            font-size: 32px; font-weight: 900;
-            color: white; letter-spacing: 2px;
-        }
+        .brand-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px; font-weight: 900;
+            color: white; letter-spacing: 2px;
+        }
 
-        .brand-name span { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+        .brand-name span { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
 
-        .nav-bar {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 12px 10%;
-            display: flex; justify-content: center; gap: 12px;
-            flex-wrap: wrap;
-        }
+        .nav-bar {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px 10%;
+            display: flex; justify-content: center; gap: 12px;
+            flex-wrap: wrap;
+        }
 
-        .nav-btn {
-            text-decoration: none; color: rgba(255,255,255,0.7);
-            font-weight: 500; font-size: 15px;
-            padding: 8px 25px; border-radius: 50px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: 0.3s;
-        }
+        .nav-btn {
+            text-decoration: none; color: rgba(255,255,255,0.7);
+            font-weight: 500; font-size: 15px;
+            padding: 8px 25px; border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.3s;
+        }
 
-        .nav-btn:hover {
-            color: var(--secondary);
-            border-color: var(--secondary);
-            background: rgba(0, 255, 204, 0.05);
-            transform: translateY(-3px);
-        }
+        .nav-btn:hover {
+            color: var(--secondary);
+            border-color: var(--secondary);
+            background: rgba(0, 255, 204, 0.05);
+            transform: translateY(-3px);
+        }
 
-        .audition-btn {
-            background: linear-gradient(45deg, var(--primary), #7000ff) !important;
-            color: white !important; font-weight: 700 !important;
-            border: none !important;
-        }
+        .audition-btn {
+            background: linear-gradient(45deg, var(--primary), #7000ff) !important;
+            color: white !important; font-weight: 700 !important;
+            border: none !important;
+        }
 
-        header.hide-top .top-info-bar { margin-top: -45px; }
+        header.hide-top .top-info-bar { margin-top: -45px; }
 
-        /* Hero Section */
-       /* Hero section er background change */
-.hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
-                url('WhatsApp Image 2026-04-25 at 16.27.42.jpeg'); /* Eikhane notun chobir link hobe */
-    background-size: cover; 
-    background-position: center;
-    background-attachment: fixed; /* Ete scroll korle chobi-ti daron lagbe */
-      }
-      
-        .hero-content {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            padding: 50px; border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 800px;
-        }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
+                        url('WhatsApp Image 2026-04-25 at 16.27.42.jpeg');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+        }
 
-        /* --- Social Section Styling --- */
-        .social-section {
-            padding: 80px 10%;
-            background: #080808;
-            text-align: center;
-        }
+        .hero-content {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            padding: 50px; border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+        }
 
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        /* --- Social Section Styling --- */
+        .social-section {
+            padding: 80px 10%;
+            background: #080808;
+            text-align: center;
+        }
 
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-        .social-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.4s;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
 
-        .social-card:hover {
-            background: rgba(255, 0, 85, 0.1);
-            border-color: var(--primary);
-            transform: translateY(-10px);
-        }
+        .social-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
 
-        .social-card h3 { font-size: 18px; margin-bottom: 5px; }
-        .social-card p { font-size: 13px; color: #aaa; }
-        
-        .yt-tag { color: #ff0000; font-weight: bold; }
-        .fb-tag { color: #1877f2; font-weight: bold; }
+        .social-card:hover {
+            background: rgba(255, 0, 85, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-10px);
+        }
 
-        /* Menu Styles */
-        .menu-container { position: absolute; top: 30px; right: 40px; z-index: 100; }
-        .three-dots { cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 10px; }
-        .dot { width: 5px; height: 5px; background: var(--secondary); border-radius: 50%; }
-        .menu-dropdown {
-            position: absolute; right: 0; top: 40px;
-            background: rgba(20, 20, 20, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px; width: 200px;
-            display: none; flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .menu-dropdown.show { display: flex; }
-        .menu-dropdown a { padding: 12px 20px; color: white; text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .menu-dropdown a:hover { background: var(--primary); }
+        .social-card h3 { font-size: 18px; margin-bottom: 5px; }
+        .social-card p { font-size: 13px; color: #aaa; }
+        
+        .yt-tag { color: #ff0000; font-weight: bold; }
+        .fb-tag { color: #1877f2; font-weight: bold; }
+
+        /* Menu Styles */
+        .menu-container { position: absolute; top: 30px; right: 40px; z-index: 100; }
+        .three-dots { cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 10px; }
+        .dot { width: 5px; height: 5px; background: var(--secondary); border-radius: 50%; }
+        .menu-dropdown {
+            position: absolute; right: 0; top: 40px;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px; width: 200px;
+            display: none; flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .menu-dropdown.show { display: flex; }
+        .menu-dropdown a { padding: 12px 20px; color: white; text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .menu-dropdown a:hover { background: var(--primary); }
 <style>
-    
-    .master-footer {
-        display: block !important;
-        width: 100% !important;
-        padding: 50px 0 !important;
-        background-color: #000 !important;
-        border-top: 1px solid #111 !important;
-        text-align: center !important;
-        clear: both !important;
-    }
+    
+    .master-footer {
+        display: block !important;
+        width: 100% !important;
+        padding: 50px 0 !important;
+        background-color: #000 !important;
+        border-top: 1px solid #111 !important;
+        text-align: center !important;
+        clear: both !important;
+    }
 
-    .footer-inner {
-        display: inline-block !important;
-    }
+    .footer-inner {
+        display: inline-block !important;
+    }
 
-    .f-link {
-        color: #888 !important;
-        text-decoration: none !important;
-        font-size: 14px !important;
-        margin: 0 15px !important;
-        transition: 0.3s;
-    }
+    .f-link {
+        color: #888 !important;
+        text-decoration: none !important;
+        font-size: 14px !important;
+        margin: 0 15px !important;
+        transition: 0.3s;
+    }
 
-    .f-link:hover {
-        color: #00ffcc !important;
-    }
+    .f-link:hover {
+        color: #00ffcc !important;
+    }
 
-    .copy-right {
-        margin-top: 15px !important;
-        color: #444 !important;
-        font-size: 12px !important;
-        display: block !important;
-    }
-</style> 
+    .copy-right {
+        margin-top: 15px !important;
+        color: #444 !important;
+        font-size: 12px !important;
+        display: block !important;
+    }
+</style> 
 
-    </style>
+    </style>
 </head>
 <body>
 
-    <header id="main-nav">
-        <div class="top-info-bar">
-            <div class="date-box" id="bn-date">লোড হচ্ছে...</div>
-            <div class="live-clock" id="clock">00:00:00</div>
-        </div>
+    <header id="main-nav">
+        <div class="top-info-bar">
+            <div class="date-box" id="bn-date">লোড হচ্ছে...</div>
+            <div class="live-clock" id="clock">00:00:00</div>
+        </div>
 
-        <div class="mid-branding">
-            <a href="#" class="logo-container">
-                <div class="logo-frame">
-                    <img src= "l.jpg.jpg" alt="S TV"> 
-                </div>
-                <div class="brand-name">SHADHARON <span>TV</span></div>
-            </a>
-        </div>
+        <div class="mid-branding">
+            <a href="#" class="logo-container">
+                <div class="logo-frame">
+                    <img src= "l.jpg.jpg" alt="S TV"> 
+                </div>
+                <div class="brand-name">SHADHARON <span>TV</span></div>
+            </a>
+        </div>
 
-        <nav class="nav-bar">
-            <a href="#home" class="nav-btn">হোম</a>
-            <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
-            <a href="about.html" class="nav-btn">পরিচয়</a>
-            <a href="o.html" class="nav-btn audition-btn">অডিশন দিন</a>
-              <a href="com.html" class="nav-btn audition-btn">যোগাযোগ</a>
-               <a href="ep.html" class="nav-btn audition-btn">আমাদের মৌলিক গান</a>
-        </nav>
-    </header>
+        <nav class="nav-bar">
+            <a href="#home" class="nav-btn">হোম</a>
+            <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
+            <a href="about.html" class="nav-btn">পরিচয়</a>
+            <a href="o.html" class="nav-btn audition-btn">অডিশন দিন</a>
+              <a href="com.html" class="nav-btn audition-btn">যোগাযোগ</a>
+               <a href="ep.html" class="nav-btn audition-btn">আমাদের মৌলিক গান</a>
+        </nav>
+    </header>
 
-    <div class="menu-container">
-        <div class="three-dots" onclick="toggleMenu()">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        </div>
-        <div class="menu-dropdown" id="profileMenu">
-            <a href="javascript:void(0)" onclick="copyText('+8801757331663')">নম্বর কপি করুন</a>
-            <a href="mailto:shadharonoffice@gmail.com">ইমেইল করুন</a>
-            <a href="https://www.facebook.com/shadharontvofficial" target="_blank">ফেসবুক পেজ</a>
-        </div>
-    </div>
+    <div class="menu-container">
+        <div class="three-dots" onclick="toggleMenu()">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="menu-dropdown" id="profileMenu">
+            <a href="javascript:void(0)" onclick="copyText('+8801757331663')">নম্বর কপি করুন</a>
+            <a href="mailto:shadharonoffice@gmail.com">ইমেইল করুন</a>
+            <a href="https://www.facebook.com/shadharontvofficial" target="_blank">ফেসবুক পেজ</a>
+        </div>
+    </div>
 
-   
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p style="color: var(--secondary); letter-spacing: 5px; font-weight: bold; margin-bottom: 10px;">PREMIUM EXPERIENCE</p>
+            <h1>গানের জগতে এক নতুন বিপ্লব</h1>
+            <p>দক্ষিণ এশিয়ার জনপ্রিয় রিয়েলিটি শো প্ল্যাটফর্মে আপনাকে স্বাগতম। সাধারণ টিভির সাথে শুরু হোক আপনার কণ্ঠের নতুন যাত্রা।</p>
+        </div>
+    </section>
 
-    <section class="social-section" id="social">
-        <h2 class="section-title">আমাদের চ্যানেল ও পেজ সমূহ</h2>
-        <p style="color: #888; margin-bottom: 30px;">সরাসরি আমাদের সোশ্যাল মিডিয়া প্ল্যাটফর্মে যুক্ত হতে নিচের বাটনগুলোতে ক্লিক করুন</p>
-        
-        <div class="social-grid">
-            <a href="https://www.youtube.com/@shadharontvv" target="_blank" class="social-card">
-                <span class="yt-tag">YouTube</span>
-                <h3>Shadharon TV</h3>
-                <p>অফিসিয়াল ইউটিউব চ্যানেল</p>
-            </a>
-            <a href="https://www.youtube.com/@shadharontvstudio" target="_blank" class="social-card">
-                <span class="yt-tag">YouTube</span>
-                <h3>STV Studio</h3>
-                <p>মিউজিক এবং স্টুডিও সেশন</p>
-            </a>
-            <a href="https://www.youtube.com/@ShadharonTvGoponFad-y7m8y" target="_blank" class="social-card">
-                <span class="yt-tag">YouTube</span>
-                <h3>Gopon Fad</h3>
-                <p>সতর্কতামূলক বিশেষ অনুষ্ঠান</p>
-            </a>
-            <a href="https://www.youtube.com/@ShadharonTvBanglaFunnyNews" target="_blank" class="social-card">
-                <span class="yt-tag">YouTube</span>
-                <h3>Funny News</h3>
-                <p>বিনোদনের নতুন মাত্রা</p>
-            </a>
-            <a href="https://www.youtube.com/@Shadharontvshorts" target="_blank" class="social-card">
-                <span class="yt-tag">YouTube</span>
-                <h3>STV Shorts</h3>
-                <p>সেরা মুহূর্তের ছোট ভিডিও</p>
-            </a>
+    <section class="social-section" id="social">
+        <h2 class="section-title">আমাদের চ্যানেল ও পেজ সমূহ</h2>
+        <p style="color: #888; margin-bottom: 30px;">সরাসরি আমাদের সোশ্যাল মিডিয়া প্ল্যাটফর্মে যুক্ত হতে নিচের বাটনগুলোতে ক্লিক করুন</p>
+        
+        <div class="social-grid">
+            <a href="https://www.youtube.com/@shadharontvv" target="_blank" class="social-card">
+                <span class="yt-tag">YouTube</span>
+                <h3>Shadharon TV</h3>
+                <p>অফিসিয়াল ইউটিউব চ্যানেল</p>
+            </a>
+            <a href="https://www.youtube.com/@shadharontvstudio" target="_blank" class="social-card">
+                <span class="yt-tag">YouTube</span>
+                <h3>STV Studio</h3>
+                <p>মিউজিক এবং স্টুডিও সেশন</p>
+            </a>
+            <a href="https://www.youtube.com/@ShadharonTvGoponFad-y7m8y" target="_blank" class="social-card">
+                <span class="yt-tag">YouTube</span>
+                <h3>Gopon Fad</h3>
+                <p>সতর্কতামূলক বিশেষ অনুষ্ঠান</p>
+            </a>
+            <a href="https://www.youtube.com/@ShadharonTvBanglaFunnyNews" target="_blank" class="social-card">
+                <span class="yt-tag">YouTube</span>
+                <h3>Funny News</h3>
+                <p>বিনোদনের নতুন মাত্রা</p>
+            </a>
+            <a href="https://www.youtube.com/@Shadharontvshorts" target="_blank" class="social-card">
+                <span class="yt-tag">YouTube</span>
+                <h3>STV Shorts</h3>
+                <p>সেরা মুহূর্তের ছোট ভিডিও</p>
+            </a>
 
-            <a href="https://www.facebook.com/shadharontvofficial" target="_blank" class="social-card">
-                <span class="fb-tag">Facebook</span>
-                <h3>Official Page</h3>
-                <p>সব আপডেট সবার আগে</p>
-            </a>
-            <a href="https://www.facebook.com/shadharontvstudio" target="_blank" class="social-card">
-                <span class="fb-tag">Facebook</span>
-                <h3>STV Studio FB</h3>
-                <p>স্টুডিও লাইভ আপডেট</p>
-            </a>
-            <a href="https://www.facebook.com/shadharontvgoponfad" target="_blank" class="social-card">
-                <span class="fb-tag">Facebook</span>
-                <h3>Gopon Fad FB</h3>
-                <p>আমাদের ফেসবুক কমিউনিটি</p>
-            </a>
-        </div>
-    </section>
+            <a href="https://www.facebook.com/shadharontvofficial" target="_blank" class="social-card">
+                <span class="fb-tag">Facebook</span>
+                <h3>Official Page</h3>
+                <p>সব আপডেট সবার আগে</p>
+            </a>
+            <a href="https://www.facebook.com/shadharontvstudio" target="_blank" class="social-card">
+                <span class="fb-tag">Facebook</span>
+                <h3>STV Studio FB</h3>
+                <p>স্টুডিও লাইভ আপডেট</p>
+            </a>
+            <a href="https://www.facebook.com/shadharontvgoponfad" target="_blank" class="social-card">
+                <span class="fb-tag">Facebook</span>
+                <h3>Gopon Fad FB</h3>
+                <p>আমাদের ফেসবুক কমিউনিটি</p>
+            </a>
+        </div>
+    </section>
 
 <footer class="master-footer">
-    <div class="footer-inner">
-        <a href="about.html" class="f-link">আমাদের সম্পর্কে (About Us)</a>
-        <a href="p.html" class="f-link">গোপনীয়তা নীতি (Privacy Policy)</a>
-        <span class="copy-right">
-            &copy; 2026 গানে গানে সেরা এশিয়া - সিজন ৩ | সর্বস্বত্ব সংরক্ষিত।
-        </span>
-    </div>
+    <div class="footer-inner">
+        <a href="about.html" class="f-link">আমাদের সম্পর্কে (About Us)</a>
+        <a href="p.html" class="f-link">গোপনীয়তা নীতি (Privacy Policy)</a>
+        <span class="copy-right">
+            &copy; 2026 গানে গানে সেরা এশিয়া - সিজন ৩ | সর্বস্বত্ব সংরক্ষিত।
+        </span>
+    </div>
 </footer>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById("profileMenu").classList.toggle("show");
-        }
+    <script>
+        function toggleMenu() {
+            document.getElementById("profileMenu").classList.toggle("show");
+        }
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.three-dots') && !event.target.matches('.dot')) {
-                var dropdowns = document.getElementsByClassName("menu-dropdown");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show');
-                }
-            }
-        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.three-dots') && !event.target.matches('.dot')) {
+                var dropdowns = document.getElementsByClassName("menu-dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show');
+                }
+            }
+        }
 
-        function copyText(text) {
-            navigator.clipboard.writeText(text);
-            alert("নম্বর কপি করা হয়েছে: " + text);
-        }
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert("নম্বর কপি করা হয়েছে: " + text);
+        }
 
-        function updateDateTime() {
-            const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleTimeString('en-GB', { hour12: false });
-            document.getElementById('bn-date').innerText = now.toLocaleDateString('bn-BD', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        }
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString('en-GB', { hour12: false });
+            document.getElementById('bn-date').innerText = now.toLocaleDateString('bn-BD', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
 
-        window.onscroll = () => {
-            const nav = document.getElementById('main-nav');
-            window.scrollY > 80 ? nav.classList.add('hide-top') : nav.classList.remove('hide-top');
-        };
-    </script>
+        window.onscroll = () => {
+            const nav = document.getElementById('main-nav');
+            window.scrollY > 80 ? nav.classList.add('hide-top') : nav.classList.remove('hide-top');
+        };
+    </script>
 </body>
-</html>
+</html> background change korbo ki vabe sodo sey code ta dao
