@@ -3,187 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV - Bug Free Edition</title>
+    <title>Shadharon TV - Secret Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon-red: #ff003c;
-            --bg-black: #050505;
-        }
+        :root { --neon-red: #ff003c; --bg: #050505; }
+        body { margin: 0; background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
 
-        body {
-            margin: 0; background: var(--bg-black); color: #fff;
-            font-family: 'Segoe UI', sans-serif; overflow: hidden;
-        }
-
-        /* Header */
         header {
-            padding: 15px 30px; background: #000;
-            border-bottom: 2px solid var(--neon-red);
+            padding: 15px 30px; background: #000; border-bottom: 2px solid var(--neon-red);
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
         }
 
-        .logo {
-            font-family: 'Orbitron', sans-serif; font-size: 1.8rem;
-            color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red);
-            text-transform: uppercase; font-weight: 900;
+        .logo { font-family: 'Orbitron'; color: var(--neon-red); font-size: 1.5rem; text-shadow: 0 0 10px var(--neon-red); }
+
+        /* SECRET ACCESS BUTTON (Sobai bujhte parbe na) */
+        .secret-dot {
+            width: 10px; height: 10px; background: #111; /* Khub chotto ekta kalo dot */
+            border-radius: 50%; cursor: pointer; transition: 0.3s;
+        }
+        .secret-dot:hover { background: var(--neon-red); }
+
+        .admin-section {
+            background: #111; padding: 15px; border-bottom: 1px solid #222;
+            display: flex; justify-content: center; gap: 10px;
         }
 
-        /* Layout Container */
-        .container {
-            display: grid; grid-template-columns: 1fr 350px;
-            height: calc(100vh - 75px);
+        .hidden { display: none !important; }
+
+        input {
+            background: #000; border: 1px solid #333; color: #fff;
+            padding: 10px; border-radius: 5px; outline: none;
         }
 
-        /* Player Section */
-        .player-side { padding: 20px; overflow-y: auto; }
-
-        .video-container {
-            position: relative; width: 100%; aspect-ratio: 16/9;
-            background: #000; border-radius: 12px;
-            border: 1px solid var(--neon-red);
-            box-shadow: 0 0 25px rgba(255, 0, 60, 0.2);
-            overflow: hidden;
+        .btn-red {
+            padding: 10px 20px; background: var(--neon-red); color: #fff;
+            border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
         }
 
-        video { width: 100%; height: 100%; object-fit: cover; }
+        /* Layout */
+        .main-grid { display: grid; grid-template-columns: 1fr 350px; height: calc(100vh - 145px); }
+        .video-box { padding: 20px; text-align: center; }
+        .iframe-wrap { width: 100%; aspect-ratio: 16/9; border: 1px solid var(--neon-red); border-radius: 10px; overflow: hidden; background: #000; }
 
-        .details { margin-top: 20px; border-left: 4px solid var(--neon-red); padding-left: 20px; }
-        .details h2 { color: var(--neon-red); margin: 0; text-transform: uppercase; }
-
-        /* Playlist Section */
-        .playlist-side {
-            background: #0a0a0a; border-left: 1px solid #1a1a1a;
-            padding: 20px; overflow-y: auto;
+        .playlist { background: #0a0a0a; padding: 20px; overflow-y: auto; border-left: 1px solid #222; }
+        .item {
+            display: flex; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03);
+            border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent;
         }
+        .item.active { border-color: var(--neon-red); background: rgba(255,0,60,0.1); }
+        .item img { width: 100px; border-radius: 4px; }
 
-        .playlist-side h3 { 
-            color: var(--neon-red); font-family: 'Orbitron'; 
-            font-size: 0.9rem; margin-bottom: 20px; letter-spacing: 1px;
-        }
-
-        .video-item {
-            display: flex; gap: 12px; padding: 12px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 8px; cursor: pointer; margin-bottom: 12px;
-            transition: 0.3s; border: 1px solid transparent;
-        }
-
-        .video-item:hover { background: rgba(255, 0, 60, 0.05); border-color: rgba(255, 0, 60, 0.3); }
-        .video-item.active { border-color: var(--neon-red); background: rgba(255, 0, 60, 0.1); }
-
-        .video-item img { width: 110px; height: 62px; border-radius: 4px; object-fit: cover; background: #222; }
-        .video-item .info h4 { margin: 0; font-size: 0.85rem; color: #fff; }
-        .video-item .info p { margin: 5px 0 0; font-size: 0.7rem; color: #777; }
-
-        /* Ticker Area */
-        .ticker-bar {
-            position: fixed; bottom: 0; width: 100%;
-            background: var(--neon-red); color: #000;
-            font-weight: 900; padding: 6px 0; z-index: 100;
-        }
-
-        /* Mobile Fix */
-        @media (max-width: 900px) {
-            .container { grid-template-columns: 1fr; }
-            .playlist-side { height: 300px; border-left: none; border-top: 1px solid #222; }
-        }
+        .ticker { position: fixed; bottom: 0; width: 100%; background: var(--neon-red); color: #000; font-weight: bold; padding: 5px 0; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Shadharon TV</div>
-        <div style="font-size: 0.8rem; color: #888;">BROADCASTING FROM <span style="color:var(--neon-red)">DHAKA</span></div>
+        <div class="logo">SHADHARON TV</div>
+        <div style="font-size: 0.8rem; color: #444; display: flex; align-items: center; gap: 10px;">
+            <span>Dhaka HD</span>
+            <div class="secret-dot" onclick="showLogin()"></div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="player-side">
-            <div class="video-container">
-                <video id="mainVideo" controls autoplay muted>
-                    <source src="C:\Users\user\Downloads\এত অভিনয় ভালো লাগে না প্রিয় 💔 _ Sad Love Song Bangla_ Akash Jowardar.mp4"  type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+    <div id="loginPanel" class="admin-section hidden">
+        <input type="password" id="passInput" placeholder="Security Code">
+        <button class="btn-red" onclick="verifyAdmin()">UNLOCK</button>
+    </div>
+
+    <div id="videoPanel" class="admin-section hidden">
+        <input type="text" id="ytLink" style="width: 350px;" placeholder="YouTube Link...">
+        <button class="btn-red" onclick="addVideo()">ADD</button>
+        <button class="btn-red" style="background:#222;" onclick="logout()">LOCK</button>
+    </div>
+
+    <div class="main-grid">
+        <div class="video-box">
+            <div class="iframe-wrap">
+                <div id="player"></div>
             </div>
-            <div class="details">
-                <h2 id="displayTitle">Surer Akashe - Akash Joarder</h2>
-                <p id="displayDesc">Shadharon TV Original Music Video - Exclusive Release.</p>
-            </div>
+            <h2 id="vTitle" style="color: var(--neon-red); margin-top: 15px;">Shadharon TV Digital Console</h2>
         </div>
 
-        <div class="playlist-side" id="playlist">
-            <h3>AUTO-PLAY QUEUE</h3>
-            
-            <div class="video-item active" data-src="video1.mp4" data-title="Surer Akashe - Akash Joarder" data-desc="Shadharon TV Original Music Video.">
-                <img src="thumb1.jpg" alt="Video 1">
-                <div class="info">
-                    <h4>Surer Akashe</h4>
-                    <p>Akash Joarder</p>
-                </div>
-            </div>
-
-            <div class="video-item" data-src="video2.mp4" data-title="Gaane Gaane Shera Ep 01" data-desc="The Grand Premiere of Season 3 Asia Edition.">
-                <img src="thumb2.jpg" alt="Video 2">
-                <div class="info">
-                    <h4>Episode 01</h4>
-                    <p>Reality Show</p>
-                </div>
-            </div>
-
-            <div class="video-item" data-src="video3.mp4" data-title="Mridu Shobda - New Release" data-desc="Latest track by Chairman Akash Joarder.">
-                <img src="thumb3.jpg" alt="Video 3">
-                <div class="info">
-                    <h4>Mridu Shobda</h4>
-                    <p>Akash Joarder</p>
-                </div>
-            </div>
+        <div class="playlist">
+            <h3 style="color: var(--neon-red); font-family: 'Orbitron'; font-size: 0.8rem;">PLAYLIST QUEUE</h3>
+            <div id="listItems"></div>
         </div>
     </div>
 
-    <div class="ticker-bar">
-        <marquee scrollamount="7">••• SHADHARON TV LIVE: Dhaka City Music School auditions are open now ••• Chairman Janab Akash Joarder's new original songs streaming 24/7 ••• Stay with us •••</marquee>
-    </div>
+    <div class="ticker"><marquee>SHADHARON TV: Dhaka City's Premium Music Portal ••• Chairman Akash Joarder ••• Live 24/7</marquee></div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        const video = document.getElementById('mainVideo');
-        const playlist = document.getElementById('playlist');
-        const items = document.querySelectorAll('.video-item');
-        const titleText = document.getElementById('displayTitle');
-        const descText = document.getElementById('displayDesc');
+        let player;
+        let videoList = [];
+        let currentIdx = 0;
+        const ADMIN_PASS = "12332"; 
 
-        let currentIndex = 0;
-
-        // Function to Play Video
-        function playTrack(index) {
-            items.forEach(item => item.classList.remove('active'));
-            const selected = items[index];
-            selected.classList.add('active');
-
-            const src = selected.getAttribute('data-src');
-            const title = selected.getAttribute('data-title');
-            const desc = selected.getAttribute('data-desc');
-
-            video.src = src;
-            titleText.innerText = title;
-            descText.innerText = desc;
-
-            video.play().catch(e => console.log("Auto-play blocked by browser. User must click play."));
-            currentIndex = index;
+        function showLogin() {
+            document.getElementById('loginPanel').classList.toggle('hidden');
         }
 
-        // Click to Play
-        items.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                playTrack(index);
-            });
-        });
+        function verifyAdmin() {
+            const input = document.getElementById('passInput').value;
+            if(input === ADMIN_PASS) {
+                document.getElementById('loginPanel').classList.add('hidden');
+                document.getElementById('videoPanel').classList.remove('hidden');
+                alert("Welcome back, Chairman!");
+            } else {
+                alert("Incorrect Pin!");
+            }
+        }
 
-        // Automatic Next on End
-        video.onended = () => {
-            currentIndex++;
-            if (currentIndex >= items.length) currentIndex = 0; // Loop to start
-            playTrack(currentIndex);
-        };
+        function logout() {
+            document.getElementById('videoPanel').classList.add('hidden');
+            document.getElementById('passInput').value = '';
+        }
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '100%', width: '100%',
+                playerVars: { 'autoplay': 1, 'mute': 0, 'rel': 0 },
+                events: { 'onStateChange': onPlayerStateChange }
+            });
+        }
+
+        function addVideo() {
+            const link = document.getElementById('ytLink').value;
+            const videoId = extractId(link);
+            if(videoId) {
+                videoList.push(videoId);
+                renderPlaylist();
+                document.getElementById('ytLink').value = '';
+                if(videoList.length === 1) playVideo(0);
+            }
+        }
+
+        function extractId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        function renderPlaylist() {
+            const container = document.getElementById('listItems');
+            container.innerHTML = '';
+            videoList.forEach((id, index) => {
+                container.innerHTML += `
+                    <div class="item ${index === currentIdx ? 'active' : ''}" onclick="playVideo(${index})">
+                        <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg">
+                        <span>Content #${index + 1}</span>
+                    </div>
+                `;
+            });
+        }
+
+        function playVideo(index) {
+            currentIdx = index;
+            player.loadVideoById(videoList[index]);
+            document.getElementById('vTitle').innerText = "Streaming: #" + (index + 1);
+            renderPlaylist();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                currentIdx++;
+                if (currentIdx < videoList.length) playVideo(currentIdx);
+                else playVideo(0);
+            }
+        }
     </script>
 </body>
+</html>
