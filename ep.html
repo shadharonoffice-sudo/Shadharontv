@@ -3,105 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV - Easy Mode</title>
+    <title>Shadharon TV - Full Screen Live</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        :root { --neon-red: #ff003c; --bg: #050505; }
-        body { margin: 0; background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
-
-        /* Header Style */
-        header { padding: 15px 30px; background: #000; border-bottom: 2px solid var(--neon-red); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Orbitron'; color: var(--neon-red); font-size: 1.5rem; letter-spacing: 2px; }
+        :root { --neon-red: #ff003c; }
         
-        /* Secret Click Area (Admin jonno) */
-        .admin-trigger { width: 15px; height: 15px; background: transparent; cursor: pointer; }
+        /* Pura screen-ke kalo rakha ebong scroll bondho kora */
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            background: #000; overflow: hidden; font-family: 'Segoe UI', sans-serif; 
+        }
 
-        /* Admin Box */
-        .admin-box { background: #111; padding: 15px; border-bottom: 1px solid #333; display: flex; justify-content: center; gap: 10px; transition: 0.3s; }
-        .hidden { display: none !important; }
-        input { background: #000; border: 1px solid var(--neon-red); color: #fff; padding: 10px; border-radius: 5px; width: 350px; outline: none; }
-        .btn { padding: 10px 20px; background: var(--neon-red); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        /* Header ke patla kora jate video beshi jayga pay */
+        header { 
+            position: absolute; top: 0; width: 100%; z-index: 100;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255, 0, 60, 0.3);
+        }
 
-        /* Full Screen TV Player */
-        .tv-container { height: calc(100vh - 120px); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
-        .screen-frame { width: 100%; max-width: 1100px; aspect-ratio: 16/9; border: 3px solid #111; border-radius: 15px; overflow: hidden; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); position: relative; }
+        .logo { font-family: 'Orbitron'; color: var(--neon-red); font-size: 1.2rem; text-shadow: 0 0 10px var(--neon-red); }
+        .admin-trigger { width: 20px; height: 20px; cursor: pointer; opacity: 0.1; }
+
+        /* Full Screen TV Player Container */
+        .tv-frame { 
+            width: 100vw; height: 100vh; 
+            display: flex; justify-content: center; align-items: center; 
+            background: #000;
+        }
+
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* Sound Button for User */
-        .sound-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10; display: flex; justify-content: center; align-items: center; cursor: pointer; }
-        .sound-btn { padding: 15px 30px; background: var(--neon-red); border-radius: 50px; font-weight: bold; font-family: 'Orbitron'; }
+        /* Sound Overlay (User prothome dekhbe) */
+        .overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); z-index: 1000; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+        }
+        .play-btn { 
+            padding: 20px 40px; background: var(--neon-red); color: #fff; 
+            font-family: 'Orbitron'; border-radius: 50px; font-weight: bold; 
+            cursor: pointer; box-shadow: 0 0 30px var(--neon-red); border: none;
+        }
 
-        .ticker { position: fixed; bottom: 0; width: 100%; background: var(--neon-red); color: #000; font-weight: bold; padding: 8px 0; text-align: center; }
+        /* Ticker ke niche bosiye dewa */
+        .ticker { 
+            position: absolute; bottom: 0; width: 100%; 
+            background: rgba(255, 0, 60, 0.8); color: #000; 
+            font-weight: bold; padding: 5px 0; font-size: 0.9rem; z-index: 100;
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">SHADHARON TV</div>
-    <div class="admin-trigger" onclick="toggleLogin()"></div>
+    <div class="admin-trigger" onclick="adminAccess()"></div>
 </header>
 
-<div id="adminPanel" class="admin-box hidden">
-    <input type="password" id="pin" placeholder="PIN Code">
-    <input type="text" id="listLink" placeholder="Paste YouTube Playlist Link Here">
-    <button class="btn" onclick="savePlaylist()">UPDATE TV</button>
-</div>
-
-<div class="tv-container">
-    <div class="screen-frame">
-        <div id="soundOverlay" class="sound-overlay" onclick="startTV()">
-            <div class="sound-btn">CLICK TO START SOUND</div>
-        </div>
-        <div id="player"></div>
+<div class="tv-frame">
+    <div id="overlay" class="overlay" onclick="startBroadcast()">
+        <button class="play-btn">START BROADCAST</button>
+        <p style="color: #666; margin-top: 20px; font-size: 0.8rem;">Click to enable HD Sound & Video</p>
     </div>
-    <h3 style="margin-top: 20px; color: var(--neon-red); font-family: 'Orbitron'; font-size: 1rem;">LIVE BROADCASTING DHAKA</h3>
+    <div id="player" style="width: 100%; height: 100%;"></div>
 </div>
 
-<div class="ticker"><marquee>••• SHADHARON TV: Chairman Akash Joarder ••• Live Digital HD Portal ••• Automated Music System •••</marquee></div>
+<div class="ticker"><marquee scrollamount="7">••• SHADHARON TV: Chairman Akash Joarder ••• Live from Dhaka ••• Digital High Definition Portal •••</marquee></div>
 
 <script>
-    // System logic
-    let currentPlaylist = localStorage.getItem('stv_master_id') || "";
-    const ADMIN_PIN = "12332";
+    let savedID = localStorage.getItem('stv_master_id') || "";
+    const PASS = "12332";
 
-    function toggleLogin() {
-        let p = prompt("Security Pin:");
-        if(p === ADMIN_PIN) {
-            document.getElementById('adminPanel').classList.remove('hidden');
-        } else {
-            alert("Wrong Access!");
+    function adminAccess() {
+        let p = prompt("Security PIN:");
+        if(p === PASS) {
+            let link = prompt("Paste YouTube Playlist Link:");
+            if(link && link.includes('list=')) {
+                let id = link.split('list=')[1].split('&')[0];
+                localStorage.setItem('stv_master_id', id);
+                location.reload();
+            } else { alert("Invalid Link!"); }
         }
     }
 
-    function savePlaylist() {
-        let url = document.getElementById('listLink').value;
-        let listID = "";
-        
-        // Link theke ID ber kora
-        if(url.includes('list=')) {
-            listID = url.split('list=')[1].split('&')[0];
-            localStorage.setItem('stv_master_id', listID);
-            location.reload(); // Page refresh hobe notun playlist load korar jonno
-        } else {
-            alert("Please paste a valid Playlist Link!");
-        }
-    }
-
-    function startTV() {
-        document.getElementById('soundOverlay').style.display = 'none';
-        if(currentPlaylist) {
+    function startBroadcast() {
+        document.getElementById('overlay').style.display = 'none';
+        if(savedID) {
+            // Full Screen Iframe Load
             document.getElementById('player').innerHTML = `
-                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${currentPlaylist}&autoplay=1&mute=0&rel=0" 
+                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${savedID}&autoplay=1&mute=0&rel=0&controls=1&showinfo=0" 
                 allow="autoplay; encrypted-media" allowfullscreen></iframe>
             `;
+        } else {
+            alert("Please set a playlist link first (Secret Button on Top Right)");
         }
     }
 
-    // Prothomei player load hobe jodi playlist thake
+    // Page load holei player ready thakbe kintu mute thakbe browser policy-r jonno
     window.onload = () => {
-        if(currentPlaylist) {
+        if(savedID) {
             document.getElementById('player').innerHTML = `
-                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${currentPlaylist}&autoplay=1&mute=1&rel=0" 
+                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${savedID}&autoplay=1&mute=1&rel=0&controls=0" 
                 allow="autoplay; encrypted-media" allowfullscreen></iframe>
             `;
         }
