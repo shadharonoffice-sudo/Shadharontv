@@ -19,7 +19,6 @@
             perspective: 2000px;
         }
 
-        /* ডাইনামিক সিনেমাটিক ব্যাকগ্রাউন্ড */
         .bg-glow {
             position: absolute;
             width: 100%; height: 100%;
@@ -34,7 +33,6 @@
             pointer-events: none;
         }
 
-        /* মেইন স্টেজ */
         .stage {
             position: relative;
             z-index: 10;
@@ -42,21 +40,20 @@
             animation: emerge 4s cubic-bezier(0.1, 0.9, 0.2, 1);
         }
 
-        /* প্রিমিয়াম লোগো গ্লো */
         .logo-box {
             width: 250px; height: 250px;
             margin: 0 auto 40px;
             border-radius: 50%;
-            background: url('l.jpg.jpg ') center/contain no-repeat;
+            /* ইমেজের নাম ঠিক করা হয়েছে */
+            background: url('l.jpg') center/contain no-repeat; 
             border: 2px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 0 100px rgba(255, 0, 0, 0.7), inset 0 0 50px rgba(255, 215, 0, 0.3);
             animation: pulse3d 4s infinite alternate ease-in-out;
         }
 
-        /* মেটালিক গোল্ডেন টেক্সট */
         .brand-text {
             font-family: 'Cinzel', serif;
-            font-size: 8rem;
+            font-size: 7rem; /* স্ক্রিন ফিট করার জন্য একটু ছোট করা হয়েছে */
             font-weight: 900;
             text-transform: uppercase;
             background: linear-gradient(180deg, #fff 10%, #ffd700 40%, #ff0000 80%);
@@ -71,7 +68,7 @@
             font-family: 'Oswald', sans-serif;
             color: #ffd700;
             font-size: 1.8rem;
-            letter-spacing: 25px;
+            letter-spacing: 20px;
             text-transform: uppercase;
             margin-top: -10px;
             text-shadow: 0 0 20px gold;
@@ -79,15 +76,14 @@
             animation: slideUp 2s forwards 2s;
         }
 
-        /* এনিমেশনসমূহ */
         @keyframes emerge {
             0% { transform: scale(5); filter: blur(50px); opacity: 0; }
             100% { transform: scale(1); filter: blur(0); opacity: 1; }
         }
 
         @keyframes pulse3d {
-            0% { transform: scale(1) rotateY(-15deg) rotateX(10deg); }
-            100% { transform: scale(1.1) rotateY(15deg) rotateX(-10deg); }
+            0% { transform: scale(1) rotateY(-15deg); }
+            100% { transform: scale(1.1) rotateY(15deg); }
         }
 
         @keyframes slideUp {
@@ -97,9 +93,9 @@
 
         .fade-out {
             opacity: 0;
-            transform: scale(0.5);
+            transform: scale(1.5);
             filter: blur(100px);
-            transition: 3s ease-in-out;
+            transition: 2s ease-in-out;
         }
     </style>
 </head>
@@ -131,9 +127,9 @@
             reset() {
                 this.x = canvas.width / 2;
                 this.y = canvas.height / 2;
-                this.vx = (Math.random() - 0.5) * 10;
-                this.vy = (Math.random() - 0.5) * 10;
-                this.size = Math.random() * 3 + 1;
+                this.vx = (Math.random() - 0.5) * 8;
+                this.vy = (Math.random() - 0.5) * 8;
+                this.size = Math.random() * 2 + 1;
                 this.life = 1;
                 this.decay = Math.random() * 0.01 + 0.005;
                 this.color = Math.random() > 0.5 ? '#ffd700' : '#ff0000';
@@ -153,7 +149,7 @@
             }
         }
 
-        for (let i = 0; i < 150; i++) particles.push(new Particle());
+        for (let i = 0; i < 100; i++) particles.push(new Particle());
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -162,14 +158,19 @@
         }
         animate();
 
-        // ৫.৫ সেকেন্ড পর মেইন ওয়েবসাইটে রিডাইরেক্ট হবে
+        // ৫ সেকেন্ড পর ট্রানজিশন শুরু হবে
         setTimeout(() => {
-            document.getElementById('mainContainer').classList.add('fade-out');
+            const stage = document.getElementById('mainContainer');
+            stage.classList.add('fade-out');
+            
             setTimeout(() => {
-                // আপনার মেইন ফাইলের নাম এখানে দিন (যেমন: home.html)
-                window.location.href = 'index.html'; 
-            }, 2500);
-        }, 5500);
+                // খুব গুরুত্বপূর্ণ: এখানে আপনার মেইন সাইটের ফাইলের নাম দিন। 
+                // যদি মেইন সাইট 'home.php' হয় তবে সেটাই লিখুন। 
+                // ভুলেও 'index.html' লিখবেন না যদি এই ফাইলের নামও 'index.html' হয়।
+                // window.location.href = 'home.php'; 
+                console.log("Redirecting to main site...");
+            }, 2000);
+        }, 5000);
     </script>
 </body>
 </html>
