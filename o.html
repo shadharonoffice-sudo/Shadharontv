@@ -20,6 +20,9 @@
         input:focus { border-color: var(--secondary); }
         .btn { width: 100%; padding: 15px; border: none; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.4s; margin-top: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; background: linear-gradient(45deg, var(--primary), #8000ff); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3); }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 0, 85, 0.5); }
+        
+        /* Ad Unit Styling */
+        .ad-slot { margin-top: 25px; text-align: center; width: 100%; overflow: hidden; border-radius: 15px; }
     </style>
 </head>
 <body>
@@ -28,7 +31,7 @@
     <div class="reg-card">
         <div class="header">
             <h1>গানে গানে সেরা সিজন থ্রি এশিয়া</h1>
-            <p style="color: #bbb;">অফিসিয়াল রেজিস্ট্রেশন ফরম</p>
+            <p style="color: #bbb;">অফিসিয়াল রেজিস্ট্রেশন ফরম</p>
         </div>
 
         <form id="asiaFullForm">
@@ -72,14 +75,18 @@
 
             <button type="submit" class="btn">তথ্য জমা দিন ও গান পাঠান</button>
         </form>
-    </div>
+
+        <div class="ad-slot">
+            <div id="container-f7526daa7500acad00673a6064912bb9"></div>
+            <script async="async" data-cfasync="false" src="https://pl29248169.profitablecpmratenetwork.com/f7526daa7500acad00673a6064912bb9/invoke.js"></script>
+        </div>
+        </div>
 </div>
 
 <script>
     document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // সব তথ্য সংগ্রহ
         const name = document.getElementById('node_name').value;
         const wa = document.getElementById('node_whatsapp').value;
         const res = document.getElementById('node_res').value;
@@ -92,7 +99,6 @@
         const sender = document.getElementById('node_sender').value;
         const trx = document.getElementById('node_trx').value;
 
-        // হোয়াটসঅ্যাপ মেসেজ বডি
         const finalMsg = `*গানে গানে সেরা সিজন থ্রি এশিয়া*%0A` +
                          `----------------------------%0A` +
                          `👤 নাম: ${name}%0A` +
@@ -109,19 +115,13 @@
                          `📞 নম্বর: ${sender}%0A` +
                          `🆔 TrxID: ${trx}%0A` +
                          `----------------------------%0A` +
-                         `📣 *নির্দেশ:* দয়া করে আপনার অডিশন ভিডিওটি এখন এখানে পাঠান।`;
+                         `📣 *নির্দেশ:* দয়া করে আপনার অডিশন ভিডিওটি এখন এখানে পাঠান।`;
 
         const targetNumber = "8801757331663";
         window.open(`https://wa.me/${targetNumber}?text=${finalMsg}`, '_blank');
         
-        alert("আপনার তথ্যগুলো হোয়াটসঅ্যাপে পাঠানো হচ্ছে। দয়া করে 'Send' বাটনটি চাপুন এবং আপনার গানটি আপলোড করুন।");
+        alert("আপনার তথ্যগুলো হোয়াটসঅ্যাপে পাঠানো হচ্ছে। দয়া করে 'Send' বাটনটি চাপুন এবং আপনার গানটি আপলোড করুন।");
     });
-
-<script async="async" data-cfasync="false" src="https://pl29248169.profitablecpmratenetwork.com/f7526daa7500acad00673a6064912bb9/invoke.js"></script>
-<div id="container-f7526daa7500acad00673a6064912bb9"></div>
-
-
-
 </script>
 
 </body>
