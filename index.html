@@ -122,15 +122,15 @@
         header.hide-top .top-info-bar { margin-top: -45px; }
 
         /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
-                        url('WhatsApp Image 2026-04-25 at 16.27.42.jpeg');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center;
-        }
-
+       /* Hero section er background change */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
+                url('WhatsApp Image 2026-04-25 at 16.27.42.jpeg'); /* Eikhane notun chobir link hobe */
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; /* Ete scroll korle chobi-ti daron lagbe */
+}
         .hero-content {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
