@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV - Playlist Portal</title>
+    <title>Shadharon TV - Interactive Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root { --neon-red: #ff003c; --bg: #050505; }
@@ -16,108 +16,173 @@
         }
 
         .logo { font-family: 'Orbitron'; color: var(--neon-red); font-size: 1.5rem; text-shadow: 0 0 10px var(--neon-red); }
-        .secret-trigger { width: 12px; height: 12px; background: #111; border-radius: 50%; cursor: pointer; }
+        .secret-dot { width: 10px; height: 10px; background: #111; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .secret-dot:hover { background: var(--neon-red); }
 
+        /* Admin Controls */
         .admin-panel { background: #111; padding: 15px; border-bottom: 1px solid #222; display: flex; justify-content: center; gap: 10px; }
         .hidden { display: none !important; }
-
-        input { background: #000; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; outline: none; width: 400px; }
+        input { background: #000; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; outline: none; width: 300px; }
         .btn-red { padding: 10px 20px; background: var(--neon-red); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        .main-layout { display: flex; flex-direction: column; align-items: center; padding: 20px; height: calc(100vh - 145px); }
-        .player-wrapper { width: 90%; max-width: 1000px; aspect-ratio: 16/9; border: 2px solid var(--neon-red); border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 0 30px rgba(255, 0, 60, 0.2); }
+        /* Main Grid */
+        .main-grid { display: grid; grid-template-columns: 1fr 380px; height: calc(100vh - 145px); }
+        .player-side { padding: 20px; text-align: center; }
+        .video-box { width: 100%; aspect-ratio: 16/9; border: 1px solid var(--neon-red); border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 0 20px rgba(255, 0, 60, 0.1); }
         iframe { width: 100%; height: 100%; border: none; }
 
-        .status-bar { margin-top: 15px; color: var(--neon-red); font-family: 'Orbitron'; font-size: 0.9rem; text-transform: uppercase; }
+        /* Playlist Side */
+        .playlist-side { background: #0a0a0a; padding: 20px; overflow-y: auto; border-left: 1px solid #222; }
+        .playlist-side h3 { color: var(--neon-red); font-family: 'Orbitron'; font-size: 0.8rem; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
 
-        .footer-ticker { position: fixed; bottom: 0; width: 100%; background: var(--neon-red); color: #000; font-weight: bold; padding: 6px 0; }
+        .video-item { 
+            display: flex; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); 
+            border-radius: 8px; margin-bottom: 12px; cursor: pointer; border: 1px solid transparent; 
+            transition: 0.3s; position: relative;
+        }
+        .video-item:hover { background: rgba(255,0,60,0.05); border-color: rgba(255,0,60,0.3); }
+        .video-item.active { border-color: var(--neon-red); background: rgba(255,0,60,0.1); }
+        .video-item img { width: 120px; border-radius: 4px; object-fit: cover; }
+        .video-item .info { display: flex; flex-direction: column; justify-content: center; }
+        .video-item h4 { margin: 0; font-size: 0.85rem; color: #fff; }
+        .video-item p { margin: 5px 0 0; font-size: 0.7rem; color: #666; }
+
+        .del-x { position: absolute; right: 8px; top: 8px; color: var(--neon-red); font-size: 12px; opacity: 0.3; }
+        .video-item:hover .del-x { opacity: 1; }
+
+        .ticker { position: fixed; bottom: 0; width: 100%; background: var(--neon-red); color: #000; font-weight: bold; padding: 6px 0; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">SHADHARON TV</div>
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 0.7rem; color: #333;">BROADCAST MODE</span>
-            <div class="secret-trigger" onclick="toggleLogin()"></div>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:0.7rem; color:#333;">DHAKA HD</span>
+            <div class="secret-dot" onclick="toggleAdmin()"></div>
         </div>
     </header>
 
     <div id="loginSection" class="admin-panel hidden">
-        <input type="password" id="pinCode" placeholder="Enter Secret Pin">
-        <button class="btn-red" onclick="login()">UNLOCK</button>
+        <input type="password" id="pinInput" placeholder="Security PIN">
+        <button class="btn-red" onclick="unlock()">UNLOCK</button>
     </div>
 
-    <div id="addSection" class="admin-panel hidden">
-        <input type="text" id="playlistUrl" placeholder="Paste YouTube Playlist Link Here...">
-        <button class="btn-red" onclick="updatePlaylist()">SET PLAYLIST</button>
+    <div id="controlSection" class="admin-panel hidden">
+        <input type="text" id="ytLink" placeholder="Paste YouTube Video Link...">
+        <button class="btn-red" onclick="addVideo()">ADD TO LIST</button>
+        <button class="btn-red" style="background:#222;" onclick="clearPlaylist()">RESET</button>
         <button class="btn-red" style="background:#333;" onclick="lock()">LOCK</button>
     </div>
 
-    <div class="main-layout">
-        <div class="player-wrapper" id="playerWrap">
-            <div style="display:flex; justify-content:center; align-items:center; height:100%; color:#444;">Please set a Playlist Link from Admin Panel</div>
+    <div class="main-grid">
+        <div class="player-side">
+            <div class="video-box" id="playerContainer">
+                <div style="display:flex; justify-content:center; align-items:center; height:100%; color:#444;">Select a video from the list</div>
+            </div>
+            <h2 id="nowPlaying" style="color: var(--neon-red); margin-top: 20px; font-size: 1.1rem;">Broadcast Mode</h2>
         </div>
-        <div class="status-bar" id="statusText">System Offline</div>
+
+        <div class="playlist-side">
+            <h3>SELECT VIDEO TO PLAY</h3>
+            <div id="listItems"></div>
+        </div>
     </div>
 
-    <div class="footer-ticker">
-        <marquee>••• SHADHARON TV: Dhaka City's Premier Music Portal ••• Chairman Akash Joarder ••• Auto-Playlist Mode Active •••</marquee>
+    <div class="ticker">
+        <marquee>••• SHADHARON TV: Interactive Playlist Mode Active ••• Click to play any video ••• Chairman Akash Joarder ••• Live from Dhaka •••</marquee>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Saved data load
-        let savedPlaylistID = localStorage.getItem('stv_playlist_id') || "";
-        const SECRET_PIN = "12332";
+        let player;
+        let videoList = JSON.parse(localStorage.getItem('stv_interactive_list')) || [];
+        let currentIdx = 0;
+        const PIN = "12332";
 
-        function toggleLogin() { document.getElementById('loginSection').classList.toggle('hidden'); }
+        function toggleAdmin() { document.getElementById('loginSection').classList.toggle('hidden'); }
+        function lock() { document.getElementById('controlSection').classList.add('hidden'); }
 
-        function login() {
-            if(document.getElementById('pinCode').value === SECRET_PIN) {
+        function unlock() {
+            if(document.getElementById('pinInput').value === PIN) {
                 document.getElementById('loginSection').classList.add('hidden');
-                document.getElementById('addSection').classList.remove('hidden');
+                document.getElementById('controlSection').classList.remove('hidden');
             } else { alert("Access Denied!"); }
         }
 
-        function lock() { document.getElementById('addSection').classList.add('hidden'); }
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('playerContainer', {
+                height: '100%', width: '100%',
+                playerVars: { 'autoplay': 1, 'rel': 0, 'mute': 0 },
+                events: {
+                    'onReady': () => { if(videoList.length > 0) playVideo(0); renderList(); },
+                    'onStateChange': (e) => { if(e.data === YT.PlayerState.ENDED) autoNext(); }
+                }
+            });
+        }
 
-        function updatePlaylist() {
-            const url = document.getElementById('playlistUrl').value;
-            const playlistID = extractPlaylistID(url);
-            
-            if(playlistID) {
-                savedPlaylistID = playlistID;
-                localStorage.setItem('stv_playlist_id', playlistID);
-                document.getElementById('playlistUrl').value = '';
-                loadPlayer(playlistID);
-                alert("Playlist Updated Successfully!");
-            } else {
-                alert("Invalid Playlist Link! Make sure it has 'list=ID' in the URL.");
+        function addVideo() {
+            const val = document.getElementById('ytLink').value;
+            const id = extractID(val);
+            if(id) {
+                videoList.push(id);
+                localStorage.setItem('stv_interactive_list', JSON.stringify(videoList));
+                document.getElementById('ytLink').value = '';
+                renderList();
+                if(videoList.length === 1) playVideo(0);
             }
         }
 
-        function extractPlaylistID(url) {
-            const reg = /[&?]list=([^&]+)/;
-            const match = url.match(reg);
-            return (match && match[1]) ? match[1] : null;
+        function extractID(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
         }
 
-        function loadPlayer(id) {
-            if(!id) return;
-            // YouTube Official Playlist Embed with Autoplay and Loop
-            document.getElementById('playerWrap').innerHTML = `
-                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${id}&autoplay=1&loop=1&rel=0" 
-                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            `;
-            document.getElementById('statusText').innerText = "Broadcasting Live Playlist";
+        function renderList() {
+            const container = document.getElementById('listItems');
+            container.innerHTML = '';
+            videoList.forEach((id, i) => {
+                container.innerHTML += `
+                    <div class="video-item ${i === currentIdx ? 'active' : ''}" onclick="playVideo(${i})">
+                        <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg">
+                        <div class="info">
+                            <h4>Video Content #${i+1}</h4>
+                            <p>Chairman Exclusive</p>
+                        </div>
+                        <div class="del-x" onclick="removeVideo(event, ${i})">✖</div>
+                    </div>
+                `;
+            });
         }
 
-        // On Page Load
-        window.onload = () => {
-            if(savedPlaylistID) {
-                loadPlayer(savedPlaylistID);
+        function playVideo(i) {
+            currentIdx = i;
+            player.loadVideoById(videoList[i]);
+            document.getElementById('nowPlaying').innerText = "Now Streaming: Content #" + (i+1);
+            renderList();
+        }
+
+        function autoNext() {
+            currentIdx++;
+            if(currentIdx >= videoList.length) currentIdx = 0;
+            playVideo(currentIdx);
+        }
+
+        function removeVideo(e, i) {
+            e.stopPropagation();
+            videoList.splice(i, 1);
+            localStorage.setItem('stv_interactive_list', JSON.stringify(videoList));
+            renderList();
+        }
+
+        function clearPlaylist() {
+            if(confirm("Reset everything?")) {
+                videoList = [];
+                localStorage.removeItem('stv_interactive_list');
+                location.reload();
             }
-        };
+        }
     </script>
 </body>
 </html>
