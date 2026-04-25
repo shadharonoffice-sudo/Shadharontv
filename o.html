@@ -21,22 +21,45 @@
         .btn { width: 100%; padding: 15px; border: none; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.4s; margin-top: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; background: linear-gradient(45deg, var(--primary), #8000ff); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3); }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 0, 85, 0.5); }
         
-        /* Native Ad Banner Style */
-        .ad-container {
-            margin-top: 25px;
-            background: rgba(255,255,255,0.03);
-            border: 1px dashed #444;
+        /* New Urgent Ad Style */
+        .urgent-ad {
+            background: linear-gradient(90deg, #ff0055, #8000ff);
+            color: #fff;
+            padding: 12px;
             border-radius: 12px;
-            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: block;
+            animation: pulse 2s infinite;
+            font-weight: bold;
+            border: 2px solid var(--secondary);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .ad-container {
+            margin: 20px 0;
+            background: rgba(0, 255, 204, 0.05);
+            border: 1px solid var(--secondary);
+            border-radius: 12px;
+            padding: 12px;
             position: relative;
         }
         .ad-label {
             position: absolute;
-            top: 5px;
+            top: -10px;
             right: 10px;
             font-size: 10px;
-            color: #666;
-            text-transform: uppercase;
+            background: var(--secondary);
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
         }
         .native-ad-link {
             display: flex;
@@ -45,32 +68,29 @@
             gap: 15px;
         }
         .ad-icon-box {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #00ffcc, #ff0055);
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             color: #000;
             flex-shrink: 0;
+            font-size: 20px;
         }
-        .ad-text h4 {
-            color: var(--secondary);
-            font-size: 14px;
-            margin-bottom: 2px;
-        }
-        .ad-text p {
-            color: #999;
-            font-size: 12px;
-            line-height: 1.2;
-        }
+        .ad-text h4 { color: var(--secondary); font-size: 14px; margin-bottom: 2px; }
+        .ad-text p { color: #ddd; font-size: 12px; line-height: 1.3; }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <a href="https://www.profitablecpmratenetwork.com/wpz1azjwt?key=7704b95fc3c9103272df74f639fd276b" target="_blank" class="urgent-ad">
+        ⚠️ অডিশন নিয়মাবলী দেখতে এখানে ক্লিক করুন! ⚠️
+    </a>
+
     <div class="reg-card">
         <div class="header">
             <h1>গানে গানে সেরা সিজন থ্রি এশিয়া</h1>
@@ -116,24 +136,23 @@
             <div class="input-group"><label>পেমেন্টকৃত নাম্বার *</label><input type="tel" id="node_sender" required></div>
             <div class="input-group"><label>TrxID *</label><input type="text" id="node_trx" required></div>
 
+            <div class="ad-container">
+                <span class="ad-label">AD</span>
+                <a href="https://www.profitablecpmratenetwork.com/wpz1azjwt?key=7704b95fc3c9103272df74f639fd276b" target="_blank" class="native-ad-link">
+                    <div class="ad-icon-box">🎁</div>
+                    <div class="ad-text">
+                        <h4>বিজয়ীদের জন্য বিশেষ পুরস্কার!</h4>
+                        <p>সিজন ৩ এর পুরস্কার তালিকা এবং মেগা গিফটগুলো দেখতে এখানে ক্লিক করুন।</p>
+                    </div>
+                </a>
+            </div>
+
             <button type="submit" class="btn">তথ্য জমা দিন ও গান পাঠান</button>
         </form>
-
-        <div class="ad-container">
-            <span class="ad-label">Sponsored ⓘ</span>
-            <a href="https://www.profitablecpmratenetwork.com/z3w6kz7au?key=c65bbac6028572b2b047f88a16f29f4e" target="_blank" class="native-ad-link">
-                <div class="ad-icon-box">TV</div>
-                <div class="ad-text">
-                    <h4>গানে গানে সেরা লাইভ শো দেখুন</h4>
-                    <p>সবগুলো এপিসোড এবং স্পেশাল পারফরম্যান্স সরাসরি উপভোগ করতে এখানে ক্লিক করুন।</p>
-                </div>
-            </a>
-        </div>
     </div>
 </div>
 
 <script>
-    // ফরম সাবমিশন স্ক্রিপ্ট
     document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -172,15 +191,6 @@
         
         alert("আপনার তথ্যগুলো হোয়াটসঅ্যাপে পাঠানো হচ্ছে। দয়া করে 'Send' বাটনটি চাপুন এবং আপনার গানটি আপলোড করুন।");
     });
-
-    // Auto-Open Ad (পেজে ঢোকার ৫ সেকেন্ড পর একবার অ্যাড পপ-আপ হবে Revenue বাড়াতে)
-    // এটি ইউজারকে বিরক্ত না করে নতুন ট্যাবে অ্যাড ওপেন করার চেষ্টা করবে।
-    window.onload = function() {
-        setTimeout(function() {
-            console.log("Ad ready for interaction");
-            // ব্রাউজার পলিসির কারণে অটো-ওপেন অনেক সময় ব্লক হয়, তাই ব্যানারে ক্লিক করাই সেরা।
-        }, 5000);
-    };
 </script>
 
 </body>
