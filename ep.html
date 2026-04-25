@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV - Secret Portal</title>
+    <title>Shadharon TV - Persistent Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root { --neon-red: #ff003c; --bg: #050505; }
@@ -17,42 +17,26 @@
 
         .logo { font-family: 'Orbitron'; color: var(--neon-red); font-size: 1.5rem; text-shadow: 0 0 10px var(--neon-red); }
 
-        /* SECRET ACCESS BUTTON (Sobai bujhte parbe na) */
-        .secret-dot {
-            width: 10px; height: 10px; background: #111; /* Khub chotto ekta kalo dot */
-            border-radius: 50%; cursor: pointer; transition: 0.3s;
-        }
+        .secret-dot { width: 12px; height: 12px; background: #111; border-radius: 50%; cursor: pointer; }
         .secret-dot:hover { background: var(--neon-red); }
 
-        .admin-section {
-            background: #111; padding: 15px; border-bottom: 1px solid #222;
-            display: flex; justify-content: center; gap: 10px;
-        }
-
+        .admin-section { background: #111; padding: 15px; border-bottom: 1px solid #222; display: flex; justify-content: center; gap: 10px; }
         .hidden { display: none !important; }
 
-        input {
-            background: #000; border: 1px solid #333; color: #fff;
-            padding: 10px; border-radius: 5px; outline: none;
-        }
+        input { background: #000; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; outline: none; }
+        .btn-red { padding: 10px 20px; background: var(--neon-red); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        .btn-red {
-            padding: 10px 20px; background: var(--neon-red); color: #fff;
-            border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
-        }
-
-        /* Layout */
         .main-grid { display: grid; grid-template-columns: 1fr 350px; height: calc(100vh - 145px); }
         .video-box { padding: 20px; text-align: center; }
         .iframe-wrap { width: 100%; aspect-ratio: 16/9; border: 1px solid var(--neon-red); border-radius: 10px; overflow: hidden; background: #000; }
 
         .playlist { background: #0a0a0a; padding: 20px; overflow-y: auto; border-left: 1px solid #222; }
-        .item {
-            display: flex; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03);
-            border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent;
-        }
+        .item { display: flex; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent; position: relative; }
         .item.active { border-color: var(--neon-red); background: rgba(255,0,60,0.1); }
         .item img { width: 100px; border-radius: 4px; }
+        
+        .delete-btn { position: absolute; right: 5px; top: 5px; color: #ff003c; font-size: 12px; cursor: pointer; display: none; }
+        .item:hover .delete-btn { display: block; }
 
         .ticker { position: fixed; bottom: 0; width: 100%; background: var(--neon-red); color: #000; font-weight: bold; padding: 5px 0; }
     </style>
@@ -68,65 +52,60 @@
     </header>
 
     <div id="loginPanel" class="admin-section hidden">
-        <input type="password" id="passInput" placeholder="Security Code">
+        <input type="password" id="passInput" placeholder="Pin Code">
         <button class="btn-red" onclick="verifyAdmin()">UNLOCK</button>
     </div>
 
     <div id="videoPanel" class="admin-section hidden">
-        <input type="text" id="ytLink" style="width: 350px;" placeholder="YouTube Link...">
-        <button class="btn-red" onclick="addVideo()">ADD</button>
-        <button class="btn-red" style="background:#222;" onclick="logout()">LOCK</button>
+        <input type="text" id="ytLink" style="width: 350px;" placeholder="Paste YouTube Link...">
+        <button class="btn-red" onclick="addVideo()">ADD VIDEO</button>
+        <button class="btn-red" style="background:#222;" onclick="clearAll()">CLEAR ALL</button>
+        <button class="btn-red" style="background:#444;" onclick="logout()">LOCK</button>
     </div>
 
     <div class="main-grid">
         <div class="video-box">
-            <div class="iframe-wrap">
-                <div id="player"></div>
-            </div>
-            <h2 id="vTitle" style="color: var(--neon-red); margin-top: 15px;">Shadharon TV Digital Console</h2>
+            <div class="iframe-wrap"><div id="player"></div></div>
+            <h2 id="vTitle" style="color: var(--neon-red); margin-top: 15px;">Broadcast Console</h2>
         </div>
 
         <div class="playlist">
-            <h3 style="color: var(--neon-red); font-family: 'Orbitron'; font-size: 0.8rem;">PLAYLIST QUEUE</h3>
+            <h3 style="color: var(--neon-red); font-family: 'Orbitron'; font-size: 0.8rem;">SAVED PLAYLIST</h3>
             <div id="listItems"></div>
         </div>
     </div>
 
-    <div class="ticker"><marquee>SHADHARON TV: Dhaka City's Premium Music Portal ••• Chairman Akash Joarder ••• Live 24/7</marquee></div>
+    <div class="ticker"><marquee>SHADHARON TV: Data Auto-Saved Mode Active ••• Chairman Akash Joarder ••• Live From Dhaka</marquee></div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         let player;
-        let videoList = [];
+        let videoList = JSON.parse(localStorage.getItem('shadharon_tv_list')) || [];
         let currentIdx = 0;
         const ADMIN_PASS = "12332"; 
 
-        function showLogin() {
-            document.getElementById('loginPanel').classList.toggle('hidden');
-        }
+        function showLogin() { document.getElementById('loginPanel').classList.toggle('hidden'); }
 
         function verifyAdmin() {
-            const input = document.getElementById('passInput').value;
-            if(input === ADMIN_PASS) {
+            if(document.getElementById('passInput').value === ADMIN_PASS) {
                 document.getElementById('loginPanel').classList.add('hidden');
                 document.getElementById('videoPanel').classList.remove('hidden');
-                alert("Welcome back, Chairman!");
-            } else {
-                alert("Incorrect Pin!");
-            }
+            } else { alert("Wrong Pin!"); }
         }
 
-        function logout() {
-            document.getElementById('videoPanel').classList.add('hidden');
-            document.getElementById('passInput').value = '';
-        }
+        function logout() { document.getElementById('videoPanel').classList.add('hidden'); }
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 height: '100%', width: '100%',
-                playerVars: { 'autoplay': 1, 'mute': 0, 'rel': 0 },
-                events: { 'onStateChange': onPlayerStateChange }
+                playerVars: { 'autoplay': 1, 'mute': 0 },
+                events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
             });
+        }
+
+        function onPlayerReady() {
+            if(videoList.length > 0) playVideo(0);
+            renderPlaylist();
         }
 
         function addVideo() {
@@ -134,7 +113,7 @@
             const videoId = extractId(link);
             if(videoId) {
                 videoList.push(videoId);
-                renderPlaylist();
+                saveAndRender();
                 document.getElementById('ytLink').value = '';
                 if(videoList.length === 1) playVideo(0);
             }
@@ -146,6 +125,11 @@
             return (match && match[2].length === 11) ? match[2] : null;
         }
 
+        function saveAndRender() {
+            localStorage.setItem('shadharon_tv_list', JSON.stringify(videoList));
+            renderPlaylist();
+        }
+
         function renderPlaylist() {
             const container = document.getElementById('listItems');
             container.innerHTML = '';
@@ -153,10 +137,24 @@
                 container.innerHTML += `
                     <div class="item ${index === currentIdx ? 'active' : ''}" onclick="playVideo(${index})">
                         <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg">
-                        <span>Content #${index + 1}</span>
+                        <span>Video #${index + 1}</span>
+                        <div class="delete-btn" onclick="deleteVideo(event, ${index})">✖</div>
                     </div>
                 `;
             });
+        }
+
+        function deleteVideo(event, index) {
+            event.stopPropagation();
+            videoList.splice(index, 1);
+            saveAndRender();
+        }
+
+        function clearAll() {
+            if(confirm("Are you sure you want to delete all videos?")) {
+                videoList = [];
+                saveAndRender();
+            }
         }
 
         function playVideo(index) {
