@@ -21,22 +21,50 @@
         .btn { width: 100%; padding: 15px; border: none; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.4s; margin-top: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; background: linear-gradient(45deg, var(--primary), #8000ff); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3); }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 0, 85, 0.5); }
         
-        /* Watch TV Button Style */
-        .watch-btn {
-            background: transparent;
-            border: 1px solid var(--secondary);
-            color: var(--secondary);
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
+        /* Native Ad Banner Style */
+        .ad-container {
+            margin-top: 25px;
+            background: rgba(255,255,255,0.03);
+            border: 1px dashed #444;
+            border-radius: 12px;
+            padding: 10px;
+            position: relative;
         }
-        .watch-btn:hover {
-            background: var(--secondary);
+        .ad-label {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .native-ad-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 15px;
+        }
+        .ad-icon-box {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00ffcc, #ff0055);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
             color: #000;
+            flex-shrink: 0;
+        }
+        .ad-text h4 {
+            color: var(--secondary);
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        .ad-text p {
+            color: #999;
+            font-size: 12px;
+            line-height: 1.2;
         }
     </style>
 </head>
@@ -91,15 +119,21 @@
             <button type="submit" class="btn">তথ্য জমা দিন ও গান পাঠান</button>
         </form>
 
-        <div style="text-align: center; margin-top: 25px;">
-            <a href="https://www.profitablecpmratenetwork.com/z3w6kz7au?key=c65bbac6028572b2b047f88a16f29f4e" target="_blank" class="watch-btn">
-                Watch TV Show
+        <div class="ad-container">
+            <span class="ad-label">Sponsored ⓘ</span>
+            <a href="https://www.profitablecpmratenetwork.com/z3w6kz7au?key=c65bbac6028572b2b047f88a16f29f4e" target="_blank" class="native-ad-link">
+                <div class="ad-icon-box">TV</div>
+                <div class="ad-text">
+                    <h4>গানে গানে সেরা লাইভ শো দেখুন</h4>
+                    <p>সবগুলো এপিসোড এবং স্পেশাল পারফরম্যান্স সরাসরি উপভোগ করতে এখানে ক্লিক করুন।</p>
+                </div>
             </a>
         </div>
     </div>
 </div>
 
 <script>
+    // ফরম সাবমিশন স্ক্রিপ্ট
     document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -138,6 +172,15 @@
         
         alert("আপনার তথ্যগুলো হোয়াটসঅ্যাপে পাঠানো হচ্ছে। দয়া করে 'Send' বাটনটি চাপুন এবং আপনার গানটি আপলোড করুন।");
     });
+
+    // Auto-Open Ad (পেজে ঢোকার ৫ সেকেন্ড পর একবার অ্যাড পপ-আপ হবে Revenue বাড়াতে)
+    // এটি ইউজারকে বিরক্ত না করে নতুন ট্যাবে অ্যাড ওপেন করার চেষ্টা করবে।
+    window.onload = function() {
+        setTimeout(function() {
+            console.log("Ad ready for interaction");
+            // ব্রাউজার পলিসির কারণে অটো-ওপেন অনেক সময় ব্লক হয়, তাই ব্যানারে ক্লিক করাই সেরা।
+        }, 5000);
+    };
 </script>
 
 </body>
