@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV - Persistent Portal</title>
+    <title>Shadharon TV - Final Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root { --neon-red: #ff003c; --bg: #050505; }
@@ -15,160 +15,173 @@
             box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
         }
 
-        .logo { font-family: 'Orbitron'; color: var(--neon-red); font-size: 1.5rem; text-shadow: 0 0 10px var(--neon-red); }
+        .logo { font-family: 'Orbitron'; color: var(--neon-red); font-size: 1.5rem; text-shadow: 0 0 10px var(--neon-red); letter-spacing: 2px; }
 
-        .secret-dot { width: 12px; height: 12px; background: #111; border-radius: 50%; cursor: pointer; }
-        .secret-dot:hover { background: var(--neon-red); }
+        /* Secret Access Dot */
+        .secret-trigger { width: 10px; height: 10px; background: #111; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .secret-trigger:hover { background: var(--neon-red); }
 
-        .admin-section { background: #111; padding: 15px; border-bottom: 1px solid #222; display: flex; justify-content: center; gap: 10px; }
+        /* Admin Controls */
+        .admin-box { background: #111; padding: 15px; border-bottom: 1px solid #222; display: flex; justify-content: center; gap: 10px; }
         .hidden { display: none !important; }
 
         input { background: #000; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; outline: none; }
-        .btn-red { padding: 10px 20px; background: var(--neon-red); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        input:focus { border-color: var(--neon-red); }
 
-        .main-grid { display: grid; grid-template-columns: 1fr 350px; height: calc(100vh - 145px); }
-        .video-box { padding: 20px; text-align: center; }
-        .iframe-wrap { width: 100%; aspect-ratio: 16/9; border: 1px solid var(--neon-red); border-radius: 10px; overflow: hidden; background: #000; }
+        .btn { padding: 10px 20px; background: var(--neon-red); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        .playlist { background: #0a0a0a; padding: 20px; overflow-y: auto; border-left: 1px solid #222; }
-        .item { display: flex; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent; position: relative; }
-        .item.active { border-color: var(--neon-red); background: rgba(255,0,60,0.1); }
-        .item img { width: 100px; border-radius: 4px; }
+        /* Main Player Layout */
+        .grid-container { display: grid; grid-template-columns: 1fr 350px; height: calc(100vh - 145px); }
+        .player-side { padding: 20px; text-align: center; }
+        .video-wrapper { width: 100%; aspect-ratio: 16/9; border: 1px solid var(--neon-red); border-radius: 10px; overflow: hidden; background: #000; box-shadow: 0 0 20px rgba(255,0,60,0.1); }
+
+        .playlist-side { background: #0a0a0a; padding: 20px; overflow-y: auto; border-left: 1px solid #222; }
+        .playlist-side h3 { color: var(--neon-red); font-family: 'Orbitron'; font-size: 0.8rem; margin-bottom: 20px; }
+
+        .video-item { display: flex; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent; position: relative; }
+        .video-item.active { border-color: var(--neon-red); background: rgba(255,0,60,0.1); }
+        .video-item img { width: 100px; border-radius: 4px; }
         
-        .delete-btn { position: absolute; right: 5px; top: 5px; color: #ff003c; font-size: 12px; cursor: pointer; display: none; }
-        .item:hover .delete-btn { display: block; }
+        .del-btn { position: absolute; right: 8px; top: 8px; color: var(--neon-red); font-size: 12px; cursor: pointer; opacity: 0; transition: 0.3s; }
+        .video-item:hover .del-btn { opacity: 1; }
 
-        .ticker { position: fixed; bottom: 0; width: 100%; background: var(--neon-red); color: #000; font-weight: bold; padding: 5px 0; }
+        .ticker-bottom { position: fixed; bottom: 0; width: 100%; background: var(--neon-red); color: #000; font-weight: bold; padding: 6px 0; z-index: 10; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">SHADHARON TV</div>
-        <div style="font-size: 0.8rem; color: #444; display: flex; align-items: center; gap: 10px;">
-            <span>Dhaka HD</span>
-            <div class="secret-dot" onclick="showLogin()"></div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span style="font-size: 0.7rem; color: #444;">DHAKA LIVE</span>
+            <div class="secret-trigger" onclick="toggleLogin()"></div>
         </div>
     </header>
 
-    <div id="loginPanel" class="admin-section hidden">
-        <input type="password" id="passInput" placeholder="Pin Code">
-        <button class="btn-red" onclick="verifyAdmin()">UNLOCK</button>
+    <div id="loginSection" class="admin-box hidden">
+        <input type="password" id="pinInput" placeholder="Enter Secret Pin">
+        <button class="btn" onclick="checkPin()">UNLOCK</button>
     </div>
 
-    <div id="videoPanel" class="admin-section hidden">
-        <input type="text" id="ytLink" style="width: 350px;" placeholder="Paste YouTube Link...">
-        <button class="btn-red" onclick="addVideo()">ADD VIDEO</button>
-        <button class="btn-red" style="background:#222;" onclick="clearAll()">CLEAR ALL</button>
-        <button class="btn-red" style="background:#444;" onclick="logout()">LOCK</button>
+    <div id="controlSection" class="admin-box hidden">
+        <input type="text" id="youtubeUrl" style="width: 400px;" placeholder="Paste YouTube Link Here...">
+        <button class="btn" onclick="addNewVideo()">ADD VIDEO</button>
+        <button class="btn" style="background:#333;" onclick="clearAllVideos()">CLEAR ALL</button>
+        <button class="btn" style="background:#111; border:1px solid #333;" onclick="lockAdmin()">LOCK</button>
     </div>
 
-    <div class="main-grid">
-        <div class="video-box">
-            <div class="iframe-wrap"><div id="player"></div></div>
-            <h2 id="vTitle" style="color: var(--neon-red); margin-top: 15px;">Broadcast Console</h2>
-        </div>
+    <div class="grid-container">
+        <main class="player-side">
+            <div class="video-wrapper">
+                <div id="main-player"></div>
+            </div>
+            <h2 id="current-title" style="color: var(--neon-red); margin-top: 20px; font-size: 1.2rem;">Welcome, Chairman Akash Joarder</h2>
+        </main>
 
-        <div class="playlist">
-            <h3 style="color: var(--neon-red); font-family: 'Orbitron'; font-size: 0.8rem;">SAVED PLAYLIST</h3>
-            <div id="listItems"></div>
-        </div>
+        <aside class="playlist-side">
+            <h3>BROADCAST QUEUE</h3>
+            <div id="list-container"></div>
+        </aside>
     </div>
 
-    <div class="ticker"><marquee>SHADHARON TV: Data Auto-Saved Mode Active ••• Chairman Akash Joarder ••• Live From Dhaka</marquee></div>
+    <div class="ticker-bottom">
+        <marquee scrollamount="8">••• SHADHARON TV: Secured Database Enabled ••• No data loss on reload ••• Chairman Akash Joarder Exclusive Portal ••• Live from Dhaka •••</marquee>
+    </div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        let player;
-        let videoList = JSON.parse(localStorage.getItem('shadharon_tv_list')) || [];
-        let currentIdx = 0;
-        const ADMIN_PASS = "12332"; 
+        let ytPlayer;
+        // Data Load from Browser Memory
+        let savedVideos = JSON.parse(localStorage.getItem('shadharon_data')) || [];
+        let activeIndex = 0;
+        const SECRET_PIN = "12332"; 
 
-        function showLogin() { document.getElementById('loginPanel').classList.toggle('hidden'); }
-
-        function verifyAdmin() {
-            if(document.getElementById('passInput').value === ADMIN_PASS) {
-                document.getElementById('loginPanel').classList.add('hidden');
-                document.getElementById('videoPanel').classList.remove('hidden');
-            } else { alert("Wrong Pin!"); }
+        function toggleLogin() {
+            document.getElementById('loginSection').classList.toggle('hidden');
         }
 
-        function logout() { document.getElementById('videoPanel').classList.add('hidden'); }
+        function checkPin() {
+            if(document.getElementById('pinInput').value === SECRET_PIN) {
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('controlSection').classList.remove('hidden');
+            } else { alert("Access Denied!"); }
+        }
+
+        function lockAdmin() {
+            document.getElementById('controlSection').classList.add('hidden');
+            document.getElementById('pinInput').value = '';
+        }
 
         function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
+            ytPlayer = new YT.Player('main-player', {
                 height: '100%', width: '100%',
-                playerVars: { 'autoplay': 1, 'mute': 0 },
-                events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+                playerVars: { 'autoplay': 1, 'mute': 0, 'rel': 0 },
+                events: { 
+                    'onReady': () => { if(savedVideos.length > 0) playThis(0); renderList(); },
+                    'onStateChange': (e) => { if(e.data === YT.PlayerState.ENDED) playNext(); }
+                }
             });
         }
 
-        function onPlayerReady() {
-            if(videoList.length > 0) playVideo(0);
-            renderPlaylist();
-        }
-
-        function addVideo() {
-            const link = document.getElementById('ytLink').value;
-            const videoId = extractId(link);
-            if(videoId) {
-                videoList.push(videoId);
-                saveAndRender();
-                document.getElementById('ytLink').value = '';
-                if(videoList.length === 1) playVideo(0);
+        function addNewVideo() {
+            const url = document.getElementById('youtubeUrl').value;
+            const id = getID(url);
+            if(id) {
+                savedVideos.push(id);
+                updateStorage();
+                document.getElementById('youtubeUrl').value = '';
+                if(savedVideos.length === 1) playThis(0);
             }
         }
 
-        function extractId(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[2].length === 11) ? match[2] : null;
+        function getID(url) {
+            const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const m = url.match(reg);
+            return (m && m[2].length === 11) ? m[2] : null;
         }
 
-        function saveAndRender() {
-            localStorage.setItem('shadharon_tv_list', JSON.stringify(videoList));
-            renderPlaylist();
+        function updateStorage() {
+            localStorage.setItem('shadharon_data', JSON.stringify(savedVideos));
+            renderList();
         }
 
-        function renderPlaylist() {
-            const container = document.getElementById('listItems');
+        function renderList() {
+            const container = document.getElementById('list-container');
             container.innerHTML = '';
-            videoList.forEach((id, index) => {
+            savedVideos.forEach((id, i) => {
                 container.innerHTML += `
-                    <div class="item ${index === currentIdx ? 'active' : ''}" onclick="playVideo(${index})">
+                    <div class="video-item ${i === activeIndex ? 'active' : ''}" onclick="playThis(${i})">
                         <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg">
-                        <span>Video #${index + 1}</span>
-                        <div class="delete-btn" onclick="deleteVideo(event, ${index})">✖</div>
+                        <div style="font-size:0.8rem;"><b>Content #${i+1}</b><br><small style="color:#666;">ID: ${id}</small></div>
+                        <div class="del-btn" onclick="removeOne(event, ${i})">✖</div>
                     </div>
                 `;
             });
         }
 
-        function deleteVideo(event, index) {
-            event.stopPropagation();
-            videoList.splice(index, 1);
-            saveAndRender();
+        function playThis(i) {
+            activeIndex = i;
+            ytPlayer.loadVideoById(savedVideos[i]);
+            document.getElementById('current-title').innerText = "Streaming Content: #" + (i + 1);
+            renderList();
         }
 
-        function clearAll() {
-            if(confirm("Are you sure you want to delete all videos?")) {
-                videoList = [];
-                saveAndRender();
-            }
+        function playNext() {
+            activeIndex++;
+            if(activeIndex >= savedVideos.length) activeIndex = 0;
+            playThis(activeIndex);
         }
 
-        function playVideo(index) {
-            currentIdx = index;
-            player.loadVideoById(videoList[index]);
-            document.getElementById('vTitle').innerText = "Streaming: #" + (index + 1);
-            renderPlaylist();
+        function removeOne(e, i) {
+            e.stopPropagation();
+            savedVideos.splice(i, 1);
+            updateStorage();
         }
 
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                currentIdx++;
-                if (currentIdx < videoList.length) playVideo(currentIdx);
-                else playVideo(0);
+        function clearAllVideos() {
+            if(confirm("Delete everything?")) {
+                savedVideos = [];
+                updateStorage();
             }
         }
     </script>
