@@ -62,8 +62,7 @@
         }
 
         header { position: fixed; top: 0; width: 100%; z-index: 10000; transition: 0.5s ease; }
-        .top-info-bar { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); padding: 8px 10%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .live-clock { font-family: 'Orbitron', sans-serif; color: var(--secondary); background: rgba(0, 255, 204, 0.1); padding: 2px 15px; border-radius: 20px; font-size: 14px; border: 1px solid var(--secondary); box-shadow: var(--neon-glow); }
+        .top-info-bar { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); padding: 8px 10%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .mid-branding { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); padding: 20px 10%; display: flex; justify-content: center; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .logo-frame { width: 65px; height: 65px; background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 50%; padding: 3px; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
         .logo-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #000; }
@@ -78,7 +77,6 @@
         .hero-content { background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(20px); padding: 60px; border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); max-width: 900px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
         .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; background: linear-gradient(to right, #fff, var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* ভিডিও প্লেয়ার স্টাইল */
         .video-box { 
             width: 100%; 
             max-width: 700px; 
@@ -112,7 +110,6 @@
     <header id="main-nav">
         <div class="top-info-bar">
             <div id="bn-date" style="color: #94a3b8; font-size: 14px;">লোড হচ্ছে...</div>
-            <div class="live-clock" id="clock">00:00:00</div>
         </div>
 
         <div class="mid-branding">
@@ -155,6 +152,13 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             allowfullscreen>
                         </iframe>
+                    </div>
+                </div>
+
+                <div id="countdown-box" style="background: rgba(0, 255, 204, 0.05); border: 1px dashed var(--secondary); border-radius: 20px; padding: 20px; margin: 20px auto; max-width: 500px;">
+                    <h3 style="color: #fff; margin-bottom: 10px; font-size: 18px;">রেজিস্ট্রেশনের সময় আর মাত্র:</h3>
+                    <div id="timer" style="font-size: 22px; color: var(--secondary); font-weight: bold; text-shadow: 0 0 10px rgba(0,255,204,0.5);">
+                        লোড হচ্ছে...
                     </div>
                 </div>
                 <p style="font-size: 1.2rem; color: #cbd5e1; margin-bottom: 30px;">
@@ -252,14 +256,47 @@
     </footer>
 
     <script>
+        function toBanglaNum(num) {
+            const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            return num.toString().replace(/\d/g, d => banglaDigits[d]);
+        }
+
         function updateDateTime() {
             const now = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('clock').innerText = now.toLocaleTimeString('en-GB');
             document.getElementById('bn-date').innerText = now.toLocaleDateString('bn-BD', options);
         }
-        setInterval(updateDateTime, 1000);
+
+        // কাউন্টডাউন ৩০ মে ২০২৬ এর জন্য
+        const targetDate = new Date("May 30, 2026 23:59:59").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                document.getElementById("timer").innerHTML = "রেজিস্ট্রেশন সময় শেষ হয়েছে";
+            } else {
+                document.getElementById("timer").innerHTML = 
+                    toBanglaNum(days) + " দিন : " + 
+                    toBanglaNum(hours) + " ঘণ্টা : " + 
+                    toBanglaNum(minutes) + " মিনিট : " + 
+                    toBanglaNum(seconds) + " সেকেন্ড";
+            }
+        }
+
+        setInterval(() => {
+            updateDateTime();
+            updateCountdown();
+        }, 1000);
+
         updateDateTime();
+        updateCountdown();
 
         window.onscroll = () => {
             const nav = document.getElementById('main-nav');
