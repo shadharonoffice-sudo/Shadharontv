@@ -33,9 +33,6 @@
     }
     </script>
 
-    <script async="async" data-cfasync="false" src="https://pl29248169.profitablecpmratenetwork.com/f7526daa7500acad00673a6064912bb9/invoke.js"></script>
-    <script src="https://pl29248170.profitablecpmratenetwork.com/8c/e3/74/8ce3744611afdfb799df043cd17e13ce.js"></script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Poppins:wght@600;900&family=Orbitron:wght@500&display=swap');
 
@@ -330,8 +327,7 @@
     <main>
         <section class="hero" id="home">
             <div class="ad-slot">
-                <div id="container-f7526daa7500acad00673a6064912bb9"></div>
-                <script>
+                <script type="text/javascript">
                     atOptions = { 'key': '4ce97525659d866a14506360d9560777', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
                 </script>
                 <script src="https://www.highperformanceformat.com/4ce97525659d866a14506360d9560777/invoke.js"></script>
@@ -361,12 +357,12 @@
             </article>
 
             <div class="ad-slot">
-                <script>
+                <script type="text/javascript">
                     atOptions = { 'key': '155622a08cbe1798d2c5ba3bb143de49', 'format': 'iframe', 'height': 60, 'width': 468, 'params': {} };
                 </script>
                 <script src="https://www.highperformanceformat.com/155622a08cbe1798d2c5ba3bb143de49/invoke.js"></script>
 
-                <script>
+                <script type="text/javascript">
                     atOptions = { 'key': 'e088f6495a85bd83d691c5fc9b24d89e', 'format': 'iframe', 'height': 250, 'width': 300, 'params': {} };
                 </script>
                 <script src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
@@ -374,7 +370,7 @@
         </section>
 
         <div style="position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 100;">
-            <script>
+            <script type="text/javascript">
                 atOptions = { 'key': '3c5f9f51b2c86015b0e375d754c8ed06', 'format': 'iframe', 'height': 600, 'width': 160, 'params': {} };
             </script>
             <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
@@ -395,40 +391,10 @@
                     <p>দ্বিতীয় চ্যানেল</p>
                 </a>
 
-                <a href="https://www.youtube.com/@ShadharonTVDrama" target="_blank" class="social-card">
-                    <div style="font-size: 30px; color: #ff0000;">YouTube</div>
-                    <h3>Shadharon Drama</h3>
-                    <p>বিনোদন চ্যানেল</p>
-                </a>
-
-                <a href="https://www.youtube.com/@Shadharontvshorts" target="_blank" class="social-card">
-                    <div style="font-size: 30px; color: #ff0000;">YouTube</div>
-                    <h3>Shadharon Shorts</h3>
-                    <p>বিনোদন চ্যানেল</p>
-                </a>
-
                 <a href="https://www.facebook.com/shadharontvofficial" target="_blank" class="social-card">
                     <div style="font-size: 30px; color: #1877f2;">Facebook</div>
                     <h3>Official Page</h3>
                     <p>সব আপডেট সবার আগে</p>
-                </a>
-
-                <a href="https://www.facebook.com/shadharontvstudio" target="_blank" class="social-card">
-                    <div style="font-size: 30px; color: #1877f2;">Facebook</div>
-                    <h3>Studio Page</h3>
-                    <p>মিউজিক আপডেট</p>
-                </a>
-
-                <a href="https://www.youtube.com/@ShadharonTvGoponFad-y7m8y" target="_blank" class="social-card">
-                    <div style="font-size: 30px; color: #ff0000;">Gopon Fad</div>
-                    <h3>Gopon Fad</h3>
-                    <p>এক্সক্লুসিভ কন্টেন্ট</p>
-                </a>
-
-                <a href="https://www.youtube.com/@ShadharonTvBanglaFunnyNews" target="_blank" class="social-card">
-                    <div style="font-size: 30px; color: #ffcc00;">Funny News</div>
-                    <h3>Bangla Funny News</h3>
-                    <p>হাসি-ঠাট্টা ও বিনোদন</p>
                 </a>
             </div>
         </section>
@@ -448,7 +414,7 @@
             </div>
 
             <div class="ad-slot">
-                <script>
+                <script type="text/javascript">
                     atOptions = { 'key': '94b95297e478e03fe80e051564f09c1c', 'format': 'iframe', 'height': 50, 'width': 320, 'params': {} };
                 </script>
                 <script src="https://www.highperformanceformat.com/94b95297e478e03fe80e051564f09c1c/invoke.js"></script>
@@ -469,25 +435,28 @@
         function updateDateTime() {
             const now = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('bn-date').innerText = now.toLocaleDateString('bn-BD', options);
+            const dateDisplay = document.getElementById('bn-date');
+            if(dateDisplay) dateDisplay.innerText = now.toLocaleDateString('bn-BD', options);
         }
 
-        // কাউন্টডাউন ১ মে ২০২৬ এর জন্য (আপনার দেওয়া তারিখ অনুযায়ী)
         const targetDate = new Date("May 1, 2026 23:59:59").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
+            const timerDisplay = document.getElementById("timer");
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            if(!timerDisplay) return;
 
             if (distance < 0) {
-                document.getElementById("timer").innerHTML = "রেজিস্ট্রেশন সময় শেষ হয়েছে";
+                timerDisplay.innerHTML = "রেজিস্ট্রেশন সময় শেষ হয়েছে";
             } else {
-                document.getElementById("timer").innerHTML =
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timerDisplay.innerHTML =
                     toBanglaNum(days) + " দিন : " +
                     toBanglaNum(hours) + " ঘণ্টা : " +
                     toBanglaNum(minutes) + " মিনিট : " +
