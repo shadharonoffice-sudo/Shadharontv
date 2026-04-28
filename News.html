@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সাধারণ টিভি | সত্যের সন্ধানে নির্ভীক</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --brand-color: #9b090d; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0f2f5; color: #1a1a1a; }
+
+        /* Navbar */
+        .navbar { background: var(--brand-color); padding: 12px 0; border-bottom: 4px solid rgba(0,0,0,0.1); }
+        .navbar-brand { font-weight: 800; font-size: 32px; }
+
+        /* Headlines Section */
+        .section-header { border-bottom: 2px solid #ddd; margin-bottom: 25px; position: relative; }
+        .section-header span { 
+            background: var(--brand-color); color: #fff; padding: 5px 20px; 
+            font-weight: 700; display: inline-block; clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+
+        /* Lead News */
+        .lead-news-card { 
+            position: relative; border-radius: 4px; overflow: hidden; height: 450px; 
+            background: #000; margin-bottom: 30px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .lead-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; transition: 0.6s; }
+        .lead-overlay { position: absolute; bottom: 0; padding: 50px 40px; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); width: 100%; color: #fff; }
+        .lead-overlay h1 { font-size: 35px; font-weight: 700; }
+
+        /* Grid News */
+        .news-card { background: #fff; border-radius: 4px; border: none; border-bottom: 1px solid #eee; transition: 0.3s; height: 100%; cursor: pointer; overflow: hidden; }
+        .card-img-top { height: 190px; width: 100%; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .card-title { font-size: 20px; font-weight: 700; color: #111; line-height: 1.4; }
+
+        /* Admin & Modal */
+        #adminArea, #newsModal { 
+            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 95%; max-width: 600px; background: #fff; padding: 25px; border-radius: 12px; 
+            box-shadow: 0 0 100px rgba(0,0,0,0.5); z-index: 10000; max-height: 85vh; overflow-y: auto;
+        }
+        .overlay-bg { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; backdrop-filter: blur(5px); }
+        .btn-close-custom { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #888; }
+        
+        /* Reader Styling */
+        .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: 8px; }
+        .modal-text { font-size: 18px; line-height: 1.8; color: #333; white-space: pre-line; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-broadcast-tower me-2"></i>সাধারণ টিভি</a>
+            <div class="text-white small fw-bold">
+                <span id="dateText"></span> | <span class="text-warning"> সরাসরি</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div id="leadNewsSection"></div>
+        <div class="section-header"><span>শীর্ষ সংবাদ</span></div>
+        <div class="row" id="newsGrid"></div>
+    </div>
+
+    <!-- NEWS READER -->
+    <div class="overlay-bg" id="modalOverlay" onclick="closeModal()"></div>
+    <div id="newsModal">
+        <span class="btn-close-custom" onclick="closeModal()">&times;</span>
+        <div id="modalContent"></div>
+    </div>
+
+    <!-- SECRET ADMIN -->
+    <div id="adminArea">
+        <h4 class="fw-bold mb-4 text-center text-danger">নিউজ কন্ট্রোল প্যানেল</h4>
+        <div id="loginForm">
+            <input type="password" id="passInput" class="form-control mb-3" placeholder="সিক্রেট কোড">
+            <button onclick="login()" class="btn btn-dark w-100 fw-bold">প্রবেশ করুন</button>
+        </div>
+        <div id="postForm" style="display:none;">
+            <input type="text" id="nTitle" class="form-control mb-2" placeholder="শিরোনাম">
+            
+            <!-- ছবি আপলোড করার নতুন বাটন -->
+            <label class="small fw-bold text-muted">সংবাদের ছবি আপলোড করুন:</label>
+            <input type="file" id="nFile" class="form-control mb-3" accept="image/*">
+            
+            <textarea id="nDetails" class="form-control mb-2" rows="6" placeholder="বিস্তারিত সংবাদ..."></textarea>
+            <select id="nCat" class="form-select mb-3">
+                <option value="জাতীয়">জাতীয়</option>
+                <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
+                <option value="খেলাধুলা">খেলাধুলা</option>
+            </select>
+            <button onclick="saveNews()" class="btn btn-danger w-100 fw-bold">পাবলিশ করুন</button>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5 text-center">
+        <div class="container"><h5>সাধারণ টিভি</h5></div>
+    </footer>
+
+    <script>
+        let base64Image = "";
+
+        // ছবি সিলেক্ট করলে সেটাকে ডাটাতে রূপান্তর করা
+        document.getElementById('nFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => { base64Image = reader.result; };
+            if (file) { reader.readAsDataURL(file); }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 65) toggleAdmin();
+        });
+
+        function toggleAdmin() {
+            document.getElementById('adminArea').style.display = 'block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+
+        function login() {
+            if(document.getElementById('passInput').value === 'admin123') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('postForm').style.display = 'block';
+            } else { alert('ভুল পাসওয়ার্ড!'); }
+        }
+
+        function saveNews() {
+            const title = document.getElementById('nTitle').value;
+            const details = document.getElementById('nDetails').value;
+            
+            if(!title || !base64Image) { alert("শিরোনাম এবং ছবি অবশ্যই দিতে হবে!"); return; }
+
+            const news = {
+                id: Date.now(),
+                title: title,
+                img: base64Image, // এখানে সরাসরি আপলোড করা ছবি সেভ হচ্ছে
+                details: details,
+                cat: document.getElementById('nCat').value,
+                time: new Date().toLocaleString('bn-BD')
+            };
+
+            let list = JSON.parse(localStorage.getItem('tv_news_upload')) || [];
+            list.unshift(news);
+            localStorage.setItem('tv_news_upload', JSON.stringify(list));
+            location.reload();
+        }
+
+        function loadPortal() {
+            const data = JSON.parse(localStorage.getItem('tv_news_upload')) || [];
+            const leadDiv = document.getElementById('leadNewsSection');
+            const gridDiv = document.getElementById('newsGrid');
+
+            if(data.length > 0) {
+                const lead = data[0];
+                leadDiv.innerHTML = `
+                    <div class="lead-news-card" onclick="viewNews(${lead.id})">
+                        <img src="${lead.img}" class="lead-img">
+                        <div class="lead-overlay">
+                            <span class="badge bg-danger mb-3">প্রধান সংবাদ</span>
+                            <h1>${lead.title}</h1>
+                        </div>
+                    </div>`;
+
+                data.slice(1).forEach(n => {
+                    gridDiv.innerHTML += `
+                        <div class="col-md-4 mb-4">
+                            <div class="news-card" onclick="viewNews(${n.id})">
+                                <img src="${n.img}" class="card-img-top">
+                                <div class="card-body">
+                                    <span class="badge bg-danger mb-2">${n.cat}</span>
+                                    <h5 class="card-title">${n.title}</h5>
+                                    <div class="mt-3 small text-muted">
+                                        ${n.time.split(',')[1]}
+                                        <i class="fas fa-trash float-end opacity-25" onclick="event.stopPropagation(); deleteN(${n.id})"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+        }
+
+        function viewNews(id) {
+            const data = JSON.parse(localStorage.getItem('tv_news_upload'));
+            const n = data.find(item => item.id === id);
+            document.getElementById('modalContent').innerHTML = `
+                <img src="${n.img}" class="modal-header-img mb-3">
+                <h2 class="fw-bold">${n.title}</h2>
+                <hr>
+                <div class="modal-text">${n.details}</div>
+            `;
+            document.getElementById('newsModal').style.display = 'block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('newsModal').style.display = 'none';
+            document.getElementById('adminArea').style.display = 'none';
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function deleteN(id) {
+            if(confirm('মুছতে চান?')) {
+                let list = JSON.parse(localStorage.getItem('tv_news_upload')).filter(x => x.id !== id);
+                localStorage.setItem('tv_news_upload', JSON.stringify(list));
+                location.reload();
+            }
+        }
+
+        document.getElementById('dateText').innerText = new Date().toLocaleDateString('bn-BD', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        window.onload = loadPortal;
+    </script>
+</body>
+</html>
