@@ -3,219 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সাধারণ টিভি | সত্যের সন্ধানে নির্ভীক</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>Shadharon TV | News Portal</title>
     <style>
-        :root { --brand-color: #9b090d; }
-        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0f2f5; color: #1a1a1a; }
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
 
-        /* Navbar */
-        .navbar { background: var(--brand-color); padding: 12px 0; border-bottom: 4px solid rgba(0,0,0,0.1); }
-        .navbar-brand { font-weight: 800; font-size: 32px; }
-
-        /* Headlines Section */
-        .section-header { border-bottom: 2px solid #ddd; margin-bottom: 25px; position: relative; }
-        .section-header span { 
-            background: var(--brand-color); color: #fff; padding: 5px 20px; 
-            font-weight: 700; display: inline-block; clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        :root {
+            --primary: #ff0055;
+            --secondary: #00ffcc;
+            --dark: #0f172a;
+            --card-bg: #1e293b;
         }
 
-        /* Lead News */
-        .lead-news-card { 
-            position: relative; border-radius: 4px; overflow: hidden; height: 450px; 
-            background: #000; margin-bottom: 30px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--dark);
+            color: white;
+            margin: 0;
+            padding: 0;
         }
-        .lead-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; transition: 0.6s; }
-        .lead-overlay { position: absolute; bottom: 0; padding: 50px 40px; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); width: 100%; color: #fff; }
-        .lead-overlay h1 { font-size: 35px; font-weight: 700; }
 
-        /* Grid News */
-        .news-card { background: #fff; border-radius: 4px; border: none; border-bottom: 1px solid #eee; transition: 0.3s; height: 100%; cursor: pointer; overflow: hidden; }
-        .card-img-top { height: 190px; width: 100%; object-fit: cover; }
-        .card-body { padding: 15px; }
-        .card-title { font-size: 20px; font-weight: 700; color: #111; line-height: 1.4; }
-
-        /* Admin & Modal */
-        #adminArea, #newsModal { 
-            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 95%; max-width: 600px; background: #fff; padding: 25px; border-radius: 12px; 
-            box-shadow: 0 0 100px rgba(0,0,0,0.5); z-index: 10000; max-height: 85vh; overflow-y: auto;
+        /* হেডার */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .overlay-bg { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; backdrop-filter: blur(5px); }
-        .btn-close-custom { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #888; }
-        
-        /* Reader Styling */
-        .modal-header-img { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: 8px; }
-        .modal-text { font-size: 18px; line-height: 1.8; color: #333; white-space: pre-line; }
+
+        .logo { font-size: 24px; font-weight: 700; color: white; text-decoration: none; }
+        .logo span { color: var(--secondary); }
+
+        /* ব্রেকিং নিউজ বার */
+        .breaking-news {
+            background: #f1f5f9;
+            color: #000;
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .breaking-label {
+            background: var(--primary);
+            color: white;
+            padding: 2px 10px;
+            font-weight: bold;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+
+        /* মেইন কন্টেন্ট */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--secondary);
+            padding-left: 15px;
+        }
+
+        /* নিউজ গ্রিড */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
+        .news-img {
+            width: 100%;
+            height: 180px;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+        }
+
+        .news-content { padding: 20px; }
+        .news-category { color: var(--secondary); font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        .news-content h3 { margin: 10px 0; font-size: 18px; line-height: 1.4; color: #fff; }
+        .news-content p { color: #cbd5e1; font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            background: #020617;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .section-title { font-size: 22px; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-broadcast-tower me-2"></i>সাধারণ টিভি</a>
-            <div class="text-white small fw-bold">
-                <span id="dateText"></span> | <span class="text-warning"> সরাসরি</span>
+    <header>
+        <a href="index.html" class="logo">SHADHARON <span>TV NEWS</span></a>
+        <nav>
+            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">মূল সাইট</a>
+        </nav>
+    </header>
+
+    <div class="breaking-news">
+        <div class="breaking-label">ব্রেকিং নিউজ</div>
+        <marquee behavior="scroll" direction="left">গানে গানে সেরা এশিয়া সিজন ৩ এর গ্র্যান্ড অডিশন খুব শীঘ্রই আপনার শহরে শুরু হতে যাচ্ছে! রেজিস্ট্রেশন করতে অডিশন বাটনে ক্লিক করুন।</marquee>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">শীর্ষ সংবাদ</h2>
+
+        <div class="news-grid">
+            
+            <!-- নিউজ কার্ড ১ শুরু -->
+            <div class="news-card">
+                <div class="news-img">IMAGE HERE</div>
+                <div class="news-content">
+                    <span class="news-category">অডিশন আপডেট</span>
+                    <h3>সিজন ৩ এর রেজিস্ট্রেশন শেষ হওয়ার তারিখ ঘোষণা</h3>
+                    <p>সাধারণ টিভির জনপ্রিয় রিয়েলিটি শো গানে গানে সেরা এশিয়ার রেজিস্ট্রেশন আগামী ১৫ই জুন পর্যন্ত চলবে। অনলাইনে আবেদন করতে এখনই আমাদের পোর্টালে ফর্ম পূরণ করুন।</p>
+                    <a href="#" class="read-more">বিস্তারিত পড়ুন →</a>
+                </div>
             </div>
-        </div>
-    </nav>
+            <!-- নিউজ কার্ড ১ শেষ -->
 
-    <div class="container mt-4">
-        <div id="leadNewsSection"></div>
-        <div class="section-header"><span>শীর্ষ সংবাদ</span></div>
-        <div class="row" id="newsGrid"></div>
-    </div>
+            <!-- নিউজ কার্ড ২ শুরু -->
+            <div class="news-card">
+                <div class="news-img">IMAGE HERE</div>
+                <div class="news-content">
+                    <span class="news-category">বিনোদন</span>
+                    <h3>এবারের আসরে নতুন বিচারক হিসেবে যোগ দিচ্ছেন জনপ্রিয় তারকারা</h3>
+                    <p>সংগীত জগতের মহাতারকারা এবার থাকছেন সাধারণ টিভির বিচারক প্যানেলে। কারা থাকছেন এই তালিকায়? তা জানতে চোখ রাখুন আমাদের বিশেষ প্রতিবেদনে।</p>
+                    <a href="#" class="read-more">বিস্তারিত পড়ুন →</a>
+                </div>
+            </div>
+            <!-- নিউজ কার্ড ২ শেষ -->
 
-    <!-- NEWS READER -->
-    <div class="overlay-bg" id="modalOverlay" onclick="closeModal()"></div>
-    <div id="newsModal">
-        <span class="btn-close-custom" onclick="closeModal()">&times;</span>
-        <div id="modalContent"></div>
-    </div>
+            <!-- নিউজ কার্ড ৩ শুরু -->
+            <div class="news-card">
+                <div class="news-img">IMAGE HERE</div>
+                <div class="news-content">
+                    <span class="news-category">লাইভ শো</span>
+                    <h3>প্রতি শুক্রবার রাত ৮টায় দেখুন বিশেষ গান পরিবেশনা</h3>
+                    <p>এখন থেকে প্রতি শুক্রবার সাধারণ টিভির ফেসবুক পেজ এবং ইউটিউব চ্যানেলে সরাসরি সম্প্রচারিত হবে সিজন ২ এর সেরা শিল্পীদের গান।</p>
+                    <a href="#" class="read-more">বিস্তারিত পড়ুন →</a>
+                </div>
+            </div>
+            <!-- নিউজ কার্ড ৩ শেষ -->
 
-    <!-- SECRET ADMIN -->
-    <div id="adminArea">
-        <h4 class="fw-bold mb-4 text-center text-danger">নিউজ কন্ট্রোল প্যানেল</h4>
-        <div id="loginForm">
-            <input type="password" id="passInput" class="form-control mb-3" placeholder="সিক্রেট কোড">
-            <button onclick="login()" class="btn btn-dark w-100 fw-bold">প্রবেশ করুন</button>
-        </div>
-        <div id="postForm" style="display:none;">
-            <input type="text" id="nTitle" class="form-control mb-2" placeholder="শিরোনাম">
-            
-            <!-- ছবি আপলোড করার নতুন বাটন -->
-            <label class="small fw-bold text-muted">সংবাদের ছবি আপলোড করুন:</label>
-            <input type="file" id="nFile" class="form-control mb-3" accept="image/*">
-            
-            <textarea id="nDetails" class="form-control mb-2" rows="6" placeholder="বিস্তারিত সংবাদ..."></textarea>
-            <select id="nCat" class="form-select mb-3">
-                <option value="জাতীয়">জাতীয়</option>
-                <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
-                <option value="খেলাধুলা">খেলাধুলা</option>
-            </select>
-            <button onclick="saveNews()" class="btn btn-danger w-100 fw-bold">পাবলিশ করুন</button>
         </div>
     </div>
 
-    <footer class="bg-dark text-white py-4 mt-5 text-center">
-        <div class="container"><h5>সাধারণ টিভি</h5></div>
+    <footer>
+        <p>&copy; 2026 Shadharon TV | খবর এবং বিনোদনের নির্ভরযোগ্য মাধ্যম</p>
     </footer>
 
-    <script>
-        let base64Image = "";
-
-        // ছবি সিলেক্ট করলে সেটাকে ডাটাতে রূপান্তর করা
-        document.getElementById('nFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onloadend = () => { base64Image = reader.result; };
-            if (file) { reader.readAsDataURL(file); }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 65) toggleAdmin();
-        });
-
-        function toggleAdmin() {
-            document.getElementById('adminArea').style.display = 'block';
-            document.getElementById('modalOverlay').style.display = 'block';
-        }
-
-        function login() {
-            if(document.getElementById('passInput').value === 'admin123') {
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('postForm').style.display = 'block';
-            } else { alert('ভুল পাসওয়ার্ড!'); }
-        }
-
-        function saveNews() {
-            const title = document.getElementById('nTitle').value;
-            const details = document.getElementById('nDetails').value;
-            
-            if(!title || !base64Image) { alert("শিরোনাম এবং ছবি অবশ্যই দিতে হবে!"); return; }
-
-            const news = {
-                id: Date.now(),
-                title: title,
-                img: base64Image, // এখানে সরাসরি আপলোড করা ছবি সেভ হচ্ছে
-                details: details,
-                cat: document.getElementById('nCat').value,
-                time: new Date().toLocaleString('bn-BD')
-            };
-
-            let list = JSON.parse(localStorage.getItem('tv_news_upload')) || [];
-            list.unshift(news);
-            localStorage.setItem('tv_news_upload', JSON.stringify(list));
-            location.reload();
-        }
-
-        function loadPortal() {
-            const data = JSON.parse(localStorage.getItem('tv_news_upload')) || [];
-            const leadDiv = document.getElementById('leadNewsSection');
-            const gridDiv = document.getElementById('newsGrid');
-
-            if(data.length > 0) {
-                const lead = data[0];
-                leadDiv.innerHTML = `
-                    <div class="lead-news-card" onclick="viewNews(${lead.id})">
-                        <img src="${lead.img}" class="lead-img">
-                        <div class="lead-overlay">
-                            <span class="badge bg-danger mb-3">প্রধান সংবাদ</span>
-                            <h1>${lead.title}</h1>
-                        </div>
-                    </div>`;
-
-                data.slice(1).forEach(n => {
-                    gridDiv.innerHTML += `
-                        <div class="col-md-4 mb-4">
-                            <div class="news-card" onclick="viewNews(${n.id})">
-                                <img src="${n.img}" class="card-img-top">
-                                <div class="card-body">
-                                    <span class="badge bg-danger mb-2">${n.cat}</span>
-                                    <h5 class="card-title">${n.title}</h5>
-                                    <div class="mt-3 small text-muted">
-                                        ${n.time.split(',')[1]}
-                                        <i class="fas fa-trash float-end opacity-25" onclick="event.stopPropagation(); deleteN(${n.id})"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
-                });
-            }
-        }
-
-        function viewNews(id) {
-            const data = JSON.parse(localStorage.getItem('tv_news_upload'));
-            const n = data.find(item => item.id === id);
-            document.getElementById('modalContent').innerHTML = `
-                <img src="${n.img}" class="modal-header-img mb-3">
-                <h2 class="fw-bold">${n.title}</h2>
-                <hr>
-                <div class="modal-text">${n.details}</div>
-            `;
-            document.getElementById('newsModal').style.display = 'block';
-            document.getElementById('modalOverlay').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('newsModal').style.display = 'none';
-            document.getElementById('adminArea').style.display = 'none';
-            document.getElementById('modalOverlay').style.display = 'none';
-        }
-
-        function deleteN(id) {
-            if(confirm('মুছতে চান?')) {
-                let list = JSON.parse(localStorage.getItem('tv_news_upload')).filter(x => x.id !== id);
-                localStorage.setItem('tv_news_upload', JSON.stringify(list));
-                location.reload();
-            }
-        }
-
-        document.getElementById('dateText').innerText = new Date().toLocaleDateString('bn-BD', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        window.onload = loadPortal;
-    </script>
 </body>
 </html>
