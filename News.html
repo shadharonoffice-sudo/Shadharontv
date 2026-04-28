@@ -3,189 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV | News Portal</title>
+    <title>Shadharon TV | নিরাপদ নিউজ পোর্টাল</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
-
-        :root {
-            --primary: #ff0055;
-            --secondary: #00ffcc;
-            --dark: #0f172a;
-            --card-bg: #1e293b;
-        }
-
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background-color: var(--dark);
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* হেডার */
-        header {
-            background: rgba(15, 23, 42, 0.95);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--primary);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo { font-size: 24px; font-weight: 700; color: white; text-decoration: none; }
-        .logo span { color: var(--secondary); }
-
-        /* ব্রেকিং নিউজ বার */
-        .breaking-news {
-            background: #f1f5f9;
-            color: #000;
-            padding: 10px 5%;
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-        }
-
-        .breaking-label {
-            background: var(--primary);
-            color: white;
-            padding: 2px 10px;
-            font-weight: bold;
-            margin-right: 15px;
-            white-space: nowrap;
-        }
-
-        /* মেইন কন্টেন্ট */
-        .container {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 28px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--secondary);
-            padding-left: 15px;
-        }
-
-        /* নিউজ গ্রিড */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .news-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-
-        .news-img {
-            width: 100%;
-            height: 180px;
-            background: #334155;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-        }
-
+        :root { --red: #e63946; }
+        body { font-family: Arial, sans-serif; margin: 0; background: #f9f9f9; }
+        header { background: #fff; padding: 20px; text-align: center; border-bottom: 4px solid var(--red); }
+        .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+        #adminArea { display: none; background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 30px; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .btn-post { background: var(--red); color: #fff; border: none; padding: 15px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .news-card { background: #fff; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; }
+        .news-card img { width: 100%; height: auto; }
         .news-content { padding: 20px; }
-        .news-category { color: var(--secondary); font-size: 12px; font-weight: bold; text-transform: uppercase; }
-        .news-content h3 { margin: 10px 0; font-size: 18px; line-height: 1.4; color: #fff; }
-        .news-content p { color: #cbd5e1; font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-
-        .read-more {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-            background: #020617;
-            color: #64748b;
-        }
-
-        @media (max-width: 600px) {
-            .section-title { font-size: 22px; }
-        }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo">SHADHARON <span>TV NEWS</span></a>
-        <nav>
-            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">মূল সাইট</a>
-        </nav>
-    </header>
+<header>
+    <h1 style="margin:0;">SHADHARON <span style="color:var(--red)">TV</span></h1>
+</header>
 
-    <div class="breaking-news">
-        <div class="breaking-label">ব্রেকিং নিউজ</div>
-        <marquee behavior="scroll" direction="left">গানে গানে সেরা এশিয়া সিজন ৩ এর গ্র্যান্ড অডিশন খুব শীঘ্রই আপনার শহরে শুরু হতে যাচ্ছে! রেজিস্ট্রেশন করতে অডিশন বাটনে ক্লিক করুন।</marquee>
+<div class="container">
+    <button onclick="toggleAdmin()" style="float:right; border:none; background:none; color:#999; cursor:pointer;">Admin Access</button>
+    <div style="clear:both;"></div>
+
+    <div id="adminArea">
+        <h3>অ্যাডমিন প্যানেল</h3>
+        <!-- এখানে টোকেনটি ইনপুট দিতে হবে -->
+        <input type="password" id="tokenInput" placeholder="আপনার GitHub টোকেনটি (ghp_...) এখানে দিন">
+        <hr>
+        <input type="text" id="title" placeholder="সংবাদের শিরোনাম">
+        <textarea id="body" rows="5" placeholder="বিস্তারিত সংবাদ..."></textarea>
+        <input type="text" id="imgUrl" placeholder="ছবির লিঙ্ক">
+        <button class="btn-post" onclick="saveToGitHub()">পাবলিশ করুন</button>
     </div>
 
-    <div class="container">
-        <h2 class="section-title">শীর্ষ সংবাদ</h2>
+    <div id="newsFeed">লোড হচ্ছে...</div>
+</div>
 
-        <div class="news-grid">
-            
-            <!-- নিউজ কার্ড ১ শুরু -->
-            <div class="news-card">
-                <div class="news-img">IMAGE HERE</div>
-                <div class="news-content">
-                    <span class="news-category">অডিশন আপডেট</span>
-                    <h3>সিজন ৩ এর রেজিস্ট্রেশন শেষ হওয়ার তারিখ ঘোষণা</h3>
-                    <p>সাধারণ টিভির জনপ্রিয় রিয়েলিটি শো গানে গানে সেরা এশিয়ার রেজিস্ট্রেশন আগামী ১৫ই জুন পর্যন্ত চলবে। অনলাইনে আবেদন করতে এখনই আমাদের পোর্টালে ফর্ম পূরণ করুন।</p>
-                    <a href="#" class="read-more">বিস্তারিত পড়ুন →</a>
-                </div>
-            </div>
-            <!-- নিউজ কার্ড ১ শেষ -->
+<script>
+    const GITHUB_USER = "shadharonoffice-sudo";
+    const GITHUB_REPO = "Shadharontv";
+    const FILE_PATH = "news.json";
 
-            <!-- নিউজ কার্ড ২ শুরু -->
-            <div class="news-card">
-                <div class="news-img">IMAGE HERE</div>
-                <div class="news-content">
-                    <span class="news-category">বিনোদন</span>
-                    <h3>এবারের আসরে নতুন বিচারক হিসেবে যোগ দিচ্ছেন জনপ্রিয় তারকারা</h3>
-                    <p>সংগীত জগতের মহাতারকারা এবার থাকছেন সাধারণ টিভির বিচারক প্যানেলে। কারা থাকছেন এই তালিকায়? তা জানতে চোখ রাখুন আমাদের বিশেষ প্রতিবেদনে।</p>
-                    <a href="#" class="read-more">বিস্তারিত পড়ুন →</a>
-                </div>
-            </div>
-            <!-- নিউজ কার্ড ২ শেষ -->
+    function toggleAdmin() {
+        const area = document.getElementById('adminArea');
+        area.style.display = area.style.display === 'block' ? 'none' : 'block';
+    }
 
-            <!-- নিউজ কার্ড ৩ শুরু -->
-            <div class="news-card">
-                <div class="news-img">IMAGE HERE</div>
-                <div class="news-content">
-                    <span class="news-category">লাইভ শো</span>
-                    <h3>প্রতি শুক্রবার রাত ৮টায় দেখুন বিশেষ গান পরিবেশনা</h3>
-                    <p>এখন থেকে প্রতি শুক্রবার সাধারণ টিভির ফেসবুক পেজ এবং ইউটিউব চ্যানেলে সরাসরি সম্প্রচারিত হবে সিজন ২ এর সেরা শিল্পীদের গান।</p>
-                    <a href="#" class="read-more">বিস্তারিত পড়ুন →</a>
-                </div>
-            </div>
-            <!-- নিউজ কার্ড ৩ শেষ -->
+    // নিউজ লোড করার ফাংশন (এতে টোকেন লাগে না)
+    async function loadNews() {
+        try {
+            const res = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${FILE_PATH}?t=${Date.now()}`);
+            const news = await res.json();
+            let html = "";
+            news.reverse().forEach(item => {
+                html += `
+                    <div class="news-card">
+                        ${item.image ? `<img src="${item.image}">` : ''}
+                        <div class="news-content">
+                            <small>${item.date}</small>
+                            <h2>${item.title}</h2>
+                            <p style="white-space:pre-wrap;">${item.body}</p>
+                        </div>
+                    </div>`;
+            });
+            document.getElementById('newsFeed').innerHTML = html;
+        } catch (e) {
+            document.getElementById('newsFeed').innerHTML = "নিউজ লোড হচ্ছে না। news.json ফাইলটি চেক করুন।";
+        }
+    }
 
-        </div>
-    </div>
+    // নিউজ সেভ করার ফাংশন (এখানে টোকেন ইনপুট থেকে নেওয়া হয়)
+    async function saveToGitHub() {
+        const token = document.getElementById('tokenInput').value;
+        const title = document.getElementById('title').value;
+        const body = document.getElementById('body').value;
+        const image = document.getElementById('imgUrl').value;
 
-    <footer>
-        <p>&copy; 2026 Shadharon TV | খবর এবং বিনোদনের নির্ভরযোগ্য মাধ্যম</p>
-    </footer>
+        if(!token) return alert("দয়া করে আপনার GitHub টোকেনটি দিন।");
+        if(!title || !body) return alert("শিরোনাম এবং সংবাদ লিখুন।");
+
+        try {
+            const getRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+                headers: { Authorization: `token ${token}` }
+            });
+            const fileData = await getRes.json();
+            const sha = fileData.sha;
+            let currentContent = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
+
+            const newPost = {
+                title, body, image,
+                date: new Date().toLocaleString('bn-BD')
+            };
+            currentContent.push(newPost);
+
+            const updateRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+                method: "PUT",
+                headers: { Authorization: `token ${token}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: "News Update",
+                    content: btoa(unescape(encodeURIComponent(JSON.stringify(currentContent)))),
+                    sha: sha
+                })
+            });
+
+            if(updateRes.ok) {
+                alert("নিউজ পাবলিশ হয়েছে!");
+                location.reload();
+            } else {
+                alert("টোকেনটি ভুল। আবার চেষ্টা করুন।");
+            }
+        } catch (err) {
+            alert("সমস্যা হয়েছে: " + err.message);
+        }
+    }
+
+    loadNews();
+</script>
 
 </body>
 </html>
