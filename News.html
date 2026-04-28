@@ -3,43 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV | নিরাপদ নিউজ </title>
+    <title>Shadharon TV | সত্যের পথে প্রতিক্ষণ</title>
     <style>
-        :root { --red: #e63946; }
-        body { font-family: Arial, sans-serif; margin: 0; background: #f9f9f9; }
-        header { background: #fff; padding: 20px; text-align: center; border-bottom: 4px solid var(--red); }
-        .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
-        #adminArea { display: none; background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 30px; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        .btn-post { background: var(--red); color: #fff; border: none; padding: 15px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .news-card { background: #fff; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; }
-        .news-card img { width: 100%; height: auto; }
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap');
+
+        :root { --red: #ff3e3e; --dark: #0f172a; --glass: rgba(255, 255, 255, 0.05); }
+        
+        body { font-family: 'Hind Siliguri', sans-serif; margin: 0; background: #0b0f19; color: #e2e8f0; }
+        
+        /* Premium Header */
+        header { background: #111827; padding: 25px 0; text-align: center; border-bottom: 2px solid var(--red); box-shadow: 0 4px 20px rgba(0,0,0,0.5); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 32px; font-weight: 800; text-decoration: none; color: #fff; letter-spacing: 2px; }
+        .logo span { color: var(--red); }
+
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+
+        /* Secret Admin Panel */
+        #adminArea { display: none; background: #1e293b; padding: 30px; border-radius: 15px; border: 1px solid var(--red); margin-bottom: 40px; box-shadow: 0 10px 30px rgba(255, 62, 62, 0.2); }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #334155; background: #0f172a; color: #fff; border-radius: 8px; }
+        .btn-post { background: var(--red); color: #fff; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-post:hover { background: #cc0000; }
+
+        /* News Grid Design */
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
+        .news-card { background: #1e293b; border-radius: 12px; overflow: hidden; border: 1px solid #334155; transition: 0.4s; position: relative; }
+        .news-card:hover { transform: translateY(-10px); border-color: var(--red); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+        
+        .news-card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #334155; }
         .news-content { padding: 20px; }
+        .news-content h2 { margin: 0 0 12px; font-size: 20px; color: #fff; line-height: 1.4; }
+        .news-content p { font-size: 14px; color: #94a3b8; line-height: 1.7; height: 75px; overflow: hidden; }
+        .date { font-size: 11px; color: var(--red); text-transform: uppercase; font-weight: bold; margin-bottom: 8px; display: block; }
+
+        /* Footer & Hidden Trigger */
+        footer { text-align: center; padding: 50px 0; color: #475569; font-size: 13px; }
+        .secret-trigger { cursor: default; transition: 0.3s; }
+        .secret-trigger:active { color: var(--red); }
+
+        @media (max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 style="margin:0;">SHADHARON <span style="color:var(--red)">TV</span></h1>
+    <a href="#" class="logo">SHADHARON <span>TV</span></a>
 </header>
 
 <div class="container">
-    <button onclick="toggleAdmin()" style="float:right; border:none; background:none; color:#999; cursor:pointer;">Admin Access</button>
-    <div style="clear:both;"></div>
-
+    <!-- Hidden Admin Panel -->
     <div id="adminArea">
-        <h3>অ্যাডমিন প্যানেল</h3>
-        <!-- এখানে টোকেনটি ইনপুট দিতে হবে -->
-        <input type="password" id="tokenInput" placeholder="আপনার GitHub টোকেনটি (ghp_...) এখানে দিন">
-        <hr>
+        <h3 style="margin-top:0; color: var(--red);">অ্যাডমিন কন্ট্রোল প্যানেল</h3>
+        <input type="password" id="tokenInput" placeholder="Secret Token (ghp_...)">
         <input type="text" id="title" placeholder="সংবাদের শিরোনাম">
-        <textarea id="body" rows="5" placeholder="বিস্তারিত সংবাদ..."></textarea>
-        <input type="text" id="imgUrl" placeholder="ছবির লিঙ্ক">
-        <button class="btn-post" onclick="saveToGitHub()">পাবলিশ করুন</button>
+        <textarea id="body" rows="5" placeholder="বিস্তারিত সংবাদ লিখুন..."></textarea>
+        <input type="text" id="imgUrl" placeholder="ছবির লিঙ্ক (URL)">
+        <button class="btn-post" onclick="saveToGitHub()">নিউজ পাবলিশ করুন</button>
     </div>
 
-    <div id="newsFeed">লোড হচ্ছে...</div>
+    <!-- Main Feed -->
+    <div id="newsFeed" class="news-grid">নিউজ লোড হচ্ছে...</div>
 </div>
+
+<footer>
+    <p>&copy; ২০২৬ সাধারণ টিভি | সত্যের সন্ধানে প্রতিক্ষণ।</p>
+    <!-- Invisible Link to open Admin -->
+    <span class="secret-trigger" onclick="toggleAdmin()">Admin Portal</span>
+</footer>
 
 <script>
     const GITHUB_USER = "shadharonoffice-sudo";
@@ -49,9 +78,9 @@
     function toggleAdmin() {
         const area = document.getElementById('adminArea');
         area.style.display = area.style.display === 'block' ? 'none' : 'block';
+        if(area.style.display === 'block') window.scrollTo(0, 0);
     }
 
-    // নিউজ লোড করার ফাংশন (এতে টোকেন লাগে না)
     async function loadNews() {
         try {
             const res = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${FILE_PATH}?t=${Date.now()}`);
@@ -60,29 +89,28 @@
             news.reverse().forEach(item => {
                 html += `
                     <div class="news-card">
-                        ${item.image ? `<img src="${item.image}">` : ''}
+                        <img src="${item.image || 'https://via.placeholder.com/800x400/1e293b/ffffff?text=Shadharon+TV'}">
                         <div class="news-content">
-                            <small>${item.date}</small>
+                            <span class="date">${item.date}</span>
                             <h2>${item.title}</h2>
-                            <p style="white-space:pre-wrap;">${item.body}</p>
+                            <p>${item.body}</p>
                         </div>
                     </div>`;
             });
             document.getElementById('newsFeed').innerHTML = html;
         } catch (e) {
-            document.getElementById('newsFeed').innerHTML = "নিউজ লোড হচ্ছে না। news.json ফাইলটি চেক করুন।";
+            document.getElementById('newsFeed').innerHTML = "<p>নিউজ পাওয়া যায়নি।</p>";
         }
     }
 
-    // নিউজ সেভ করার ফাংশন (এখানে টোকেন ইনপুট থেকে নেওয়া হয়)
     async function saveToGitHub() {
         const token = document.getElementById('tokenInput').value;
         const title = document.getElementById('title').value;
         const body = document.getElementById('body').value;
         const image = document.getElementById('imgUrl').value;
 
-        if(!token) return alert("দয়া করে আপনার GitHub টোকেনটি দিন।");
-        if(!title || !body) return alert("শিরোনাম এবং সংবাদ লিখুন।");
+        if(!token) return alert("গোপন টোকেনটি দিন।");
+        if(!title || !body) return alert("শিরোনাম ও বিস্তারিত সংবাদ প্রয়োজন।");
 
         try {
             const getRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${FILE_PATH}`, {
@@ -94,7 +122,7 @@
 
             const newPost = {
                 title, body, image,
-                date: new Date().toLocaleString('bn-BD')
+                date: new Date().toLocaleString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' })
             };
             currentContent.push(newPost);
 
@@ -102,20 +130,20 @@
                 method: "PUT",
                 headers: { Authorization: `token ${token}`, "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    message: "News Update",
+                    message: "Site update: News Posted",
                     content: btoa(unescape(encodeURIComponent(JSON.stringify(currentContent)))),
                     sha: sha
                 })
             });
 
             if(updateRes.ok) {
-                alert("নিউজ পাবলিশ হয়েছে!");
+                alert("সাফল্যের সাথে পাবলিশ হয়েছে!");
                 location.reload();
             } else {
-                alert("টোকেনটি ভুল। আবার চেষ্টা করুন।");
+                alert("টোকেন বা পারমিশনে সমস্যা হয়েছে।");
             }
         } catch (err) {
-            alert("সমস্যা হয়েছে: " + err.message);
+            alert("Error: " + err.message);
         }
     }
 
