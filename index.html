@@ -59,17 +59,6 @@
             line-height: 1.6;
         }
 
-        .ad-slot {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-            max-width: 100%;
-            overflow: hidden;
-            gap: 10px;
-        }
-
         header {
             position: fixed;
             top: 0;
@@ -155,6 +144,19 @@
             border-color: var(--primary);
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
+        }
+
+        /* নিউজ পোর্টাল বাটন স্টাইল */
+        .news-nav-btn {
+            background: linear-gradient(45deg, #ff9900, #ff0055) !important;
+            color: white !important;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 153, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
         }
 
         .audition-btn {
@@ -317,6 +319,7 @@
 
         <nav class="nav-bar">
             <a href="#home" class="nav-btn">হোম</a>
+            <a href="news.html" class="nav-btn news-nav-btn">নিউজ পোর্টাল</a>
             <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
             <a href="about.html" class="nav-btn">পরিচয়</a>
             <a href="o.html" class="nav-btn audition-btn">অডিশন দিন</a>
@@ -326,12 +329,7 @@
 
     <main>
         <section class="hero" id="home">
-            <div class="ad-slot">
-                <script type="text/javascript">
-                    atOptions = { 'key': '4ce97525659d866a14506360d9560777', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
-                </script>
-                <script src="https://www.highperformanceformat.com/4ce97525659d866a14506360d9560777/invoke.js"></script>
-            </div>
+            <!-- বিজ্ঞাপনগুলো এখান থেকে সরিয়ে দেওয়া হয়েছে -->
 
             <article class="hero-content">
                 <p style="color: var(--secondary); letter-spacing: 5px; font-weight: bold; margin-bottom: 15px;">WELCOME TO SHADHARON TV</p>
@@ -350,28 +348,20 @@
                         লোড হচ্ছে...
                     </div>
                 </div>
-                <p style="font-size: 1.2rem; color: #cbd5e1; margin-bottom: 30px;">
+                
+                <!-- নিউজ পোর্টাল সেকশন হাইলাইট -->
+                <div style="margin-top: 30px; padding: 20px; background: rgba(255, 153, 0, 0.1); border-radius: 20px; border: 1px solid #ff9900;">
+                   <h4 style="color: #ff9900; margin-bottom: 10px;">📰 সর্বশেষ সংবাদ</h4>
+                   <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 15px;">অডিশন এবং শো সম্পর্কিত সকল আপডেট জানতে আমাদের পোর্টাল ভিজিট করুন।</p>
+                   <a href="news.html" style="color: #fff; text-decoration: none; font-weight: bold; border-bottom: 2px solid #ff9900; padding-bottom: 5px;">পোর্টালে যান →</a>
+                </div>
+
+                <p style="font-size: 1.2rem; color: #cbd5e1; margin: 30px 0;">
                     দক্ষিণ এশিয়ার জনপ্রিয় মিউজিক রিয়েলিটি শো এর অফিসিয়াল পোর্টালে আপনাকে স্বাগতম।
                 </p>
                 <a href="o.html" class="nav-btn audition-btn" style="padding: 15px 40px; font-size: 18px;">এখনই অংশ নিন</a>
             </article>
-
-            
-                <script src="https://www.highperformanceformat.com/155622a08cbe1798d2c5ba3bb143de49/invoke.js"></script>
-
-                <script type="text/javascript">
-                    atOptions = { 'key': 'e088f6495a85bd83d691c5fc9b24d89e', 'format': 'iframe', 'height': 250, 'width': 300, 'params': {} };
-                </script>
-                <script src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
-            </div>
         </section>
-
-        <div style="position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 100;">
-            <script type="text/javascript">
-                atOptions = { 'key': '3c5f9f51b2c86015b0e375d754c8ed06', 'format': 'iframe', 'height': 600, 'width': 160, 'params': {} };
-            </script>
-            <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
-        </div>
 
         <section class="social-section" id="social">
             <h2 class="section-title">আমাদের অফিসিয়াল নেটওয়ার্ক</h2>
@@ -408,13 +398,6 @@
             <div style="max-width: 700px; margin: 0 auto 20px; color: #64748b; font-size: 14px; line-height: 1.6; padding: 0 20px;">
                 <strong>Shadharon TV (সাধারণ টিভি)</strong> is the leading digital media network and the official broadcasting partner of
                 <strong>Gaane Gaane Shera Asia Season 3</strong>. We are committed to discovering musical excellence across Asia.
-            </div>
-
-            <div class="ad-slot">
-                <script type="text/javascript">
-                    atOptions = { 'key': '94b95297e478e03fe80e051564f09c1c', 'format': 'iframe', 'height': 50, 'width': 320, 'params': {} };
-                </script>
-                <script src="https://www.highperformanceformat.com/94b95297e478e03fe80e051564f09c1c/invoke.js"></script>
             </div>
 
             <span class="copy-right">
