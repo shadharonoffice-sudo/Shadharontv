@@ -11,7 +11,10 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
 
         header { background: var(--white); border-bottom: 3px solid var(--primary); padding: 15px 0; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .logo { font-size: 35px; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .logo { font-size: 35px; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        /* লোগো ইমেজের সাইজ */
+        .logo img { height: 45px; width: auto; }
 
         .m-box { background: #000; color: #fff; display: flex; align-items: center; height: 45px; overflow: hidden; }
         .m-label { background: var(--primary); color: #fff; padding: 0 20px; height: 100%; display: flex; align-items: center; font-weight: bold; }
@@ -46,18 +49,24 @@
 </head>
 <body>
 
-<header><a href="#" class="logo">SHADHARON TV 🌎</a></header>
+<header>
+    <a href="#" class="logo">
+        SHADHARON TV 
+        <!-- পৃথিবীর ইমোজির জায়গায় লোগোর ডিরেক্ট লিঙ্ক এখানে দিন -->
+        <img src="YOUR_LOGO_URL_HERE" alt="Logo">
+    </a>
+</header>
 
 <!-- Advertisement 728x90 -->
 <div style="text-align:center; margin:10px 0;">
 <script>
-    atOptions = {
-        'key' : '4ce97525659d866a14506360d9560777',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-    };
+    atOptions = {
+        'key' : '4ce97525659d866a14506360d9560777',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+    };
 </script>
 <script src="https://www.highperformanceformat.com/4ce97525659d866a14506360d9560777/invoke.js"></script>
 </div>
@@ -87,35 +96,7 @@
         <p onclick="closeAdmin()" style="text-align:center; color:red; cursor:pointer; margin-top:15px; font-weight:bold;">বন্ধ করুন</p>
     </div>
 
-    <!-- Advertisement 468x60 -->
-    <div style="text-align:center; margin:10px 0;">
-    <script>
-        atOptions = {
-            'key' : '155622a08cbe1798d2c5ba3bb143de49',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-        };
-    </script>
-    <script src="https://www.highperformanceformat.com/155622a08cbe1798d2c5ba3bb143de49/invoke.js"></script>
-    </div>
-
     <div id="newsGrid" class="grid">সংবাদ খোঁজা হচ্ছে...</div>
-    
-    <!-- Advertisement 160x600 -->
-    <div style="display:flex; justify-content:center; gap:10px; margin-top:20px;">
-        <script>
-            atOptions = {
-                'key' : '3c5f9f51b2c86015b0e375d754c8ed06',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-        </script>
-        <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
-    </div>
 </div>
 
 <div id="modal">
@@ -164,7 +145,7 @@
                 renderGrid();
             }
         } else {
-            grid.innerHTML = "<div style='color:red; text-align:center; grid-column: 1/-1;'>নিউজ লোড করা যাচ্ছে না! <br> ১. GitHub রিপোজিটরি <b>Public</b> করুন। <br> ২. ফাইলে অন্তত <b>[]</b> লিখে সেভ করুন।</div>";
+            grid.innerHTML = "<div style='color:red; text-align:center; grid-column: 1/-1;'>নিউজ লোড করা যাচ্ছে না!</div>";
         }
     }
 
@@ -244,7 +225,7 @@
                 })
             });
             location.reload();
-        } catch(e) { alert("পাবলিশ ব্যর্থ! টোকেন চেক করুন।"); }
+        } catch(e) { alert("পাবলিশ ব্যর্থ!"); }
     }
 
     async function delNews(idx) {
