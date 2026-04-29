@@ -26,30 +26,42 @@
         .breaking-bar { background: #f8f9fa; border-bottom: 1px solid var(--border); padding: 8px 0; display: flex; align-items: center; }
         .breaking-label { background: var(--primary); color: #fff; padding: 2px 12px; font-weight: bold; margin-right: 15px; flex-shrink: 0; }
 
+        /* --- ADMIN PANEL (TYPE SYSTEM) --- */
+        #adminPanel { 
+            display: none; 
+            background: #fff; 
+            border: 3px solid var(--primary); 
+            padding: 30px; 
+            margin: 20px auto; 
+            max-width: 800px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 9999;
+        }
+        #adminPanel h3 { text-align: center; color: var(--primary); margin-top: 0; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; box-sizing: border-box; }
+        .btn-post { background: var(--primary); color: #fff; border: none; padding: 15px; width: 100%; cursor: pointer; font-weight: bold; font-size: 18px; border-radius: 6px; }
+        .close-admin { text-align: right; cursor: pointer; color: #888; font-weight: bold; }
+
         /* Main Layout Grid */
         .main-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; margin-top: 25px; }
 
-        /* News Section Styling */
+        /* Lead News Section */
         .lead-news { border-bottom: 2px solid #eee; margin-bottom: 30px; padding-bottom: 20px; cursor: pointer; }
         .lead-news img { width: 100%; height: 450px; object-fit: cover; border-radius: 4px; }
         .lead-news h1 { font-size: 38px; margin: 15px 0; line-height: 1.2; color: #000; }
 
         .secondary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
         .news-card { display: flex; gap: 15px; cursor: pointer; border-bottom: 1px solid #f0f0f0; padding-bottom: 15px; }
-        .news-card img { width: 150px; height: 100px; object-fit: cover; border-radius: 3px; }
+        .news-card img { width: 150px; height: 100px; object-fit: cover; border-radius: 3px; flex-shrink: 0; }
         .news-card h3 { margin: 0; font-size: 19px; line-height: 1.4; color: #111; }
-        .news-card:hover h3 { color: var(--primary); }
 
         /* Sidebar */
         .sidebar-box { border: 1px solid var(--border); padding: 15px; margin-bottom: 25px; border-radius: 4px; }
         .sidebar-title { font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 5px; margin-bottom: 15px; }
         .side-item { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; gap: 10px; cursor: pointer; text-decoration: none; color: #333; }
         .side-num { color: #ccc; font-size: 24px; font-weight: bold; }
-
-        /* Admin UI */
-        #adminPanel { display: none; background: #fff3f3; border: 2px dashed var(--primary); padding: 20px; margin-bottom: 20px; border-radius: 8px; }
-        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
-        .btn-post { background: var(--primary); color: #fff; border: none; padding: 12px; width: 100%; cursor: pointer; font-weight: bold; font-size: 18px; }
 
         /* Modal Details */
         #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 2000; overflow-y: auto; padding: 20px; box-sizing: border-box; }
@@ -96,29 +108,29 @@
 </div>
 
 <div class="container">
-    <!-- Admin Box (Type 'admin' to show) -->
+    <!-- --- ADMIN PANEL (TYPE SYSTEM) --- -->
     <div id="adminPanel">
-        <h3 style="text-align: center;">অ্যাডমিন প্যানেল</h3>
-        <input type="password" id="ghToken" placeholder="GitHub Token">
+        <div class="close-admin" onclick="document.getElementById('adminPanel').style.display='none'">বন্ধ করুন [X]</div>
+        <h3>অ্যাডমিন কন্ট্রোল প্যানেল</h3>
+        <input type="password" id="ghToken" placeholder="GitHub Token দিন">
         <input type="text" id="pTitle" placeholder="সংবাদের শিরোনাম">
-        <textarea id="pBody" rows="6" placeholder="বিস্তারিত খবর..."></textarea>
-        <input type="text" id="pImg" placeholder="ছবির ডিরেক্ট লিঙ্ক">
-        <button class="btn-post" onclick="uploadData()">পাবলিশ করুন</button>
+        <textarea id="pBody" rows="6" placeholder="বিস্তারিত খবর এখানে লিখুন..."></textarea>
+        <input type="text" id="pImg" placeholder="ছবির ডিরেক্ট লিঙ্ক (যেমন: https://site.com/pic.jpg)">
+        <button class="btn-post" onclick="uploadData()">নিউজ পাবলিশ করুন</button>
     </div>
 
     <div class="main-grid">
-        <!-- News Feed Area -->
         <div class="news-feed">
             <div id="leadArea"></div>
             <div class="secondary-grid" id="secondaryArea"></div>
         </div>
 
-        <!-- Sidebar Area -->
         <aside class="sidebar">
             <div class="sidebar-box">
                 <div class="sidebar-title">সর্বশেষ সংবাদ</div>
                 <div id="sideArea"></div>
             </div>
+            <p style="font-size: 11px; color: #ccc; text-align: center;">অ্যাডমিন প্যানেল খুলতে 'admin' টাইপ করুন</p>
         </aside>
     </div>
 </div>
@@ -131,7 +143,7 @@
 </div>
 
 <footer style="text-align: center; padding: 60px; background: #f9f9f9; border-top: 1px solid #eee; margin-top: 50px;">
-    <p>© ২০২৬ <span ondblclick="toggleAdmin()" style="cursor: pointer;">সাধারণ টিভি</span> | সত্যের সন্ধানে প্রতিক্ষণ</p>
+    <p>© ২০২৬ সাধারণ টিভি | সত্যের সন্ধানে প্রতিক্ষণ</p>
 </footer>
 
 <script>
@@ -140,10 +152,17 @@
     const PATH = "news.json";
     let newsList = [];
 
-    function toggleAdmin() {
-        const area = document.getElementById('adminPanel');
-        area.style.display = area.style.display === 'block' ? 'none' : 'block';
-    }
+    // --- TYPE SYSTEM FOR ADMIN ---
+    let typed = "";
+    document.addEventListener('keydown', (e) => {
+        typed += e.key.toLowerCase();
+        if(typed.includes("admin")) {
+            document.getElementById('adminPanel').style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            typed = "";
+        }
+        if(typed.length > 10) typed = ""; 
+    });
 
     async function loadContent() {
         try {
@@ -151,7 +170,7 @@
             newsList = await r.json();
             const rev = [...newsList].reverse();
             
-            // 1. Lead News (Most recent)
+            // Lead News
             const lead = rev[0];
             document.getElementById('leadArea').innerHTML = `
                 <div class="lead-news" onclick="viewNews(${newsList.length - 1})">
@@ -160,7 +179,7 @@
                     <p style="color:#666; font-size:17px;">${lead.body.substring(0, 200)}...</p>
                 </div>`;
 
-            // 2. Secondary Grid (Next 6 news)
+            // Secondary
             let secHtml = "";
             let ticker = "";
             rev.slice(1, 9).forEach((item, index) => {
@@ -175,7 +194,7 @@
             document.getElementById('secondaryArea').innerHTML = secHtml;
             document.getElementById('tickerText').innerText = ticker;
 
-            // 3. Side List
+            // Sidebar
             let sideHtml = "";
             rev.slice(0, 10).forEach((item, index) => {
                 const realIdx = newsList.length - 1 - index;
@@ -187,7 +206,7 @@
             });
             document.getElementById('sideArea').innerHTML = sideHtml;
 
-        } catch (e) { console.error("Error"); }
+        } catch (e) { console.error("Error loading"); }
     }
 
     function viewNews(i) {
@@ -229,13 +248,13 @@
                 method: "PUT",
                 headers: { Authorization: `token ${tok}` },
                 body: JSON.stringify({
-                    message: "New Post",
+                    message: "Update News",
                     content: btoa(unescape(encodeURIComponent(JSON.stringify(content)))),
                     sha: data.sha
                 })
             });
-            alert("নিউজ পাবলিশ হয়েছে!"); location.reload();
-        } catch (e) { alert("Error!"); }
+            alert("সফলভাবে পোস্ট হয়েছে!"); location.reload();
+        } catch (e) { alert("গিটহাব টোকেন বা অন্য কোনো সমস্যা হয়েছে!"); }
     }
 
     loadContent();
