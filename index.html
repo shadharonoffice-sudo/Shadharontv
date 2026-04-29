@@ -4,17 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="nZO7HCO3Mol_3jb24p2tc0CgcgTSXuZnog6r44hWtmA" />
-
-    <title>Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া</title>
-    <meta name="description" content="Shadharon TV (সাধারণ টিভি) অফিশিয়াল পোর্টালে আপনাকে স্বাগতম। দেখুন গানে গানে সেরা এশিয়া সিজন ৩ এর অডিশন এবং সব আপডেট।">
-    <meta name="keywords" content="Shadharon TV, সাধারণ টিভি, Gaane Gaane Shera, গানের অডিশন">
+    
+    <!-- ================= SEO Meta Tags ================= -->
+    <title>Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া সিজন ৩</title>
+    <meta name="description" content="Shadharon TV (সাধারণ টিভি) অফিশিয়াল পোর্টালে আপনাকে স্বাগতম। দেখুন গানে গানে সেরা এশিয়া সিজন ৩ এর অডিশন, গানের ভিডিও এবং সব লেটেস্ট আপডেট।">
+    <meta name="keywords" content="Shadharon TV, সাধারণ টিভি, Gaane Gaane Shera Asia, গানের অডিশন, মিউজিক রিয়েলিটি শো, গানের প্রতিযোগিতার খবর">
+    <meta name="author" content="Shadharon TV Team">
     <link rel="canonical" href="https://shadharon-tv.com" />
 
-    <meta property="og:title" content="Shadharon TV | Official Portal">
-    <meta property="og:description" content="গানের জগতে এক নতুন বিপ্লব। যোগ দিন গানে গানে সেরা এশিয়ায়।">
+    <!-- Open Graph (Facebook, WhatsApp Sharing) -->
+    <meta property="og:title" content="Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া">
+    <meta property="og:description" content="গানের জগতে এক নতুন বিপ্লব। যোগ দিন গানে গানে সেরা এশিয়া সিজন ৩-এ।">
     <meta property="og:image" content="l.jpg.jpg">
+    <meta property="og:url" content="https://shadharon-tv.com">
+    <meta property="og:type" content="website">
 
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -26,133 +31,57 @@
             "https://www.facebook.com/shadharontvofficial",
             "https://www.facebook.com/shadharontvstudio",
             "https://www.youtube.com/@shadharontvv",
-            "https://www.youtube.com/@shadharontvstudio",
-            "https://www.youtube.com/@ShadharonTvGoponFad-y7m8y",
-            "https://www.youtube.com/@ShadharonTvBanglaFunnyNews"
+            "https://www.youtube.com/@shadharontvstudio"
         ]
     }
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Poppins:wght@600;900&family=Orbitron:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Poppins:wght@600;900&display=swap');
 
         :root {
             --primary: #ff0055;
             --secondary: #00ffcc;
             --bg: #0f172a;
             --glass: rgba(255, 255, 255, 0.05);
-            --neon-glow: 0 0 15px rgba(0, 255, 204, 0.3);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+            background: #0f172a;
             color: white;
-            overflow-x: hidden;
             line-height: 1.6;
         }
 
+        /* --- Header & Navigation --- */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 10000;
-            transition: 0.5s ease;
-        }
-
-        .top-info-bar {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 8px 10%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            top: 0; width: 100%; z-index: 10000;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .mid-branding {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 20px 10%;
-            display: flex;
-            justify-content: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        .mid-branding { padding: 15px; display: flex; justify-content: center; align-items: center; }
+        .logo-frame { width: 55px; height: 55px; background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 50%; padding: 3px; }
+        .logo-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #000; }
+        .brand-name { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 900; margin-left: 12px; }
+        .brand-name span { color: var(--secondary); text-shadow: 0 0 10px var(--secondary); }
 
-        .logo-frame {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            padding: 3px;
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
-        }
-
-        .logo-frame img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #000;
-        }
-
-        .brand-name {
-            font-family: 'Poppins', sans-serif;
-            font-size: 35px;
-            font-weight: 900;
-            margin-left: 15px;
-            letter-spacing: 2px;
-        }
-
-        .brand-name span {
-            color: var(--secondary);
-            text-shadow: 0 0 10px var(--secondary);
-        }
-
-        .nav-bar {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(15px);
-            padding: 12px 10%;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
+        .nav-bar { display: flex; justify-content: center; gap: 10px; padding: 10px; flex-wrap: wrap; background: rgba(0,0,0,0.2); }
         .nav-btn {
-            text-decoration: none;
-            color: #cbd5e1;
-            font-weight: 500;
-            font-size: 15px;
-            padding: 10px 25px;
-            border-radius: 50px;
-            background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.4s;
+            text-decoration: none; color: #fff; font-size: 13px; font-weight: 500;
+            padding: 8px 18px; border-radius: 50px; background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s;
         }
 
-        .nav-btn:hover {
-            color: white;
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
-        }
-
-        /* নিউজ পোর্টাল বাটন স্টাইল */
+        /* --- Special Buttons --- */
         .news-nav-btn {
             background: linear-gradient(45deg, #ff9900, #ff0055) !important;
-            color: white !important;
             animation: pulse-glow 2s infinite;
         }
-
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(255, 153, 0, 0); }
@@ -161,306 +90,195 @@
 
         .audition-btn {
             background: linear-gradient(45deg, var(--primary), #7000ff) !important;
-            color: white !important;
             font-weight: 700 !important;
         }
 
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.9)), url('WhatsApp Image 2026-04-25 at 16.27.42.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding-top: 180px;
+        /* --- Hero / Cover Page --- */
+        .hero { 
+            min-height: 100vh; 
+            padding: 180px 5% 50px; 
+            display: flex; flex-direction: column; align-items: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('WhatsApp Image 2026-04-25 at 16.27.42.jpeg') no-repeat center center;
+            background-size: cover; background-attachment: fixed;
         }
 
-        .hero-content {
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(20px);
-            padding: 60px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 900px;
-            text-align: center;
+        .hero-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(15px);
+            padding: 35px; border-radius: 40px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            max-width: 850px; width: 100%; text-align: center;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .video-box {
-            width: 100%;
-            max-width: 700px;
-            margin: 25px auto;
-            border: 2px solid var(--secondary);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-            background: #000;
+            width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden;
+            border: 3px solid var(--secondary); box-shadow: 0 0 25px rgba(0, 255, 204, 0.3);
+            margin: 20px 0;
         }
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
+        #timer {
+            font-size: 22px; color: var(--secondary); font-weight: bold;
+            padding: 15px; background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed var(--secondary); border-radius: 15px;
+            margin-bottom: 20px;
         }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .social-section {
-            padding: 100px 10%;
-            background: #0f172a;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: var(--secondary);
-            text-transform: uppercase;
-        }
-
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
+        /* --- Social Grid --- */
+        .social-section { padding: 60px 10%; background: #0b1120; }
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
         .social-card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 35px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-decoration: none;
-            color: white;
-            text-align: center;
-            transition: 0.4s;
-            backdrop-filter: blur(10px);
+            background: var(--glass); padding: 25px; border-radius: 20px;
+            text-decoration: none; color: white; text-align: center;
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
         }
+        .social-card:hover { transform: translateY(-5px); border-color: var(--secondary); background: rgba(255,255,255,0.08); }
+        .yt { color: #ff0000; font-weight: bold; font-size: 13px; text-transform: uppercase; }
+        .fb { color: #1877f2; font-weight: bold; font-size: 13px; text-transform: uppercase; }
 
-        .social-card:hover {
-            border-color: var(--secondary);
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 255, 204, 0.1);
-        }
+        footer { padding: 40px; text-align: center; background: #020617; border-top: 1px solid #1e293b; color: #64748b; }
 
-        .social-card h3 {
-            font-size: 20px;
-            margin: 15px 0;
-            color: var(--secondary);
-        }
+        .ad-slot { margin: 25px auto; display: flex; justify-content: center; }
 
-        .master-footer {
-            background: #020617;
-            padding: 60px 0;
-            text-align: center;
-            border-top: 1px solid #1e293b;
-        }
-
-        .f-link {
-            color: #94a3b8;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .f-link:hover {
-            color: var(--secondary);
-        }
-
-        .copy-right {
-            display: block;
-            margin-top: 30px;
-            color: #475569;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            .brand-name { font-size: 25px; }
-            .nav-bar { gap: 8px; padding: 10px 5%; }
-            .nav-btn { padding: 8px 15px; font-size: 13px; }
+        @media (max-width: 600px) {
+            .hero { padding-top: 160px; }
+            .brand-name { font-size: 22px; }
+            #timer { font-size: 18px; }
         }
     </style>
 </head>
 
 <body>
 
-    <header id="main-nav">
-        <div class="top-info-bar">
-            <div id="bn-date" style="color: #94a3b8; font-size: 14px;">লোড হচ্ছে...</div>
-        </div>
-
+    <header>
         <div class="mid-branding">
-            <div style="display: flex; align-items: center;">
-                <div class="logo-frame">
-                    <img src="l.jpg.jpg" alt="Shadharon TV Official Logo">
-                </div>
-                <div class="brand-name">SHADHARON <span>TV</span></div>
+            <div class="logo-frame">
+                <img src="l.jpg.jpg" alt="Shadharon TV Logo">
             </div>
+            <div class="brand-name">SHADHARON <span>TV</span></div>
         </div>
-
         <nav class="nav-bar">
             <a href="#home" class="nav-btn">হোম</a>
             <a href="News.html" class="nav-btn news-nav-btn">নিউজ পোর্টাল</a>
             <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
-            <a href="about.html" class="nav-btn">পরিচয়</a>
             <a href="o.html" class="nav-btn audition-btn">অডিশন দিন</a>
-            <a href="com.html" class="nav-btn">যোগাযোগ</a>
         </nav>
     </header>
 
     <main>
         <section class="hero" id="home">
-            <!-- বিজ্ঞাপনগুলো এখান থেকে সরিয়ে দেওয়া হয়েছে -->
+            <!-- বিজ্ঞাপন ১ (160x600) -->
+            <div class="ad-slot">
+                <script type="text/javascript">
+                    atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
+                </script>
+                <script type="text/javascript" src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
+            </div>
 
-            <article class="hero-content">
-                <p style="color: var(--secondary); letter-spacing: 5px; font-weight: bold; margin-bottom: 15px;">WELCOME TO SHADHARON TV</p>
-                <h1>গানে গানে সেরা এশিয়া - সিজন ৩</h1>
-
-                <div class="video-box">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/qyNtipF8Ea0" title="Season 3 Announcement" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-
-                <div id="countdown-box" style="background: rgba(0, 255, 204, 0.05); border: 1px dashed var(--secondary); border-radius: 20px; padding: 20px; margin: 20px auto; max-width: 500px;">
-                    <h3 style="color: #fff; margin-bottom: 10px; font-size: 18px;">রেজিস্ট্রেশনের সময় আর মাত্র:</h3>
-                    <div id="timer" style="font-size: 22px; color: var(--secondary); font-weight: bold; text-shadow: 0 0 10px rgba(0,255,204,0.5);">
-                        লোড হচ্ছে...
-                    </div>
-                </div>
+            <div class="hero-card">
+                <h1 style="color: #fff; margin-bottom: 10px;">গানে গানে সেরা এশিয়া - সিজন ৩</h1>
                 
-                <!-- নিউজ পোর্টাল সেকশন হাইলাইট -->
-                <div style="margin-top: 30px; padding: 20px; background: rgba(255, 153, 0, 0.1); border-radius: 20px; border: 1px solid #ff9900;">
-                   <h4 style="color: #ff9900; margin-bottom: 10px;">📰 সর্বশেষ সংবাদ</h4>
-                   <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 15px;">অডিশন এবং শো সম্পর্কিত সকল আপডেট জানতে আমাদের পোর্টাল ভিজিট করুন।</p>
-                   <a href="news.html" style="color: #fff; text-decoration: none; font-weight: bold; border-bottom: 2px solid #ff9900; padding-bottom: 5px;">পোর্টালে যান →</a>
+                <!-- ভিডিও বক্স -->
+                <div class="video-box">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qyNtipF8Ea0" frameborder="0" allowfullscreen></iframe>
                 </div>
 
-                <p style="font-size: 1.2rem; color: #cbd5e1; margin: 30px 0;">
-                    দক্ষিণ এশিয়ার জনপ্রিয় মিউজিক রিয়েলিটি শো এর অফিসিয়াল পোর্টালে আপনাকে স্বাগতম।
-                </p>
-                <a href="o.html" class="nav-btn audition-btn" style="padding: 15px 40px; font-size: 18px;">এখনই অংশ নিন</a>
-            </article>
+                <!-- কাউন্টডাউন ঘড়ি -->
+                <div id="timer">লোড হচ্ছে...</div>
+
+                <!-- বিজ্ঞাপন ২ (300x250) -->
+                <div class="ad-slot">
+                    <script type="text/javascript">
+                        atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+                    </script>
+                    <script type="text/javascript" src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
+                </div>
+
+                <a href="o.html" class="nav-btn audition-btn" style="display:inline-block; padding: 15px 40px; font-size: 18px;">রেজিস্ট্রেশন করতে এখানে ক্লিক করুন</a>
+            </div>
         </section>
 
+        <!-- সোশ্যাল মিডিয়া সেকশন -->
         <section class="social-section" id="social">
-            <h2 class="section-title">আমাদের অফিসিয়াল নেটওয়ার্ক</h2>
+            <h2 style="text-align: center; margin-bottom: 40px; color: var(--secondary);">আমাদের অফিসিয়াল নেটওয়ার্ক</h2>
+            
             <div class="social-grid">
+                <!-- YouTube -->
                 <a href="https://www.youtube.com/@shadharontvv" target="_blank" class="social-card">
-                    <div style="font-size: 30px; color: #ff0000;">YouTube</div>
-                    <h3>Shadharon TV</h3>
-                    <p>প্রধান চ্যানেল</p>
+                    <p class="yt">YouTube</p>
+                    <h4>Shadharon TV</h4>
                 </a>
-
                 <a href="https://www.youtube.com/@shadharontvstudio" target="_blank" class="social-card">
-                    <div style="font-size: 30px; color: #ff0000;">YouTube</div>
-                    <h3>Shadharon Stodio</h3>
-                    <p>দ্বিতীয় চ্যানেল</p>
+                    <p class="yt">YouTube</p>
+                    <h4>Shadharon Studio</h4>
+                </a>
+                <a href="https://www.youtube.com/@ShadharonTvBanglaFunnyNews" target="_blank" class="social-card">
+                    <p class="yt">YouTube</p>
+                    <h4>Bangla Funny News</h4>
+                </a>
+                <a href="https://www.youtube.com/@ShadharonTvGoponFad-y7m8y" target="_blank" class="social-card">
+                    <p class="yt">YouTube</p>
+                    <h4>Gopon Fad</h4>
+                </a>
+                <a href="https://www.youtube.com/@Shadharontvshorts" target="_blank" class="social-card">
+                    <p class="yt">YouTube</p>
+                    <h4>TV Shorts</h4>
                 </a>
 
+                <!-- Facebook -->
                 <a href="https://www.facebook.com/shadharontvofficial" target="_blank" class="social-card">
-                    <div style="font-size: 30px; color: #1877f2;">Facebook</div>
-                    <h3>Official Page</h3>
-                    <p>সব আপডেট সবার আগে</p>
+                    <p class="fb">Facebook</p>
+                    <h4>Official Page</h4>
                 </a>
+                <a href="https://www.facebook.com/shadharontvstudio" target="_blank" class="social-card">
+                    <p class="fb">Facebook</p>
+                    <h4>Studio Page</h4>
+                </a>
+                <a href="https://www.facebook.com/shadharontvgoponfad" target="_blank" class="social-card">
+                    <p class="fb">Facebook</p>
+                    <h4>Gopon Fad FB</h4>
+                </a>
+            </div>
+
+            <!-- বিজ্ঞাপন ৩ (300x250) -->
+            <div class="ad-slot" style="margin-top: 50px;">
+                <script type="text/javascript">
+                    atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+                </script>
+                <script type="text/javascript" src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
             </div>
         </section>
     </main>
 
-    <footer class="master-footer">
-        <div class="footer-inner">
-            <div style="margin-bottom: 25px;">
-                <a href="about.html" class="f-link">আমাদের সম্পর্কে</a>
-                <a href="p.html" class="f-link">গোপনীয়তা নীতি</a>
-                <a href="com.html" class="f-link">যোগাযোগ</a>
-            </div>
-
-            <div style="max-width: 700px; margin: 0 auto 20px; color: #64748b; font-size: 14px; line-height: 1.6; padding: 0 20px;">
-                <strong>Shadharon TV (সাধারণ টিভি)</strong> is the leading digital media network and the official broadcasting partner of
-                <strong>Gaane Gaane Shera Asia Season 3</strong>. We are committed to discovering musical excellence across Asia.
-            </div>
-
-            <span class="copy-right">
-                &copy; 2026 <strong>Shadharon TV</strong> | গানে গানে সেরা এশিয়া - সিজন ৩ | ডিজাইন ও পরিচালনা: সাধারণ টিভি টিম
-            </span>
-        </div>
+    <footer>
+        <p>&copy; 2026 <strong>Shadharon TV</strong> | গানে গানে সেরা এশিয়া সিজন ৩</p>
     </footer>
 
     <script>
-        function toBanglaNum(num) {
-            const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-            return num.toString().replace(/\d/g, d => banglaDigits[d]);
+        // বাংলা সংখ্যা ও কাউন্টডাউন
+        function toBn(n) {
+            const b = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            return n.toString().replace(/\d/g, d => b[d]);
         }
 
-        function updateDateTime() {
-            const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateDisplay = document.getElementById('bn-date');
-            if(dateDisplay) dateDisplay.innerText = now.toLocaleDateString('bn-BD', options);
-        }
-
-        const targetDate = new Date("May 1, 2026 23:59:59").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            const timerDisplay = document.getElementById("timer");
-
-            if(!timerDisplay) return;
-
-            if (distance < 0) {
-                timerDisplay.innerHTML = "রেজিস্ট্রেশন সময় শেষ হয়েছে";
-            } else {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                timerDisplay.innerHTML =
-                    toBanglaNum(days) + " দিন : " +
-                    toBanglaNum(hours) + " ঘণ্টা : " +
-                    toBanglaNum(minutes) + " মিনিট : " +
-                    toBanglaNum(seconds) + " সেকেন্ড";
-            }
-        }
+        const target = new Date("May 1, 2026 23:59:59").getTime();
 
         setInterval(() => {
-            updateDateTime();
-            updateCountdown();
-        }, 1000);
+            const now = new Date().getTime();
+            const d = target - now;
+            const timer = document.getElementById("timer");
 
-        updateDateTime();
-        updateCountdown();
-
-        window.onscroll = () => {
-            const nav = document.getElementById('main-nav');
-            if (window.scrollY > 50) {
-                nav.style.transform = 'translateY(-40px)';
+            if (d < 0) {
+                timer.innerHTML = "রেজিস্ট্রেশনের সময় শেষ হয়েছে";
             } else {
-                nav.style.transform = 'translateY(0)';
+                const days = Math.floor(d / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((d % (1000 * 60)) / 1000);
+                timer.innerHTML = `বাকি সময়: ${toBn(days)} দিন : ${toBn(hours)} ঘণ্টা : ${toBn(mins)} মিনিট : ${toBn(secs)} সেকেন্ড`;
             }
-        };
+        }, 1000);
     </script>
 </body>
-
 </html>
