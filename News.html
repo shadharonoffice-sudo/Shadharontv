@@ -7,277 +7,178 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Hind+Siliguri:wght@400;700&display=swap');
         
-        :root { --primary: #ad171c; --dark-blue: #2c3e50; --light-bg: #fdfdfd; --text-color: #444; }
+        :root { --primary: #ad171c; --dark: #2c3e50; --bg: #f4f7f6; }
         
-        body { font-family: 'Hind Siliguri', sans-serif; margin: 0; background: var(--light-bg); color: var(--text-color); }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        body { font-family: 'Hind Siliguri', sans-serif; margin: 0; background: var(--bg); color: #333; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
 
-        /* Top Header Section */
-        .top-header { background: #34495e; padding: 20px 0; border-bottom: 1px solid #ddd; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        
-        /* Logo Styling */
-        .logo-box { background: var(--primary); color: #fff; padding: 10px 20px; font-family: 'Oswald', sans-serif; font-size: 35px; font-weight: bold; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo-box span { background: #fff; color: var(--dark-blue); padding: 0 8px; border-radius: 3px; }
+        /* Header */
+        header { background: #fff; border-bottom: 3px solid var(--primary); padding: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo { background: var(--primary); color: #fff; padding: 10px 20px; font-family: 'Oswald', sans-serif; font-size: 32px; font-weight: bold; text-decoration: none; border-radius: 4px; }
+        .logo span { background: #fff; color: var(--dark); padding: 0 6px; margin-left: 5px; border-radius: 2px; }
 
-        .header-ad { width: 468px; height: 60px; background: #fff; border: 1px solid #ddd; overflow: hidden; }
+        /* Nav */
+        nav { background: var(--dark); overflow-x: auto; white-space: nowrap; }
+        .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
+        .nav-links a { color: #fff; text-decoration: none; padding: 15px 20px; display: block; font-weight: bold; font-size: 15px; }
+        .nav-links a:hover { background: var(--primary); }
 
-        /* Navigation Bar */
-        nav { background: #2c3e50; border-bottom: 3px solid var(--primary); }
-        .nav-list { display: flex; list-style: none; margin: 0; padding: 0; overflow-x: auto; }
-        .nav-list a { color: #fff; text-decoration: none; padding: 15px 20px; display: block; font-weight: bold; text-transform: uppercase; font-size: 14px; transition: 0.3s; }
-        .nav-list a:hover { background: var(--primary); }
+        /* Main Layout */
+        .main-grid { display: grid; grid-template-columns: 1fr 320px; gap: 30px; margin-top: 25px; }
 
-        /* Main Content Grid */
-        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; margin-top: 30px; }
-        
-        /* News Feed */
-        .news-feed { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .post-card { background: transparent; }
-        .post-title { font-size: 22px; color: #333; margin: 0 0 15px 0; font-weight: 700; line-height: 1.2; }
-        .post-thumb { width: 100%; height: 200px; object-fit: cover; border: 1px solid #eee; margin-bottom: 15px; }
-        .post-excerpt { font-size: 15px; line-height: 1.6; color: #666; margin-bottom: 15px; height: 75px; overflow: hidden; }
-        .read-more { background: #34495e; color: #fff; padding: 8px 15px; text-decoration: none; font-size: 13px; float: right; border-radius: 2px; }
+        /* News Cards */
+        .news-feed { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; cursor: pointer; }
+        .card-content { padding: 15px; }
+        .card-tag { background: var(--primary); color: #fff; padding: 2px 8px; font-size: 12px; border-radius: 3px; }
+        .card-title { font-size: 20px; margin: 10px 0; line-height: 1.4; color: #222; cursor: pointer; font-weight: 700; }
+        .card-title:hover { color: var(--primary); }
 
         /* Sidebar */
-        .sidebar-box { background: #34495e; color: #fff; padding: 15px; margin-bottom: 30px; }
-        .sidebar-title { font-family: 'Oswald', sans-serif; font-size: 24px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; margin-bottom: 15px; }
-        .search-container { display: flex; margin-bottom: 20px; }
-        .search-input { flex: 1; padding: 10px; border: none; }
-        .search-btn { background: #2c3e50; color: #fff; border: none; padding: 0 15px; cursor: pointer; text-transform: uppercase; font-weight: bold; }
-        
-        .side-post { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-        .side-post img { width: 70px; height: 50px; object-fit: cover; border: 1px solid #fff; }
-        .side-post-title { font-size: 14px; color: #add8e6; text-decoration: none; line-height: 1.3; }
+        .sidebar-box { background: #fff; padding: 20px; margin-bottom: 25px; border-radius: 8px; border-top: 4px solid var(--dark); }
+        .sidebar-title { font-size: 20px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .side-post { display: flex; gap: 10px; margin-bottom: 15px; align-items: center; }
+        .side-post img { width: 80px; height: 60px; object-fit: cover; border-radius: 4px; }
+        .side-post-text { font-size: 14px; font-weight: bold; text-decoration: none; color: #333; line-height: 1.3; }
 
-        /* Sidebar Ads */
-        .sidebar-ads-container { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-top: 20px; }
-
-        /* Footer Styles */
-        footer { background: #2c3e50; color: #fff; padding: 40px 0 20px; margin-top: 50px; border-top: 5px solid var(--primary); }
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px; font-size: 14px; text-align: center; }
-        .footer-links a { color: #ccc; text-decoration: none; }
-        .footer-links a:hover { color: #fff; }
-
-        /* Admin & Modal Styles */
-        #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.3); width: 90%; max-width: 450px; z-index: 9999; padding: 20px; border-top: 5px solid var(--primary); }
-        #adminPanel input, #adminPanel textarea, #adminPanel select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; box-sizing: border-box; }
-        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; overflow-y: auto; padding-top: 50px; }
-        .close-btn { position: fixed; top: 10px; right: 20px; background: var(--primary); color: #fff; padding: 10px 20px; cursor: pointer; border: none; font-weight: bold; }
+        /* Modal / Single View */
+        #newsModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; overflow-y: auto; padding-top: 20px; }
+        .modal-content { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .close-btn { background: var(--primary); color: #fff; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 4px; float: right; }
 
         @media (max-width: 768px) {
-            .header-content, .main-layout, .news-feed { grid-template-columns: 1fr; text-align: center; }
-            .header-ad { margin: 20px auto 0; width: 100%; }
+            .main-grid, .news-feed { grid-template-columns: 1fr; }
+            .header-flex { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-<div class="top-header">
-    <div class="container header-content">
-        <!-- Professional Logo Design -->
-        <a href="#" class="logo-box">
-            SHADHARON <span>TV</span>
-        </a>
-        <div class="header-ad">
-            <div style="color:#ccc; text-align:center; padding-top:20px;">Advertisement 468x60</div>
-        </div>
+<header>
+    <div class="container header-flex">
+        <a href="/" class="logo">SHADHARON <span>TV</span></a>
+        <div id="date-time" style="font-weight: bold; color: var(--dark);"></div>
     </div>
-</div>
+</header>
 
 <nav>
     <div class="container">
-        <div class="nav-list">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+        <div class="nav-links">
+            <a href="#">প্রচ্ছদ</a>
             <a href="#">জাতীয়</a>
             <a href="#">রাজনীতি</a>
             <a href="#">আন্তর্জাতিক</a>
+            <a href="#">বিনোদন</a>
             <a href="#">খেলাধুলা</a>
         </div>
     </div>
 </nav>
 
-<div class="container main-layout">
-    <main id="newsGrid" class="news-feed">নিউজ লোড হচ্ছে...</main>
+<div class="container main-grid">
+    <main id="mainGrid" class="news-feed">নিউজ লোড হচ্ছে...</main>
+    
     <aside>
         <div class="sidebar-box">
-            <div class="sidebar-title">Search This Site</div>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Type here...">
-                <button class="search-btn">Search</button>
-            </div>
+            <div class="sidebar-title">জনপ্রিয় সংবাদ</div>
+            <div id="sideGrid"></div>
         </div>
-        <div class="sidebar-box">
-            <div class="sidebar-title">Popular Posts</div>
-            <div id="popularSection"></div>
-        </div>
-
-        <div class="sidebar-ads-container">
-            <!-- Ad 1 -->
-            <script type="text/javascript">
-                atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
-            </script>
-            <script type="text/javascript" src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
-
-            <!-- Ad 2 -->
-            <script type="text/javascript">
-                atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
-            </script>
-            <script type="text/javascript" src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
+        
+        <div class="sidebar-box" style="text-align: center;">
+            <p>বিজ্ঞাপন</p>
+            <div style="background: #eee; height: 250px; line-height: 250px;">300x250 Ad</div>
         </div>
     </aside>
 </div>
 
-<footer>
+<!-- Single News Modal -->
+<div id="newsModal">
     <div class="container">
-        <div class="footer-links">
-            <a href="#">আমাদের সম্পর্কে</a> | <a href="#">যোগাযোগ</a> | <a href="#">সম্পাদকীয় টিম</a> |
-            <a href="#">নৈতিকতা নীতি</a> | <a href="#">ফ্যাক্ট-চেকিং নীতি</a> | <a href="#">সংশোধনী নীতি</a> |
-            <a href="#">মালিকানা ও অর্থায়ন তথ্য</a> | <a href="#">নিরপেক্ষতা নীতি</a> | <a href="#">স্পন্সরড কনটেন্ট নীতি</a> |
-            <a href="#">শর্তাবলি</a> | <a href="#">গোপনীয়তার নীতি</a> | <a href="#">বিজ্ঞাপন</a> | <a href="#">আর্কাইভ</a> | <a href="#">ভেরিফাই আইডি</a>
-        </div>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
-        <div style="text-align: center; font-size: 15px; line-height: 1.8;">
-            <p style="margin: 10px 0 0; color: #bbb;">
-                © 2026 <b>SHADHARON TV</b> — All rights reserved. <br>
-                <span style="font-size: 13px;">"অনুমতি ব্যতিত কপি করা নিষেধ"</span>
-            </p>
-        </div>
+        <button class="close-btn" onclick="closeNews()">বন্ধ করুন</button>
+        <div id="fullContent" class="modal-content"></div>
     </div>
-</footer>
-
-<!-- Admin, Modal & Scripts (Original Logic) -->
-<div id="adminPanel">
-    <h3 style="text-align:center;">অ্যাডমিন প্যানেল ⚙️</h3>
-    <input type="password" id="token" placeholder="GitHub Token">
-    <input type="text" id="tit" placeholder="সংবাদের শিরোনাম">
-    <textarea id="bod" rows="4" placeholder="সংবাদ বিস্তারিত..."></textarea>
-    <input type="file" accept="image/*" onchange="uploadImage(this)">
-    <input type="text" id="imgUrl" placeholder="ছবির লিঙ্ক (অটো)" readonly>
-    <select id="cat">
-        <option value="জাতীয়">জাতীয়</option>
-        <option value="রাজনীতি">রাজনীতি</option>
-        <option value="খেলাধুলা">খেলাধুলা</option>
-    </select>
-    <button onclick="save()" style="background:#28a745; color:#fff; border:none; padding:12px; width:100%; cursor:pointer;">পাবলিশ করুন</button>
-    <p onclick="closeAdmin()" style="text-align:center; color:red; cursor:pointer; margin-top:10px;">বন্ধ করুন</p>
-</div>
-
-<div id="modal">
-    <button class="close-btn" onclick="closeModal()">বন্ধ করুন</button>
-    <div id="fullNewsContent" class="container" style="max-width:800px;"></div>
 </div>
 
 <script>
     const USER = "shadharonoffice-sudo";
     const REPO = "Shadharontv";
     const PATH = "news.json";
-    const IMGBB_KEY = "97d2bb9d4be7954b90bb864839a5fccf";
-    let allNews = [];
+    let newsData = [];
 
-    let keys = "";
-    document.addEventListener('keydown', (e) => {
-        keys += e.key.toLowerCase();
-        if(keys.includes("admin")) {
-            document.getElementById('adminPanel').style.display = 'block';
-            keys = "";
-        }
-    });
-
-    async function loadNews() {
-        try {
-            const res = await fetch(`https://raw.githubusercontent.com/${USER}/${REPO}/main/${PATH}?v=${Date.now()}`);
-            allNews = await res.json();
-            render();
-        } catch (e) { document.getElementById('newsGrid').innerHTML = "লোড করতে সমস্যা হয়েছে।"; }
+    // বাংলা এনকোডিং ফিক্স
+    function b64_to_utf8(str) {
+        return decodeURIComponent(Array.prototype.map.call(atob(str), (c) => {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
     }
 
-    function render() {
-        const grid = document.getElementById('newsGrid');
-        const popular = document.getElementById('popularSection');
-        let news = [...allNews].reverse();
-        grid.innerHTML = news.map(n => `
-            <div class="post-card">
-                <h2 class="post-title">${n.title}</h2>
-                <img src="${n.image}" class="post-thumb">
-                <div class="post-excerpt">${n.body.substring(0, 150)}...</div>
-                <a href="javascript:void(0)" class="read-more" onclick="view(${allNews.indexOf(n)})">Read more...</a>
-                <div style="clear:both;"></div>
+    async function fetchNews() {
+        try {
+            // ক্যাশ এড়াতে টাইমস্ট্যাম্প ব্যবহার
+            const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}?t=${Date.now()}`);
+            const data = await res.json();
+            newsData = JSON.parse(b64_to_utf8(data.content));
+            renderNews();
+        } catch (e) {
+            document.getElementById('mainGrid').innerHTML = "নিউজ লোড করতে সমস্যা হচ্ছে।";
+        }
+    }
+
+    function renderNews() {
+        const mainGrid = document.getElementById('mainGrid');
+        const sideGrid = document.getElementById('sideGrid');
+        
+        // নিউজ উল্টো করে দেখানো (নতুনটা আগে)
+        const sortedNews = [...newsData].reverse();
+
+        mainGrid.innerHTML = sortedNews.map((n, i) => `
+            <div class="card">
+                <img src="${n.image}" onclick="openNews(${newsData.indexOf(n)})">
+                <div class="card-content">
+                    <span class="card-tag">${n.category || 'সংবাদ'}</span>
+                    <h2 class="card-title" onclick="openNews(${newsData.indexOf(n)})">${n.title}</h2>
+                    <p style="font-size:14px; color:#666;">${n.date || ''}</p>
+                </div>
             </div>
         `).join('');
 
-        popular.innerHTML = news.slice(0, 5).map(n => `
+        sideGrid.innerHTML = sortedNews.slice(0, 5).map(n => `
             <div class="side-post">
                 <img src="${n.image}">
-                <a href="javascript:void(0)" class="side-post-title" onclick="view(${allNews.indexOf(n)})">${n.title}</a>
+                <a href="javascript:void(0)" class="side-post-text" onclick="openNews(${newsData.indexOf(n)})">${n.title}</a>
             </div>
         `).join('');
     }
 
-    function view(idx) {
-        const n = allNews[idx];
-        document.getElementById('fullNewsContent').innerHTML = `
-            <h1 style="font-size:35px; border-bottom:2px solid #eee; padding-bottom:10px;">${n.title}</h1>
-            <p style="color:#888;">বিভাগ: ${n.category} | তারিখ: ${n.date || 'সম্প্রতি'}</p>
-            <img src="${n.image}" style="width:100%; max-height:500px; object-fit:cover; margin:20px 0;">
-            <div style="font-size:18px; line-height:1.8; white-space:pre-wrap;">${n.body}</div>
-            <button onclick="deleteNews(${idx})" style="background:red; color:white; border:none; padding:10px; cursor:pointer; margin-top:30px;">ডিলিট করুন (অ্যাডমিন)</button>
+    function openNews(index) {
+        const n = newsData[index];
+        document.getElementById('fullContent').innerHTML = `
+            <span style="background:var(--primary); color:#fff; padding:5px 10px; border-radius:3px;">${n.category || 'সংবাদ'}</span>
+            <h1 style="font-size:35px; line-height:1.3; margin-top:15px;">${n.title}</h1>
+            <p style="color:#666; border-bottom:1px solid #eee; padding-bottom:10px;">প্রকাশিত: ${n.date || 'সম্প্রতি'}</p>
+            <img src="${n.image}" style="width:100%; border-radius:8px; margin:20px 0;">
+            <div style="font-size:19px; line-height:1.8; color:#333; white-space:pre-wrap;">${n.body}</div>
         `;
-        document.getElementById('modal').style.display = 'block';
+        document.getElementById('newsModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
 
-    async function uploadImage(input) {
-        if (!input.files[0]) return;
-        const fd = new FormData();
-        fd.append("image", input.files[0]);
-        const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method: "POST", body: fd });
-        const data = await res.json();
-        document.getElementById('imgUrl').value = data.data.url;
-        alert("ছবি আপলোড হয়েছে!");
+    function closeNews() {
+        document.getElementById('newsModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 
-    async function save() {
-        const token = document.getElementById('token').value;
-        const nObj = {
-            title: document.getElementById('tit').value,
-            body: document.getElementById('bod').value,
-            image: document.getElementById('imgUrl').value,
-            category: document.getElementById('cat').value,
-            date: new Date().toLocaleDateString('bn-BD')
-        };
-        if(!token || !nObj.image) return alert("তথ্য পূরণ করুন!");
-        const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, { headers: { Authorization: `token ${token}` } });
-        const git = await res.json();
-        let content = JSON.parse(atob(git.content));
-        content.push(nObj);
-        await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
-            method: "PUT",
-            headers: { Authorization: `token ${token}` },
-            body: JSON.stringify({ message: "Update", content: btoa(unescape(encodeURIComponent(JSON.stringify(content)))), sha: git.sha })
-        });
-        location.reload();
+    // তারিখ ও সময় (ঢাকা)
+    function updateTime() {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('date-time').innerText = new Date().toLocaleDateString('bn-BD', options);
     }
 
-    async function deleteNews(idx) {
-        const t = prompt("টোকেন দিন:");
-        if(!t) return;
-        const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, { headers: { Authorization: `token ${t}` } });
-        const git = await res.json();
-        let content = JSON.parse(atob(git.content));
-        content.splice(idx, 1);
-        await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
-            method: "PUT",
-            headers: { Authorization: `token ${t}` },
-            body: JSON.stringify({ message: "Delete", content: btoa(unescape(encodeURIComponent(JSON.stringify(content)))), sha: git.sha })
-        });
-        location.reload();
-    }
-
-    function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    function closeAdmin() { document.getElementById('adminPanel').style.display = 'none'; }
-    loadNews();
+    updateTime();
+    fetchNews();
 </script>
+
 </body>
 </html>
