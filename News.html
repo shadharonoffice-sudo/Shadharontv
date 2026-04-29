@@ -13,8 +13,11 @@
         header { background: var(--white); border-bottom: 2px solid var(--primary); padding: 15px 0; text-align: center; }
         .logo { font-size: 35px; font-weight: 800; color: var(--primary); text-decoration: none; }
 
-        /* Marquee Section */
-        .m-box { background: #fff; border-bottom: 2px solid var(--primary); display: flex; align-items: center; height: 40px; overflow: hidden; margin-bottom: 10px; }
+        /* Ads Layout */
+        .ad-slot { display: flex; justify-content: center; margin: 15px 0; overflow: hidden; background: #eee; }
+
+        /* Marquee */
+        .m-box { background: #fff; border-bottom: 2px solid var(--primary); display: flex; align-items: center; height: 40px; overflow: hidden; }
         .m-label { background: var(--primary); color: #fff; padding: 0 15px; height: 100%; display: flex; align-items: center; font-weight: bold; font-size: 14px; }
         marquee { font-size: 16px; color: #333; }
 
@@ -25,45 +28,55 @@
             width: 90%; max-width: 450px; z-index: 9999; padding: 20px; border-top: 5px solid var(--primary);
             max-height: 90vh; overflow-y: auto;
         }
-        .admin-only { display: none; margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px; }
+        .admin-controls { display: none; padding: 10px; gap: 5px; background: #eee; border-radius: 5px; margin-top: 10px; }
         .btn-del { background: #ff4d4d; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
         .btn-edit { background: #28a745; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
 
-        /* News Layout */
+        /* Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
         .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 200px; object-fit: cover; cursor: pointer; }
+        .card img { width: 100%; height: 200px; object-fit: cover; cursor: pointer; display: block; }
         .card-info { padding: 15px; }
 
         /* Modal */
         #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; overflow-y: auto; }
-        .modal-body { max-width: 700px; margin: 50px auto; padding: 20px; }
-        .close { position: fixed; top: 20px; right: 20px; background: var(--primary); color: #fff; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        .modal-body { max-width: 750px; margin: 40px auto; padding: 20px; }
+        .close { position: fixed; top: 20px; right: 20px; background: var(--primary); color: #fff; padding: 8px 18px; cursor: pointer; border-radius: 20px; font-weight: bold; }
 
-        input, textarea, select { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        button.save { background: var(--primary); color: white; width: 100%; padding: 15px; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; }
+        input, textarea, select { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit; }
+        .save-btn { background: var(--primary); color: white; width: 100%; padding: 15px; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; }
     </style>
 </head>
 <body>
 
 <header><a href="#" class="logo">SHADHARON TV 🌎</a></header>
 
+<!-- Marquee -->
 <div class="m-box">
     <div class="m-label">ব্রেকিং নিউজ:</div>
-    <marquee id="newsTicker">সংবাদ লোড হচ্ছে...</marquee>
+    <marquee id="newsTicker">খবর লোড হচ্ছে...</marquee>
+</div>
+
+<!-- Ad 1 (Top) -->
+<div class="container ad-slot">
+    <script type="text/javascript">
+        atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+    </script>
+    <script type="text/javascript" src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
 </div>
 
 <div class="container">
     <div id="adminPanel">
-        <h3 style="margin-top:0; color:var(--primary);">অ্যাডমিন প্যানেল ⚙️</h3>
-        <input type="password" id="token" placeholder="আপনার GitHub Token দিন">
-        <hr>
-        <input type="text" id="tit" placeholder="সংবাদের শিরোনাম">
-        <textarea id="bod" rows="5" placeholder="বিস্তারিত খবর এখানে লিখুন..."></textarea>
+        <h3 style="text-align:center; color:var(--primary);">নিউজ ম্যানেজমেন্ট ⚙️</h3>
+        <input type="password" id="token" placeholder="GitHub Token দিন">
+        <input type="text" id="tit" placeholder="শিরোনাম">
+        <textarea id="bod" rows="5" placeholder="বিস্তারিত সংবাদ..."></textarea>
         
-        <label style="font-size: 12px; color: #666;">ছবি আপলোড করুন:</label>
-        <input type="file" id="imgFile" accept="image/*" onchange="uploadToImgBB(this)">
-        <input type="text" id="imgUrl" placeholder="ছবির ডাইরেক্ট লিংক (অটোমেটিক আসবে)">
+        <div style="background:#f9f9f9; padding:10px; border-radius:8px; margin-bottom:10px; border:1px dashed #ccc;">
+            <small>ছবি আপলোড করুন:</small><br>
+            <input type="file" id="imgFile" accept="image/*" onchange="uploadImage(this)">
+            <input type="text" id="imgUrl" placeholder="ছবির লিঙ্ক (অটোমেটিক আসবে)" readonly>
+        </div>
         
         <select id="cat">
             <option value="জাতীয়">জাতীয়</option>
@@ -72,33 +85,49 @@
             <option value="খেলাধুলা">খেলাধুলা</option>
         </select>
         <input type="hidden" id="editIdx" value="-1">
-        <button class="save" id="saveBtn" onclick="save()">পাবলিশ করুন</button>
-        <button onclick="closeAdmin()" style="width:100%; margin-top:8px; padding:10px; border:none; cursor:pointer; background:#ddd; border-radius:8px;">বন্ধ করুন</button>
+        <button class="save-btn" id="saveBtn" onclick="save()">পাবলিশ করুন</button>
+        <p onclick="closeAdmin()" style="text-align:center; color:red; cursor:pointer; margin-top:10px;">বন্ধ করুন</p>
     </div>
 
     <div id="newsGrid" class="grid"></div>
 </div>
 
+<!-- Ad 2 (Middle) -->
+<div class="container ad-slot">
+    <script type="text/javascript">
+        atOptions = { 'key' : '134191c03fe43e00a66dce8e11b988b8', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
+    </script>
+    <script type="text/javascript" src="https://www.highperformanceformat.com/134191c03fe43e00a66dce8e11b988b8/invoke.js"></script>
+</div>
+
 <div id="modal">
     <div class="close" onclick="closeModal()">বন্ধ করুন</div>
-    <div class="modal-body" id="fullNews"></div>
+    <div class="modal-body">
+        <div id="fullNews"></div>
+        <!-- Ad 3 (Inside Modal) -->
+        <div class="ad-slot">
+            <script type="text/javascript">
+                atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
+        </div>
+    </div>
 </div>
 
 <script>
     const USER = "shadharonoffice-sudo";
     const REPO = "Shadharontv";
     const PATH = "news.json";
-    const IMGBB_API = "67f67756f7093226a260849303c73449"; // আপনার ImgBB API
+    const IMGBB_KEY = "67f67756f7093226a260849303c73449";
     let allNews = [];
 
-    // 'admin' লিখলে কন্ট্রোল প্যানেল আসবে
     let keys = "";
     document.addEventListener('keydown', (e) => {
         keys += e.key.toLowerCase();
         if(keys.includes("admin")) {
             document.getElementById('adminPanel').style.display = 'block';
             keys = "";
-            document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.admin-controls').forEach(el => el.style.display = 'flex');
         }
     });
 
@@ -106,51 +135,45 @@
         try {
             const r = await fetch(`https://raw.githubusercontent.com/${USER}/${REPO}/main/${PATH}?t=${Date.now()}`);
             allNews = await r.json();
-            
-            // মারকুই আপডেট
             document.getElementById('newsTicker').innerText = allNews.slice(-5).reverse().map(n => n.title).join("  ||  ");
-
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = "";
-            allNews.slice().reverse().forEach((n, i) => {
-                const realIdx = allNews.indexOf(n);
-                grid.innerHTML += `
-                    <div class="card">
-                        <img src="${n.image || 'https://via.placeholder.com/300'}" onclick="view(${realIdx})">
-                        <div class="card-info">
-                            <h3 style="margin:0; font-size:18px; cursor:pointer;" onclick="view(${realIdx})">${n.title}</h3>
-                            <div class="admin-only">
-                                <button class="btn-edit" onclick="editNews(${realIdx})">এডিট</button>
-                                <button class="btn-del" onclick="delNews(${realIdx})">ডিলিট</button>
-                            </div>
-                        </div>
-                    </div>`;
-            });
-        } catch(e) { console.error("Load failed"); }
+            renderGrid();
+        } catch(e) {}
     }
 
-    // ইমেজ আপলোড ফাংশন
-    async function uploadToImgBB(input) {
+    function renderGrid() {
+        const grid = document.getElementById('newsGrid');
+        grid.innerHTML = "";
+        allNews.slice().reverse().forEach((n, i) => {
+            const realIdx = allNews.indexOf(n);
+            grid.innerHTML += `
+                <div class="card">
+                    <img src="${n.image}" onclick="view(${realIdx})" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                    <div class="card-info">
+                        <h3 style="margin:0; font-size:18px; cursor:pointer;" onclick="view(${realIdx})">${n.title}</h3>
+                        <div class="admin-controls">
+                            <button class="btn-edit" onclick="editNews(${realIdx})">এডিট</button>
+                            <button class="btn-del" onclick="delNews(${realIdx})">ডিলিট</button>
+                        </div>
+                    </div>
+                </div>`;
+        });
+    }
+
+    async function uploadImage(input) {
         if (!input.files[0]) return;
         const btn = document.getElementById('saveBtn');
         btn.innerText = "ছবি আপলোড হচ্ছে...";
         btn.disabled = true;
-
         const formData = new FormData();
         formData.append("image", input.files[0]);
-
         try {
-            const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API}`, {
-                method: "POST",
-                body: formData
-            });
+            const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method: "POST", body: formData });
             const data = await res.json();
             if(data.success) {
                 document.getElementById('imgUrl').value = data.data.url;
-                alert("ছবি আপলোড সফল!");
+                alert("ছবি আপলোড হয়েছে!");
             }
-        } catch(e) { alert("ছবি আপলোড ব্যর্থ হয়েছে!"); }
-        
+        } catch(e) { alert("আপলোড ফেল!"); }
         btn.innerText = "পাবলিশ করুন";
         btn.disabled = false;
     }
@@ -158,61 +181,47 @@
     function view(idx) {
         const n = allNews[idx];
         document.getElementById('fullNews').innerHTML = `
-            <span style="background:var(--primary); color:#fff; padding:3px 10px; border-radius:4px; font-size:12px;">${n.category}</span>
-            <h1 style="margin:15px 0;">${n.title}</h1>
-            <p style="color:#666;">প্রকাশকাল: ${n.date || 'সম্প্রতি'}</p>
-            <hr style="opacity:0.2;">
-            <img src="${n.image}" style="width:100%; margin:15px 0; border-radius:10px;">
-            <div style="font-size:19px; line-height:1.8; white-space:pre-wrap;">${n.body}</div>`;
+            <h1 style="line-height:1.3;">${n.title}</h1>
+            <p style="color:#666;">বিভাগ: ${n.category} | ${n.date || ''}</p>
+            <img src="${n.image}" style="width:100%; border-radius:10px; margin:20px 0;">
+            <div style="font-size:19px; line-height:1.8; white-space:pre-wrap; margin-bottom:20px;">${n.body}</div>`;
         document.getElementById('modal').style.display = 'block';
-        document.body.style.overflow = 'hidden';
     }
 
     async function save() {
         const t = document.getElementById('token').value;
-        const title = document.getElementById('tit').value;
         const imageUrl = document.getElementById('imgUrl').value;
-        if(!t || !title) return alert("টোকেন এবং শিরোনাম আবশ্যিক!");
-        
+        if(!t || !imageUrl) return alert("টোকেন এবং ছবি দিন!");
         const editIdx = parseInt(document.getElementById('editIdx').value);
         const newsObj = {
-            title: title,
+            title: document.getElementById('tit').value,
             body: document.getElementById('bod').value,
             image: imageUrl,
             category: document.getElementById('cat').value,
             date: new Date().toLocaleString('bn-BD')
         };
-
         try {
             const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
                 headers: { Authorization: `token ${t}` }
             });
             const git = await res.json();
             let content = JSON.parse(decodeURIComponent(escape(atob(git.content))));
-
             if(editIdx === -1) content.push(newsObj);
             else content[editIdx] = newsObj;
-
             await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
                 method: "PUT",
                 headers: { Authorization: `token ${t}` },
-                body: JSON.stringify({
-                    message: "Update",
-                    content: btoa(unescape(encodeURIComponent(JSON.stringify(content)))),
-                    sha: git.sha
-                })
+                body: JSON.stringify({ message: "Update", content: btoa(unescape(encodeURIComponent(JSON.stringify(content)))), sha: git.sha })
             });
             location.reload();
-        } catch(e) { alert("GitHub আপডেট ব্যর্থ! টোকেন চেক করুন।"); }
+        } catch(e) { alert("ব্যর্থ হয়েছে!"); }
     }
 
     async function delNews(idx) {
         const t = document.getElementById('token').value;
         if(!t || !confirm("মুছে ফেলবেন?")) return;
         try {
-            const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
-                headers: { Authorization: `token ${t}` }
-            });
+            const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, { headers: { Authorization: `token ${t}` } });
             const git = await res.json();
             let content = JSON.parse(decodeURIComponent(escape(atob(git.content))));
             content.splice(idx, 1);
@@ -222,7 +231,7 @@
                 body: JSON.stringify({ message: "Delete", content: btoa(unescape(encodeURIComponent(JSON.stringify(content)))), sha: git.sha })
             });
             location.reload();
-        } catch(e) { alert("Error!"); }
+        } catch(e) {}
     }
 
     function editNews(idx) {
@@ -233,10 +242,9 @@
         document.getElementById('cat').value = n.category;
         document.getElementById('editIdx').value = idx;
         document.getElementById('adminPanel').style.display = 'block';
-        window.scrollTo(0,0);
     }
 
-    function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
     function closeAdmin() { document.getElementById('adminPanel').style.display = 'none'; }
 
     load();
