@@ -13,9 +13,13 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         /* Top Header Section */
-        .top-header { background: #34495e; padding: 30px 0; border-bottom: 1px solid #ddd; }
+        .top-header { background: #34495e; padding: 20px 0; border-bottom: 1px solid #ddd; }
         .header-content { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Logo System */
+        .logo-container img { max-height: 70px; width: auto; display: block; }
         .logo-text { font-family: 'Oswald', sans-serif; font-size: 50px; color: #fff; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; }
+
         .header-ad { width: 468px; height: 60px; background: #fff; border: 1px solid #ddd; overflow: hidden; }
 
         /* Navigation Bar */
@@ -46,6 +50,9 @@
         .side-post img { width: 70px; height: 50px; object-fit: cover; border: 1px solid #fff; }
         .side-post-title { font-size: 14px; color: #add8e6; text-decoration: none; line-height: 1.3; }
 
+        /* Sidebar Ads */
+        .sidebar-ads-container { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-top: 20px; }
+
         /* Footer Styles */
         footer { background: #2c3e50; color: #fff; padding: 40px 0 20px; margin-top: 50px; border-top: 5px solid var(--primary); }
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px; font-size: 14px; text-align: center; }
@@ -69,9 +76,12 @@
 
 <div class="top-header">
     <div class="container header-content">
-        <a href="#" class="logo-text">SHADHARON TV</a>
+        <!-- Logo Section: Replace 'logo.png' with your real logo URL -->
+        <a href="#" class="logo-container">
+            <img src="logo.png" alt="SHADHARON TV" onerror="this.outerHTML='<span class=\'logo-text\'>SHADHARON TV</span>'">
+        </a>
         <div class="header-ad">
-            <!-- Place Advertisement Script Here -->
+            <!-- 468x60 Header Ad -->
             <div style="color:#ccc; text-align:center; padding-top:20px;">Advertisement 468x60</div>
         </div>
     </div>
@@ -113,6 +123,21 @@
                 <!-- Side News will load here -->
             </div>
         </div>
+
+        <!-- 160x600 Ads in Sidebar -->
+        <div class="sidebar-ads-container">
+            <!-- Ad 1 -->
+            <script>
+                atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
+            </script>
+            <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
+
+            <!-- Ad 2 -->
+            <script>
+                atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
+            </script>
+            <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
+        </div>
     </aside>
 </div>
 
@@ -120,26 +145,13 @@
 <footer>
     <div class="container">
         <div class="footer-links">
-            <a href="#">আমাদের সম্পর্কে</a> |
-            <a href="#">যোগাযোগ</a> |
-            <a href="#">সম্পাদকীয় টিম</a> |
-            <a href="#">নৈতিকতা নীতি</a> |
-            <a href="#">ফ্যাক্ট-চেকিং নীতি</a> |
-            <a href="#">সংশোধনী নীতি</a> |
-            <a href="#">মালিকানা ও অর্থায়ন তথ্য</a> |
-            <a href="#">নিরপেক্ষতা নীতি</a> |
-            <a href="#">স্পন্সরড কনটেন্ট নীতি</a> |
-            <a href="#">শর্তাবলি</a> |
-            <a href="#">গোপনীয়তার নীতি</a> |
-            <a href="#">বিজ্ঞাপন</a> |
-            <a href="#">আর্কাইভ</a> |
-            <a href="#">ভেরিফাই আইডি</a>
+            <a href="#">আমাদের সম্পর্কে</a> | <a href="#">যোগাযোগ</a> | <a href="#">সম্পাদকীয় টিম</a> |
+            <a href="#">নৈতিকতা নীতি</a> | <a href="#">ফ্যাক্ট-চেকিং নীতি</a> | <a href="#">সংশোধনী নীতি</a> |
+            <a href="#">মালিকানা ও অর্থায়ন তথ্য</a> | <a href="#">নিরপেক্ষতা নীতি</a> | <a href="#">স্পন্সরড কনটেন্ট নীতি</a> |
+            <a href="#">শর্তাবলি</a> | <a href="#">গোপনীয়তার নীতি</a> | <a href="#">বিজ্ঞাপন</a> | <a href="#">আর্কাইভ</a> | <a href="#">ভেরিফাই আইডি</a>
         </div>
-
         <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
-
         <div style="text-align: center; font-size: 15px; line-height: 1.8;">
-           
             <p style="margin: 10px 0 0; color: #bbb;">
                 © 2026 <b>Durbin News</b> — All rights reserved. <br>
                 <span style="font-size: 13px;">"Reproduction without permission prohibited"</span>
@@ -178,7 +190,6 @@
     const IMGBB_KEY = "97d2bb9d4be7954b90bb864839a5fccf";
     let allNews = [];
 
-    // Keys to open Admin
     let keys = "";
     document.addEventListener('keydown', (e) => {
         keys += e.key.toLowerCase();
