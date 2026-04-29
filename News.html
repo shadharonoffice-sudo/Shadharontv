@@ -42,27 +42,24 @@
         #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; overflow-y: auto; }
         .modal-body { max-width: 800px; margin: 40px auto; padding: 20px; }
         .close-btn { position: fixed; top: 20px; right: 20px; background: var(--primary); color: #fff; padding: 10px 20px; cursor: pointer; border-radius: 30px; font-weight: bold; }
-        
-        /* Ad Placement Styles */
-        .ad-slot { text-align: center; margin: 20px 0; overflow: hidden; }
     </style>
 </head>
 <body>
 
 <header><a href="#" class="logo">SHADHARON TV 🌎</a></header>
 
-<!-- Top Leaderboard Ad -->
-<div class="ad-slot">
-    <script>
-        atOptions = {
-            'key' : '4ce97525659d866a14506360d9560777',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-        };
-    </script>
-    <script src="https://www.highperformanceformat.com/4ce97525659d866a14506360d9560777/invoke.js"></script>
+<!-- Advertisement 728x90 -->
+<div style="text-align:center; margin:10px 0;">
+<script>
+    atOptions = {
+        'key' : '4ce97525659d866a14506360d9560777',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+    };
+</script>
+<script src="https://www.highperformanceformat.com/4ce97525659d866a14506360d9560777/invoke.js"></script>
 </div>
 
 <div class="m-box">
@@ -90,48 +87,34 @@
         <p onclick="closeAdmin()" style="text-align:center; color:red; cursor:pointer; margin-top:15px; font-weight:bold;">বন্ধ করুন</p>
     </div>
 
-    <!-- Small Banner Ad -->
-    <div class="ad-slot">
-        <script>
-            atOptions = {
-                'key' : '155622a08cbe1798d2c5ba3bb143de49',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script src="https://www.highperformanceformat.com/155622a08cbe1798d2c5ba3bb143de49/invoke.js"></script>
+    <!-- Advertisement 468x60 -->
+    <div style="text-align:center; margin:10px 0;">
+    <script>
+        atOptions = {
+            'key' : '155622a08cbe1798d2c5ba3bb143de49',
+            'format' : 'iframe',
+            'height' : 60,
+            'width' : 468,
+            'params' : {}
+        };
+    </script>
+    <script src="https://www.highperformanceformat.com/155622a08cbe1798d2c5ba3bb143de49/invoke.js"></script>
     </div>
 
     <div id="newsGrid" class="grid">সংবাদ খোঁজা হচ্ছে...</div>
-
-    <!-- Skyscraper Ads at Bottom -->
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
-        <div class="ad-slot">
-            <script>
-                atOptions = {
-                    'key' : '3c5f9f51b2c86015b0e375d754c8ed06',
-                    'format' : 'iframe',
-                    'height' : 600,
-                    'width' : 160,
-                    'params' : {}
-                };
-            </script>
-            <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
-        </div>
-        <div class="ad-slot">
-            <script>
-                atOptions = {
-                    'key' : '3c5f9f51b2c86015b0e375d754c8ed06',
-                    'format' : 'iframe',
-                    'height' : 600,
-                    'width' : 160,
-                    'params' : {}
-                };
-            </script>
-            <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
-        </div>
+    
+    <!-- Advertisement 160x600 -->
+    <div style="display:flex; justify-content:center; gap:10px; margin-top:20px;">
+        <script>
+            atOptions = {
+                'key' : '3c5f9f51b2c86015b0e375d754c8ed06',
+                'format' : 'iframe',
+                'height' : 600,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
     </div>
 </div>
 
@@ -147,7 +130,6 @@
     const IMGBB_KEY = "97d2bb9d4be7954b90bb864839a5fccf";
     let allNews = [];
 
-    // 'admin' টাইপ করলে প্যানেল খুলবে
     let keys = "";
     document.addEventListener('keydown', (e) => {
         keys += e.key.toLowerCase();
