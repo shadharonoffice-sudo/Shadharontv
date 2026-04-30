@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadharon TV AI Chatbot</title>
+    <style>
+        /* চ্যাটবট ডিজাইন */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; }
+        #chat-container { 
+            width: 360px; 
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px; 
+            background: white; 
+            border-radius: 15px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2); 
+            overflow: hidden; 
+            border: 1px solid #ddd;
+        }
+        #chat-header { 
+            background: #e60000; 
+            color: white; 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: bold;
+            font-size: 18px;
+        }
+        #chat-box { 
+            height: 350px; 
+            padding: 15px; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column; 
+            background: #fff;
+        }
+        .message { 
+            margin: 8px 0; 
+            padding: 10px 14px; 
+            border-radius: 18px; 
+            max-width: 80%; 
+            font-size: 14px; 
+            line-height: 1.4;
+        }
+        .bot { background: #f0f0f0; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .user { background: #e60000; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        
+        #input-area { display: flex; border-top: 1px solid #eee; padding: 10px; background: #fff; }
+        #user-input { 
+            flex: 1; 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            border-radius: 20px; 
+            outline: none; 
+            padding-left: 15px;
+        }
+        #send-btn { 
+            background: #e60000; 
+            color: white; 
+            border: none; 
+            padding: 8px 15px; 
+            margin-left: 8px; 
+            border-radius: 50%; 
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-container">
+    <div id="chat-header">Shadharon TV AI Help Desk</div>
+    <div id="chat-box">
+        <div class="message bot">আসসালামু আলাইকুম! Shadharon TV-তে আপনাকে স্বাগতম। আমরা আপনাকে কীভাবে সাহায্য করতে পারি?</div>
+    </div>
+    <div id="input-area">
+        <input type="text" id="user-input" placeholder="আপনার প্রশ্ন এখানে লিখুন..." onkeypress="handleKeyPress(event)">
+        <button id="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+</div>
+
+<script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+
+    // চ্যাটবটের তথ্য ভাণ্ডার (Knowledge Base)
+    const knowledge = {
+        "intro": "Shadharon TV একটি ডিজিটাল মিডিয়া প্ল্যাটফর্ম। এর চেয়ারম্যান হলেন আকাশ জোয়ার্দার।",
+        "chairman": "Shadharon TV-এর চেয়ারম্যান হলেন আকাশ জোয়ার্দার (Akash Joarder)।",
+        "fee": "Shadharon TV-র যেকোনো প্রজেক্ট বা শো-তে রেজিস্ট্রেশন ফি ১০০০ টাকা।",
+        "gaane": "গানে গানে সেরা সিজন ৩-এর অডিশন চলছে। অডিশন ফি ১০০০ টাকা।",
+        "school": "আমাদের মিউজিক স্কুলে আবেদন করতে পারেন। ভর্তির ফি ১০০০ টাকা (শুধুমাত্র ঢাকা সিটির জন্য)।",
+        "contact": "আমাদের সাথে সরাসরি যোগাযোগ করতে হোয়াটসঅ্যাপ করুন: 01757331663 নম্বরে।",
+        "payment": "আপনি বিকাশ বা নগদের মাধ্যমে ১০০০ টাকা ফি জমা দিয়ে রেজিস্ট্রেশন সম্পন্ন করতে পারেন।"
+    };
+
+    function sendMessage() {
+        const text = userInput.value.trim();
+        if (text === "") return;
+
+        appendMessage(text, 'user');
+        userInput.value = '';
+
+        setTimeout(() => {
+            const response = getBotResponse(text);
+            appendMessage(response, 'bot');
+        }, 600);
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') sendMessage();
+    }
+
+    function getBotResponse(input) {
+        const text = input.toLowerCase();
+
+        if (text.includes("ফি") || text.includes("টাকা") || text.includes("খরচ") || text.includes("fee")) {
+            return knowledge.fee;
+        }
+        if (text.includes("কে") || text.includes("মালিক") || text.includes("চেয়ারম্যান")) {
+            return knowledge.chairman;
+        }
+        if (text.includes("গান") || text.includes("সেরা") || text.includes("গানে")) {
+            return knowledge.gaane;
+        }
+        if (text.includes("স্কুল") || text.includes("ভর্তি") || text.includes("মিউজিক")) {
+            return knowledge.school;
+        }
+        if (text.includes("যোগাযোগ") || text.includes("নাম্বার") || text.includes("হোয়াটসঅ্যাপ")) {
+            return knowledge.contact;
+        }
+        if (text.includes("পেমেন্ট") || text.includes("টাকা দিব")) {
+            return knowledge.payment;
+        }
+        
+        return "আপনার প্রশ্নের জন্য ধন্যবাদ। Shadharon TV সম্পর্কে বিস্তারিত জানতে বা ১০০০ টাকা ফি জমা দিতে আমাদের হোয়াটসঅ্যাপ (01757331663) নাম্বারে যোগাযোগ করুন।";
+    }
+
+    function appendMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${sender}`;
+        msgDiv.innerText = text;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
