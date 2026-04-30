@@ -12,34 +12,49 @@
 
         /* Header */
         header { background: #fff; border-bottom: 3px solid var(--primary); padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
-        .logo { background: var(--primary); color: #fff; padding: 10px 20px; font-weight: bold; text-decoration: none; font-size: 24px; margin-left: 15px; border-radius: 4px; }
+        .logo { background: var(--primary); color: #fff; padding: 10px 20px; font-weight: bold; text-decoration: none; font-size: 24px; border-radius: 4px; }
+
+        /* Marquee / Breaking News */
+        .breaking-news { background: #fff; border-bottom: 1px solid #ddd; display: flex; align-items: center; height: 40px; overflow: hidden; margin-top: 10px; }
+        .breaking-label { background: var(--primary); color: #fff; padding: 0 15px; height: 100%; display: flex; align-items: center; font-weight: bold; white-space: nowrap; z-index: 2; }
+        marquee { height: 100%; line-height: 40px; font-weight: bold; color: #333; }
 
         /* News Grid */
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
-        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; padding-bottom: 50px; }
+        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
         .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-content { padding: 15px; }
-        .card-title { font-size: 20px; font-weight: bold; line-height: 1.4; margin: 10px 0; color: #222; }
+        .card-content { padding: 15px; flex-grow: 1; }
+        .card-title { font-size: 19px; font-weight: bold; line-height: 1.4; margin: 10px 0; color: #222; }
 
         /* Admin Box */
-        #adminBox { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 25px; width: 90%; max-width: 400px; border-radius: 12px; box-shadow: 0 0 50px rgba(0,0,0,0.5); z-index: 1000; border-top: 6px solid var(--primary); }
+        #adminBox { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 25px; width: 90%; max-width: 400px; border-radius: 12px; box-shadow: 0 0 50px rgba(0,0,0,0.5); z-index: 10000; border-top: 6px solid var(--primary); }
         #adminBox input, #adminBox textarea { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
         #adminBox button { width: 100%; padding: 12px; background: #28a745; color: #fff; border: none; cursor: pointer; font-weight: bold; }
 
         /* Modal */
-        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 2000; overflow-y: auto; padding: 20px; }
-        .close-btn { background: var(--primary); color: #fff; border: none; padding: 10px 20px; float: right; cursor: pointer; font-weight: bold; }
+        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; overflow-y: auto; padding-top: 20px; }
+        .close-btn { background: var(--primary); color: #fff; border: none; padding: 10px 25px; cursor: pointer; font-weight: bold; border-radius: 4px; float: right; margin-right: 20px; }
 
         @media (max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-<header class="container">
-    <a href="#" class="logo">SHADHARON TV</a>
-    <div id="date" style="font-weight: bold; color: var(--primary); margin-right: 15px;"></div>
+<header>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <a href="#" class="logo" onclick="location.reload()">SHADHARON TV</a>
+        <div id="date" style="font-weight: bold; color: var(--primary);"></div>
+    </div>
 </header>
+
+<!-- Marquee Section -->
+<div class="container">
+    <div class="breaking-news">
+        <div class="breaking-label">সংবাদ শিরোনাম:</div>
+        <marquee id="newsMarquee" onmouseover="this.stop();" onmouseout="this.start();">সর্বশেষ খবরের জন্য অপেক্ষা করুন...</marquee>
+    </div>
+</div>
 
 <div class="container">
     <div id="mainGrid" class="news-grid">নিউজ লোড হচ্ছে...</div>
@@ -47,20 +62,20 @@
 
 <!-- Admin Panel -->
 <div id="adminBox">
-    <h3 style="margin-top:0;">অ্যাডমিন প্যানেল</h3>
+    <h3 style="margin-top:0; text-align: center;">অ্যাডমিন প্যানেল</h3>
     <input type="password" id="token" placeholder="GitHub Token">
     <input type="text" id="tit" placeholder="শিরোনাম">
-    <textarea id="bod" rows="4" placeholder="বিস্তারিত..."></textarea>
+    <textarea id="bod" rows="4" placeholder="বিস্তারিত সংবাদ..."></textarea>
     <input type="file" onchange="uploadImg(this)">
     <input type="text" id="imgUrl" placeholder="ছবির লিঙ্ক (অটো)" readonly>
     <button id="pubBtn" onclick="publish()">পাবলিশ করুন</button>
-    <p onclick="this.parentElement.style.display='none'" style="text-align:center; color:red; cursor:pointer;">বন্ধ করুন</p>
+    <p onclick="this.parentElement.style.display='none'" style="text-align:center; color:red; cursor:pointer; font-weight: bold; margin-top: 15px;">বন্ধ করুন</p>
 </div>
 
 <!-- Full News View -->
 <div id="modal">
     <button class="close-btn" onclick="document.getElementById('modal').style.display='none'">বন্ধ করুন</button>
-    <div id="fullNews" class="container" style="max-width:800px; margin-top:50px;"></div>
+    <div id="fullNews" class="container" style="max-width:800px; margin-top:60px; padding-bottom: 50px;"></div>
 </div>
 
 <script>
@@ -68,65 +83,77 @@
     const REPO = "Shadharontv";
     const PATH = "news.json";
     
-    // ১. নিউজ লোড করার নতুন এবং শক্তিশালী ফাংশন
     async function loadNews() {
-        // সরাসরি RAW ফাইল থেকে ডাটা আনছি যাতে এপিআই এরর না হয়
-        const rawUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${PATH}?nocache=${new Date().getTime()}`;
+        const rawUrl = `https://raw.githubusercontent.com/${USER}/${REPO}/main/${PATH}?t=${new Date().getTime()}`;
         
         try {
             const res = await fetch(rawUrl);
             if (!res.ok) throw new Error();
             const data = await res.json();
             window.newsData = data;
+            
             renderUI(data);
+            renderMarquee(data);
         } catch (e) {
-            document.getElementById('mainGrid').innerHTML = `
-                <div style="text-align:center; padding:50px;">
-                    <p style="color:red; font-weight:bold;">নিউজ লোড হতে পারেনি।</p>
-                    <p>নিশ্চিত করুন যে আপনার GitHub Repository-টি <b>Public</b> এবং <b>news.json</b> ফাইলটি ঠিক আছে।</p>
-                </div>`;
+            document.getElementById('mainGrid').innerHTML = "<p style='text-align:center; color:red; padding:50px;'>নিউজ লোড হতে পারেনি। রিপোজিটরি Public আছে কি না চেক করুন।</p>";
         }
     }
 
     function renderUI(data) {
         const grid = document.getElementById('mainGrid');
-        if (data.length === 0) { grid.innerHTML = "কোনো নিউজ নেই।"; return; }
+        if (!data || data.length === 0) { grid.innerHTML = "কোনো নিউজ নেই।"; return; }
         
-        const html = data.reverse().map((n, i) => `
-            <div class="card" onclick="showFull(${data.length - 1 - i})">
-                <img src="${n.image}">
-                <div class="card-content">
-                    <p style="color:var(--primary); font-weight:bold; font-size:12px;">${n.category || 'জাতীয়'}</p>
-                    <div class="card-title">${n.title}</div>
-                    <p style="color:#888; font-size:13px;">${n.date}</p>
+        const displayList = [...data].reverse();
+        
+        grid.innerHTML = displayList.map((n) => {
+            const originalIndex = data.indexOf(n);
+            return `
+                <div class="card" onclick="showFull(${originalIndex})">
+                    <img src="${n.image}">
+                    <div class="card-content">
+                        <p style="color:var(--primary); font-weight:bold; font-size:12px; margin:0;">${n.category || 'জাতীয়'}</p>
+                        <div class="card-title">${n.title}</div>
+                        <p style="color:#888; font-size:13px; margin:0;">${n.date}</p>
+                    </div>
                 </div>
-            </div>
-        `).join('');
-        grid.innerHTML = html;
+            `;
+        }).join('');
+    }
+
+    function renderMarquee(data) {
+        const marquee = document.getElementById('newsMarquee');
+        if (!data || data.length === 0) return;
+        
+        const titles = data.slice(-10).reverse().map(n => ` • ${n.title}`).join(' ');
+        marquee.innerText = titles;
     }
 
     function showFull(idx) {
         const n = window.newsData[idx];
+        if(!n) return;
+
         document.getElementById('fullNews').innerHTML = `
-            <h1 style="font-size:32px; line-height:1.3;">${n.title}</h1>
-            <p style="color:#666;">তারিখ: ${n.date} | ক্যাটাগরি: ${n.category || 'জাতীয়'}</p>
-            <img src="${n.image}" style="width:100%; border-radius:10px; margin:20px 0;">
-            <div style="font-size:20px; line-height:1.8; white-space:pre-wrap;">${n.body}</div>
+            <p style="color:var(--primary); font-weight:bold; margin:0;">${n.category || 'জাতীয়'}</p>
+            <h1 style="font-size:32px; line-height:1.3; margin:10px 0;">${n.title}</h1>
+            <p style="color:#666; font-size:14px; border-bottom:1px solid #eee; padding-bottom:15px;">তারিখ: ${n.date}</p>
+            <img src="${n.image}" style="width:100%; border-radius:10px; margin:20px 0; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+            <div style="font-size:19px; line-height:1.8; white-space:pre-wrap; color:#333;">${n.body}</div>
         `;
         document.getElementById('modal').style.display = 'block';
         window.scrollTo(0,0);
     }
 
-    // ২. ছবি আপলোড (ImgBB)
     async function uploadImg(el) {
+        if(!el.files[0]) return;
         const fd = new FormData(); fd.append("image", el.files[0]);
-        const res = await fetch("https://api.imgbb.com/1/upload?key=97d2bb9d4be7954b90bb864839a5fccf", { method: "POST", body: fd });
-        const d = await res.json();
-        document.getElementById('imgUrl').value = d.data.url;
-        alert("ছবি সফলভাবে আপলোড হয়েছে!");
+        try {
+            const res = await fetch("https://api.imgbb.com/1/upload?key=97d2bb9d4be7954b90bb864839a5fccf", { method: "POST", body: fd });
+            const d = await res.json();
+            document.getElementById('imgUrl').value = d.data.url;
+            alert("ছবি আপলোড হয়েছে!");
+        } catch(e) { alert("ছবি আপলোড ব্যর্থ!"); }
     }
 
-    // ৩. নিউজ পাবলিশ (GitHub API)
     async function publish() {
         const token = document.getElementById('token').value;
         const title = document.getElementById('tit').value;
@@ -136,43 +163,41 @@
         if(!token || !title || !img) return alert("সব তথ্য দিন!");
 
         const btn = document.getElementById('pubBtn');
-        btn.disabled = true; btn.innerText = "অপেক্ষা করুন...";
+        btn.disabled = true; btn.innerText = "পাবলিশ হচ্ছে...";
 
         try {
-            // বর্তমান ফাইলটি আনা
-            const get = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
+            const getRes = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
                 headers: { "Authorization": `token ${token}` }
             });
-            const git = await get.json();
+            const git = await getRes.json();
+            
+            // Unicode aware decoding
             const list = JSON.parse(decodeURIComponent(escape(atob(git.content))));
             
-            // নতুন নিউজ যুক্ত করা
             list.push({
                 title: title,
                 body: body,
                 image: img,
                 category: "জাতীয়",
-                date: new Date().toLocaleDateString('bn-BD')
+                date: new Date().toLocaleDateString('bn-BD', {year:'numeric', month:'long', day:'numeric'})
             });
 
-            // আপডেট করা
-            const put = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
+            const putRes = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
                 method: "PUT",
                 headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    message: "Added: " + title,
+                    message: "New Post: " + title,
                     content: btoa(unescape(encodeURIComponent(JSON.stringify(list)))),
                     sha: git.sha
                 })
             });
 
-            if(put.ok) { alert("পাবলিশ সফল!"); location.reload(); }
+            if(putRes.ok) { alert("সফলভাবে প্রকাশিত হয়েছে!"); location.reload(); }
             else alert("গিটহাব এরর!");
-        } catch (e) { alert("কিছু একটা ভুল হয়েছে! টোকেন চেক করুন।"); }
+        } catch (e) { alert("ত্রুটি হয়েছে! টোকেন সঠিক কি না যাচাই করুন।"); }
         btn.disabled = false; btn.innerText = "পাবলিশ করুন";
     }
 
-    // শর্টকাট কি: admin লিখলে প্যানেল আসবে
     let keys = "";
     document.addEventListener('keydown', (e) => {
         keys += e.key.toLowerCase();
