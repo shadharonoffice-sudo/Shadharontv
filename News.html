@@ -16,6 +16,11 @@
         .logo-area img { height: 40px; border-radius: 4px; }
         .logo-text { font-size: 20px; font-weight: 800; color: var(--primary-color); }
 
+        /* মারকিউরি স্টাইল */
+        .breaking-news { background: #fff; border-top: 1px solid #eee; display: flex; align-items: center; overflow: hidden; height: 35px; }
+        .breaking-label { background: var(--primary-color); color: #fff; padding: 0 10px; font-size: 14px; font-weight: bold; height: 100%; display: flex; align-items: center; white-space: nowrap; z-index: 2; }
+        marquee { font-size: 14px; color: #333; padding-top: 5px; cursor: pointer; }
+
         .nav-container { display: flex; align-items: center; background: #fff; border-top: 1px solid #eee; padding: 5px 15px; overflow: hidden; }
         .desktop-menu { display: flex; gap: 5px; flex-wrap: wrap; }
         .mobile-menu { display: none; gap: 8px; flex-grow: 1; overflow-x: auto; scrollbar-width: none; }
@@ -58,8 +63,14 @@
         </a>
         <div id="dateTime" style="font-size: 11px; color: #888;"></div>
     </div>
+
+    <!-- মারকিউরি সেকশন -->
+    <div class="breaking-news">
+        <div class="breaking-label">সংবাদ শিরোনাম:</div>
+        <marquee id="ticker" onmouseover="this.stop()" onmouseout="this.start()"></marquee>
+    </div>
+
     <div class="nav-container">
-        <!-- এখানে বাটনগুলো জাভাস্ক্রিপ্ট দিয়ে তৈরি হবে, তাই এখন খালি রাখা হয়েছে -->
         <div class="desktop-menu" id="navLinks"></div>
         <div class="mobile-menu" id="mobileNav"></div>
     </div>
@@ -94,27 +105,21 @@
     const USER = "shadharonoffice-sudo";
     const REPO = "Shadharontv";
     const PATH = "news.json";
-    
-    // ক্যাটাগরি লিস্ট
     const CATS = ["জাতীয়", "আন্তর্জাতিক", "রাজনীতি", "খেলা", "বিনোদন", "প্রযুক্তি", "খাদ্য ও পুষ্টি", "স্বাস্থ্য"];
 
-    // বাটন তৈরি করার ফাংশন (ডাবল হওয়া রোধ করতে)
     function setupMenus() {
         const nav = document.getElementById('navLinks');
         const mNav = document.getElementById('mobileNav');
         const catSel = document.getElementById('catSelect');
         
-        // প্রথমে মেনুগুলো খালি করে নেওয়া
         nav.innerHTML = "";
         mNav.innerHTML = "";
         catSel.innerHTML = "";
 
-        // প্রচ্ছদ বাটন যোগ
         const homeBtn = `<a href="#" class="menu-btn" onclick="location.reload()">প্রচ্ছদ</a>`;
         nav.innerHTML = homeBtn;
         mNav.innerHTML = homeBtn;
 
-        // ক্যাটাগরিগুলো লুপের মাধ্যমে যোগ করা
         CATS.forEach(c => {
             const btnHtml = `<a href="#${c}" class="menu-btn">${c}</a>`;
             nav.innerHTML += btnHtml;
@@ -129,7 +134,15 @@
             const data = await res.json();
             window.allNews = data;
             renderNews(data);
+            updateTicker(data); // মারকিউরি আপডেট করা
         } catch (e) { console.error("Load Error"); }
+    }
+
+    function updateTicker(data) {
+        const ticker = document.getElementById('ticker');
+        // সর্বশেষ ১০টি নিউজ শিরোনাম মারকিউরিতে দেখানো হবে
+        const headlines = data.slice(-10).reverse().map(n => ` • ${n.title}`).join(' ');
+        ticker.innerText = headlines;
     }
 
     function renderNews(data) {
@@ -164,6 +177,7 @@
             <div style="font-size:18px; line-height:1.6; white-space:pre-wrap;">${n.body}</div>
         `;
         document.getElementById('modal').style.display = 'block';
+        window.scrollTo(0,0);
     }
 
     async function uploadImg(el) {
@@ -214,7 +228,6 @@
 
     document.addEventListener('keydown', e => { if(e.key === 'a') document.getElementById('adminBox').style.display = 'block'; });
     
-    // শুরুতেই মেনু সেটআপ এবং নিউজ লোড করা
     setupMenus();
     loadNews();
 </script>
