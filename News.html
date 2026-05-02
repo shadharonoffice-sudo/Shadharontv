@@ -34,7 +34,7 @@
             background: #fff;
             padding: 15px;
             border-radius: 12px;
-            max-width: 90%;
+            max-width: 95%;
             text-align: center;
             box-shadow: 0 0 20px rgba(255,255,255,0.2);
         }
@@ -99,12 +99,22 @@
 <div id="adOverlay">
     <div class="ad-box">
         <p style="font-size: 12px; color: #777; margin-bottom: 10px;">বিজ্ঞাপন</p>
-        <!-- ProfitableCPM Ad Container -->
-        <div id="container-f7526daa7500acad00673a6064912bb9"></div>
-        <script async="async" data-cfasync="false" src="https://pl29248169.profitablecpmratenetwork.com/f7526daa7500acad00673a6064912bb9/invoke.js"></script>
+        
+        <!-- ল্যাপটপ/ডেস্কটপ অ্যাড (নিচে কোড পরিবর্তন করুন) -->
+        <div id="desktopAdContent">
+            <div id="container-f7526daa7500acad00673a6064912bb9"></div>
+            <script async="async" data-cfasync="false" src="https://pl29248169.profitablecpmratenetwork.com/f7526daa7500acad00673a6064912bb9/invoke.js"></script>
+        </div>
+
+        <!-- মোবাইল অ্যাড (নিচে কোড পরিবর্তন করুন) -->
+        <div id="mobileAdContent" style="display:none;">
+            <!-- মোবাইলের জন্য আপনার আলাদা অ্যাড কোড এখানে দিতে পারেন -->
+            <!-- আপাতত আপনার বর্তমান কোডটিই রাখা হয়েছে -->
+            <div id="container-f7526daa7500acad00673a6064912bb9"></div>
+        </div>
     </div>
     <div id="timerDisplay" class="timer-text">অপেক্ষা করুন: <span id="seconds">4</span> সেকেন্ড</div>
-    <button id="skipBtn" class="skip-btn" onclick="closeAd()">বিজ্ঞাপন বন্ধ করে খবর পড়ুন ✕</button>
+    <button id="skipBtn" class="skip-btn" onclick="closeAd()">বিজ্ঞাপন বন্ধ করে খবর পড়ুন ✕</button>
 </div>
 
 <header>
@@ -127,7 +137,6 @@
     <aside class="ad-sidebar">
         <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 12px; position: sticky; top: 130px; text-align: center;">
             <p style="font-size: 12px; color: #bbb;">বিজ্ঞাপন</p>
-            <!-- Sidebar Ad Instance -->
             <script type="text/javascript">
                 atOptions = { 'key' : '4ce97525659d866a14506360d9560777', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
             </script>
@@ -206,13 +215,24 @@
         document.getElementById('ticker').innerText = data.slice(-8).reverse().map(n => ` 🔥 ${n.title}`).join('    ');
     }
 
-    // ADS LOGIC WITH 4 SEC TIMER
+    // ADS LOGIC WITH DEVICE DETECTION & 4 SEC TIMER
     function openWithAd(idx) {
         pendingNewsIdx = idx;
         const overlay = document.getElementById('adOverlay');
         const skipBtn = document.getElementById('skipBtn');
         const timerDisplay = document.getElementById('timerDisplay');
         const secondsSpan = document.getElementById('seconds');
+        
+        // চেক করুন ইউজার মোবাইল নাকি ল্যাপটপ
+        const isMobile = window.innerWidth <= 768;
+        
+        if(isMobile) {
+            document.getElementById('mobileAdContent').style.display = 'block';
+            document.getElementById('desktopAdContent').style.display = 'none';
+        } else {
+            document.getElementById('mobileAdContent').style.display = 'none';
+            document.getElementById('desktopAdContent').style.display = 'block';
+        }
         
         overlay.style.display = 'flex';
         skipBtn.style.display = 'none';
@@ -256,7 +276,6 @@
         document.title = "SHADHARON TV | সাধারণ মানুষের কথা বলে";
     }
 
-    // PhotoCard & GitHub Publish logic (remains the same)
     function generatePhotoCard(news) {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
