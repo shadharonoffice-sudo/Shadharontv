@@ -16,7 +16,6 @@
         .logo-area img { height: 40px; border-radius: 4px; }
         .logo-text { font-size: 20px; font-weight: 800; color: var(--primary-color); }
 
-        /* মারকিউরি স্টাইল */
         .breaking-news { background: #fff; border-top: 1px solid #eee; display: flex; align-items: center; overflow: hidden; height: 35px; }
         .breaking-label { background: var(--primary-color); color: #fff; padding: 0 10px; font-size: 14px; font-weight: bold; height: 100%; display: flex; align-items: center; white-space: nowrap; z-index: 2; }
         marquee { font-size: 14px; color: #333; padding-top: 5px; cursor: pointer; }
@@ -29,13 +28,18 @@
         .menu-btn { background: #f0f2f5; padding: 5px 12px; border-radius: 4px; text-decoration: none; color: #333; font-size: 14px; font-weight: 600; transition: 0.2s; white-space: nowrap; }
         .menu-btn:hover { background: var(--primary-color); color: #fff; }
 
+        /* বিজ্ঞাপন সেকশন স্টাইল */
+        .ad-slot { text-align: center; margin: 10px auto; max-width: 100%; overflow: hidden; }
+
         @media (max-width: 768px) {
             .desktop-menu { display: none; }
             .mobile-menu { display: flex; }
         }
 
-        .main-layout { display: flex; max-width: 1200px; margin: 0 auto; gap: 15px; padding: 10px; }
-        .news-section { flex: 3; }
+        .main-layout { display: flex; max-width: 1200px; margin: 0 auto; gap: 15px; padding: 10px; flex-wrap: wrap; }
+        .news-section { flex: 3; min-width: 300px; }
+        .ad-sidebar { flex: 1; min-width: 160px; text-align: center; }
+        
         .section-header { border-left: 4px solid var(--primary-color); padding-left: 10px; margin: 20px 0 10px; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
         
@@ -64,10 +68,23 @@
         <div id="dateTime" style="font-size: 11px; color: #888;"></div>
     </div>
 
-    <!-- মারকিউরি সেকশন -->
     <div class="breaking-news">
         <div class="breaking-label">সংবাদ শিরোনাম:</div>
         <marquee id="ticker" onmouseover="this.stop()" onmouseout="this.start()"></marquee>
+    </div>
+
+    <!-- ব্যানার বিজ্ঞাপন (468x60) -->
+    <div class="ad-slot">
+        <script>
+            atOptions = {
+                'key' : '155622a08cbe1798d2c5ba3bb143de49',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/155622a08cbe1798d2c5ba3bb143de49/invoke.js"></script>
     </div>
 
     <div class="nav-container">
@@ -79,6 +96,25 @@
 <div class="main-layout">
     <div class="news-section" id="newsContainer">
         <p style="text-align:center; padding: 50px;">লোড হচ্ছে...</p>
+    </div>
+
+    <!-- সাইডবার বিজ্ঞাপন এবং কন্টেইনার (160x600) -->
+    <div class="ad-sidebar">
+        <script async="async" data-cfasync="false" src="https://pl29248169.profitablecpmratenetwork.com/f7526daa7500acad00673a6064912bb9/invoke.js"></script>
+        <div id="container-f7526daa7500acad00673a6064912bb9"></div>
+        
+        <div style="margin-top: 20px;">
+            <script>
+                atOptions = {
+                    'key' : '3c5f9f51b2c86015b0e375d754c8ed06',
+                    'format' : 'iframe',
+                    'height' : 600,
+                    'width' : 160,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
+        </div>
     </div>
 </div>
 
@@ -134,13 +170,12 @@
             const data = await res.json();
             window.allNews = data;
             renderNews(data);
-            updateTicker(data); // মারকিউরি আপডেট করা
+            updateTicker(data);
         } catch (e) { console.error("Load Error"); }
     }
 
     function updateTicker(data) {
         const ticker = document.getElementById('ticker');
-        // সর্বশেষ ১০টি নিউজ শিরোনাম মারকিউরিতে দেখানো হবে
         const headlines = data.slice(-10).reverse().map(n => ` • ${n.title}`).join(' ');
         ticker.innerText = headlines;
     }
