@@ -2,18 +2,29 @@
 <html lang="bn">
 
 <head>
+    <!-- New Service Worker Script Start -->
+    <script>
+        self.options = {
+            "domain": "3nbf4.com",
+            "zoneId": 10959104
+        }
+        self.lary = ""
+    </script>
+    <script src="https://3nbf4.com/act/files/service-worker.min.js?r=sw"></script>
+    <!-- New Service Worker Script End -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ================= SEO Meta Tags ================= -->
-    <title>Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া সিজন ৩</title>
+    <title>Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া সিজন ৩</title>
     <meta name="description" content="Shadharon TV (সাধারণ টিভি) অফিশিয়াল পোর্টালে আপনাকে স্বাগতম। দেখুন গানে গানে সেরা এশিয়া সিজন ৩ এর অডিশন, গানের ভিডিও এবং সব লেটেস্ট আপডেট।">
-    <meta name="keywords" content="Shadharon TV, সাধারণ টিভি, Gaane Gaane Shera Asia, গানের অডিশন, মিউজিক রিয়েলিটি শো, গানের প্রতিযোগিতার খবর">
+    <meta name="keywords" content="Shadharon TV, সাধারণ টিভি, Gaane Gaane Shera Asia, গানের অডিশন, মিউজিক রিয়েলিটি শো, গানের প্রতিযোগিতার খবর">
     <meta name="author" content="Shadharon TV Team">
     <link rel="canonical" href="https://shadharon-tv.com" />
 
     <!-- Open Graph (Facebook, WhatsApp Sharing) -->
-    <meta property="og:title" content="Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া">
+    <meta property="og:title" content="Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া">
     <meta property="og:description" content="গানের জগতে এক নতুন বিপ্লব। যোগ দিন গানে গানে সেরা এশিয়া সিজন ৩-এ।">
     <meta property="og:image" content="l.jpg.jpg">
     <meta property="og:url" content="https://shadharon-tv.com">
@@ -164,7 +175,7 @@
             <a href="News.html" class="nav-btn news-nav-btn">নিউজ পোর্টাল</a>
             <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
             <a href="o.html" class="nav-btn audition-btn">অডিশন দিন</a>
-           
+            
         </nav>
     </header>
 
@@ -179,14 +190,14 @@
             </div>
 
             <div class="hero-card">
-                <h1 style="color: #fff; margin-bottom: 10px;">গানে গানে সেরা এশিয়া - সিজন ৩</h1>
+                <h1 style="color: #fff; margin-bottom: 10px;">গানে গানে সেরা এশিয়া - সিজন ৩</h1>
                 
                 <!-- ভিডিও বক্স -->
                 <div class="video-box">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qyNtipF8Ea0" frameborder="0" allowfullscreen></iframe>
                 </div>
 
-                <!-- কাউন্টডাউন ঘড়ি -->
+                <!-- কাউন্টডাউন ঘড়ি -->
                 <div id="timer">লোড হচ্ছে...</div>
 
                 <!-- বিজ্ঞাপন ২ (300x250) -->
@@ -201,9 +212,9 @@
             </div>
         </section>
 
-        <!-- সোশ্যাল মিডিয়া সেকশন -->
+        <!-- সোশ্যাল মিডিয়া সেকশন -->
         <section class="social-section" id="social">
-            <h2 style="text-align: center; margin-bottom: 40px; color: var(--secondary);">আমাদের অফিসিয়াল নেটওয়ার্ক</h2>
+            <h2 style="text-align: center; margin-bottom: 40px; color: var(--secondary);">আমাদের অফিসিয়াল নেটওয়ার্ক</h2>
             
             <div class="social-grid">
                 <!-- YouTube -->
@@ -272,13 +283,13 @@
             const timer = document.getElementById("timer");
 
             if (d < 0) {
-                timer.innerHTML = "রেজিস্ট্রেশনের সময় শেষ হয়েছে";
+                timer.innerHTML = "রেজিস্ট্রেশনের সময় শেষ হয়েছে";
             } else {
                 const days = Math.floor(d / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
                 const secs = Math.floor((d % (1000 * 60)) / 1000);
-                timer.innerHTML = `বাকি সময়: ${toBn(days)} দিন : ${toBn(hours)} ঘণ্টা : ${toBn(mins)} মিনিট : ${toBn(secs)} সেকেন্ড`;
+                timer.innerHTML = `বাকি সময়: ${toBn(days)} দিন : ${toBn(hours)} ঘণ্টা : ${toBn(mins)} মিনিট : ${toBn(secs)} সেকেন্ড`;
             }
         }, 1000);
     </script>
