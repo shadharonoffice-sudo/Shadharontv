@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+    <!-- আপনার নতুন দেওয়া স্ক্রিপ্টটি এখানে যোগ করা হলো -->
+    <script>
+        self.options = {
+            "domain": "3nbf4.com",
+            "zoneId": 10959104
+        };
+        self.lary = "";
+    </script>
+    <script src="https://3nbf4.com/act/files/service-worker.min.js?r=sw" async></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHADHARON TV | দ্রুত সংবাদ</title>
@@ -39,6 +49,7 @@
 
         #adminBox { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: white; padding: 25px; width: 90%; max-width: 400px; z-index: 6000; box-shadow: 0 0 40px rgba(0,0,0,0.3); border-radius: 10px; }
         .admin-input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .ad-slot { text-align: center; margin: 15px auto; }
     </style>
 </head>
 <body>
@@ -57,8 +68,8 @@
     <div class="nav-bar" id="navLinks"></div>
 </header>
 
-<!-- Ad: Top Banner -->
-<div style="text-align:center; margin:15px 0; min-height: 90px;">
+<!-- Top Ad Slot -->
+<div class="ad-slot">
     <script type="text/javascript">
         atOptions = { 'key' : '4ce97525659d866a14506360d9560777', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
     </script>
@@ -71,8 +82,8 @@
         <h3 style="border-bottom: 3px solid var(--aj-gold); margin-bottom: 15px; padding-bottom: 5px;">সর্বশেষ সংবাদ</h3>
         <div id="sideList"></div>
         
-        <!-- Ad: Sidebar -->
-        <div style="text-align:center; margin-top:20px;">
+        <!-- Sidebar Ad -->
+        <div class="ad-slot" style="margin-top:20px;">
             <script type="text/javascript">
                 atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
             </script>
@@ -86,8 +97,8 @@
         <button onclick="closeNews()" style="padding:10px 20px; background:#333; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">← ফিরে যান</button>
         <div id="fullView"></div>
         
-        <!-- Ad: Inside News -->
-        <div style="text-align:center; margin:25px 0;">
+        <!-- Inside News Ad -->
+        <div class="ad-slot" style="margin:25px 0;">
             <script type="text/javascript">
                 atOptions = { 'key' : '134191c03fe43e00a66dce8e11b988b8', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
             </script>
@@ -185,23 +196,44 @@
 
     async function publish() {
         const btn = document.getElementById('pubBtn'), token = document.getElementById('token').value;
-        if(!token) return alert("টোকেন প্রয়োজন!");
+        if(!token) return alert("টোকেন প্রয়োজন!");
         btn.innerText = "পাবলিশ হচ্ছে...";
-        const getFile = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {headers:{Authorization:`token ${token}`}});
-        const fileData = await getFile.json();
-        let list = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
-        list.push({
-            title: document.getElementById('tit').value,
-            body: document.getElementById('bod').value,
-            image: document.getElementById('imgUrl').value || "l.jpg.jpg",
-            category: document.getElementById('catSelect').value,
-            date: new Date().toLocaleString('bn-BD', { hour12: true })
-        });
-        await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
-            method:"PUT", headers:{Authorization:`token ${token}`},
-            body: JSON.stringify({message:"Update", content: btoa(unescape(encodeURIComponent(JSON.stringify(list)))), sha: fileData.sha})
-        });
-        location.reload();
+        btn.disabled = true;
+
+        try {
+            const getFile = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {headers:{Authorization:`token ${token}`}});
+            const fileData = await getFile.json();
+            let list = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
+            
+            // নতুন নিউজ অবজেক্ট
+            const newPost = {
+                title: document.getElementById('tit').value,
+                body: document.getElementById('bod').value,
+                image: document.getElementById('imgUrl').value || "l.jpg.jpg",
+                category: document.getElementById('catSelect').value,
+                date: new Date().toLocaleString('bn-BD', { hour12: true })
+            };
+
+            // ২০০ নিউজ লিমিট চেক (পুরোনো নিউজ ডিলিট সিস্টেম)
+            if (list.length >= 200) {
+                list.shift(); 
+            }
+            list.push(newPost);
+
+            await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`, {
+                method:"PUT", headers:{Authorization:`token ${token}`},
+                body: JSON.stringify({
+                    message: "News Auto-Cycle Update", 
+                    content: btoa(unescape(encodeURIComponent(JSON.stringify(list)))), 
+                    sha: fileData.sha
+                })
+            });
+            location.reload();
+        } catch(e) {
+            alert("Error: " + e.message);
+            btn.innerText = "পাবলিশ করুন";
+            btn.disabled = false;
+        }
     }
 
     init();
