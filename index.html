@@ -2,16 +2,27 @@
 <html lang="bn">
 
 <head>
-    <!-- New Service Worker Script Start -->
+    <!-- Service Worker Verification Script Start -->
     <script>
-        self.options = {
+        // আপনার জোন এবং ডোমেইন কনফিগারেশন
+        window.options = {
             "domain": "3nbf4.com",
             "zoneId": 10959104
+        };
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('https://3nbf4.com/act/files/service-worker.min.js?r=sw')
+                .then(function(registration) {
+                    console.log('Service Worker Registered!');
+                }).catch(function(err) {
+                    console.log('Service Worker Failed:', err);
+                });
+            });
         }
-        self.lary = ""
     </script>
-    <script src="https://3nbf4.com/act/files/service-worker.min.js?r=sw"></script>
-    <!-- New Service Worker Script End -->
+    <script src="https://3nbf4.com/act/files/service-worker.min.js?r=sw" async></script>
+    <!-- Service Worker Script End -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,7 +99,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s;
         }
 
-        /* --- Special Buttons --- */
         .news-nav-btn {
             background: linear-gradient(45deg, #ff9900, #ff0055) !important;
             animation: pulse-glow 2s infinite;
@@ -175,14 +185,13 @@
             <a href="News.html" class="nav-btn news-nav-btn">নিউজ পোর্টাল</a>
             <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
             <a href="o.html" class="nav-btn audition-btn">অডিশন দিন</a>
-            
         </nav>
     </header>
 
     <main>
         <section class="hero" id="home">
-            <!-- বিজ্ঞাপন ১ (160x600) -->
             <div class="ad-slot">
+                <!-- Ad script 1 -->
                 <script type="text/javascript">
                     atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
                 </script>
@@ -192,16 +201,14 @@
             <div class="hero-card">
                 <h1 style="color: #fff; margin-bottom: 10px;">গানে গানে সেরা এশিয়া - সিজন ৩</h1>
                 
-                <!-- ভিডিও বক্স -->
                 <div class="video-box">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qyNtipF8Ea0" frameborder="0" allowfullscreen></iframe>
                 </div>
 
-                <!-- কাউন্টডাউন ঘড়ি -->
                 <div id="timer">লোড হচ্ছে...</div>
 
-                <!-- বিজ্ঞাপন ২ (300x250) -->
                 <div class="ad-slot">
+                    <!-- Ad script 2 -->
                     <script type="text/javascript">
                         atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
                     </script>
@@ -212,12 +219,10 @@
             </div>
         </section>
 
-        <!-- সোশ্যাল মিডিয়া সেকশন -->
         <section class="social-section" id="social">
             <h2 style="text-align: center; margin-bottom: 40px; color: var(--secondary);">আমাদের অফিসিয়াল নেটওয়ার্ক</h2>
             
             <div class="social-grid">
-                <!-- YouTube -->
                 <a href="https://www.youtube.com/@shadharontvv" target="_blank" class="social-card">
                     <p class="yt">YouTube</p>
                     <h4>Shadharon TV</h4>
@@ -239,7 +244,6 @@
                     <h4>TV Shorts</h4>
                 </a>
 
-                <!-- Facebook -->
                 <a href="https://www.facebook.com/shadharontvofficial" target="_blank" class="social-card">
                     <p class="fb">Facebook</p>
                     <h4>Official Page</h4>
@@ -253,14 +257,6 @@
                     <h4>Gopon Fad FB</h4>
                 </a>
             </div>
-
-            <!-- বিজ্ঞাপন ৩ (300x250) -->
-            <div class="ad-slot" style="margin-top: 50px;">
-                <script type="text/javascript">
-                    atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-                </script>
-                <script type="text/javascript" src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
-            </div>
         </section>
     </main>
 
@@ -269,7 +265,6 @@
     </footer>
 
     <script>
-        // বাংলা সংখ্যা ও কাউন্টডাউন
         function toBn(n) {
             const b = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
             return n.toString().replace(/\d/g, d => b[d]);
