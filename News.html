@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <!-- আপনার নতুন দেওয়া স্ক্রিপ্টটি এখানে যোগ করা হলো -->
+    <!-- Monetag Verification Tag -->
+    <meta name="monetag" content="b5bc2bb1d4b7aa97d149bf41b3f6e675">
+
     <script>
         self.options = {
             "domain": "3nbf4.com",
@@ -63,10 +65,12 @@
             <img src="l.jpg.jpg" alt="Logo"> 
             <span class="site-title">SHADHARON TV</span>
         </div>
-        <div style="color:red; font-weight:bold; border:2px solid red; padding:2px 8px; border-radius:5px; font-size:13px;">LIVE</div>
+        <div style="color:red; font-weight:bold; border:2px solid red; padding:2px 8px; border-radius:5px; font-size:13px; animation: blink 1s infinite;">LIVE</div>
     </div>
     <div class="nav-bar" id="navLinks"></div>
 </header>
+
+<style> @keyframes blink { 50% { opacity: 0; } } </style>
 
 <!-- Top Ad Slot -->
 <div class="ad-slot">
@@ -116,6 +120,7 @@
     <input type="file" onchange="uploadImg(this)">
     <input type="hidden" id="imgUrl">
     <button onclick="publish()" id="pubBtn" style="width:100%; padding:14px; background:var(--aj-blue); color:white; border:none; border-radius:5px; cursor:pointer;">পাবলিশ করুন</button>
+    <button onclick="document.getElementById('adminBox').style.display='none'" style="width:100%; margin-top:5px; border:none; background:none; color:red; cursor:pointer;">বন্ধ করুন</button>
 </div>
 
 <script>
@@ -205,7 +210,6 @@
             const fileData = await getFile.json();
             let list = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
             
-            // নতুন নিউজ অবজেক্ট
             const newPost = {
                 title: document.getElementById('tit').value,
                 body: document.getElementById('bod').value,
@@ -214,7 +218,6 @@
                 date: new Date().toLocaleString('bn-BD', { hour12: true })
             };
 
-            // ২০০ নিউজ লিমিট চেক (পুরোনো নিউজ ডিলিট সিস্টেম)
             if (list.length >= 200) {
                 list.shift(); 
             }
