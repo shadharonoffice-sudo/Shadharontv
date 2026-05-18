@@ -2,9 +2,13 @@
 <html lang="bn">
 
 <head>
+    <!-- Google AdSense Script Start -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2185209766718207"
+     crossorigin="anonymous"></script>
+    <!-- Google AdSense Script End -->
+
     <!-- Service Worker Verification Script Start -->
     <script>
-        // আপনার জোন এবং ডোমেইন কনফিগারেশন
         window.options = {
             "domain": "3nbf4.com",
             "zoneId": 10959104
@@ -34,13 +38,6 @@
     <meta name="author" content="Shadharon TV Team">
     <link rel="canonical" href="https://shadharon-tv.com" />
 
-    <!-- Open Graph (Facebook, WhatsApp Sharing) -->
-    <meta property="og:title" content="Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া">
-    <meta property="og:description" content="গানের জগতে এক নতুন বিপ্লব। যোগ দিন গানে গানে সেরা এশিয়া সিজন ৩-এ।">
-    <meta property="og:image" content="l.jpg.jpg">
-    <meta property="og:url" content="https://shadharon-tv.com">
-    <meta property="og:type" content="website">
-
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
@@ -51,242 +48,658 @@
         "logo": "https://shadharon-tv.com/l.jpg.jpg",
         "sameAs": [
             "https://www.facebook.com/shadharontvofficial",
-            "https://www.facebook.com/shadharontvstudio",
-            "https://www.youtube.com/@shadharontvv",
-            "https://www.youtube.com/@shadharontvstudio"
+            "https://www.youtube.com/@shadharontvv"
         ]
     }
     </script>
 
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Poppins:wght@600;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700;900&family=Poppins:wght@600;900&display=swap');
 
         :root {
             --primary: #ff0055;
-            --secondary: #00ffcc;
-            --bg: #0f172a;
-            --glass: rgba(255, 255, 255, 0.05);
+            --secondary: #00e5ff;
+            --accent: #ffcc00;
+            --bg-color: #03070d;
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; cursor: none; }
 
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background: #0f172a;
+            background: var(--bg-color);
             color: white;
             line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* --- Custom Neon Scrollbar --- */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #010306; border-left: 1px solid rgba(255,255,255,0.05); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, var(--primary), var(--secondary)); 
+            border-radius: 10px; border: 3px solid #010306;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, var(--secondary), var(--accent)); }
+
+        /* --- Custom Neon Cursor --- */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 99999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--secondary); box-shadow: 0 0 15px var(--secondary); transition: transform 0.1s; }
+        .cursor-outline {
+            width: 45px; height: 45px; border: 2px solid var(--primary);
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s; box-shadow: 0 0 20px rgba(255,0,85,0.5);
+        }
+
+        /* --- Dynamic Animated Background & Musical Notes --- */
+        .bg-particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at center, #0a1122, #03070d);
+        }
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.3;
+            animation: floatBg 20s infinite alternate ease-in-out;
+        }
+        .orb.magenta { width: 500px; height: 500px; top: 0%; left: -10%; background: var(--primary); }
+        .orb.cyan { width: 600px; height: 600px; bottom: -10%; right: -10%; background: var(--secondary); animation-delay: -5s; }
+        
+        .music-note {
+            position: absolute; color: rgba(255, 255, 255, 0.05); font-size: 40px;
+            animation: floatNotes 15s linear infinite; bottom: -50px;
+        }
+        @keyframes floatNotes {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg) scale(1.5); opacity: 0; }
+        }
+        @keyframes floatBg { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(150px) scale(1.2); } }
+
+        /* --- Live News Ticker --- */
+        .news-ticker {
+            position: fixed; top: 0; width: 100%; background: linear-gradient(90deg, #ff0055, #9900ff);
+            color: white; padding: 6px 0; font-size: 14px; font-weight: bold; z-index: 10001;
+            overflow: hidden; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            transition: 0.4s;
+        }
+        .ticker-content { display: flex; white-space: nowrap; animation: tickerScroll 25s linear infinite; }
+        .ticker-content span { padding-right: 50px; letter-spacing: 1px; }
+        @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- Header & Navigation --- */
         header {
-            position: fixed;
-            top: 0; width: 100%; z-index: 10000;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed; top: 33px; width: 100%; z-index: 10000;
+            background: rgba(3, 7, 13, 0.5); backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border); transition: all 0.4s ease;
+        }
+        header.scrolled { 
+            top: 0; background: rgba(2, 5, 10, 0.95); 
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2); 
+            border-bottom: 1px solid rgba(0, 229, 255, 0.4);
         }
 
-        .mid-branding { padding: 15px; display: flex; justify-content: center; align-items: center; }
-        .logo-frame { width: 55px; height: 55px; background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 50%; padding: 3px; }
-        .logo-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #000; }
-        .brand-name { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 900; margin-left: 12px; }
-        .brand-name span { color: var(--secondary); text-shadow: 0 0 10px var(--secondary); }
+        .mid-branding { padding: 15px; display: flex; justify-content: center; align-items: center; position: relative; }
+        
+        .equalizer { display: flex; gap: 4px; margin-right: 20px; align-items: flex-end; height: 30px; }
+        .equalizer span { display: block; width: 6px; background: var(--secondary); border-radius: 4px; animation: eqPlay 1.2s infinite ease-in-out; box-shadow: 0 0 10px var(--secondary);}
+        .equalizer span:nth-child(1) { height: 18px; animation-delay: 0.1s; background: var(--primary); box-shadow: 0 0 10px var(--primary);}
+        .equalizer span:nth-child(2) { height: 30px; animation-delay: 0.3s; }
+        .equalizer span:nth-child(3) { height: 12px; animation-delay: 0.5s; background: var(--accent); box-shadow: 0 0 10px var(--accent);}
+        .equalizer span:nth-child(4) { height: 24px; animation-delay: 0.2s; }
+        @keyframes eqPlay { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
 
-        .nav-bar { display: flex; justify-content: center; gap: 10px; padding: 10px; flex-wrap: wrap; background: rgba(0,0,0,0.2); }
+        .logo-frame { 
+            width: 75px; height: 75px; border-radius: 50%; padding: 5px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 300% 300%; animation: gradientMove 3s ease infinite; box-shadow: 0 0 30px rgba(255, 0, 85, 0.7);
+        }
+        @keyframes gradientMove { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+        .logo-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #000; border: 2px solid #000; }
+        
+        .brand-name { font-family: 'Poppins', sans-serif; font-size: 38px; font-weight: 900; margin-left: 15px; letter-spacing: 2px; text-transform: uppercase;}
+        .brand-name span { color: var(--secondary); text-shadow: 0 0 25px var(--secondary); }
+
+        .nav-bar { display: flex; justify-content: center; gap: 15px; padding: 12px; flex-wrap: wrap; background: rgba(0,0,0,0.6); border-top: 1px solid rgba(255,255,255,0.05); }
         .nav-btn {
-            text-decoration: none; color: #fff; font-size: 13px; font-weight: 500;
-            padding: 8px 18px; border-radius: 50px; background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s;
+            text-decoration: none; color: #cbd5e1; font-size: 15px; font-weight: 700;
+            padding: 10px 25px; border-radius: 50px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s; position: relative; overflow: hidden;
+            display: flex; align-items: center; gap: 8px; cursor: none !important;
+        }
+        .nav-btn:hover { 
+            background: rgba(0, 229, 255, 0.15); color: #fff; 
+            border-color: var(--secondary); box-shadow: 0 5px 25px rgba(0,229,255,0.5); transform: translateY(-4px); 
         }
 
-        .news-nav-btn {
-            background: linear-gradient(45deg, #ff9900, #ff0055) !important;
-            animation: pulse-glow 2s infinite;
+        .news-nav-btn { background: linear-gradient(45deg, #ff6a00, #ee0979) !important; color: white !important; font-weight: 900; border: none; }
+        .audition-btn { 
+            background: linear-gradient(45deg, #ff0055, #7000ff) !important; color: white !important; border: none; 
+            font-weight: 900; box-shadow: 0 0 25px rgba(255,0,85,0.6); animation: pulse-btn 2s infinite;
         }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 153, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
-        }
+        @keyframes pulse-btn { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.8); } 70% { box-shadow: 0 0 0 25px rgba(255, 0, 85, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); } }
 
-        .audition-btn {
-            background: linear-gradient(45deg, var(--primary), #7000ff) !important;
-            font-weight: 700 !important;
-        }
+        /* Ripple Effect Element */
+        .ripple { position: absolute; border-radius: 50%; transform: scale(0); animation: ripple-anim 0.6s linear; background: rgba(255, 255, 255, 0.4); pointer-events: none; }
+        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
 
         /* --- Hero / Cover Page --- */
         .hero { 
-            min-height: 100vh; 
-            padding: 180px 5% 50px; 
+            min-height: 100vh; padding: 250px 5% 80px; 
             display: flex; flex-direction: column; align-items: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
-                        url('WhatsApp Image 2026-04-25 at 16.27.42.jpeg') no-repeat center center;
-            background-size: cover; background-attachment: fixed;
+            /* Here is your new cover image */
+            background: url('cover.jpg') no-repeat center center;
+            background-size: cover; background-attachment: fixed; position: relative;
+            perspective: 1500px; /* For 3D Tilt */
+        }
+        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, rgba(3,7,13,0.8), rgba(3,7,13,1)); z-index: 0; }
+
+        /* 3D Tilt Wrapper */
+        .hero-card-wrapper {
+            position: relative; max-width: 1050px; width: 100%; z-index: 2;
+            border-radius: 40px; padding: 5px; overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.9);
+            transform-style: preserve-3d; transition: transform 0.1s ease-out; /* JS handles tilt */
+        }
+        .hero-card-wrapper::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--secondary), var(--primary), var(--accent));
+            animation: rotateBorder 4s linear infinite; z-index: -1;
         }
 
         .hero-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(15px);
-            padding: 35px; border-radius: 40px;
-            border: 1px solid rgba(0, 255, 204, 0.2);
-            max-width: 850px; width: 100%; text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            background: rgba(10, 15, 30, 0.75); backdrop-filter: blur(40px);
+            padding: 60px 40px; border-radius: 35px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.2); transform: translateZ(30px); /* 3D pop */
         }
 
+        .hero-title { 
+            font-size: 55px; font-weight: 900; margin-bottom: 15px;
+            background: linear-gradient(to right, #ffffff, var(--secondary), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 50px rgba(255,0,85,0.5);
+            position: relative;
+        }
+        
+        .hero-subtitle { font-size: 24px; color: #cbd5e1; margin-bottom: 40px; font-weight: 700; letter-spacing: 2px; min-height: 40px;}
+        .cursor-blink { display: inline-block; width: 4px; height: 26px; background-color: var(--secondary); margin-left: 5px; animation: blink 0.8s infinite; vertical-align: middle; }
+        
+        /* Video Box with CRT Scanline Effect */
         .video-box {
-            width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden;
-            border: 3px solid var(--secondary); box-shadow: 0 0 25px rgba(0, 255, 204, 0.3);
-            margin: 20px 0;
+            width: 100%; aspect-ratio: 16/9; background: #000 url('l.jpg.jpg') center/cover; 
+            border-radius: 25px; overflow: hidden; position: relative;
+            border: 4px solid rgba(255, 255, 255, 0.15); 
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(0, 229, 255, 0.3);
+            margin: 0 auto 40px; transition: 0.5s; cursor: pointer; transform: translateZ(50px);
         }
-
-        #timer {
-            font-size: 22px; color: var(--secondary); font-weight: bold;
-            padding: 15px; background: rgba(0, 0, 0, 0.4);
-            border: 1px dashed var(--secondary); border-radius: 15px;
-            margin-bottom: 20px;
+        /* TV Scanline Overlay */
+        .video-box::after {
+            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 3; background-size: 100% 4px, 6px 100%; pointer-events: none;
         }
+        .video-box:hover { border-color: var(--secondary); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 70px rgba(0, 229, 255, 0.6); }
+        .video-box iframe { width: 100%; height: 100%; position: relative; z-index: 2; }
 
-        /* --- Social Grid --- */
-        .social-section { padding: 60px 10%; background: #0b1120; }
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        /* --- Premium Timer --- */
+        .timer-container { display: flex; justify-content: center; gap: 25px; margin-bottom: 50px; flex-wrap: wrap; transform: translateZ(40px); }
+        .time-box {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.9));
+            border: 1px solid rgba(255,255,255,0.1); padding: 20px 30px; border-radius: 25px; 
+            min-width: 130px; position: relative; overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(255,255,255,0.05), 0 20px 40px rgba(0,0,0,0.7); transition: 0.4s;
+        }
+        .time-box:hover { transform: translateY(-10px) scale(1.05); border-color: var(--secondary); box-shadow: 0 20px 50px rgba(0,229,255,0.4); }
+        .time-box span { font-size: 50px; font-weight: 900; color: var(--accent); display: block; text-shadow: 0 0 25px rgba(255, 204, 0, 0.9); font-family: 'Poppins', sans-serif;}
+        .time-box p { font-size: 16px; color: #fff; margin-top: 5px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; }
+
+        /* Magnetic Button */
+        .btn-large {
+            display: inline-flex; align-items: center; gap: 12px; padding: 22px 60px; font-size: 26px; 
+            border-radius: 50px; background: linear-gradient(90deg, #ff0055, #9900ff, #ff0055); 
+            background-size: 200% auto; color: #fff; text-decoration: none; font-weight: 900;
+            box-shadow: 0 20px 50px rgba(255, 0, 85, 0.6); transition: background-position 0.5s, box-shadow 0.5s; 
+            position: relative; overflow: hidden; transform: translateZ(60px);
+        }
+        .btn-large:hover { background-position: right center; box-shadow: 0 25px 60px rgba(255, 0, 85, 1); }
+
+        /* --- Stats Animated Counter Section --- */
+        .stats-section { padding: 80px 5%; background: rgba(0,0,0,0.6); position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: center; gap: 70px; flex-wrap: wrap;}
+        .stat-box { text-align: center; padding: 20px; transition: 0.3s; }
+        .stat-box:hover { transform: translateY(-10px) scale(1.1); }
+        .stat-box i { font-size: 50px; color: var(--secondary); margin-bottom: 20px; filter: drop-shadow(0 0 15px var(--secondary)); }
+        .stat-number { font-size: 55px; font-weight: 900; font-family: 'Poppins'; color: #fff; text-shadow: 0 0 25px rgba(255,255,255,0.6); }
+        .stat-text { font-size: 18px; color: #94a3b8; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;}
+
+        /* --- Social Grid with Spotlight Hover --- */
+        .social-section { padding: 120px 10%; background: #010306; position: relative; z-index: 2; }
+        .section-title { text-align: center; margin-bottom: 70px; font-size: 45px; color: #fff; font-weight: 900; text-transform: uppercase; letter-spacing: 3px;}
+        .section-title span { background: linear-gradient(45deg, var(--secondary), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
+        
         .social-card {
-            background: var(--glass); padding: 25px; border-radius: 20px;
+            background: rgba(255,255,255,0.02); padding: 45px 20px; border-radius: 30px; 
             text-decoration: none; color: white; text-align: center;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.05); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden; backdrop-filter: blur(15px);
         }
-        .social-card:hover { transform: translateY(-5px); border-color: var(--secondary); background: rgba(255,255,255,0.08); }
-        .yt { color: #ff0000; font-weight: bold; font-size: 13px; text-transform: uppercase; }
-        .fb { color: #1877f2; font-weight: bold; font-size: 13px; text-transform: uppercase; }
+        .social-card::before {
+            content: ''; position: absolute; top: var(--y); left: var(--x); transform: translate(-50%, -50%); width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.2) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
+        }
+        .social-card:hover::before { opacity: 1; }
+        .social-card:hover { transform: translateY(-20px); border-color: rgba(0,229,255,0.6); box-shadow: 0 25px 50px rgba(0,0,0,0.9); }
 
-        footer { padding: 40px; text-align: center; background: #020617; border-top: 1px solid #1e293b; color: #64748b; }
+        .social-card i { font-size: 60px; margin-bottom: 25px; transition: 0.5s; position: relative; z-index: 2;}
+        .social-card.yt-card i { color: #ff0000; filter: drop-shadow(0 0 25px rgba(255,0,0,0.8)); }
+        .social-card.fb-card i { color: #1877f2; filter: drop-shadow(0 0 25px rgba(24,119,242,0.8)); }
+        
+        .social-card h4 { font-size: 26px; font-weight: 900; margin-top: 10px; position: relative; z-index: 2;}
+        .social-card p { font-size: 16px; color: #94a3b8; margin-top: 5px; position: relative; z-index: 2;}
+        .social-card:hover i { transform: scale(1.3) rotate(15deg); }
 
-        .ad-slot { margin: 25px auto; display: flex; justify-content: center; }
+        /* --- Floating Toast Notification --- */
+        .toast-notification {
+            position: fixed; bottom: 40px; left: -450px; width: 380px;
+            background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(20px);
+            border-left: 6px solid var(--primary); border-radius: 15px; padding: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9); transition: left 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 9999; display: flex; align-items: center; gap: 20px; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .toast-notification.show { left: 40px; }
+        .toast-icon { font-size: 35px; color: var(--accent); animation: shake 1s infinite; }
+        .toast-content h4 { font-size: 20px; font-weight: 900; margin-bottom: 5px; }
+        .toast-content p { font-size: 14px; color: #cbd5e1; }
+        .toast-close { position: absolute; top: 15px; right: 20px; font-size: 20px; color: #64748b; }
+        .toast-close:hover { color: #ff0055; }
+        @keyframes shake { 0%, 100% {transform: rotate(0deg);} 25% {transform: rotate(-20deg);} 75% {transform: rotate(20deg);} }
 
-        @media (max-width: 600px) {
-            .hero { padding-top: 160px; }
-            .brand-name { font-size: 22px; }
-            #timer { font-size: 18px; }
+        /* --- Scroll Reveal Classes --- */
+        .reveal { opacity: 0; transform: translateY(80px) scale(0.9); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+
+        /* --- Ad Slots --- */
+        .ad-slot { margin: 40px auto; display: flex; justify-content: center; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 20px; border: 1px dashed rgba(255,255,255,0.2); box-shadow: inset 0 0 30px rgba(0,0,0,0.8); }
+
+        /* --- Footer --- */
+        footer { padding: 70px 20px; text-align: center; background: #000; border-top: 3px solid rgba(255,0,85,0.4); color: #64748b; position: relative; z-index: 2; }
+        .footer-logo { font-size: 36px; font-family: 'Poppins', sans-serif; font-weight: 900; color: #fff; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        .footer-logo span { color: var(--secondary); }
+        footer p { margin-bottom: 12px; font-size: 17px;}
+        footer a { color: var(--secondary); text-decoration: none; transition: 0.3s; font-weight: 700; }
+        footer a:hover { color: var(--primary); text-shadow: 0 0 15px var(--primary);}
+
+        /* --- Back to Top Button --- */
+        #backToTop {
+            position: fixed; bottom: 40px; right: 40px; width: 65px; height: 65px;
+            background: linear-gradient(45deg, var(--primary), var(--accent)); color: white; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; font-size: 26px; text-decoration: none;
+            box-shadow: 0 15px 35px rgba(255,0,85,0.7); transition: 0.5s; opacity: 0; visibility: hidden; z-index: 999;
+        }
+        #backToTop.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        #backToTop:hover { transform: translateY(-15px) scale(1.15); box-shadow: 0 20px 45px rgba(255,204,0,0.9); }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-outline { display: none; } 
+            body { cursor: auto; }
+            .nav-btn, .btn-large, .social-card, footer a, .toast-close { cursor: pointer !important; }
+            .news-ticker { font-size: 12px; }
+            header { top: 28px; }
+            .hero { padding-top: 220px; perspective: none; }
+            .hero-card-wrapper { transform: none !important; }
+            .hero-title { font-size: 38px; }
+            .hero-card { padding: 40px 20px; transform: none; }
+            .time-box { min-width: 80px; padding: 15px 10px; }
+            .time-box span { font-size: 32px; }
+            .brand-name { font-size: 28px; }
+            .btn-large { font-size: 20px; padding: 18px 35px; transform: none !important; }
+            .stats-section { gap: 40px; }
+            .stat-number { font-size: 40px; }
+            .toast-notification { left: 50%; transform: translateX(-50%); bottom: -200px; width: 95%; }
+            .toast-notification.show { left: 50%; bottom: 20px; }
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <div class="mid-branding">
+    <!-- Custom Neon Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Live News Ticker -->
+    <div class="news-ticker" id="newsTicker">
+        <div class="ticker-content">
+            <span>🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎶</span>
+            <span>🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎶</span>
+        </div>
+    </div>
+
+    <!-- Floating Background Orbs & Music Notes -->
+    <div class="bg-particles" id="particles-container">
+        <div class="orb magenta"></div>
+        <div class="orb cyan"></div>
+        <!-- Music notes injected by JS -->
+    </div>
+
+    <!-- Floating Toast Notification -->
+    <div class="toast-notification" id="toastMsg">
+        <i class="fas fa-bell toast-icon"></i>
+        <div class="toast-content">
+            <h4>মেগা অডিশন চলছে!</h4>
+            <p>আপনার গানের ভিডিও পাঠিয়ে এখনই রেজিস্ট্রেশন সম্পন্ন করুন।</p>
+        </div>
+        <i class="fas fa-times toast-close" onclick="closeToast()"></i>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="mid-branding reveal">
+            <div class="equalizer">
+                <span></span><span></span><span></span><span></span>
+            </div>
             <div class="logo-frame">
-                <img src="l.jpg.jpg" alt="Shadharon TV Logo">
+                <img src="l.jpg.jpg" alt="Shadharon TV Logo" onerror="this.src='https://via.placeholder.com/75/000000/FFFFFF/?text=TV'">
             </div>
             <div class="brand-name">SHADHARON <span>TV</span></div>
         </div>
-        <nav class="nav-bar">
-            <a href="#home" class="nav-btn">হোম</a>
-              <a href="com.html" class="nav-btn">আমাদের সম্পর্কে</a>
-            <a href="News.html" class="nav-btn news-nav-btn">নিউজ পোর্টাল</a>
-            <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
-            <a href="o.html" class="nav-btn audition-btn">অডিশন দিন</a>
+        <nav class="nav-bar reveal">
+            <a href="#home" class="nav-btn ripple-btn"><i class="fas fa-home"></i> হোম</a>
+            <a href="com.html" class="nav-btn ripple-btn"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+            <a href="News.html" class="nav-btn news-nav-btn ripple-btn"><i class="fas fa-newspaper"></i> নিউজ পোর্টাল</a>
+            <a href="#social" class="nav-btn ripple-btn"><i class="fas fa-tv"></i> চ্যানেল সমূহ</a>
+            <a href="o.html" class="nav-btn audition-btn ripple-btn"><i class="fas fa-microphone-alt"></i> অডিশন দিন</a>
         </nav>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="hero" id="home">
-            <div class="ad-slot">
-                <!-- Ad script 1 -->
+            <div class="ad-slot reveal">
                 <script type="text/javascript">
                     atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
                 </script>
                 <script type="text/javascript" src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
             </div>
 
-            <div class="hero-card">
-                <h1 style="color: #fff; margin-bottom: 10px;">গানে গানে সেরা এশিয়া - সিজন ৩</h1>
-                
-                <div class="video-box">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qyNtipF8Ea0" frameborder="0" allowfullscreen></iframe>
+            <!-- 3D Tilt Wrapper -->
+            <div class="hero-card-wrapper reveal" id="tilt-card">
+                <div class="hero-card">
+                    <h1 class="hero-title">গানে গানে সেরা এশিয়া - সিজন ৩</h1>
+                    
+                    <!-- Dynamic Typing Text -->
+                    <p class="hero-subtitle">
+                        <span id="typed-text"></span><span class="cursor-blink"></span>
+                    </p>
+                    
+                    <div class="video-box ripple-btn">
+                        <iframe src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
+                    <!-- Premium Styled Timer -->
+                    <div class="timer-container" id="countdown-wrapper">
+                        <div class="time-box"><span id="days">০০</span><p>দিন</p></div>
+                        <div class="time-box"><span id="hours">০০</span><p>ঘণ্টা</p></div>
+                        <div class="time-box"><span id="mins">০০</span><p>মিনিট</p></div>
+                        <div class="time-box"><span id="secs">০০</span><p>সেকেন্ড</p></div>
+                    </div>
+                    <h3 id="expired-msg" style="display:none; color:var(--primary); margin-bottom:20px; font-size: 32px; font-weight:900;">রেজিস্ট্রেশনের সময় শেষ হয়েছে</h3>
+
+                    <div class="ad-slot">
+                        <script type="text/javascript">
+                            atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+                        </script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
+                    </div>
+
+                    <!-- Magnetic Button -->
+                    <a href="o.html" class="btn-large magnetic-btn ripple-btn" style="margin-top: 20px;">
+                        <i class="fas fa-play-circle"></i> রেজিস্ট্রেশন করতে এখানে ক্লিক করুন
+                    </a>
                 </div>
-
-                <div id="timer">লোড হচ্ছে...</div>
-
-                <div class="ad-slot">
-                    <!-- Ad script 2 -->
-                    <script type="text/javascript">
-                        atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-                    </script>
-                    <script type="text/javascript" src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
-                </div>
-
-                <a href="o.html" class="nav-btn audition-btn" style="display:inline-block; padding: 15px 40px; font-size: 18px;">রেজিস্ট্রেশন করতে এখানে ক্লিক করুন</a>
             </div>
         </section>
 
+        <!-- Animated Stats Counter Section -->
+        <section class="stats-section reveal">
+            <div class="stat-box">
+                <i class="fas fa-users"></i>
+                <div class="stat-number" data-target="25400">০</div>
+                <div class="stat-text">মোট রেজিস্ট্রেশন</div>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-video"></i>
+                <div class="stat-number" data-target="15200">০</div>
+                <div class="stat-text">অডিশন ভিডিও</div>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-globe-asia"></i>
+                <div class="stat-number" data-target="150000">০</div>
+                <div class="stat-text">মোট ভিউ</div>
+            </div>
+        </section>
+
+        <!-- Social Channels Section with Spotlight Hover -->
         <section class="social-section" id="social">
-            <h2 style="text-align: center; margin-bottom: 40px; color: var(--secondary);">আমাদের অফিসিয়াল নেটওয়ার্ক</h2>
+            <h2 class="section-title reveal">আমাদের <span>অফিসিয়াল নেটওয়ার্ক</span></h2>
             
             <div class="social-grid">
-                <a href="https://www.youtube.com/@shadharontvv" target="_blank" class="social-card">
-                    <p class="yt">YouTube</p>
-                    <h4>Shadharon TV</h4>
+                <a href="https://www.youtube.com/@shadharontvv" target="_blank" class="social-card yt-card reveal ripple-btn">
+                    <i class="fab fa-youtube"></i><h4>Shadharon TV</h4><p>Official Main Channel</p>
                 </a>
-                <a href="https://www.youtube.com/@shadharontvstudio" target="_blank" class="social-card">
-                    <p class="yt">YouTube</p>
-                    <h4>Shadharon Studio</h4>
+                <a href="https://www.youtube.com/@shadharontvstudio" target="_blank" class="social-card yt-card reveal ripple-btn">
+                    <i class="fab fa-youtube"></i><h4>Shadharon Studio</h4><p>Music & Auditions</p>
                 </a>
-                <a href="https://www.youtube.com/@ShadharonTvBanglaFunnyNews" target="_blank" class="social-card">
-                    <p class="yt">YouTube</p>
-                    <h4>Bangla Funny News</h4>
+                <a href="https://www.youtube.com/@ShadharonTvBanglaFunnyNews" target="_blank" class="social-card yt-card reveal ripple-btn">
+                    <i class="fab fa-youtube"></i><h4>Bangla Funny News</h4><p>Entertainment Updates</p>
                 </a>
-                <a href="https://www.youtube.com/@ShadharonTvGoponFad-y7m8y" target="_blank" class="social-card">
-                    <p class="yt">YouTube</p>
-                    <h4>Gopon Fad</h4>
+                <a href="https://www.youtube.com/@ShadharonTvGoponFad-y7m8y" target="_blank" class="social-card yt-card reveal ripple-btn">
+                    <i class="fab fa-youtube"></i><h4>Gopon Fad</h4><p>Exclusive Short Films</p>
                 </a>
-                <a href="https://www.youtube.com/@Shadharontvshorts" target="_blank" class="social-card">
-                    <p class="yt">YouTube</p>
-                    <h4>TV Shorts</h4>
+                <a href="https://www.youtube.com/@Shadharontvshorts" target="_blank" class="social-card yt-card reveal ripple-btn">
+                    <i class="fab fa-youtube"></i><h4>TV Shorts</h4><p>Viral & Trending Clips</p>
                 </a>
-
-                <a href="https://www.facebook.com/shadharontvofficial" target="_blank" class="social-card">
-                    <p class="fb">Facebook</p>
-                    <h4>Official Page</h4>
+                <a href="https://www.facebook.com/shadharontvofficial" target="_blank" class="social-card fb-card reveal ripple-btn">
+                    <i class="fab fa-facebook"></i><h4>Official Page</h4><p>Follow us on Facebook</p>
                 </a>
-                <a href="https://www.facebook.com/shadharontvstudio" target="_blank" class="social-card">
-                    <p class="fb">Facebook</p>
-                    <h4>Studio Page</h4>
+                <a href="https://www.facebook.com/shadharontvstudio" target="_blank" class="social-card fb-card reveal ripple-btn">
+                    <i class="fab fa-facebook"></i><h4>Studio Page</h4><p>Live Auditions & Updates</p>
                 </a>
-                <a href="https://www.facebook.com/shadharontvgoponfad" target="_blank" class="social-card">
-                    <p class="fb">Facebook</p>
-                    <h4>Gopon Fad FB</h4>
+                <a href="https://www.facebook.com/shadharontvgoponfad" target="_blank" class="social-card fb-card reveal ripple-btn">
+                    <i class="fab fa-facebook"></i><h4>Gopon Fad FB</h4><p>Exclusive Social Content</p>
                 </a>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 <strong>Shadharon TV</strong> | গানে গানে সেরা এশিয়া সিজন ৩</p>
+        <div class="footer-logo reveal">SHADHARON <span>TV</span></div>
+        <p class="reveal">&copy; 2026 <strong>Shadharon TV</strong> | গানে গানে সেরা এশিয়া সিজন ৩</p>
+        <p class="reveal">পরিচালনায়: <strong>Shadharon TV Team</strong></p>
+        <p class="reveal" style="margin-top: 20px;">
+            <a href="privacy.html" class="ripple-btn" style="padding: 10px 20px; border:1px solid #333; border-radius:50px; display:inline-block;"><i class="fas fa-user-shield"></i> গোপনীয়তার নীতি (Privacy Policy)</a>
+        </p>
     </footer>
 
+    <!-- Back to Top Button -->
+    <a href="#home" id="backToTop" class="ripple-btn"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- ================= Scripts ================= -->
     <script>
-        function toBn(n) {
-            const b = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-            return n.toString().replace(/\d/g, d => b[d]);
+        // --- Floating Music Notes Generator ---
+        const particleContainer = document.getElementById('particles-container');
+        const notes = ['🎵', '🎶', '🎤', '🎧'];
+        setInterval(() => {
+            const note = document.createElement('div');
+            note.classList.add('music-note');
+            note.innerText = notes[Math.floor(Math.random() * notes.length)];
+            note.style.left = Math.random() * 100 + 'vw';
+            note.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particleContainer.appendChild(note);
+            setTimeout(() => { note.remove(); }, 20000);
+        }, 1500);
+
+        // --- Custom Cursor Logic ---
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorOutline = document.querySelector(".cursor-outline");
+
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX; const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
+            setTimeout(() => { cursorOutline.style.left = `${posX}px`; cursorOutline.style.top = `${posY}px`; }, 60);
+        });
+
+        document.querySelectorAll('a, button, .social-card, .video-box, .toast-close').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '70px'; cursorOutline.style.height = '70px';
+                cursorOutline.style.backgroundColor = 'rgba(0, 229, 255, 0.15)';
+                cursorOutline.style.borderColor = 'var(--secondary)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '45px'; cursorOutline.style.height = '45px';
+                cursorOutline.style.backgroundColor = 'transparent';
+                cursorOutline.style.borderColor = 'var(--primary)';
+            });
+        });
+
+        // --- 3D Tilt Effect on Hero Card ---
+        if(window.innerWidth > 768) {
+            const tiltCard = document.getElementById('tilt-card');
+            const heroSection = document.getElementById('home');
+            heroSection.addEventListener('mousemove', (e) => {
+                let xAxis = (window.innerWidth / 2 - e.pageX) / 35;
+                let yAxis = (window.innerHeight / 2 - e.pageY) / 35;
+                tiltCard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                tiltCard.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            });
         }
 
-        const target = new Date("May 30, 2026 23:59:59").getTime();
+        // --- Magnetic Button Effect ---
+        if(window.innerWidth > 768) {
+            const magBtn = document.querySelector('.magnetic-btn');
+            magBtn.addEventListener('mousemove', (e) => {
+                const rect = magBtn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                magBtn.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px) translateZ(60px) scale(1.05)`;
+            });
+            magBtn.addEventListener('mouseleave', () => {
+                magBtn.style.transform = `translate(0px, 0px) translateZ(60px) scale(1)`;
+            });
+        }
 
-        setInterval(() => {
-            const now = new Date().getTime();
-            const d = target - now;
-            const timer = document.getElementById("timer");
+        // --- Ripple Click Effect ---
+        document.querySelectorAll('.ripple-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                let x = e.clientX - e.target.getBoundingClientRect().left;
+                let y = e.clientY - e.target.getBoundingClientRect().top;
+                let ripples = document.createElement('span');
+                ripples.style.left = x + 'px'; ripples.style.top = y + 'px';
+                ripples.classList.add('ripple');
+                this.appendChild(ripples);
+                setTimeout(() => { ripples.remove() }, 600);
+            });
+        });
 
-            if (d < 0) {
-                timer.innerHTML = "রেজিস্ট্রেশনের সময় শেষ হয়েছে";
+        // --- Typing Effect Logic ---
+        const typePhrases = ["গানের জগতে এক নতুন বিপ্লব...", "নিজেকে প্রমাণের এটাই সেরা সুযোগ...", "আজই আপনার গানের অডিশন দিন..."];
+        let currentPhrase = 0, letterIndex = 0, isDeleting = false;
+        function typeEffect() {
+            const currentText = typePhrases[currentPhrase];
+            const displayElement = document.getElementById("typed-text");
+            if (isDeleting) { letterIndex--; } else { letterIndex++; }
+            displayElement.innerText = currentText.substring(0, letterIndex);
+            let speed = isDeleting ? 40 : 80;
+            if (!isDeleting && letterIndex === currentText.length) { speed = 2000; isDeleting = true; }
+            else if (isDeleting && letterIndex === 0) { isDeleting = false; currentPhrase = (currentPhrase + 1) % typePhrases.length; speed = 500; }
+            setTimeout(typeEffect, speed);
+        }
+        document.addEventListener("DOMContentLoaded", typeEffect);
+
+        // --- 3D Spotlight Hover Effect on Cards ---
+        document.querySelectorAll('.social-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+            });
+        });
+
+        // --- Animated Stats Counters ---
+        const counters = document.querySelectorAll('.stat-number');
+        let hasCounted = false;
+        function startCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const increment = target / 150; 
+                const updateCount = () => {
+                    const current = +counter.innerText.replace(/,/g, '').replace(/[০-৯]/g, d => '০১২৩৪৫৬৭৮৯'.indexOf(d));
+                    if (current < target) {
+                        counter.innerText = toBn(Math.ceil(current + increment)) + "+";
+                        setTimeout(updateCount, 15);
+                    } else { counter.innerText = toBn(target) + "+"; }
+                };
+                updateCount();
+            });
+        }
+
+        // --- Scroll Reveal Animation ---
+        function revealElements() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 50) {
+                    reveals[i].classList.add('active');
+                    if(reveals[i].classList.contains('stats-section') && !hasCounted) { startCounters(); hasCounted = true; }
+                }
+            }
+        }
+        window.addEventListener('scroll', revealElements); revealElements();
+
+        // --- Floating Toast Notification ---
+        setTimeout(() => { document.getElementById('toastMsg').classList.add('show'); }, 6000);
+        function closeToast() { document.getElementById('toastMsg').classList.remove('show'); }
+
+        // --- Header & News Ticker Scroll Effect ---
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const ticker = document.getElementById('newsTicker');
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled'); ticker.style.top = '-40px'; backToTop.classList.add('show');
             } else {
-                const days = Math.floor(d / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((d % (1000 * 60)) / 1000);
-                timer.innerHTML = `বাকি সময়: ${toBn(days)} দিন : ${toBn(hours)} ঘণ্টা : ${toBn(mins)} মিনিট : ${toBn(secs)} সেকেন্ড`;
+                header.classList.remove('scrolled'); ticker.style.top = '0'; backToTop.classList.remove('show');
+            }
+        });
+
+        // --- Number to Bengali Converter ---
+        function toBn(n) { return n.toString().replace(/\d/g, d => ['০','১','২','৩','৪','৫','৬','৭','৮','৯'][d]); }
+        function toBnPad(n) { return n.toString().padStart(2, '0').replace(/\d/g, d => ['০','১','২','৩','৪','৫','৬','৭','৮','৯'][d]); }
+
+        // --- Countdown Timer Logic ---
+        const targetDate = new Date("May 30, 2026 23:59:59").getTime();
+        const timerInterval = setInterval(() => {
+            const now = new Date().getTime(); const d = targetDate - now;
+            if (d < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("countdown-wrapper").style.display = "none";
+                document.getElementById("expired-msg").style.display = "block";
+            } else {
+                document.getElementById("days").innerHTML = toBnPad(Math.floor(d / (1000 * 60 * 60 * 24)));
+                document.getElementById("hours").innerHTML = toBnPad(Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                document.getElementById("mins").innerHTML = toBnPad(Math.floor((d % (1000 * 60 * 60)) / (1000 * 60)));
+                document.getElementById("secs").innerHTML = toBnPad(Math.floor((d % (1000 * 60)) / 1000));
             }
         }, 1000);
     </script>
 </body>
-</html>
+</html>x
