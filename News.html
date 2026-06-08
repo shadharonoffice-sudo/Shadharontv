@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHADHARON TV | সত্যের পথে নির্ভীক সংবাদ</title>
     
+    <!-- Video.js CSS for TV -->
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    
     <!-- External Assets -->
     <meta name="monetag" content="b5bc2bb1d4b7aa97d149bf41b3f6e675">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@700;900&display=swap" rel="stylesheet">
@@ -29,10 +32,9 @@
         body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--body-bg); color: var(--text-dark); line-height: 1.6; }
         .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
         
-        /* Reading Progress Bar */
         #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--primary); z-index: 2000; width: 0%; transition: width 0.1s; }
 
-        /* Top Bar - Premium Info */
+        /* Top Bar */
         .top-nav { background: var(--secondary); color: white; padding: 8px 0; font-size: 13px; font-weight: 500; }
         .top-flex { display: flex; justify-content: space-between; align-items: center; }
         .live-status { display: flex; align-items: center; gap: 8px; }
@@ -44,183 +46,220 @@
         .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; }
         .logo-area img { height: 65px; border-radius: 8px; }
         .logo-text h1 { font-family: 'Noto Serif Bengali', serif; font-size: 45px; color: var(--secondary); font-weight: 900; line-height: 1; letter-spacing: -1.5px; }
-        .live-btn { background: var(--primary); color: white; padding: 6px 18px; border-radius: 4px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 10px rgba(193, 18, 31, 0.2); }
+        
+        /* Live TV Button */
+        .live-btn { 
+            background: var(--primary); color: white; padding: 8px 20px; 
+            border-radius: 4px; font-weight: bold; font-size: 14px; 
+            box-shadow: 0 4px 10px rgba(193, 18, 31, 0.2); cursor: pointer;
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .live-btn:hover { transform: scale(1.05); background: #9b0e18; }
 
-        /* Navigation Menu */
+        /* Navigation */
         nav { background: white; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .nav-links { display: flex; overflow-x: auto; scrollbar-width: none; }
-        .nav-links::-webkit-scrollbar { display: none; }
         .nav-item { padding: 18px 25px; font-weight: 700; color: var(--text-dark); cursor: pointer; transition: var(--transition); border-bottom: 4px solid transparent; white-space: nowrap; font-size: 17px; }
         .nav-item:hover { color: var(--primary); background: #fdf2f2; }
         .nav-item.active { color: var(--primary); border-bottom-color: var(--primary); }
 
-        /* Breaking News Ticker */
+        /* Ticker */
         .ticker { background: #fff; padding: 12px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; }
-        .ticker-label { background: var(--primary); color: white; padding: 4px 15px; font-weight: 800; border-radius: 2px; font-size: 14px; margin-right: 20px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); }
-        marquee { font-size: 17px; font-weight: 600; }
+        .ticker-label { background: var(--primary); color: white; padding: 4px 15px; font-weight: 800; border-radius: 2px; font-size: 14px; margin-right: 20px; }
 
-        /* Hero Layout (3-Column Style) */
+        /* News Sections */
         .hero-section { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 30px; }
-        @media(min-width: 1024px) { .hero-section { grid-template-columns: 2fr 1fr; } }
+        @media(min-width: 1024px) { .hero-section { grid-template-columns: 2.3fr 1fr; } }
+        .featured-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border); cursor: pointer; }
+        .featured-card img { width: 100%; height: 420px; object-fit: cover; }
+        .featured-info { padding: 25px; }
 
-        /* Featured Main Card */
-        .featured-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; height: 100%; border: 1px solid var(--border); }
-        .featured-card img { width: 100%; height: 420px; object-fit: cover; transition: transform 0.6s; }
-        .featured-card:hover img { transform: scale(1.05); }
-        .featured-info { padding: 30px; }
-        .cat-tag { background: #fef2f2; color: var(--primary); padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
-        .featured-info h2 { font-family: 'Noto Serif Bengali', serif; font-size: 40px; line-height: 1.2; margin-bottom: 15px; }
+        /* TV PORTAL DESIGN (Professional Overlay) */
+        #tvPortal { 
+            display: none; position: fixed; inset: 0; background: #000; z-index: 7000; 
+            overflow-y: auto; color: white;
+        }
+        .tv-header { 
+            position: sticky; top: 0; background: #111; padding: 15px; 
+            z-index: 100; border-bottom: 1px solid #333; display: flex; 
+            justify-content: space-between; align-items: center; 
+        }
+        .tv-player-area { width: 100%; max-width: 1000px; margin: 20px auto; background: #000; box-shadow: 0 0 30px rgba(255,0,0,0.2); }
+        .tv-search-box { text-align: center; margin-bottom: 25px; }
+        .tv-search-box input { 
+            width: 90%; max-width: 500px; padding: 12px 20px; border-radius: 30px; 
+            background: #222; border: 1px solid #444; color: white; font-size: 16px;
+        }
+        .tv-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+            gap: 15px; padding: 0 20px 50px; max-width: 1200px; margin: 0 auto;
+        }
+        .tv-card { 
+            background: #1a1a1a; padding: 20px 10px; border-radius: 10px; 
+            text-align: center; cursor: pointer; border: 1px solid #333; transition: 0.3s;
+        }
+        .tv-card:hover { background: var(--primary); border-color: white; transform: scale(1.05); }
+        .tv-card span { font-size: 14px; font-weight: bold; }
 
-        /* Sub News List */
-        .sub-news { display: flex; flex-direction: column; gap: 20px; }
-        .sub-card { display: flex; gap: 15px; background: white; padding: 15px; border-radius: 12px; border: 1px solid var(--border); cursor: pointer; transition: var(--transition); }
-        .sub-card:hover { border-color: var(--primary); transform: translateX(5px); }
-        .sub-card img { width: 140px; height: 100px; object-fit: cover; border-radius: 8px; }
-        .sub-card h3 { font-size: 18px; line-height: 1.4; }
-
-        /* Main Portal Content */
-        .portal-main { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
-        @media(min-width: 1024px) { .portal-main { grid-template-columns: 2.3fr 1fr; } }
-
-        /* News Grid */
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-        .news-box { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; cursor: pointer; transition: var(--transition); }
-        .news-box:hover { box-shadow: var(--shadow); transform: translateY(-5px); }
-        .news-box img { width: 100%; height: 200px; object-fit: cover; }
-        .news-box-content { padding: 20px; }
-        .news-box-content h4 { font-size: 20px; line-height: 1.4; margin-bottom: 10px; }
-
-        /* Sticky Sidebar */
-        aside { position: sticky; top: 100px; height: fit-content; }
-        .sidebar-box { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; margin-bottom: 30px; }
-        .sidebar-title { font-size: 22px; font-weight: 800; color: var(--secondary); margin-bottom: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; display: inline-block; }
-
-        /* Article Reader */
-        #articleReader { display: none; position: fixed; inset: 0; background: white; z-index: 5000; overflow-y: auto; }
-        .reader-nav { position: sticky; top: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 15px 0; border-bottom: 1px solid var(--border); z-index: 100; }
-        .reader-content { max-width: 850px; margin: 50px auto; padding: 0 20px; }
-        .reader-title { font-family: 'Noto Serif Bengali', serif; font-size: 48px; line-height: 1.2; font-weight: 900; margin-bottom: 30px; }
-        .reader-body { font-size: 22px; line-height: 1.9; color: #334155; white-space: pre-wrap; }
-
-        /* Professional Admin Panel */
-        #adminPanel { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); z-index: 6000; display: flex; align-items: center; justify-content: center; }
-        .admin-card { background: white; width: 100%; max-width: 650px; padding: 40px; border-radius: 20px; position: relative; max-height: 90vh; overflow-y: auto; }
-        .admin-input { width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; transition: 0.3s; }
-        .admin-input:focus { border-color: var(--primary); outline: none; }
-        .publish-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 800; font-size: 18px; cursor: pointer; }
-
-        /* Animations */
+        /* General UI */
+        footer { background: var(--secondary); color: white; padding: 50px 0; margin-top: 50px; text-align: center; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-        /* Skeleton Loading */
-        .skeleton { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
-        @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-        footer { background: var(--secondary); color: white; padding: 80px 0 40px; margin-top: 80px; }
     </style>
 </head>
 <body>
 
     <div id="progress-bar"></div>
 
+    <!-- টপ বার -->
     <div class="top-nav">
         <div class="container top-flex">
             <div class="live-status">
                 <span class="live-dot"></span>
                 <span id="dateClock">সময় লোড হচ্ছে...</span>
             </div>
-            <div>SHADHARON TV | সত্যের সন্ধানে নির্ভীক</div>
+            <div>SHADHARON TV | সত্যের সন্ধানে নির্ভীক সংবাদ</div>
         </div>
     </div>
 
+    <!-- হেডার -->
     <header>
         <div class="container header-flex">
             <div class="logo-area" onclick="location.reload()">
                 <img src="l.jpg.jpg" alt="Logo">
                 <div class="logo-text"><h1>SHADHARON TV</h1></div>
             </div>
-            <div class="live-btn">LIVE TV</div>
+            <!-- লাইভ টিভি বাটন -->
+            <div class="live-btn" onclick="openTV()">
+                <span style="display:inline-block; width:10px; height:10px; background:white; border-radius:50%; animation:pulse 1s infinite;"></span>
+                LIVE TV
+            </div>
         </div>
     </header>
 
+    <!-- নেভিগেশন -->
     <nav>
-        <div class="container">
-            <div class="nav-links" id="catBar"></div>
-        </div>
+        <div class="container"><div class="nav-links" id="catBar"></div></div>
     </nav>
 
+    <!-- নিউজ টিকার -->
     <div class="ticker">
         <div class="container" style="display:flex; align-items:center;">
             <div class="ticker-label">শীর্ষ সংবাদ</div>
-            <marquee id="tickerText" onmouseover="this.stop();" onmouseout="this.start();">সর্বশেষ সংবাদ আপডেট হচ্ছে... চোখ রাখুন সদাহরণ টিভিতে।</marquee>
+            <marquee id="tickerText">সদাহরণ টিভিতে আপনাকে স্বাগতম...</marquee>
         </div>
     </div>
 
+    <!-- প্রধান নিউজ সেকশন -->
     <main class="container">
-        <!-- Hero Section -->
         <div class="hero-section">
             <div id="featuredMain"></div>
-            <div class="sub-news" id="featuredSub"></div>
+            <div class="sub-news" id="featuredSub" style="display:flex; flex-direction:column; gap:15px;"></div>
         </div>
-
-        <div class="portal-main">
-            <section>
-                <h3 class="sidebar-title">খবরের আপডেট</h3>
-                <div class="grid-layout" id="mainGrid"></div>
-            </section>
-
-            <aside>
-                <div class="sidebar-box">
-                    <h3 class="sidebar-title">সর্বশেষ সংবাদ</h3>
-                    <div id="sideLatest"></div>
-                </div>
-                
-                <div style="position: sticky; top: 120px;">
-                    <div class="sidebar-title">বিজ্ঞাপন</div>
-                    <div id="sidebarAd" style="background:#fff; border:1px dashed #ccc; height:600px;">
-                        <script type="text/javascript">
-                            atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
-                        </script>
-                        <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
-                    </div>
-                </div>
-            </aside>
+        <div style="margin-top:40px;">
+            <h3 style="margin-bottom:20px; border-left:4px solid var(--primary); padding-left:10px;">সংবাদ আপডেট</h3>
+            <div id="mainGrid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:25px;"></div>
         </div>
     </main>
 
-    <div id="articleReader">
-        <div class="reader-nav">
-            <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-                <button onclick="closeReader()" style="background:var(--secondary); color:white; border:none; padding:10px 25px; border-radius:5px; cursor:pointer; font-weight:700;">← ফিরে যান</button>
-                <img src="l.jpg.jpg" height="40">
-            </div>
+    <!-- ============================
+         LIVE TV PORTAL OVERLAY
+         ============================ -->
+    <div id="tvPortal">
+        <div class="tv-header">
+            <h2 style="color:var(--primary);">সরাসরি টিভি</h2>
+            <button onclick="closeTV()" style="background:var(--primary); color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold;">বন্ধ করুন ✖</button>
         </div>
-        <div class="reader-content" id="readerBody"></div>
+
+        <div class="tv-player-area">
+            <video id="tv-player" class="video-js vjs-big-play-centered vjs-16-9" controls preload="auto" width="100%">
+                <p class="vjs-no-js">To view this video please enable JavaScript.</p>
+            </video>
+        </div>
+
+        <div class="tv-search-box">
+            <input type="text" id="tvSearch" placeholder="চ্যানেলের নাম লিখে খুঁজুন..." onkeyup="filterTV()">
+        </div>
+
+        <div class="tv-grid" id="tvList">
+            <!-- টিভি চ্যানেলগুলো এখানে লোড হবে -->
+        </div>
     </div>
 
-    <div id="adminPanel" style="display:none;">
-        <div class="admin-card">
-            <h2 style="margin-bottom:25px; text-align:center; color:var(--secondary);">নিউজ ড্যাশবোর্ড</h2>
-            <input type="password" id="ghToken" class="admin-input" placeholder="GitHub API Token">
-            <input type="text" id="postTit" class="admin-input" placeholder="সংবাদের আকর্ষণীয় শিরোনাম">
-            <select id="postCat" class="admin-input"></select>
-            <textarea id="postBod" class="admin-input" rows="8" placeholder="বিস্তারিত সংবাদ লিখুন..."></textarea>
-            <p style="margin-bottom:10px; font-weight:bold;">ফিচার ইমেজ আপলোড:</p>
-            <input type="file" onchange="uploadToImgBB(this)" style="margin-bottom:25px;">
+    <!-- আর্টিকেল রিডার -->
+    <div id="articleReader" style="display:none; position:fixed; inset:0; background:white; z-index:8000; overflow-y:auto;">
+        <div style="padding:15px; border-bottom:1px solid #eee; position:sticky; top:0; background:white; display:flex; justify-content:space-between;">
+            <button onclick="closeReader()" style="background:var(--secondary); color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">← ফিরে যান</button>
+            <img src="l.jpg.jpg" height="40">
+        </div>
+        <div id="readerBody" style="max-width:800px; margin:40px auto; padding:20px;"></div>
+    </div>
+
+    <!-- এডমিন ড্যাশবোর্ড (A কিবোর্ডে চাপলে আসবে) -->
+    <div id="adminPanel" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9000; align-items:center; justify-content:center;">
+        <div style="background:white; padding:30px; border-radius:15px; width:90%; max-width:600px;">
+            <h3 style="text-align:center; margin-bottom:20px;">নতুন সংবাদ যোগ করুন</h3>
+            <input type="password" id="ghToken" placeholder="GitHub API Token" style="width:100%; padding:10px; margin-bottom:10px;">
+            <input type="text" id="postTit" placeholder="সংবাদের শিরোনাম" style="width:100%; padding:10px; margin-bottom:10px;">
+            <select id="postCat" style="width:100%; padding:10px; margin-bottom:10px;"></select>
+            <textarea id="postBod" placeholder="সংবাদের বিস্তারিত..." rows="6" style="width:100%; padding:10px; margin-bottom:10px;"></textarea>
+            <input type="file" onchange="uploadToImgBB(this)" style="margin-bottom:15px;">
             <input type="hidden" id="finalImg">
-            <button onclick="submitNews()" id="subBtn" class="publish-btn">এখনই পাবলিশ করুন</button>
-            <button onclick="toggleAdmin(false)" style="width:100%; margin-top:15px; border:none; background:none; color:gray; cursor:pointer;">বন্ধ করুন</button>
+            <button onclick="submitNews()" id="subBtn" style="width:100%; padding:15px; background:var(--primary); color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">পাবলিশ করুন</button>
+            <button onclick="this.parentElement.parentElement.style.display='none'" style="width:100%; margin-top:10px; background:none; border:none; color:gray; cursor:pointer;">বন্ধ করুন</button>
         </div>
     </div>
 
     <footer>
-        <div class="container" style="text-align:center;">
-            <h2 style="font-family:'Noto Serif Bengali'; font-size:35px; margin-bottom:20px;">SHADHARON TV</h2>
-            <p>© ২০২৪ সদাহরণ টিভি | সত্যের সন্ধানে আমরা অবিচল</p>
+        <div class="container">
+            <h3>SHADHARON TV</h3>
+            <p>© ২০২৪ সদাহরণ টিভি | সত্যের সন্ধানে নির্ভীক সংবাদ</p>
         </div>
     </footer>
 
+    <!-- Video.js Script -->
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+
     <script>
+        // আপনার দেওয়া সেই সব চ্যানেল ডাটাবেস
+        const TV_DATABASE = [
+            { name: "Ananda TV (1080p)", url: "https://bozztv.com/rongo/rongo-AnandaTV/index.m3u8" },
+            { name: "Ananda TV (720p)", url: "https://tvsen6.aynaott.com/anandatv/index.m3u8" },
+            { name: "ATN Music", url: "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI/atnmusic.stream/playlist.m3u8" },
+            { name: "ATN News HD", url: "https://bozztv.com/rongo/rongo-ATNNews/index.m3u8" },
+            { name: "ATN News (GP)", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/1706.m3u8" },
+            { name: "Boishakhi TV", url: "https://boishakhi.sonarbanglatv.com/boishakhi/boishakhitv/index.m3u8" },
+            { name: "BTV National HD", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/1709.m3u8" },
+            { name: "BTV National (Gov)", url: "https://www.btvlive.gov.bd/streams/ef8b8bbc-98b7-4ba7-a49d-a0adaf259d35/ES/355ba051-9a60-48aa-adcf-5a6c64da8c5c/355ba051-9a60-48aa-adcf-5a6c64da8c5c_3_playlist.m3u8" },
+            { name: "BTV National (720p)", url: "https://tvsen6.aynaott.com/btvhd/index.m3u8" },
+            { name: "BTV News", url: "https://tvsen6.aynaott.com/BTVNews/index.m3u8" },
+            { name: "BTV World HD", url: "https://www.btvlive.gov.bd/streams/ef8b8bbc-98b7-4ba7-a49d-a0adaf259d35/ES/d96eb7f4-83c2-4472-9597-3568390a8ebf/d96eb7f4-83c2-4472-9597-3568390a8ebf_3_playlist.m3u8" },
+            { name: "BTV Chattogram", url: "https://bozztv.com/rongo/rongo-BTVChattagram/index.m3u8" },
+            { name: "Channel 24 HD", url: "https://bozztv.com/rongo/rongo-Channel24HD/index.m3u8" },
+            { name: "DBC News HD", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/index.m3u8" },
+            { name: "DBC News (720p)", url: "https://tvsen6.aynaott.com/dbcnews/index.m3u8" },
+            { name: "Desh TV HD", url: "https://bozztv.com/rongo/rongo-DeshTV/index.m3u8" },
+            { name: "Ekhon TV HD", url: "https://tplay.live/out/bangladesh/ekhontv.index.m3u8" },
+            { name: "Ekushey TV", url: "https://tvsen6.aynaott.com/etv/index.m3u8" },
+            { name: "Independent TV HD", url: "https://bozztv.com/rongo/rongo-IndependentTV/index.m3u8" },
+            { name: "Jamuna TV HD", url: "https://bozztv.com/rongo/rongo-JamunaTelevision/index.m3u8" },
+            { name: "T Sports HD", url: "https://tvsen7.aynaott.com/tsports-hd/index.m3u8" },
+            { name: "Gazi TV (GTV)", url: "https://tvsen5.aynaott.com/Ravc7gPCZpxk/index.m3u8" },
+            { name: "NTV BD HD", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/1716.m3u8" },
+            { name: "RTV HD", url: "https://bozztv.com/rongo/rongo-RTV/index.m3u8" },
+            { name: "Somoy TV HD", url: "https://bozztv.com/rongo/rongo-somoy/index.m3u8" },
+            { name: "Channel i HD", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8" },
+            { name: "Maasranga TV", url: "https://tvsen5.aynaott.com/maasrangatv/index.m3u8" },
+            { name: "Deepto TV", url: "https://tvsen5.aynaott.com/DeeptoTVHD/index.m3u8" },
+            { name: "Duronto TV", url: "https://tvsen5.aynaott.com/durontotv/index.m3u8" },
+            { name: "Bangla Vision", url: "https://tvsen5.aynaott.com/banglavision/index.m3u8" },
+            { name: "Ekattor TV HD", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/1705.m3u8" },
+            { name: "News 24 HD", url: "https://bozztv.com/rongo/rongo-News24HD/index.m3u8" },
+            { name: "Sangsad TV HD", url: "https://bozztv.com/rongo/rongo-SangsadTV/index.m3u8" },
+            { name: "Asian TV", url: "https://tvsen6.aynaott.com/asiantv/index.m3u8" },
+            { name: "Global TV", url: "https://tvsen6.aynaott.com/globaltvhd/index.m3u8" }
+        ];
+
+        let tvPlayer;
         const CONFIG = {
             USER: "shadharonoffice-sudo",
             REPO: "Shadharontv",
@@ -228,23 +267,48 @@
             CATS: ["জাতীয়", "আন্তর্জাতিক", "রাজনীতি", "খেলা", "বিনোদন", "প্রযুক্তি", "স্বাস্থ্য"]
         };
 
-        // 1. Digital Clock & Reading Progress
-        function initGlobal() {
-            setInterval(() => {
-                const now = new Date();
-                document.getElementById('dateClock').innerText = now.toLocaleString('bn-BD', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            }, 1000);
-
-            window.onscroll = () => {
-                let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
-            };
+        // টিভি ফাংশন
+        function openTV() {
+            document.getElementById('tvPortal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            if (!tvPlayer) tvPlayer = videojs('tv-player');
+            renderTV(TV_DATABASE);
         }
 
-        // 2. Fetch & Render
+        function closeTV() {
+            document.getElementById('tvPortal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            if(tvPlayer) tvPlayer.pause();
+        }
+
+        function renderTV(list) {
+            const container = document.getElementById('tvList');
+            container.innerHTML = '';
+            list.forEach(ch => {
+                const div = document.createElement('div');
+                div.className = 'tv-card';
+                div.innerHTML = `<span>📺 ${ch.name}</span>`;
+                div.onclick = () => {
+                    tvPlayer.src({ type: 'application/x-mpegURL', src: ch.url });
+                    tvPlayer.play();
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                };
+                container.appendChild(div);
+            });
+        }
+
+        function filterTV() {
+            const q = document.getElementById('tvSearch').value.toLowerCase();
+            const filtered = TV_DATABASE.filter(ch => ch.name.toLowerCase().includes(q));
+            renderTV(filtered);
+        }
+
+        // নিউজ ফাংশন (বিদ্যমান)
         async function loadApp() {
-            initGlobal();
+            setInterval(() => {
+                document.getElementById('dateClock').innerText = new Date().toLocaleString('bn-BD', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            }, 1000);
+
             const nav = document.getElementById('catBar'), sel = document.getElementById('postCat');
             nav.innerHTML = `<a class="nav-item active" onclick="filterData('all', this)">প্রচ্ছদ</a>`;
             CONFIG.CATS.forEach(c => {
@@ -255,63 +319,50 @@
             try {
                 const res = await fetch(`https://raw.githubusercontent.com/${CONFIG.USER}/${CONFIG.REPO}/main/${CONFIG.FILE}?v=${Date.now()}`);
                 window.db = (await res.json()).map((item, i) => ({ ...item, id: i }));
-                renderData(window.db);
-                document.getElementById('tickerText').innerText = window.db.slice(-8).map(n => n.title).join(" ● ");
+                renderNews(window.db);
+                document.getElementById('tickerText').innerText = window.db.slice(-5).map(n => n.title).join(" ● ");
             } catch (e) { console.error("Error loading news."); }
         }
 
-        function renderData(data) {
+        function renderNews(data) {
             const rev = [...data].reverse();
-            
-            // Hero: Featured Main
-            const f = rev[0];
-            if(f) {
+            // Featured
+            if(rev[0]) {
                 document.getElementById('featuredMain').innerHTML = `
-                    <div class="featured-card" onclick="openReader(${f.id})">
-                        <img src="${f.image}" onerror="this.src='l.jpg.jpg'">
+                    <div class="featured-card" onclick="openReader(${rev[0].id})">
+                        <img src="${rev[0].image}" onerror="this.src='l.jpg.jpg'">
                         <div class="featured-info">
-                            <span class="cat-tag">${f.category}</span>
-                            <h2>${f.title}</h2>
-                            <p style="color:#64748b; font-size:18px;">${f.body.substring(0, 180)}...</p>
+                            <span class="cat-tag">${rev[0].category}</span>
+                            <h2 style="font-size:35px; margin-bottom:10px;">${rev[0].title}</h2>
+                            <p>${rev[0].body.substring(0, 150)}...</p>
                         </div>
                     </div>`;
             }
-
-            // Hero: Sub Cards
+            // Sub Featured
             document.getElementById('featuredSub').innerHTML = rev.slice(1, 4).map(n => `
-                <div class="sub-card" onclick="openReader(${n.id})">
-                    <img src="${n.image}" onerror="this.src='l.jpg.jpg'">
-                    <h3>${n.title}</h3>
+                <div style="display:flex; gap:10px; background:white; padding:10px; border-radius:10px; border:1px solid #eee; cursor:pointer;" onclick="openReader(${n.id})">
+                    <img src="${n.image}" style="width:100px; height:70px; object-fit:cover; border-radius:5px;">
+                    <h4 style="font-size:15px;">${n.title}</h4>
                 </div>`).join("");
-
-            // Main Grid
-            document.getElementById('mainGrid').innerHTML = rev.slice(4).map(n => `
-                <div class="news-box" onclick="openReader(${n.id})">
-                    <img src="${n.image}" loading="lazy" onerror="this.src='l.jpg.jpg'">
-                    <div class="news-box-content">
-                        <span class="cat-tag" style="font-size:10px;">${n.category}</span>
-                        <h4>${n.title}</h4>
+            // Grid
+            document.getElementById('mainGrid').innerHTML = rev.slice(4, 16).map(n => `
+                <div style="background:white; border:1px solid #eee; border-radius:10px; overflow:hidden; cursor:pointer;" onclick="openReader(${n.id})">
+                    <img src="${n.image}" style="width:100%; height:180px; object-fit:cover;">
+                    <div style="padding:15px;">
+                        <span style="color:var(--primary); font-size:11px; font-weight:bold;">${n.category}</span>
+                        <h4 style="font-size:17px; margin-top:5px;">${n.title}</h4>
                     </div>
-                </div>`).join("");
-
-            // Sidebar
-            document.getElementById('sideLatest').innerHTML = rev.slice(0, 10).map(n => `
-                <div class="sub-card" style="padding:10px 0; border:none; border-bottom:1px solid #eee;" onclick="openReader(${n.id})">
-                    <img src="${n.image}" style="width:80px; height:60px;" onerror="this.src='l.jpg.jpg'">
-                    <h3 style="font-size:14px;">${n.title}</h3>
                 </div>`).join("");
         }
 
-        // 3. Reader & Modal
         function openReader(id) {
             const n = window.db[id];
-            window.location.hash = `news-${id}`;
             document.getElementById('readerBody').innerHTML = `
                 <span class="cat-tag">${n.category}</span>
-                <h1 class="reader-title">${n.title}</h1>
-                <p style="color:#64748b; margin-bottom:30px;">📅 প্রকাশিত: ${n.date} | সদাহরণ টিভি ডেস্ক</p>
-                <img src="${n.image}" style="width:100%; border-radius:15px; margin-bottom:40px; box-shadow:var(--shadow);" onerror="this.src='l.jpg.jpg'">
-                <div class="reader-body">${n.body}</div>`;
+                <h1>${n.title}</h1>
+                <p style="color:gray; margin-bottom:20px;">📅 প্রকাশিত: ${n.date}</p>
+                <img src="${n.image}" style="width:100%; border-radius:10px; margin-bottom:20px;">
+                <div style="font-size:19px; line-height:1.8;">${n.body}</div>`;
             document.getElementById('articleReader').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
@@ -319,59 +370,37 @@
         function closeReader() {
             document.getElementById('articleReader').style.display = 'none';
             document.body.style.overflow = 'auto';
-            history.replaceState(null, null, ' ');
         }
 
         function filterData(cat, el) {
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
             const filtered = cat === 'all' ? window.db : window.db.filter(n => n.category === cat);
-            renderData(filtered);
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            renderNews(filtered);
         }
 
-        // 4. Admin Logic
-        window.addEventListener('keydown', (e) => { if(e.key.toLowerCase() === 'a') toggleAdmin(true); });
-        function toggleAdmin(s) { document.getElementById('adminPanel').style.display = s ? 'flex' : 'none'; }
-
+        // Admin logic (A key)
+        window.addEventListener('keydown', (e) => { if(e.key.toLowerCase() === 'a') document.getElementById('adminPanel').style.display = 'flex'; });
+        
         async function uploadToImgBB(input) {
             const fd = new FormData(); fd.append("image", input.files[0]);
-            try {
-                const res = await fetch("https://api.imgbb.com/1/upload?key=97d2bb9d4be7954b90bb864839a5fccf", {method:"POST", body:fd});
-                const d = await res.json();
-                document.getElementById('finalImg').value = d.data.url;
-                alert("ছবি আপলোড সফল!");
-            } catch(e) { alert("ছবি আপলোড ব্যর্থ!"); }
+            const res = await fetch("https://api.imgbb.com/1/upload?key=97d2bb9d4be7954b90bb864839a5fccf", {method:"POST", body:fd});
+            const d = await res.json();
+            document.getElementById('finalImg').value = d.data.url;
+            alert("Image Uploaded!");
         }
 
         async function submitNews() {
-            const btn = document.getElementById('subBtn'), tok = document.getElementById('ghToken').value;
-            if(!tok) return alert("Token Required!");
-            btn.innerText = "পাবলিশ হচ্ছে..."; btn.disabled = true;
-
-            try {
-                const getFile = await fetch(`https://api.github.com/repos/${CONFIG.USER}/${CONFIG.REPO}/contents/${CONFIG.FILE}`, {headers:{Authorization:`token ${tok}`}});
-                const fileData = await getFile.json();
-                let list = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
-                
-                list.push({
-                    title: document.getElementById('postTit').value,
-                    body: document.getElementById('postBod').value,
-                    image: document.getElementById('finalImg').value || "l.jpg.jpg",
-                    category: document.getElementById('postCat').value,
-                    date: new Date().toLocaleString('bn-BD')
-                });
-
-                if (list.length > 200) list.shift();
-
-                await fetch(`https://api.github.com/repos/${CONFIG.USER}/${CONFIG.REPO}/contents/${CONFIG.FILE}`, {
-                    method:"PUT", headers:{Authorization:`token ${tok}`},
-                    body: JSON.stringify({
-                        message: "Add News", content: btoa(unescape(encodeURIComponent(JSON.stringify(list)))), sha: fileData.sha
-                    })
-                });
-                location.reload();
-            } catch(e) { alert("Error updating GitHub."); btn.innerText = "পাবলিশ করুন"; btn.disabled = false; }
+            const tok = document.getElementById('ghToken').value;
+            const res = await fetch(`https://api.github.com/repos/${CONFIG.USER}/${CONFIG.REPO}/contents/${CONFIG.FILE}`, {headers:{Authorization:`token ${tok}`}});
+            const fileData = await res.json();
+            let list = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
+            list.push({ title: document.getElementById('postTit').value, body: document.getElementById('postBod').value, image: document.getElementById('finalImg').value, category: document.getElementById('postCat').value, date: new Date().toLocaleString('bn-BD') });
+            await fetch(`https://api.github.com/repos/${CONFIG.USER}/${CONFIG.REPO}/contents/${CONFIG.FILE}`, {
+                method:"PUT", headers:{Authorization:`token ${tok}`},
+                body: JSON.stringify({ message: "Add News", content: btoa(unescape(encodeURIComponent(JSON.stringify(list)))), sha: fileData.sha })
+            });
+            location.reload();
         }
 
         loadApp();
