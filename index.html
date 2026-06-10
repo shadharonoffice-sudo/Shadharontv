@@ -2,12 +2,8 @@
 <html lang="bn">
 
 <head>
-    <!-- Google AdSense Script Start -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2185209766718207"
      crossorigin="anonymous"></script>
-    <!-- Google AdSense Script End -->
-
-    <!-- Service Worker Verification Script Start -->
     <script>
         window.options = {
             "domain": "3nbf4.com",
@@ -26,21 +22,18 @@
         }
     </script>
     <script src="https://3nbf4.com/act/files/service-worker.min.js?r=sw" async></script>
-    <!-- Service Worker Script End -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ================= SEO Meta Tags ================= -->
     <title>Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া সিজন ৩</title>
-    <meta name="description" content="Shadharon TV (সাধারণ টিভি) অফিশিয়াল পোর্টালে আপনাকে স্বাগতম।">
+    <meta name="description" content="Shadharon TV (সাধারণ টিভি) অফিশিয়াল পোর্টালে আপনাকে স্বাগত।">
     <meta name="keywords" content="Shadharon TV, সাধারণ টিভি, Gaane Gaane Shera Asia, রেজিস্ট্রেশন চলছে">
     <meta name="author" content="Shadharon TV Team">
     <link rel="canonical" href="https://shadharon-tv.com" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700;900&family=Poppins:wght@600;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;900&family=Poppins:wght@600;900&display=swap');
 
         :root {
             --primary: #ff0055;
@@ -114,22 +107,22 @@
         .hero { 
             min-height: 100vh; padding: 250px 5% 80px; 
             display: flex; flex-direction: column; align-items: center;
-            /* আপনার দেওয়া ইমেজটি এখানে ব্যাকগ্রাউন্ড হিসেবে ব্যবহার করা হয়েছে */
+            /* 🔽 কভার পিকচার (এখানে আপনার কভার ইমেজের নাম ও এক্সটেনশন দিতে পারেন) */
             background: url("WhatsApp Image 2026-04-25 at 16.27.42.jpeg") no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
             position: relative;
         }
-        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 0; }
+        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); z-index: 0; }
 
         .hero-card {
             position: relative; z-index: 2; max-width: 850px; width: 100%;
-            background: rgba(10, 15, 30, 0.6); backdrop-filter: blur(20px);
+            background: rgba(10, 15, 30, 0.65); backdrop-filter: blur(20px);
             padding: 40px 20px; border-radius: 25px; text-align: center;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .hero-title { font-size: 40px; font-weight: 900; margin-bottom: 10px; }
+        .hero-title { font-size: 40px; font-weight: 900; margin-bottom: 10px; color: #fff; }
         .hero-subtitle { font-size: 18px; color: #cbd5e1; margin-bottom: 30px; min-height: 28px; }
 
         .video-box {
@@ -143,6 +136,24 @@
             padding: 15px; border-radius: 12px; margin-bottom: 30px;
         }
         .reg-status-text { font-size: 32px; font-weight: 900; color: var(--accent); }
+
+        /* --- Notice Dynamic Box --- */
+        .official-notice-box {
+            text-align: left; background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--primary); padding: 25px;
+            border-radius: 12px; margin: 35px 0; border-top: 1px solid rgba(255,255,255,0.05);
+            border-right: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .notice-title { font-size: 22px; font-weight: 700; color: var(--secondary); text-align: center; margin-bottom: 15px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .notice-desc { color: #e2e8f0; font-size: 15px; margin-bottom: 15px; text-align: center; }
+        .notice-block { margin-bottom: 15px; background: rgba(255,0,85,0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,0,85,0.2); }
+        .notice-block h5 { color: var(--primary); font-size: 16px; margin-bottom: 5px; font-weight: 700; }
+        .notice-block p { font-size: 14.5px; color: #cbd5e1; }
+        .notice-list { list-style: none; margin-bottom: 15px; }
+        .notice-list li { font-size: 14.5px; margin-bottom: 8px; color: #e2e8f0; display: flex; gap: 8px; }
+        .notice-list li i { color: var(--secondary); margin-top: 5px; font-size: 12px; }
+        .notice-footer { border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 15px; font-size: 14px; color: #94a3b8; }
+        .notice-author { text-align: right; font-weight: bold; margin-top: 15px; color: var(--accent); }
 
         .btn-large {
             display: inline-flex; align-items: center; gap: 10px; padding: 16px 40px; font-size: 22px; 
@@ -175,27 +186,25 @@
             .cursor { display: none; }
             .hero-title { font-size: 28px; }
             .brand-name { font-size: 22px; }
+            .official-notice-box { padding: 15px; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Simple Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- News Ticker -->
     <div class="news-ticker">
         <div class="ticker-content">
-            <span>🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎶</span>
-            <span>🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎶</span>
+            <span>🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎶</span>
+            <span>🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎶</span>
         </div>
     </div>
 
     <header id="header">
         <div class="mid-branding">
             <div class="logo-frame">
-                <!-- আপনার দেওয়া ইমেজটি এখানে লোগো হিসেবে ব্যবহার করা হয়েছে -->
                 <img src="WhatsApp Image 2026-04-25 at 16.27.42.jpeg" alt="Shadharon TV Logo">
             </div>
             <div class="brand-name">SHADHARON <span>TV</span></div>
@@ -216,13 +225,40 @@
                 <p class="hero-subtitle"><span id="typed-text"></span></p>
                 
                 <div class="video-box">
-                    <!-- এখানে আপনার ইউটিউব ভিডিওর এমবেড লিংক বসাবেন -->
                     <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen style="width:100%; height:100%;"></iframe>
                 </div>
 
-                <!-- রেজিস্ট্রেশন চলছে বক্স -->
                 <div class="reg-running-box">
                     <h2 class="reg-status-text">রেজিস্ট্রেশন চলছে...</h2>
+                </div>
+
+                <div class="official-notice-box">
+                    <div class="notice-title"><i class="fas fa-bullhorn"></i> অফিশিয়াল নোটিশ - অডিশন ও রেজিস্ট্রেশন সংক্রান্ত</div>
+                    <p class="notice-desc"><strong>'গানে গানে সেরা এশিয়া সিজন ৩'</strong>-এর প্রথম ধাপে যারা সফলভাবে রেজিস্ট্রেশন সম্পন্ন করেছেন, তাদের জন্য চলে এলো বহুল প্রতীক্ষিত অডিশনের তারিখ! 🎉</p>
+                    
+                    <div class="notice-block">
+                        <h5><i class="fas fa-exclamation-triangle"></i> প্রতিযোগীদের জন্য বিশেষ নির্দেশনা (অবশ্যই শিক্ষণীয়):</h5>
+                        <p><strong>গানের প্রস্তুতি:</strong> অডিশন বোর্ডে বিচারকদের চাহিদানুযায়ী আপনাকে একাধিক গান গেয়ে শোনাতে হতে পারে। তাই অডিশনে অংশ নেওয়ার জন্য প্রত্যেক প্রতিযোগীকে নূন্যতম ৩টি ভিন্ন ধরনের (যেমন: ফোক, ক্লাসিক্যাল, আধুনিক ইত্যাদি) গানের সম্পূর্ণ প্রস্তুতি নিয়ে আসতে হবে। বিচারক প্যানেল প্রয়োজনে ৩টি গানই শুনতে পারেন।</p>
+                    </div>
+
+                    <ul class="notice-list">
+                        <li><i class="fas fa-circle-dot"></i> <span><strong>অডিশন ভেন্যু:</strong> আমাদের নিজস্ব স্টুডিও, সাধারণ টিভি (Shadharon TV) ফ্লোর, ঢাকা। (সমগ্র বাংলাদেশের মোট ৮টি বিভাগের অডিশনই ৩টি ধাপে/ভাগে ঢাকার এই নিজস্ব ফ্লোরে অনুষ্ঠিত হবে।)</span></li>
+                        <li><i class="fas fa-circle-dot"></i> <span><strong>অডিশন শুরুর তারিখ:</strong> আগামী ২৭ জুন থেকে আমাদের প্রাথমিক পর্যায়ের প্রথম ধাপের বাছাই পর্ব শুরু হচ্ছে।</span></li>
+                        <li><i class="fas fa-circle-dot"></i> <span><strong>তারিখ ও সময়:</strong> যারা প্রথম ধাপে রেজিস্ট্রেশন করেছেন, তাদের অডিশনের নির্দিষ্ট তারিখ ও সময় অতিসত্বর SMS এবং কলের মাধ্যমে সরাসরি জানিয়ে দেওয়া হবে।</span></li>
+                        <li><i class="fas fa-circle-dot"></i> <span><strong>বিভাগীয় প্রতিযোগীদের জন্য:</strong> বাংলাদেশের ৮টি বিভাগের সকল প্রতিযোগীকে এই ৩টি ভাগের মাধ্যমে ঢাকায় এসে অডিশন দিতে হবে। প্রথম ভাগে মূলত ঢাকা বিভাগের অডিশন শুরু হচ্ছে, তবে অন্য যেকোনো বিভাগের প্রতিযোগী চাইলে অফিসে যোগাযোগ করে সিডিউল ঠিক করে এই প্রথম ভাগেই অডিশন দিয়ে দিতে পারবেন।</span></li>
+                        <li><i class="fas fa-circle-dot"></i> <span><strong>সরাসরি অডিশন ও ২য় ধাপের রেজিস্ট্রেশনের সুবর্ণ সুযোগ!</strong> যারা এখনো রেজিস্ট্রেশন করতে পারেননি, তারা আগামী ২৭ জুন পর্যন্ত দ্রুত রেজিস্ট্রেশন সম্পন্ন করে সরাসরি প্রথম ধাপের অডিশনেই অংশগ্রহণ করতে পারবেন! যারা এই সময়ের মধ্যে অংশ নিতে পারবেন না, তাদের জন্য পরবর্তী (দ্বিতীয়) ভাগের বাছাই প্রক্রিয়ার রেজিস্ট্রেশনও চলমান থাকবে। তবে আর দেরি না করে এখনই আপনার আসনটি নিশ্চিত করুন।</span></li>
+                    </ul>
+
+                    <div class="notice-footer">
+                        <div><i class="fas fa-globe"></i> অফিশিয়াল ওয়েবসাইট: <a href="https://www.Shadharontv.com" style="color: var(--secondary); text-decoration: none;" target="_blank">www.Shadharontv.com</a></div>
+                        <div><i class="fas fa-phone-alt"></i> যেকোনো তথ্যের জন্য যোগাযোগ (Call/WhatsApp): <strong>+880 175-7331663</strong></div>
+                    </div>
+
+                    <div class="notice-author">
+                        আদেশক্রমে,<br>
+                        <span style="color: #fff;">আকাশ জোয়ারদার</span><br>
+                        <small style="color: var(--secondary);">চেয়ারম্যান, সাধারণ টিভি (Shadharon TV)</small>
+                    </div>
                 </div>
 
                 <a href="o.html" class="btn-large">
@@ -231,7 +267,6 @@
             </div>
         </section>
 
-        <!-- Social Channels Section (8 Links) -->
         <section class="social-section" id="social">
             <h2 class="section-title">আমাদের <span>অফিসিয়াল নেটওয়ার্ক</span></h2>
             <div class="social-grid">
