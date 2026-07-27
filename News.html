@@ -325,7 +325,7 @@
         }
 
         function renderNews(data) {
-            const rev = [...data].reverse();
+            const rev = [...data];
             // Featured
             if(rev[0]) {
                 document.getElementById('featuredMain').innerHTML = `
