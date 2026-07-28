@@ -8,22 +8,24 @@
     <style>
         :root { --neon-red: #ff003c; }
         
-        /* Pura screen-ke kalo rakha ebong scroll bondho kora */
+        /* পুরা স্ক্রিন কালো এবং স্ক্রল বন্ধ রাখা */
         body, html { 
             margin: 0; padding: 0; width: 100%; height: 100%; 
             background: #000; overflow: hidden; font-family: 'Segoe UI', sans-serif; 
         }
 
-        /* Header ke patla kora jate video beshi jayga pay */
+        /* হেডার */
         header { 
             position: absolute; top: 0; width: 100%; z-index: 100;
             background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
             padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid rgba(255, 0, 60, 0.3);
+            box-sizing: border-box;
         }
 
-        .logo { font-family: 'Orbitron'; color: var(--neon-red); font-size: 1.2rem; text-shadow: 0 0 10px var(--neon-red); }
-        .admin-trigger { width: 20px; height: 20px; cursor: pointer; opacity: 0.1; }
+        .logo { font-family: 'Orbitron', sans-serif; color: var(--neon-red); font-size: 1.2rem; text-shadow: 0 0 10px var(--neon-red); }
+        .admin-trigger { width: 25px; height: 25px; cursor: pointer; opacity: 0.2; background: transparent; }
+        .admin-trigger:hover { opacity: 0.8; }
 
         /* Full Screen TV Player Container */
         .tv-frame { 
@@ -34,23 +36,26 @@
 
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* Sound Overlay (User prothome dekhbe) */
+        /* Sound Overlay (User প্রথমে দেখবে) */
         .overlay { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.9); z-index: 1000; 
+            background: rgba(0,0,0,0.85); z-index: 1000; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; 
         }
+        
         .play-btn { 
-            padding: 20px 40px; background: var(--neon-red); color: #fff; 
-            font-family: 'Orbitron'; border-radius: 50px; font-weight: bold; 
+            padding: 18px 40px; background: var(--neon-red); color: #fff; 
+            font-family: 'Orbitron', sans-serif; border-radius: 50px; font-weight: bold; 
             cursor: pointer; box-shadow: 0 0 30px var(--neon-red); border: none;
+            font-size: 1.1rem; transition: transform 0.2s ease;
         }
+        .play-btn:hover { transform: scale(1.05); }
 
-        /* Ticker ke niche bosiye dewa */
+        /* Ticker বা চলন্ত বার্তা */
         .ticker { 
             position: absolute; bottom: 0; width: 100%; 
-            background: rgba(255, 0, 60, 0.8); color: #000; 
-            font-weight: bold; padding: 5px 0; font-size: 0.9rem; z-index: 100;
+            background: rgba(255, 0, 60, 0.9); color: #fff; 
+            font-weight: bold; padding: 6px 0; font-size: 0.9rem; z-index: 100;
         }
     </style>
 </head>
@@ -58,54 +63,71 @@
 
 <header>
     <div class="logo">SHADHARON TV</div>
-    <div class="admin-trigger" onclick="adminAccess()"></div>
+    <!-- ডানদিকের অদৃশ্য বাটন গোপন এডমিন প্যানেলের জন্য -->
+    <div class="admin-trigger" onclick="adminAccess()" title="Admin Control">⚙️</div>
 </header>
 
 <div class="tv-frame">
     <div id="overlay" class="overlay" onclick="startBroadcast()">
-        <button class="play-btn">START BROADCAST</button>
-        <p style="color: #666; margin-top: 20px; font-size: 0.8rem;">Click to enable HD Sound & Video</p>
+        <button class="play-btn">▶ START BROADCAST</button>
+        <p style="color: #aaa; margin-top: 20px; font-size: 0.85rem;">Click to enable HD Sound & Video</p>
     </div>
     <div id="player" style="width: 100%; height: 100%;"></div>
 </div>
 
-<div class="ticker"><marquee scrollamount="7">••• SHADHARON TV: Chairman Akash Joarder ••• Live from Dhaka ••• Digital High Definition Portal •••</marquee></div>
+<div class="ticker">
+    <marquee scrollamount="7">••• SHADHARON TV: Chairman Akash Joarder ••• Live Digital High Definition Broadcast ••• Stay Connected with Us •••</marquee>
+</div>
 
 <script>
-    let savedID = localStorage.getItem('stv_master_id') || "";
+    // আপনার ডিফল্ট প্লেলিস্ট ID (যদি লোকাল স্টোরেজে কিছু না থাকে)
+    const DEFAULT_PLAYLIST_ID = "PL_YOUR_DEFAULT_PLAYLIST_ID_HERE"; 
+    
+    let savedID = localStorage.getItem('stv_master_id') || DEFAULT_PLAYLIST_ID;
     const PASS = "12332";
 
+    // সিক্রেট এডমিন প্যানেল
     function adminAccess() {
         let p = prompt("Security PIN:");
         if(p === PASS) {
-            let link = prompt("Paste YouTube Playlist Link:");
-            if(link && link.includes('list=')) {
-                let id = link.split('list=')[1].split('&')[0];
+            let link = prompt("Paste YouTube Playlist Link or Playlist ID:");
+            if(link) {
+                let id = link;
+                if(link.includes('list=')) {
+                    id = link.split('list=')[1].split('&')[0];
+                }
                 localStorage.setItem('stv_master_id', id);
+                alert("Playlist Updated Successfully!");
                 location.reload();
-            } else { alert("Invalid Link!"); }
+            }
+        } else if(p !== null) {
+            alert("Wrong Security PIN!");
         }
     }
 
+    // ব্রডকাস্ট চালু করা (শব্দ সহ)
     function startBroadcast() {
         document.getElementById('overlay').style.display = 'none';
-        if(savedID) {
-            // Full Screen Iframe Load
+        
+        let targetID = localStorage.getItem('stv_master_id') || savedID;
+        
+        if(targetID && targetID !== "PL_YOUR_DEFAULT_PLAYLIST_ID_HERE") {
             document.getElementById('player').innerHTML = `
-                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${savedID}&autoplay=1&mute=0&rel=0&controls=1&showinfo=0" 
-                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${targetID}&autoplay=1&mute=0&rel=0&controls=1&showinfo=0" 
+                allow="autoplay; encrypted-media; picture-in-picture; accelerometer; gyroscope" allowfullscreen></iframe>
             `;
         } else {
-            alert("Please set a playlist link first (Secret Button on Top Right)");
+            alert("প্লেলিস্ট সেটিং করা নেই! উপরে ডানপাশের গোপন বাটনে ক্লিক করে প্লেলিস্ট লিংক দিন।");
         }
     }
 
-    // Page load holei player ready thakbe kintu mute thakbe browser policy-r jonno
+    // পেজ লোড হলে ব্যাকগ্রাউন্ডে অটো-প্লে (Mute অবস্থায়)
     window.onload = () => {
-        if(savedID) {
+        let targetID = localStorage.getItem('stv_master_id') || savedID;
+        if(targetID && targetID !== "PL_YOUR_DEFAULT_PLAYLIST_ID_HERE") {
             document.getElementById('player').innerHTML = `
-                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${savedID}&autoplay=1&mute=1&rel=0&controls=0" 
-                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed?listType=playlist&list=${targetID}&autoplay=1&mute=1&rel=0&controls=0" 
+                allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
             `;
         }
     };
