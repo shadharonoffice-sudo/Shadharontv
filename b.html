@@ -44,8 +44,8 @@
             width: 250px; height: 250px;
             margin: 0 auto 40px;
             border-radius: 50%;
-            /* ইমেজের নাম ঠিক করা হয়েছে */
-            background: url('l.jpg.jpg ') center/contain no-repeat; 
+            /* ইমেজের নাম ও স্পেস ঠিক করা হয়েছে */
+            background: url('l.jpg') center/contain no-repeat; 
             border: 2px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 0 100px rgba(255, 0, 0, 0.7), inset 0 0 50px rgba(255, 215, 0, 0.3);
             animation: pulse3d 4s infinite alternate ease-in-out;
@@ -53,7 +53,7 @@
 
         .brand-text {
             font-family: 'Cinzel', serif;
-            font-size: 7rem; /* স্ক্রিন ফিট করার জন্য একটু ছোট করা হয়েছে */
+            font-size: 7rem;
             font-weight: 900;
             text-transform: uppercase;
             background: linear-gradient(180deg, #fff 10%, #ffd700 40%, #ff0000 80%);
@@ -158,21 +158,16 @@
         }
         animate();
 
-        // ৫ সেকেন্ড পর ট্রানজিশন শুরু হবে
+        // ৫ সেকেন্ড পর মূল খবরের সাইট News.html-এ নিয়ে যাবে
         setTimeout(() => {
             const stage = document.getElementById('mainContainer');
             stage.classList.add('fade-out');
             
             setTimeout(() => {
-                // খুব গুরুত্বপূর্ণ: এখানে আপনার মেইন সাইটের ফাইলের নাম দিন। 
-                // যদি মেইন সাইট 'home.php' হয় তবে সেটাই লিখুন। 
-                // ভুলেও 'index.html' লিখবেন না যদি এই ফাইলের নামও 'index.html' হয়।
-                //// আপনার মেইন ফাইলের নাম এখানে দিন (যেমন: home.html)
-'                 window.location.href = 'index.html'; 
-                console.log("Redirecting to main site...");
+                // আসল নিউজ পোটালের ফাইলের লিংক
+                window.location.href = 'News.html'; 
             }, 2000);
         }, 5000);
- 
     </script>
 </body>
 </html>
