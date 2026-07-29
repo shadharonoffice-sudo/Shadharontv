@@ -57,25 +57,24 @@
         }
         .header p { color: #bbb; font-size: 14px; margin-top: 5px; }
         
-        /* --- Video Container --- */
+        /* --- Video Container Fix --- */
         .video-box {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-radius: 12px;
             border: 1px solid var(--border-color);
             margin-bottom: 25px;
             background: #000;
+            padding: 10px 0;
+            overflow: hidden;
         }
 
         .video-box iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            max-width: 100%;
             border: none;
+            border-radius: 8px;
         }
 
         .section-title { 
@@ -170,8 +169,7 @@
 
             <!-- ফেসবুক ভিডিও সেকশন শুরু -->
             <div class="video-box">
-                <!-- নিচের লাইনে আপনার ফেসবুক থেকে কপি করা iframe কোডটি পেস্ট করুন -->
-                <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=true&width=476&t=0" width="476" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=350" width="350" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
             <!-- ফেসবুক ভিডিও সেকশন শেষ -->
 
