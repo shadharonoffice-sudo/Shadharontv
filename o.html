@@ -30,7 +30,12 @@
             align-items: center;
         }
 
-        .content { width: 100%; max-width: 600px; margin: 0 auto; }
+        /* --- Main Content Area --- */
+        .content { 
+            width: 100%; 
+            max-width: 600px; 
+            margin: 0 auto;
+        }
         
         .reg-card { 
             background: var(--glass); 
@@ -52,7 +57,7 @@
         }
         .header p { color: #bbb; font-size: 14px; margin-top: 5px; }
         
-        /* Video Container */
+        /* --- Video Container --- */
         .video-box {
             width: 100%;
             display: flex;
@@ -62,9 +67,14 @@
             border: 1px solid var(--border-color);
             margin-bottom: 25px;
             background: #000;
-            padding: 15px 0;
+            padding: 15px 10px;
             overflow: hidden;
-            min-height: 300px;
+        }
+
+        .video-box iframe {
+            max-width: 100%;
+            border: none;
+            border-radius: 8px;
         }
 
         .section-title { 
@@ -135,19 +145,26 @@
             background: linear-gradient(45deg, #ff1a6a, #8e1aff);
         }
 
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 480px) {
             .reg-card { padding: 20px; }
             .header h1 { font-size: 1.5rem; }
             .btn { font-size: 16px; padding: 16px; }
+            .video-box iframe {
+                width: 100%;
+                height: auto;
+                min-height: 480px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Facebook SDK Script -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/bn_IN/sdk.js#xfbml=1&version=v18.0"></script>
-
+    <!-- Main Form Content -->
     <div class="content">
         <div class="reg-card">
             <div class="header">
@@ -155,13 +172,9 @@
                 <p>অফিসিয়াল রেজিস্ট্রেশন ফরম</p>
             </div>
 
-            <!-- FB Embedded Video Div -->
+            <!-- ফেসবুক ভিডিও সেকশন -->
             <div class="video-box">
-                <div class="fb-video" 
-                     data-href="https://www.facebook.com/reel/1347952573837535/" 
-                     data-width="350" 
-                     data-show-text="false">
-                </div>
+                <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=true&width=476&t=0" width="476" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
             </div>
 
             <form id="asiaFullForm">
