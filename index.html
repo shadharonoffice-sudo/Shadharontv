@@ -10,55 +10,60 @@
         :root { 
             --primary: #ff0055; 
             --secondary: #00ffcc; 
-            --glass: rgba(255, 255, 255, 0.08); 
-            --bg-color: #000;
+            --glass: rgba(255, 255, 255, 0.05); 
+            --bg-color: #0d0d0d;
             --text-color: #fff;
-            --border-color: rgba(255, 255, 255, 0.15);
+            --border-color: rgba(255, 255, 255, 0.12);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             font-family: 'Hind Siliguri', sans-serif; 
-            background: radial-gradient(circle at top, #1a1a1a, var(--bg-color)); 
+            background: #000; 
             color: var(--text-color); 
-            padding: 40px 15px; 
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
         }
 
-        /* --- Main Content Area (প্রশস্ত করা হয়েছে) --- */
-        .container { 
-            width: 100%; 
-            max-width: 900px; /* ডেস্কটপে আর ছোট দেখাবে না */
+        /* --- Full Width Main Wrapper --- */
+        .wrapper {
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 30px 20px;
         }
-        
-        .main-card { 
-            background: var(--glass); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            padding: 40px; 
-            border-radius: 24px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); 
-            text-align: center;
+
+        /* --- Header Section --- */
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            background: var(--glass);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
         }
-        
-        .header { margin-bottom: 30px; }
+
         .header h1 { 
             color: var(--secondary); 
             font-size: 2.5rem; 
             text-transform: uppercase; 
             letter-spacing: 1px; 
             font-family: 'Poppins', 'Hind Siliguri', sans-serif;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        .header p { color: #ccc; font-size: 17px; }
-        
-        /* --- Video Box --- */
+
+        .header p { color: #ccc; font-size: 16px; }
+
+        /* --- Layout Grid (Full Screen / Wide View) --- */
+        .main-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+        }
+
+        /* --- Video Section --- */
         .video-box {
             width: 100%;
             display: flex;
@@ -66,10 +71,9 @@
             align-items: center;
             border-radius: 16px;
             border: 1px solid var(--border-color);
-            margin-bottom: 30px;
-            background: #000;
-            padding: 20px 10px;
-            overflow: hidden;
+            background: #050505;
+            padding: 25px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         .video-box iframe {
@@ -80,18 +84,16 @@
 
         /* --- Info Section --- */
         .info-box {
-            background: rgba(255, 255, 255, 0.04);
+            background: var(--glass);
             border-radius: 16px;
             padding: 25px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            text-align: left;
+            border: 1px solid var(--border-color);
         }
 
         .info-box h3 {
             color: var(--primary);
             font-size: 20px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             border-bottom: 1px solid rgba(255, 0, 85, 0.3);
             padding-bottom: 8px;
         }
@@ -109,7 +111,7 @@
 
         /* --- Action Button --- */
         .btn-register { 
-            display: inline-block;
+            display: block;
             width: 100%; 
             padding: 20px; 
             border-radius: 50px; 
@@ -119,21 +121,21 @@
             color: white; 
             background: linear-gradient(45deg, var(--primary), #8000ff); 
             text-decoration: none;
+            text-align: center;
             box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
             font-family: 'Hind Siliguri', sans-serif;
+            margin-top: 10px;
         }
 
         .btn-register:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(255, 0, 85, 0.6);
-            background: linear-gradient(45deg, #ff1a6a, #8e1aff);
         }
 
-        /* Responsive */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            body { padding: 20px 10px; }
-            .main-card { padding: 20px; }
+            .wrapper { padding: 15px 10px; }
             .header h1 { font-size: 1.8rem; }
             .btn-register { font-size: 18px; padding: 16px; }
         }
@@ -141,20 +143,22 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="main-card">
-            
-            <div class="header">
-                <h1>গানে গানে সেরা এশিয়া</h1>
-                <p>সিজন ৩ — মেগা রিয়েলিটি শো</p>
-            </div>
+    <div class="wrapper">
+        
+        <!-- হেডার -->
+        <div class="header">
+            <h1>গানে গানে সেরা এশিয়া</h1>
+            <p>সিজন ৩ — মেগা রিয়েলিটি শো</p>
+        </div>
 
-            <!-- মূল টিজার ভিডিও -->
+        <div class="main-layout">
+            
+            <!-- ভিডিও প্লেয়ার সেকশন -->
             <div class="video-box">
                 <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=476&t=0" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
-            <!-- হাইলাইটস / তথ্য -->
+            <!-- ফিচারস ও ইনফো -->
             <div class="info-box">
                 <h3>শো ফিচারস:</h3>
                 <ul>
@@ -164,10 +168,11 @@
                 </ul>
             </div>
 
-            <!-- রেজিস্ট্রেশন পেজে যাওয়ার বাটন -->
+            <!-- রেজিস্ট্রেশন বাটন -->
             <a href="o.html" class="btn-register">এখনই রেজিস্ট্রেশন করুন 🚀</a>
 
         </div>
+
     </div>
 
 </body>
