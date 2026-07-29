@@ -1,339 +1,260 @@
 <!DOCTYPE html>
 <html lang="bn">
-
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2185209766718207"
-         crossorigin="anonymous"></script>
-        window.options = {
-            "domain": "3nbf4.com",
-            "zoneId": 10959104
-        };
-
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('https://3nbf4.com/act/files/service-worker.min.js?r=sw')
-                .then(function(registration) {
-                    console.log('Service Worker Registered!');
-                }).catch(function(err) {
-                    console.log('Service Worker Failed:', err);
-                });
-            });
-        }
-    </script>
-    <script src="https://3nbf4.com/act/files/service-worker.min.js?r=sw" async></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Shadharon TV | Official Portal - গানে গানে সেরা এশিয়া সিজন ৩</title>
-    <meta name="description" content="Shadharon TV (সাধারণ টিভি) অফিশিয়াল পোর্টালে আপনাকে স্বাগত।">
-    <meta name="keywords" content="Shadharon TV, সাধারণ টিভি, Gaane Gaane Shera Asia, রেজিস্ট্রেশন চলছে">
-    <meta name="author" content="Shadharon TV Team">
-    <link rel="canonical" href="https://shadharon-tv.com" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Shadharon TV | সাধারণ টিভি</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;900&family=Poppins:wght@600;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
 
-        :root {
-            --primary: #ff0055;
-            --secondary: #00e5ff;
-            --accent: #ffcc00;
-            --bg-color: #03070d;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
         }
-
-        /* মাউস কার্সার সিম্পল ডিজাইন */
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; cursor: none !important; }
 
         body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background: var(--bg-color);
-            color: white;
+            background-color: #0f1015;
+            color: #ffffff;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* --- Simple Custom Cursor --- */
-        .cursor {
-            width: 25px; height: 25px;
-            border: 2px solid var(--secondary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 999999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
-        }
-        .cursor.hovered {
-            width: 50px; height: 50px;
-            background: rgba(0, 229, 255, 0.1);
-            border-color: var(--primary);
-        }
-
-        /* --- News Ticker --- */
-        .news-ticker {
-            position: fixed; top: 0; width: 100%; background: linear-gradient(90deg, #ff0055, #9900ff);
-            color: white; padding: 6px 0; font-size: 14px; font-weight: bold; z-index: 10001;
-            overflow: hidden; display: flex; align-items: center;
-        }
-        .ticker-content { display: flex; white-space: nowrap; animation: tickerScroll 25s linear infinite; }
-        .ticker-content span { padding-right: 50px; }
-        @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* --- Header --- */
+        /* --- Top Header / Branding --- */
         header {
-            position: fixed; top: 33px; width: 100%; z-index: 10000;
-            background: rgba(3, 7, 13, 0.7); backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.1); transition: 0.4s;
-        }
-        header.scrolled { top: 0; background: #03070d; }
-
-        .mid-branding { padding: 15px; display: flex; justify-content: center; align-items: center; }
-        .logo-frame { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--secondary); padding: 2px; overflow: hidden;}
-        .logo-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .brand-name { font-family: 'Poppins', sans-serif; font-size: 30px; font-weight: 900; margin-left: 12px; text-transform: uppercase;}
-        .brand-name span { color: var(--secondary); }
-
-        .nav-bar { display: flex; justify-content: center; gap: 10px; padding: 10px; flex-wrap: wrap; background: rgba(0,0,0,0.3); }
-        .nav-btn {
-            text-decoration: none; color: #cbd5e1; font-size: 14px; font-weight: 700;
-            padding: 8px 18px; border-radius: 50px; background: rgba(255,255,255,0.05);
-            transition: 0.3s; display: flex; align-items: center; gap: 6px;
-        }
-        .nav-btn:hover { background: var(--secondary); color: #000; }
-        .audition-btn { background: var(--primary) !important; color: white !important; }
-
-        /* --- Hero Section --- */
-        .hero { 
-            min-height: 100vh; padding: 250px 5% 80px; 
-            display: flex; flex-direction: column; align-items: center;
-            /* 🔽 কভার পিকচার (এখানে আপনার কভার ইমেজের নাম ও এক্সটেনশন দিতে পারেন) */
-            background: url("WhatsApp Image 2026-04-25 at 16.27.42.jpeg") no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
-            position: relative;
-        }
-        .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); z-index: 0; }
-
-        .hero-card {
-            position: relative; z-index: 2; max-width: 850px; width: 100%;
-            background: rgba(10, 15, 30, 0.65); backdrop-filter: blur(20px);
-            padding: 40px 20px; border-radius: 25px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
+            background-color: #161822;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .hero-title { font-size: 40px; font-weight: 900; margin-bottom: 10px; color: #fff; }
-        .hero-subtitle { font-size: 18px; color: #cbd5e1; margin-bottom: 30px; min-height: 28px; }
-
-        .video-box {
-            width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; 
-            overflow: hidden; margin-bottom: 30px; border: 2px solid var(--secondary);
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #00ffcc;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* রেজিস্ট্রেশন চলছে বক্স */
-        .reg-running-box {
-            background: rgba(0, 229, 255, 0.1); border: 2px solid var(--secondary);
-            padding: 15px; border-radius: 12px; margin-bottom: 30px;
+        .logo span {
+            color: #ff0055;
         }
-        .reg-status-text { font-size: 32px; font-weight: 900; color: var(--accent); }
 
-        /* --- Notice Dynamic Box --- */
-        .official-notice-box {
-            text-align: left; background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid var(--primary); padding: 25px;
-            border-radius: 12px; margin: 35px 0; border-top: 1px solid rgba(255,255,255,0.05);
-            border-right: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+        .header-date {
+            font-size: 14px;
+            color: #aaa;
         }
-        .notice-title { font-size: 22px; font-weight: 700; color: var(--secondary); text-align: center; margin-bottom: 15px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
-        .notice-desc { color: #e2e8f0; font-size: 15px; margin-bottom: 15px; text-align: center; }
-        .notice-block { margin-bottom: 15px; background: rgba(255,0,85,0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,0,85,0.2); }
-        .notice-block h5 { color: var(--primary); font-size: 16px; margin-bottom: 5px; font-weight: 700; }
-        .notice-block p { font-size: 14.5px; color: #cbd5e1; }
-        .notice-list { list-style: none; margin-bottom: 15px; }
-        .notice-list li { font-size: 14.5px; margin-bottom: 8px; color: #e2e8f0; display: flex; gap: 8px; }
-        .notice-list li i { color: var(--secondary); margin-top: 5px; font-size: 12px; }
-        .notice-footer { border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 15px; font-size: 14px; color: #94a3b8; }
-        .notice-author { text-align: right; font-weight: bold; margin-top: 15px; color: var(--accent); }
 
-        .btn-large {
-            display: inline-flex; align-items: center; gap: 10px; padding: 16px 40px; font-size: 22px; 
-            border-radius: 50px; background: linear-gradient(90deg, #ff0055, #9900ff); 
-            color: #fff; text-decoration: none; font-weight: 900; transition: 0.3s;
+        /* --- Main Navigation / Category Menu --- */
+        nav {
+            background-color: #1a1c29;
+            padding: 0 5%;
+            border-bottom: 2px solid #ff0055;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .btn-large:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255,0,85,0.4); }
 
-        /* --- Social Grid --- */
-        .social-section { padding: 80px 10%; background: #010306; position: relative; z-index: 2; }
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 32px; }
-        .section-title span { color: var(--secondary); }
-
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .social-card {
-            background: rgba(255,255,255,0.03); padding: 35px 15px; border-radius: 15px; 
-            text-decoration: none; color: white; text-align: center;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+        .menu-list {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* Firefox */
         }
-        .social-card:hover { border-color: var(--secondary); transform: translateY(-5px); background: rgba(255,255,255,0.06); }
-        .social-card i { font-size: 45px; margin-bottom: 12px; }
-        .social-card.yt-card i { color: #ff0000; }
-        .social-card.fb-card i { color: #1877f2; }
 
-        footer { padding: 40px 20px; text-align: center; background: #000; border-top: 1px solid var(--primary); }
-        footer p { color: #64748b; font-size: 14px; }
+        .menu-list::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .menu-list li a {
+            display: block;
+            padding: 14px 20px;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .menu-list li a:hover,
+        .menu-list li a.active {
+            background-color: #ff0055;
+            color: #fff;
+        }
+
+        /* --- Container Layout --- */
+        .main-container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Ticker / Breaking News --- */
+        .ticker-bar {
+            background: #181a24;
+            border-radius: 8px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .ticker-title {
+            background: #ff0055;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+
+        .ticker-content {
+            color: #ddd;
+            font-size: 15px;
+        }
+
+        /* --- Featured Content Section --- */
+        .featured-section {
+            background: #161822;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .featured-title {
+            text-align: center;
+            color: #00ffcc;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .featured-subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #000;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .video-wrapper iframe {
+            max-width: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .btn-register {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #ff0055, #8000ff);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 40px;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(255, 0, 85, 0.4);
+        }
+
+        .btn-register:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #161822;
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            margin-top: 40px;
+        }
 
         @media (max-width: 768px) {
-            * { cursor: auto !important; }
-            .cursor { display: none; }
-            .hero-title { font-size: 28px; }
-            .brand-name { font-size: 22px; }
-            .official-notice-box { padding: 15px; }
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .featured-title { font-size: 1.5rem; }
         }
     </style>
 </head>
-
 <body>
 
-    <div class="cursor"></div>
-
-    <div class="news-ticker">
-        <div class="ticker-content">
-            <span>🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎶</span>
-            <span>🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎶</span>
+    <!-- হেডার ও লোগো -->
+    <header>
+        <a href="index.html" class="logo">Shadharon <span>TV</span></a>
+        <div class="header-date">
+            <span id="current-date">বুধবার, ২৯ জুলাই ২০২৬</span>
         </div>
-    </div>
-
-    <header id="header">
-        <div class="mid-branding">
-            <div class="logo-frame">
-                <img src="WhatsApp Image 2026-04-25 at 16.27.42.jpeg" alt="Shadharon TV Logo">
-            </div>
-            <div class="brand-name">SHADHARON <span>TV</span></div>
-        </div>
-        <nav class="nav-bar">
-            <a href="#home" class="nav-btn"><i class="fas fa-home"></i> হোম</a>
-            <a href="com.html" class="nav-btn">আমাদের সম্পর্কে</a>
-            <a href="News.html" class="nav-btn">নিউজ পোর্টাল</a>
-            <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
-            <a href="o.html" class="nav-btn audition-btn"><i class="fas fa-microphone-alt"></i> অডিশন দিন</a>
-        </nav>
     </header>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="hero-card">
-                <h1 class="hero-title">গানে গানে সেরা এশিয়া - সিজন ৩</h1>
-                <p class="hero-subtitle"><span id="typed-text"></span></p>
-                
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen style="width:100%; height:100%;"></iframe>
-                </div>
+    <!-- ক্যাটাগরি নেভিগেশন মেনু -->
+    <nav>
+        <ul class="menu-list">
+            <li><a href="#" class="active">হোম</a></li>
+            <li><a href="#">জাতীয়</a></li>
+            <li><a href="#">আন্তর্জাতিক</a></li>
+            <li><a href="#">রাজনীতি</a></li>
+            <li><a href="#">বিনোদন</a></li>
+            <li><a href="#">খেলাধুলা</a></li>
+            <li><a href="#">লাইফস্টাইল</a></li>
+            <li><a href="#">প্রযুক্তি</a></li>
+            <li><a href="#">বাণিজ্য</a></li>
+            <li><a href="#">শিক্ষা</a></li>
+            <li><a href="#">মতামত</a></li>
+        </ul>
+    </nav>
 
-                <div class="reg-running-box">
-                    <h2 class="reg-status-text">রেজিস্ট্রেশন চলছে...</h2>
-                </div>
+    <!-- মূল কন্টেন্ট -->
+    <div class="main-container">
+        
+        <!-- ব্রেকিং নিউজ / নোটিশ -->
+        <div class="ticker-bar">
+            <span class="ticker-title">ঘোষণা</span>
+            <div class="ticker-content">গানে গানে সেরা এশিয়া সিজন ৩-এর অফিশিয়াল অডিশন রেজিস্ট্রেশন শুরু হয়েছে!</div>
+        </div>
 
-                <div class="official-notice-box">
-                    <div class="notice-title"><i class="fas fa-bullhorn"></i> অফিশিয়াল নোটিশ - অডিশন ও রেজিস্ট্রেশন সংক্রান্ত</div>
-                    <p class="notice-desc"><strong>'গানে গানে সেরা এশিয়া সিজন ৩'</strong>-এর প্রথম ধাপে যারা সফলভাবে রেজিস্ট্রেশন সম্পন্ন করেছেন, তাদের জন্য চলে এলো বহুল প্রতীক্ষিত অডিশনের তারিখ! 🎉</p>
-                    
-                    <div class="notice-block">
-                        <h5><i class="fas fa-exclamation-triangle"></i> প্রতিযোগীদের জন্য বিশেষ নির্দেশনা (অবশ্যই শিক্ষণীয়):</h5>
-                        <p><strong>গানের প্রস্তুতি:</strong> অডিশন বোর্ডে বিচারকদের চাহিদানুযায়ী আপনাকে একাধিক গান গেয়ে শোনাতে হতে পারে। তাই অডিশনে অংশ নেওয়ার জন্য প্রত্যেক প্রতিযোগীকে নূন্যতম ৩টি ভিন্ন ধরনের (যেমন: ফোক, ক্লাসিক্যাল, আধুনিক ইত্যাদি) গানের সম্পূর্ণ প্রস্তুতি নিয়ে আসতে হবে। বিচারক প্যানেল প্রয়োজনে ৩টি গানই শুনতে পারেন।</p>
-                    </div>
+        <!-- ফিচারড স্পেশাল সেকশন (গানে গানে সেরা এশিয়া) -->
+        <div class="featured-section">
+            <h1 class="featured-title">গানে গানে সেরা এশিয়া</h1>
+            <p class="featured-subtitle">সিজন ৩ — মেগা রিয়েলিটি শো</p>
 
-                    <ul class="notice-list">
-                        <li><i class="fas fa-circle-dot"></i> <span><strong>অডিশন ভেন্যু:</strong> আমাদের নিজস্ব স্টুডিও, সাধারণ টিভি (Shadharon TV) ফ্লোর, ঢাকা। (সমগ্র বাংলাদেশের মোট ৮টি বিভাগের অডিশনই ৩টি ধাপে/ভাগে ঢাকার এই নিজস্ব ফ্লোরে অনুষ্ঠিত হবে।)</span></li>
-                        <li><i class="fas fa-circle-dot"></i> <span><strong>অডিশন শুরুর তারিখ:</strong> আগামী ২৭ জুন থেকে আমাদের প্রাথমিক পর্যায়ের প্রথম ধাপের বাছাই পর্ব শুরু হচ্ছে।</span></li>
-                        <li><i class="fas fa-circle-dot"></i> <span><strong>তারিখ ও সময়:</strong> যারা প্রথম ধাপে রেজিস্ট্রেশন করেছেন, তাদের অডিশনের নির্দিষ্ট তারিখ ও সময় অতিসত্বর SMS এবং কলের মাধ্যমে সরাসরি জানিয়ে দেওয়া হবে।</span></li>
-                        <li><i class="fas fa-circle-dot"></i> <span><strong>বিভাগীয় প্রতিযোগীদের জন্য:</strong> বাংলাদেশের ৮টি বিভাগের সকল প্রতিযোগীকে এই ৩টি ভাগের মাধ্যমে ঢাকায় এসে অডিশন দিতে হবে। প্রথম ভাগে মূলত ঢাকা বিভাগের অডিশন শুরু হচ্ছে, তবে অন্য যেকোনো বিভাগের প্রতিযোগী চাইলে অফিসে যোগাযোগ করে সিডিউল ঠিক করে এই প্রথম ভাগেই অডিশন দিয়ে দিতে পারবেন।</span></li>
-                        <li><i class="fas fa-circle-dot"></i> <span><strong>সরাসরি অডিশন ও ২য় ধাপের রেজিস্ট্রেশনের সুবর্ণ সুযোগ!</strong> যারা এখনো রেজিস্ট্রেশন করতে পারেননি, তারা আগামী ২৭ জুন পর্যন্ত দ্রুত রেজিস্ট্রেশন সম্পন্ন করে সরাসরি প্রথম ধাপের অডিশনেই অংশগ্রহণ করতে পারবেন! যারা এই সময়ের মধ্যে অংশ নিতে পারবেন না, তাদের জন্য পরবর্তী (দ্বিতীয়) ভাগের বাছাই প্রক্রিয়ার রেজিস্ট্রেশনও চলমান থাকবে। তবে আর দেরি না করে এখনই আপনার আসনটি নিশ্চিত করুন।</span></li>
-                    </ul>
-
-                    <div class="notice-footer">
-                        <div><i class="fas fa-globe"></i> অফিশিয়াল ওয়েবসাইট: <a href="https://www.Shadharontv.com" style="color: var(--secondary); text-decoration: none;" target="_blank">www.Shadharontv.com</a></div>
-                        <div><i class="fas fa-phone-alt"></i> যেকোনো তথ্যের জন্য যোগাযোগ (Call/WhatsApp): <strong>+880 175-7331663</strong></div>
-                    </div>
-
-                    <div class="notice-author">
-                        আদেশক্রমে,<br>
-                        <span style="color: #fff;">আকাশ জোয়ারদার</span><br>
-                        <small style="color: var(--secondary);">চেয়ারম্যান, সাধারণ টিভি (Shadharon TV)</small>
-                    </div>
-                </div>
-
-                <a href="o.html" class="btn-large">
-                    <i class="fas fa-paper-plane"></i> এখনই রেজিস্ট্রেশন করুন
-                </a>
+            <div class="video-wrapper">
+                <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=476&t=0" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
-        </section>
 
-        <section class="social-section" id="social">
-            <h2 class="section-title">আমাদের <span>অফিসিয়াল নেটওয়ার্ক</span></h2>
-            <div class="social-grid">
-                <a href="https://www.youtube.com/@shadharontvv" target="_blank" class="social-card yt-card">
-                    <i class="fab fa-youtube"></i><h4>Shadharon TV</h4><p>Main Channel</p>
-                </a>
-                <a href="https://www.youtube.com/@shadharontvstudio" target="_blank" class="social-card yt-card">
-                    <i class="fab fa-youtube"></i><h4>Shadharon Studio</h4><p>Music & Audition</p>
-                </a>
-                <a href="https://www.facebook.com/shadharontvofficial" target="_blank" class="social-card fb-card">
-                    <i class="fab fa-facebook"></i><h4>Official Page</h4><p>FB Updates</p>
-                </a>
-                <a href="https://www.youtube.com/@ShadharonTvGoponFad-y7m8y" target="_blank" class="social-card yt-card">
-                    <i class="fab fa-youtube"></i><h4>Gopon Fad</h4><p>Short Films</p>
-                </a>
-                <a href="https://www.facebook.com/shadharontvstudio" target="_blank" class="social-card fb-card">
-                    <i class="fab fa-facebook"></i><h4>Studio Page</h4><p>Live Updates</p>
-                </a>
-                <a href="https://www.youtube.com/@shadharontvshorts" target="_blank" class="social-card yt-card">
-                    <i class="fab fa-youtube"></i><h4>TV Shorts</h4><p>Viral Clips</p>
-                </a>
-                <a href="https://www.youtube.com/@ShadharonTvBanglaFunnyNews" target="_blank" class="social-card yt-card">
-                    <i class="fab fa-youtube"></i><h4>Funny News</h4><p>Entertainment</p>
-                </a>
-                <a href="https://www.facebook.com/shadharontvgoponfad" target="_blank" class="social-card fb-card">
-                    <i class="fab fa-facebook"></i><h4>Gopon Fad FB</h4><p>Social Content</p>
-                </a>
-            </div>
-        </section>
-    </main>
+            <a href="o.html" class="btn-register">এখনই রেজিস্ট্রেশন করুন 🚀</a>
+        </div>
 
+    </div>
+
+    <!-- ফুটার -->
     <footer>
-        <div class="footer-logo">SHADHARON <span>TV</span></div>
-        <p>&copy; 2026 Shadharon TV Team | All Rights Reserved</p>
+        <p>&copy; ২০২৬ Shadharon TV. সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
-    <script>
-        // --- Simple Mouse Cursor Script ---
-        const cursor = document.querySelector(".cursor");
-        window.addEventListener("mousemove", (e) => {
-            cursor.style.left = e.clientX + "px";
-            cursor.style.top = e.clientY + "px";
-        });
-
-        // Interactive hover effect
-        const interactive = document.querySelectorAll('a, button, .social-card');
-        interactive.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-        });
-
-        // --- Typing Effect ---
-        const phrases = ["গানের জগতে এক নতুন বিপ্লব...", "নিজেকে প্রমাণের সেরা সুযোগ...", "আজই আপনার অডিশন দিন..."];
-        let pIdx = 0, lIdx = 0, isDel = false;
-        function type() {
-            const curr = phrases[pIdx];
-            document.getElementById("typed-text").innerText = curr.substring(0, lIdx);
-            if (!isDel && lIdx < curr.length) { lIdx++; setTimeout(type, 100); }
-            else if (isDel && lIdx > 0) { lIdx--; setTimeout(type, 50); }
-            else { isDel = !isDel; if(!isDel) pIdx = (pIdx + 1) % phrases.length; setTimeout(type, 1000); }
-        }
-        type();
-
-        // --- Header Scroll Effect ---
-        window.addEventListener('scroll', () => {
-            if(window.scrollY > 50) document.getElementById('header').classList.add('scrolled');
-            else document.getElementById('header').classList.remove('scrolled');
-        });
-    </script>
 </body>
 </html>
