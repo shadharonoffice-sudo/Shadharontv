@@ -26,7 +26,7 @@
             width: 100%;
         }
 
-        /* --- Full Width Main Wrapper --- */
+        /* --- Full Screen Wrapper --- */
         .wrapper {
             width: 100%;
             max-width: 1200px;
@@ -34,7 +34,7 @@
             padding: 30px 20px;
         }
 
-        /* --- Header Section --- */
+        /* --- Header --- */
         .header { 
             text-align: center; 
             margin-bottom: 30px; 
@@ -42,6 +42,7 @@
             padding: 25px;
             border-radius: 16px;
             border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .header h1 { 
@@ -55,15 +56,31 @@
 
         .header p { color: #ccc; font-size: 16px; }
 
-        /* --- Layout Grid (Full Screen / Wide View) --- */
-        .main-layout {
+        /* --- Notice / Announcement Bar --- */
+        .notice-board {
+            background: rgba(255, 0, 85, 0.15);
+            border: 1px solid var(--primary);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
             display: flex;
-            flex-direction: column;
-            gap: 25px;
-            width: 100%;
+            align-items: center;
+            gap: 15px;
+            font-size: 16px;
         }
 
-        /* --- Video Section --- */
+        .notice-tag {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* --- Main Video Container --- */
         .video-box {
             width: 100%;
             display: flex;
@@ -74,6 +91,7 @@
             background: #050505;
             padding: 25px 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            margin-bottom: 30px;
         }
 
         .video-box iframe {
@@ -82,34 +100,12 @@
             border-radius: 12px;
         }
 
-        /* --- Info Section --- */
-        .info-box {
-            background: var(--glass);
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid var(--border-color);
+        /* --- Registration Button Area --- */
+        .action-area {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .info-box h3 {
-            color: var(--primary);
-            font-size: 20px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 0, 85, 0.3);
-            padding-bottom: 8px;
-        }
-
-        .info-box ul {
-            list-style: none;
-            line-height: 2;
-            font-size: 16px;
-            color: #ddd;
-        }
-
-        .info-box ul li::before {
-            content: "🎤 ";
-        }
-
-        /* --- Action Button --- */
         .btn-register { 
             display: block;
             width: 100%; 
@@ -125,7 +121,6 @@
             box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
             transition: transform 0.2s, box-shadow 0.2s;
             font-family: 'Hind Siliguri', sans-serif;
-            margin-top: 10px;
         }
 
         .btn-register:hover {
@@ -138,6 +133,7 @@
             .wrapper { padding: 15px 10px; }
             .header h1 { font-size: 1.8rem; }
             .btn-register { font-size: 18px; padding: 16px; }
+            .notice-board { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -151,26 +147,20 @@
             <p>সিজন ৩ — মেগা রিয়েলিটি শো</p>
         </div>
 
-        <div class="main-layout">
-            
-            <!-- ভিডিও প্লেয়ার সেকশন -->
-            <div class="video-box">
-                <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=476&t=0" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-            </div>
+        <!-- নোটিশ বোর্ড -->
+        <div class="notice-board">
+            <span class="notice-tag">ঘোষণা</span>
+            <span>গানে গানে সেরা এশিয়া সিজন ৩-এর অফিশিয়াল অডিশন রেজিস্ট্রেশন চলছে! আপনার গান ভিডিও করে জলদি রেজিস্ট্রেশন ফরম জমা দিন।</span>
+        </div>
 
-            <!-- ফিচারস ও ইনফো -->
-            <div class="info-box">
-                <h3>শো ফিচারস:</h3>
-                <ul>
-                    <li>আন্তর্জাতিক মানের মঞ্চ ও জাজমেন্ট</li>
-                    <li>বাংলাদেশ ও প্রবাস থেকে অংশগ্রহণের সুযোগ</li>
-                    <li>বিজয়ীদের জন্য আকর্ষণীয় পুরস্কার ও গানের সুযোগ</li>
-                </ul>
-            </div>
+        <!-- ফেসবুক ভিডিও প্লেয়ার সেকশন -->
+        <div class="video-box">
+            <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=476&t=0" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
 
-            <!-- রেজিস্ট্রেশন বাটন -->
-            <a href="o.html" class="btn-register">এখনই রেজিস্ট্রেশন করুন 🚀</a>
-
+        <!-- রেজিস্ট্রেশন বাটন -->
+        <div class="action-area">
+            <a href="o.html" class="btn-register">এখনই রেজিস্ট্রেশন ফরম পূরণ করুন 🚀</a>
         </div>
 
     </div>
