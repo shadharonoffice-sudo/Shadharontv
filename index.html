@@ -3,33 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadharon TV | সাধারণ টিভি - সত্যের সন্ধানে সার্বক্ষণিক</title>
+    <title>Shadharon TV | গানে গানে সেরা এশিয়া - সিজন ৩</title>
     
-    <meta name="description" content="Shadharon TV - সাধারণ টিভি। ব্রেকিং নিউজ, রাজনীতি, বিনোদন, খেলাধুলা ও লাইফস্টাইলের সর্বশেষ আপডেট।">
-    <meta name="keywords" content="Shadharon TV, Bangladesh News, Bangla News, সাধারণ টিভি, বাংলা খবর, ব্রেকিং নিউজ">
-    <meta name="author" content="Shadharon TV Team">
-    <link rel="canonical" href="https://shadharontv.com" />
-
-    <!-- Google AdSense -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2185209766718207" crossorigin="anonymous"></script>
 
-    <!-- FontAwesome & Google Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@600;700;900&display=swap');
-
-        :root {
-            --primary: #ff0055;
-            --primary-hover: #d00045;
-            --accent: #00ffcc;
-            --bg-dark: #0d0e15;
-            --card-bg: #161822;
-            --nav-bg: #1a1c29;
-            --text-light: #ffffff;
-            --text-muted: #a0a5ba;
-            --border-color: rgba(255, 255, 255, 0.08);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@600;800;900&display=swap');
 
         * {
             margin: 0;
@@ -39,335 +19,265 @@
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
+            background-color: #05070d;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* --- Top Marquee Ticker --- */
+        .top-ticker {
+            background: linear-gradient(90deg, #c0005a, #8000ff);
+            color: white;
+            padding: 6px 0;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .ticker-text {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         /* --- Header Section --- */
         header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
+            background-color: #0b0e17;
             padding: 15px 5%;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--accent);
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            margin-bottom: 15px;
+            text-decoration: none;
         }
 
-        .logo span {
-            color: var(--primary);
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #00ffcc;
         }
 
-        .header-date {
-            font-size: 14px;
-            color: var(--text-muted);
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
         }
 
         /* --- Navigation Menu --- */
         nav {
-            background-color: var(--nav-bg);
-            padding: 0 5%;
-            border-bottom: 2px solid var(--primary);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .menu-list {
             display: flex;
-            list-style: none;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-        }
-
-        .menu-list::-webkit-scrollbar {
-            display: none;
-        }
-
-        .menu-list li button {
-            background: none;
-            border: none;
-            display: block;
-            padding: 14px 20px;
-            color: #e0e0e0;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .menu-list li button:hover,
-        .menu-list li button.active {
-            background-color: var(--primary);
-            color: #fff;
-        }
-
-        /* --- Main Layout --- */
-        .main-container {
-            width: 100%;
-            max-width: 1300px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        /* Ticker Bar */
-        .ticker-bar {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 10px 15px;
-            display: flex;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .ticker-title {
-            background: var(--primary);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-weight: bold;
+        .nav-btn {
+            background: #161a26;
+            color: #ccc;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 20px;
             font-size: 14px;
-            margin-right: 15px;
-            white-space: nowrap;
-        }
-
-        .ticker-content {
-            color: #ddd;
-            font-size: 15px;
-        }
-
-        .ticker-content a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* News Header */
-        .section-header {
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+            gap: 6px;
         }
 
-        .section-header h2 {
-            font-size: 22px;
-            color: var(--accent);
-            border-left: 4px solid var(--primary);
-            padding-left: 10px;
+        .nav-btn:hover, .nav-btn.active {
+            background: #202638;
+            color: #fff;
+            border-color: rgba(255,255,255,0.2);
         }
 
-        /* News Grid */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
+        .nav-btn.btn-audition {
+            background: linear-gradient(45deg, #ff0055, #ff007f);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4);
         }
 
-        .news-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            text-decoration: none;
-            color: inherit;
+        .nav-btn.btn-audition:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Main Hero Content --- */
+        .hero-section {
+            min-height: calc(100vh - 120px);
+            padding: 40px 20px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: url("WhatsApp Image 2026-04-25 at 16.27.42.jpeg") no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
         }
 
-        .news-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 7, 13, 0.75);
         }
 
-        .news-img {
+        .hero-card {
+            position: relative;
+            z-index: 2;
             width: 100%;
-            height: 180px;
-            background-color: #222;
-            object-fit: cover;
+            max-width: 750px;
+            background: rgba(15, 20, 32, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
-        .news-content {
-            padding: 15px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .news-category {
-            font-size: 12px;
-            color: var(--primary);
-            font-weight: bold;
-            text-transform: uppercase;
+        .hero-title {
+            font-size: 2rem;
+            color: #ffffff;
+            font-weight: 700;
             margin-bottom: 5px;
         }
 
-        .news-title {
-            font-size: 16px;
-            color: #fff;
-            margin-bottom: 10px;
-            line-height: 1.4;
-            font-weight: 600;
+        .hero-subtitle {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
-        .news-date {
-            font-size: 12px;
-            color: var(--text-muted);
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 2px solid #00ffcc;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+            margin-bottom: 25px;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .reg-status-box {
+            background: rgba(0, 255, 204, 0.05);
+            border: 1px solid #00ffcc;
+            border-radius: 10px;
+            padding: 12px;
+            color: #00ffcc;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .btn-register {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff0055, #8000ff);
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(255, 0, 85, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 0, 85, 0.6);
         }
 
         footer {
-            background: var(--card-bg);
+            background: #05070d;
             text-align: center;
-            padding: 25px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            margin-top: 40px;
+            padding: 15px;
+            color: #555;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
+        @media (max-width: 600px) {
+            .hero-title { font-size: 1.5rem; }
+            .nav-btn { padding: 6px 12px; font-size: 12px; }
+            .hero-card { padding: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- হেডার -->
-    <header>
-        <a href="index.html" class="logo">Shadharon <span>TV</span></a>
-        <div class="header-date">
-            <span id="current-date">বুধবার, ২৯ জুলাই ২০২৬</span>
+    <!-- টপ ব্রেকিং নিউজ মার্কি -->
+    <div class="top-ticker">
+        <div class="ticker-text">
+            🔥 ব্রেকিং নিউজ: গানে গানে সেরা এশিয়া সিজন ৩-এর মেগা অডিশন চলছে! আজই আপনার গানের ভিডিও পাঠিয়ে রেজিস্ট্রেশন সম্পন্ন করুন! 🎤
         </div>
-    </header>
-
-    <!-- নেভিগেশন মেনু -->
-    <nav>
-        <ul class="menu-list">
-            <li><button class="menu-btn active" onclick="filterCategory('সব', this)">হোম</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('জাতীয়', this)">জাতীয়</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('আন্তর্জাতিক', this)">আন্তর্জাতিক</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('রাজনীতি', this)">রাজনীতি</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('বিনোদন', this)">বিনোদন</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('খেলাধুলা', this)">খেলাধুলা</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('লাইফস্টাইল', this)">লাইফস্টাইল</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('প্রযুক্তি', this)">প্রযুক্তি</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('বাণিজ্য', this)">বাণিজ্য</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('শিক্ষা', this)">শিক্ষা</button></li>
-            <li><button class="menu-btn" onclick="filterCategory('মতামত', this)">মতামত</button></li>
-        </ul>
-    </nav>
-
-    <!-- মূল কন্টেন্ট -->
-    <div class="main-container">
-        
-        <!-- নোটিশ বার (এখানে অডিশনের নোটিশ রাখা আছে) -->
-        <div class="ticker-bar">
-            <span class="ticker-title">ঘোষণা</span>
-            <div class="ticker-content">
-                গানে গানে সেরা এশিয়া সিজন ৩-এর অফিশিয়াল অডিশন চলছে! <a href="o.html">এখনই রেজিস্ট্রেশন করুন 🚀</a>
-            </div>
-        </div>
-
-        <!-- সংবাদ সেকশন -->
-        <div class="section-header">
-            <h2 id="category-heading">সর্বশেষ সংবাদ</h2>
-        </div>
-
-        <div class="news-grid" id="news-container">
-            <!-- JavaScript এর মাধ্যমে news.json থেকে সংবাদ অটোমেটিক লোড হবে -->
-            <p style="color: var(--text-muted); grid-column: 1/-1;">সংবাদ লোড হচ্ছে...</p>
-        </div>
-
     </div>
 
+    <!-- হেডার ও নেভিগেশন বার -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="alinagar.PNG" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-text">SHADHARON TV</div>
+        </a>
+
+        <nav>
+            <a href="index.html" class="nav-btn active"><i class="fa-solid fa-house"></i> হোম</a>
+            <a href="about.html" class="nav-btn"><i class="fa-solid fa-circle-info"></i> আমাদের সম্পর্কে</a>
+            <a href="News.html" class="nav-btn"><i class="fa-solid fa-newspaper"></i> নিউজ পোর্টাল</a>
+            <a href="chat.html" class="nav-btn"><i class="fa-solid fa-tv"></i> চ্যানেল সমূহ</a>
+            <a href="o.html" class="nav-btn btn-audition"><i class="fa-solid fa-microphone"></i> অডিশন দিন</a>
+        </nav>
+    </header>
+
+    <!-- হিরো সেকশন -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-card">
+            <h1 class="hero-title">গানে গানে সেরা এশিয়া - সিজন ৩</h1>
+            <p class="hero-subtitle">আজই আপনার অডিশন দিন...</p>
+
+            <div class="video-wrapper">
+                <!-- আপনার প্লেলিস্ট বা ভিডিও লিংক -->
+                <iframe src="https://www.youtube.com/embed/videoseries?list=PL_YOUR_PLAYLIST_ID" allowfullscreen></iframe>
+            </div>
+
+            <div class="reg-status-box">
+                রেজিস্ট্রেশন চলছে...
+            </div>
+
+            <a href="o.html" class="btn-register">এখনই অডিশন রেজিস্ট্রেশন করুন 🚀</a>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; ২০২৬ Shadharon TV. সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>&copy; ২০২৬ Shadharon TV. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        let allNewsData = [];
-
-        // news.json থেকে খবর লোড করার মূল ফাংশন
-        async function fetchNews() {
-            try {
-                const response = await fetch('news.json');
-                if (!response.ok) throw new Error("JSON file load failed");
-                allNewsData = await response.json();
-                renderNews(allNewsData);
-            } catch (error) {
-                console.error("Error fetching news:", error);
-                document.getElementById('news-container').innerHTML = 
-                    '<p style="color: #ff0055; grid-column: 1/-1;">সংবাদ লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে পরে চেষ্টা করুন।</p>';
-            }
-        }
-
-        // স্ক্রিনে সংবাদ দেখানোর ফাংশন
-        function renderNews(newsList) {
-            const container = document.getElementById('news-container');
-            container.innerHTML = '';
-
-            if (newsList.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-muted); grid-column: 1/-1;">এই ক্যাটাগরিতে কোনো সংবাদ পাওয়া যায়নি।</p>';
-                return;
-            }
-
-            newsList.forEach(item => {
-                const card = document.createElement('a');
-                card.href = `News.html?id=${item.id}`;
-                card.className = 'news-card';
-                card.innerHTML = `
-                    <img src="${item.image || 'https://via.placeholder.com/400x250'}" class="news-img" alt="${item.title}">
-                    <div class="news-content">
-                        <div>
-                            <div class="news-category">${item.category || 'সংবাদ'}</div>
-                            <div class="news-title">${item.title}</div>
-                        </div>
-                        <div class="news-date">${item.date || ''}</div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // ক্যাটাগরি ফিল্টার ফাংশন (মেনুতে ক্লিক করলে কাজ করবে)
-        function filterCategory(category, btnElement) {
-            const buttons = document.querySelectorAll('.menu-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-
-            document.getElementById('category-heading').innerText = category === 'সব' ? 'সর্বশেষ সংবাদ' : category + ' সংবাদ';
-
-            if (category === 'সব') {
-                renderNews(allNewsData);
-            } else {
-                const filtered = allNewsData.filter(item => item.category === category);
-                renderNews(filtered);
-            }
-        }
-
-        // পেজ লোড হলে রান হবে
-        window.onload = fetchNews;
-    </script>
 </body>
 </html>
