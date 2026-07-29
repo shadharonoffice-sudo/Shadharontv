@@ -69,6 +69,7 @@
             background: #000;
             padding: 10px 0;
             overflow: hidden;
+            min-height: 480px; /* ইমবেড লোড হওয়ার আগে যেন স্পেস সঠিক থাকে */
         }
 
         .video-box iframe {
@@ -167,11 +168,19 @@
                 <p>অফিসিয়াল রেজিস্ট্রেশন ফরম</p>
             </div>
 
-            <!-- ফেসবুক ভিডিও সেকশন শুরু -->
+            <!-- ফেসবুক ভিডিও সেকশন (সঠিক ইমবেড URL সহ) -->
             <div class="video-box">
-                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=350" width="350" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <iframe 
+                    src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=267" 
+                    width="267" 
+                    height="476" 
+                    style="border:none;overflow:hidden" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
             </div>
-            <!-- ফেসবুক ভিডিও সেকশন শেষ -->
 
             <form id="asiaFullForm">
                 <div class="section-title">ব্যক্তিগত তথ্য</div>
@@ -259,7 +268,6 @@
     document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // সব ইনপুট ডেটা গ্রহণ
         const name = document.getElementById('node_name').value.trim();
         const wa = document.getElementById('node_whatsapp').value.trim();
         const res = document.getElementById('node_res').value;
@@ -272,13 +280,11 @@
         const sender = document.getElementById('node_sender').value.trim();
         const trx = document.getElementById('node_trx').value.trim();
 
-        // ভ্যালিডেশন চেক (অতিরিক্ত নিরাপত্তা)
         if(!name || !wa || !res || !dob || !gender || !dist || !vill || !method || !sender || !trx) {
             alert("দয়া করে সব তারকাচিহ্নিত (*) ঘরগুলো পূরণ করুন।");
             return;
         }
 
-        // সুন্দর ফরম্যাটে হোয়াটসঅ্যাপ মেসেজ তৈরি
         const finalMsg = `🎵 *গানে গানে সেরা সিজন ৩ এশিয়া - নতুন রেজিস্ট্রেশন* 🎵%0A` +
                          `━━━━━━━━━━━━━━━━━━%0A` +
                          `👤 *নাম:* ${encodeURIComponent(name)}%0A` +
@@ -295,7 +301,6 @@
                          `━━━━━━━━━━━━━━━━━━%0A` +
                          `*দ্রষ্টব্য:* আমি আমার গানের অডিও/ভিডিও নিচে পাঠাচ্ছি।`;
 
-        // হোয়াটসঅ্যাপে রিডাইরেক্ট
         window.open(`https://wa.me/8801757331663?text=${finalMsg}`, '_blank');
     });
 </script>
