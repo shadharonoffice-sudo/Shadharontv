@@ -3,166 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>গানে গানে সেরা এশিয়া | সিজন ৩</title>
+    <title>গানে গানে সেরা এশিয়া | সিজন ৩ - রেজিস্ট্রেশন</title>
     
-    <!-- Google Fonts & FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
         
-        :root { 
-            --primary: #ff0055; 
-            --secondary: #00ffcc; 
-            --bg-dark: #080c14;
-            --glass-bg: rgba(18, 25, 40, 0.85); 
-            --glass-border: rgba(255, 255, 255, 0.12);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body { 
-            font-family: 'Hind Siliguri', sans-serif; 
-            background: var(--bg-dark) radial-gradient(circle at top, #1a0212, #05080f); 
-            color: #fff; 
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #080c14;
+            background-image: radial-gradient(circle at top, #2a081e, #05080f);
+            color: #ffffff;
             padding: 20px 10px;
             min-height: 100vh;
         }
 
-        .main-layout { 
-            display: flex; 
-            justify-content: center; 
-            gap: 20px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            align-items: flex-start; 
+        .main-layout {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
         }
-        
-        /* --- Sidebar Ads --- */
-        .sidebar { 
-            width: 160px; 
-            position: sticky; 
-            top: 20px; 
-            display: none; 
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
+
+        .sidebar {
+            width: 160px;
+            position: sticky;
+            top: 20px;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar { display: block; }
+        }
+
+        .content {
+            flex: 1;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .ad-row {
+            text-align: center;
+            margin-bottom: 20px;
             overflow: hidden;
         }
-        @media (min-width: 1024px) { .sidebar { display: block; } }
 
-        /* --- Content Area --- */
-        .content { flex: 1; max-width: 650px; width: 100%; margin: 0 auto; }
-        
-        .ad-row { text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 8px; }
-        
-        .reg-card { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            padding: 30px; 
-            border-radius: 24px; 
-            border: 1px solid var(--glass-border); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 0, 85, 0.1); 
+        .reg-card {
+            background: rgba(18, 25, 40, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
         }
 
-        .header { text-align: center; margin-bottom: 25px; border-bottom: 1px dashed rgba(255, 255, 255, 0.15); padding-bottom: 20px; }
-        .header h1 { 
-            color: var(--secondary); 
-            font-size: 1.8rem; 
-            text-transform: uppercase; 
-            font-family: 'Hind Siliguri', sans-serif;
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+            padding-bottom: 15px;
+        }
+
+        .header h1 {
+            color: #00ffcc;
+            font-size: 26px;
             font-weight: 700;
-            letter-spacing: 0.5px;
             margin-bottom: 5px;
-            text-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
-        }
-        .header p { color: #cbd5e1; font-size: 15px; }
-        
-        .section-title { 
-            background: linear-gradient(90deg, rgba(255, 0, 85, 0.2), transparent); 
-            color: #fff; 
-            padding: 10px 15px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            margin: 25px 0 15px; 
-            border-left: 4px solid var(--primary); 
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .input-group { margin-bottom: 18px; }
-        label { display: block; margin-bottom: 8px; font-size: 14px; color: #e2e8f0; font-weight: 500; }
-        
-        input, select { 
-            width: 100%; 
-            padding: 14px 16px; 
-            background: rgba(255, 255, 255, 0.05); 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            border-radius: 12px; 
-            color: #fff; 
+        .header p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .section-title {
+            background: rgba(255, 0, 85, 0.15);
+            color: #ff0055;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            margin: 20px 0 15px 0;
+            border-left: 4px solid #ff0055;
+            font-size: 16px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #e2e8f0;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
             font-size: 15px;
-            font-family: inherit;
-            outline: none; 
-            transition: all 0.3s ease;
+            font-family: 'Hind Siliguri', sans-serif;
+            outline: none;
         }
 
         input:focus, select:focus {
-            border-color: var(--secondary);
+            border-color: #00ffcc;
             background: rgba(0, 255, 204, 0.05);
-            box-shadow: 0 0 12px rgba(0, 255, 204, 0.2);
         }
 
-        select option { background: #0f172a; color: #fff; }
-        
+        select option {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
         .payment-box {
-            background: rgba(255, 204, 0, 0.05);
-            border: 1px dashed rgba(255, 204, 0, 0.3);
-            border-radius: 12px;
-            padding: 15px;
+            background: rgba(255, 204, 0, 0.08);
+            border: 1px dashed #ffcc00;
+            border-radius: 10px;
+            padding: 12px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        .payment-box p { color: #ffcc00; font-weight: 700; font-size: 16px; }
 
-        .btn { 
-            width: 100%; 
-            padding: 16px; 
-            border: none; 
-            border-radius: 50px; 
-            font-size: 18px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            color: white; 
-            background: linear-gradient(90deg, var(--primary), #8000ff); 
-            margin-top: 20px; 
-            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        .payment-box p {
+            color: #ffcc00;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #ffffff;
+            background: linear-gradient(90deg, #ff0055, #8000ff);
+            margin-top: 15px;
+            box-shadow: 0 10px 20px rgba(255, 0, 85, 0.4);
+            font-family: 'Hind Siliguri', sans-serif;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(255, 0, 85, 0.6);
+            opacity: 0.95;
         }
 
-        /* Footer Ad Mobile */
-        .mobile-footer-ad { 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            background: #000; 
-            text-align: center; 
-            padding: 5px 0; 
-            z-index: 999; 
-            display: block; 
+        .mobile-footer-ad {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #000;
+            text-align: center;
+            padding: 5px 0;
+            z-index: 999;
+            display: block;
         }
-        @media (min-width: 768px) { .mobile-footer-ad { display: none; } }
+
+        @media (min-width: 768px) {
+            .mobile-footer-ad { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -176,10 +191,10 @@
         <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- Main Form Content -->
     <div class="content">
         
-        <!-- Top Banner Ad -->
+        <!-- Top Ad -->
         <div class="ad-row">
             <script>
                 atOptions = { 'key' : '94b95297e478e03fe80e051564f09c1c', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
@@ -194,20 +209,20 @@
             </div>
 
             <form id="asiaFullForm">
-                <div class="section-title"><i class="fas fa-user"></i> ব্যক্তিগত তথ্য</div>
+                <div class="section-title">ব্যক্তিগত তথ্য</div>
                 
                 <div class="input-group">
-                    <label for="node_name">পূর্ণ নাম *</label>
+                    <label>পূর্ণ নাম *</label>
                     <input type="text" id="node_name" placeholder="আপনার পুরো নাম লিখুন" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="node_whatsapp">WhatsApp নাম্বার *</label>
+                    <label>WhatsApp নাম্বার *</label>
                     <input type="tel" id="node_whatsapp" placeholder="017XXXXXXXX" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="node_res">বসবাস *</label>
+                    <label>বসবাস *</label>
                     <select id="node_res">
                         <option value="বাংলাদেশ">বাংলাদেশ</option>
                         <option value="প্রবাসে">প্রবাসে</option>
@@ -215,17 +230,17 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="node_job">পেশা</label>
+                    <label>পেশা</label>
                     <input type="text" id="node_job" placeholder="যেমন: শিক্ষার্থী, শিক্ষক, ইত্যাদি">
                 </div>
                 
                 <div class="input-group">
-                    <label for="node_dob">জন্ম তারিখ *</label>
+                    <label>জন্ম তারিখ *</label>
                     <input type="date" id="node_dob" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="node_gender">লিঙ্গ *</label>
+                    <label>লিঙ্গ *</label>
                     <select id="node_gender">
                         <option value="পুরুষ">পুরুষ</option>
                         <option value="নারী">নারী</option>
@@ -233,7 +248,7 @@
                     </select>
                 </div>
 
-                <!-- In-Form Ad -->
+                <!-- Middle Ad -->
                 <div class="ad-row">
                     <script>
                         atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
@@ -241,26 +256,26 @@
                     <script src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
                 </div>
 
-                <div class="section-title"><i class="fas fa-map-marker-alt"></i> ঠিকানা</div>
+                <div class="section-title">ঠিকানা</div>
                 
                 <div class="input-group">
-                    <label for="node_dist">জেলা *</label>
+                    <label>জেলা *</label>
                     <input type="text" id="node_dist" placeholder="আপনার জেলা" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="node_vill">গ্রাম/মহল্লা *</label>
+                    <label>গ্রাম/মহল্লা *</label>
                     <input type="text" id="node_vill" placeholder="গ্রাম বা এলাকার নাম" required>
                 </div>
 
-                <div class="section-title"><i class="fas fa-wallet"></i> পেমেন্ট ডিটেইলস (১০০০ টাকা)</div>
+                <div class="section-title">💰 পেমেন্ট ডিটেইলস (১০০০ টাকা)</div>
                 
                 <div class="payment-box">
-                    <p><i class="fas fa-paper-plane"></i> Send Money (Personal): 01757331663</p>
+                    <p>Send Money (Personal): 01757331663</p>
                 </div>
 
                 <div class="input-group">
-                    <label for="node_method">পেমেন্ট মেথড *</label>
+                    <label>পেমেন্ট মেথড *</label>
                     <select id="node_method">
                         <option value="বিকাশ">বিকাশ</option>
                         <option value="নগদ">নগদ</option>
@@ -269,18 +284,16 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="node_sender">পেমেন্টকৃত নাম্বার *</label>
+                    <label>পেমেন্টকৃত নাম্বার *</label>
                     <input type="tel" id="node_sender" placeholder="যে নাম্বার থেকে টাকা পাঠিয়েছেন" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="node_trx">TrxID *</label>
+                    <label>TrxID *</label>
                     <input type="text" id="node_trx" placeholder="যেমন: BN7A6D5E" required>
                 </div>
 
-                <button type="submit" class="btn">
-                    <i class="fab fa-whatsapp"></i> তথ্য জমা দিন ও গান পাঠান
-                </button>
+                <button type="submit" class="btn">তথ্য জমা দিন ও গান পাঠান 🚀</button>
             </form>
         </div>
 
@@ -298,7 +311,6 @@
     </div>
 </div>
 
-<!-- Sticky Mobile Footer Ad -->
 <div class="mobile-footer-ad">
     <script src="https://www.highperformanceformat.com/94b95297e478e03fe80e051564f09c1c/invoke.js"></script>
 </div>
