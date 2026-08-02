@@ -1,281 +1,340 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>গানে গানে সেরা এশিয়া | সিজন ৩ - রেজিস্ট্রেশন</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Poppins:wght@700&display=swap');
-        
-        :root { 
-            --primary: #ff0055; 
-            --secondary: #00ffcc; 
-            --glass: rgba(255, 255, 255, 0.08); 
-            --bg-color: #000;
-            --text-color: #fff;
-            --input-bg: rgba(255, 255, 255, 0.06);
-            --border-color: rgba(255, 255, 255, 0.15);
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Hind Siliguri', sans-serif; 
-            background: radial-gradient(circle at top, #1a1a1a, var(--bg-color)); 
-            color: var(--text-color); 
-            padding: 20px 10px; 
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গানে গানে সেরা এশিয়া | সিজন ৩</title>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap');
+        
+        :root { 
+            --primary: #ff0055; 
+            --secondary: #00ffcc; 
+            --bg-dark: #080c14;
+            --glass-bg: rgba(18, 25, 40, 0.85); 
+            --glass-border: rgba(255, 255, 255, 0.12);
+        }
 
-        /* --- Main Content Area --- */
-        .content { 
-            width: 100%; 
-            max-width: 600px; 
-            margin: 0 auto;
-        }
-        
-        .reg-card { 
-            background: var(--glass); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            padding: 30px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); 
-        }
-        
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { 
-            color: var(--secondary); 
-            font-size: 1.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
-        }
-        .header p { color: #bbb; font-size: 14px; margin-top: 5px; }
-        
-        .section-title { 
-            background: rgba(255, 0, 85, 0.15); 
-            color: var(--primary); 
-            padding: 12px 15px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            margin: 25px 0 15px; 
-            border-left: 5px solid var(--primary); 
-            font-size: 16px;
-        }
-        
-        .input-group { margin-bottom: 18px; }
-        label { display: block; margin-bottom: 8px; font-size: 14px; color: #ccc; }
-        
-        input, select { 
-            width: 100%; 
-            padding: 14px; 
-            background: var(--input-bg); 
-            border: 1px solid var(--border-color); 
-            border-radius: 10px; 
-            color: var(--text-color); 
-            outline: none; 
-            font-family: inherit;
-            font-size: 15px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        input:focus, select:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
-        }
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background: var(--bg-dark) radial-gradient(circle at top, #1a0212, #05080f); 
+            color: #fff; 
+            padding: 20px 10px;
+            min-height: 100vh;
+        }
 
-        select option { background: #1a1a1a; color: #fff; }
-        
-        .payment-info {
-            text-align: center; 
-            color: #ffd700; 
-            font-weight: bold; 
-            margin-bottom: 20px; 
-            background: rgba(255, 215, 0, 0.1); 
-            padding: 12px; 
-            border-radius: 8px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            font-size: 15px;
-        }
+        .main-layout { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            align-items: flex-start; 
+        }
+        
+        /* --- Sidebar Ads --- */
+        .sidebar { 
+            width: 160px; 
+            position: sticky; 
+            top: 20px; 
+            display: none; 
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        @media (min-width: 1024px) { .sidebar { display: block; } }
 
-        .btn { 
-            width: 100%; 
-            padding: 18px; 
-            border: none; 
-            border-radius: 50px; 
-            font-size: 18px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            color: white; 
-            background: linear-gradient(45deg, var(--primary), #8000ff); 
-            margin-top: 25px; 
-            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
-            font-family: 'Hind Siliguri', sans-serif;
-        }
+        /* --- Content Area --- */
+        .content { flex: 1; max-width: 650px; width: 100%; margin: 0 auto; }
+        
+        .ad-row { text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 8px; }
+        
+        .reg-card { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            padding: 30px; 
+            border-radius: 24px; 
+            border: 1px solid var(--glass-border); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 0, 85, 0.1); 
+        }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 0, 85, 0.5);
-            background: linear-gradient(45deg, #ff1a6a, #8e1aff);
-        }
+        .header { text-align: center; margin-bottom: 25px; border-bottom: 1px dashed rgba(255, 255, 255, 0.15); padding-bottom: 20px; }
+        .header h1 { 
+            color: var(--secondary); 
+            font-size: 1.8rem; 
+            text-transform: uppercase; 
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+        }
+        .header p { color: #cbd5e1; font-size: 15px; }
+        
+        .section-title { 
+            background: linear-gradient(90deg, rgba(255, 0, 85, 0.2), transparent); 
+            color: #fff; 
+            padding: 10px 15px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            margin: 25px 0 15px; 
+            border-left: 4px solid var(--primary); 
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-        .btn:active {
-            transform: translateY(-1px);
-        }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 8px; font-size: 14px; color: #e2e8f0; font-weight: 500; }
+        
+        input, select { 
+            width: 100%; 
+            padding: 14px 16px; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 12px; 
+            color: #fff; 
+            font-size: 15px;
+            font-family: inherit;
+            outline: none; 
+            transition: all 0.3s ease;
+        }
 
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            .reg-card { padding: 20px; }
-            .header h1 { font-size: 1.5rem; }
-            .btn { font-size: 16px; padding: 16px; }
-        }
-    </style>
+        input:focus, select:focus {
+            border-color: var(--secondary);
+            background: rgba(0, 255, 204, 0.05);
+            box-shadow: 0 0 12px rgba(0, 255, 204, 0.2);
+        }
+
+        select option { background: #0f172a; color: #fff; }
+        
+        .payment-box {
+            background: rgba(255, 204, 0, 0.05);
+            border: 1px dashed rgba(255, 204, 0, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .payment-box p { color: #ffcc00; font-weight: 700; font-size: 16px; }
+
+        .btn { 
+            width: 100%; 
+            padding: 16px; 
+            border: none; 
+            border-radius: 50px; 
+            font-size: 18px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            color: white; 
+            background: linear-gradient(90deg, var(--primary), #8000ff); 
+            margin-top: 20px; 
+            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255, 0, 85, 0.6);
+        }
+
+        /* Footer Ad Mobile */
+        .mobile-footer-ad { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: #000; 
+            text-align: center; 
+            padding: 5px 0; 
+            z-index: 999; 
+            display: block; 
+        }
+        @media (min-width: 768px) { .mobile-footer-ad { display: none; } }
+    </style>
 </head>
 <body>
 
-    <!-- Main Form Content -->
-    <div class="content">
-        <div class="reg-card">
-            <div class="header">
-                <h1>গানে গানে সেরা সিজন ৩ এশিয়া</h1>
-                <p>অফিসিয়াল রেজিস্ট্রেশন ফরম</p>
-            </div>
-            <div style="width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 25px; border: 2px solid var(--secondary);">
-              <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=560" style="width:100%; height:100%; border:none; overflow:hidden;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+<div class="main-layout">
+    <!-- Left Sidebar Ad -->
+    <div class="sidebar">
+        <script>
+            atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
+        </script>
+        <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+        
+        <!-- Top Banner Ad -->
+        <div class="ad-row">
+            <script>
+                atOptions = { 'key' : '94b95297e478e03fe80e051564f09c1c', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+            </script>
+            <script src="https://www.highperformanceformat.com/94b95297e478e03fe80e051564f09c1c/invoke.js"></script>
+        </div>
+
+        <div class="reg-card">
+            <div class="header">
+                <h1>গানে গানে সেরা সিজন ৩ এশিয়া</h1>
+                <p>অফিসিয়াল রেজিস্ট্রেশন ফরম</p>
             </div>
 
-            <form id="asiaFullForm">
-                <div class="section-title">ব্যক্তিগত তথ্য</div>
-                
-                <div class="input-group">
-                    <label for="node_name">পূর্ণ নাম *</label>
-                    <input type="text" id="node_name" placeholder="আপনার পুরো নাম লিখুন" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_whatsapp">WhatsApp নাম্বার *</label>
-                    <input type="tel" id="node_whatsapp" placeholder="017XXXXXXXX" pattern="[0-9]{11}" title="দয়া করে ১১ ডিজিটের মোবাইল নাম্বার দিন" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_res">বসবাস *</label>
-                    <select id="node_res" required>
-                        <option value="" disabled selected>নির্বাচন করুন</option>
-                        <option value="বাংলাদেশ">বাংলাদেশ</option>
-                        <option value="প্রবাসে">প্রবাসে</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_job">পেশা</label>
-                    <input type="text" id="node_job" placeholder="যেমন: শিক্ষার্থী, শিক্ষক, ইত্যাদি">
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_dob">জন্ম তারিখ *</label>
-                    <input type="date" id="node_dob" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_gender">লিঙ্গ *</label>
-                    <select id="node_gender" required>
-                        <option value="" disabled selected>নির্বাচন করুন</option>
-                        <option value="পুরুষ">পুরুষ</option>
-                        <option value="নারী">নারী</option>
-                    </select>
-                </div>
+            <form id="asiaFullForm">
+                <div class="section-title"><i class="fas fa-user"></i> ব্যক্তিগত তথ্য</div>
+                
+                <div class="input-group">
+                    <label for="node_name">পূর্ণ নাম *</label>
+                    <input type="text" id="node_name" placeholder="আপনার পুরো নাম লিখুন" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="node_whatsapp">WhatsApp নাম্বার *</label>
+                    <input type="tel" id="node_whatsapp" placeholder="017XXXXXXXX" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="node_res">বসবাস *</label>
+                    <select id="node_res">
+                        <option value="বাংলাদেশ">বাংলাদেশ</option>
+                        <option value="প্রবাসে">প্রবাসে</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="node_job">পেশা</label>
+                    <input type="text" id="node_job" placeholder="যেমন: শিক্ষার্থী, শিক্ষক, ইত্যাদি">
+                </div>
+                
+                <div class="input-group">
+                    <label for="node_dob">জন্ম তারিখ *</label>
+                    <input type="date" id="node_dob" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="node_gender">লিঙ্গ *</label>
+                    <select id="node_gender">
+                        <option value="পুরুষ">পুরুষ</option>
+                        <option value="নারী">নারী</option>
+                        <option value="অন্যান্য">অন্যান্য</option>
+                    </select>
+                </div>
 
-                <div class="section-title">ঠিকানা</div>
-                <div class="input-group">
-                    <label for="node_dist">জেলা *</label>
-                    <input type="text" id="node_dist" placeholder="আপনার জেলা" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_vill">গ্রাম/মহল্লা *</label>
-                    <input type="text" id="node_vill" placeholder="গ্রাম বা এলাকার নাম" required>
-                </div>
+                <!-- In-Form Ad -->
+                <div class="ad-row">
+                    <script>
+                        atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+                    </script>
+                    <script src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
+                </div>
 
-                <div class="section-title">💰 পেমেন্ট ডিটেইলস (১০০০ টাকা)</div>
-                <div class="payment-info">
-                    Send Money (Personal): 01757331663
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_method">পেমেন্ট মেথড *</label>
-                    <select id="node_method" required>
-                        <option value="" disabled selected>নির্বাচন করুন</option>
-                        <option value="বিকাশ">বিকাশ</option>
-                        <option value="নগদ">নগদ</option>
-                        <option value="রকেট">রকেট</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_sender">পেমেন্টকৃত নাম্বার *</label>
-                    <input type="tel" id="node_sender" placeholder="যে নাম্বার থেকে টাকা পাঠিয়েছেন" pattern="[0-9]{11}" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="node_trx">TrxID *</label>
-                    <input type="text" id="node_trx" placeholder="যেমন: 8N7A6D5E" required>
-                </div>
+                <div class="section-title"><i class="fas fa-map-marker-alt"></i> ঠিকানা</div>
+                
+                <div class="input-group">
+                    <label for="node_dist">জেলা *</label>
+                    <input type="text" id="node_dist" placeholder="আপনার জেলা" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="node_vill">গ্রাম/মহল্লা *</label>
+                    <input type="text" id="node_vill" placeholder="গ্রাম বা এলাকার নাম" required>
+                </div>
 
-                <button type="submit" class="btn">তথ্য জমা দিন ও গান পাঠান 🚀</button>
-            </form>
-        </div>
-    </div>
+                <div class="section-title"><i class="fas fa-wallet"></i> পেমেন্ট ডিটেইলস (১০০০ টাকা)</div>
+                
+                <div class="payment-box">
+                    <p><i class="fas fa-paper-plane"></i> Send Money (Personal): 01757331663</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="node_method">পেমেন্ট মেথড *</label>
+                    <select id="node_method">
+                        <option value="বিকাশ">বিকাশ</option>
+                        <option value="নগদ">নগদ</option>
+                        <option value="রকেট">রকেট</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="node_sender">পেমেন্টকৃত নাম্বার *</label>
+                    <input type="tel" id="node_sender" placeholder="যে নাম্বার থেকে টাকা পাঠিয়েছেন" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="node_trx">TrxID *</label>
+                    <input type="text" id="node_trx" placeholder="যেমন: BN7A6D5E" required>
+                </div>
+
+                <button type="submit" class="btn">
+                    <i class="fab fa-whatsapp"></i> তথ্য জমা দিন ও গান পাঠান
+                </button>
+            </form>
+        </div>
+
+        <div class="ad-row" style="margin-top: 20px;">
+             <script src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Ad -->
+    <div class="sidebar">
+        <script>
+            atOptions = { 'key' : '134191c03fe43e00a66dce8e11b988b8', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
+        </script>
+        <script src="https://www.highperformanceformat.com/134191c03fe43e00a66dce8e11b988b8/invoke.js"></script>
+    </div>
+</div>
+
+<!-- Sticky Mobile Footer Ad -->
+<div class="mobile-footer-ad">
+    <script src="https://www.highperformanceformat.com/94b95297e478e03fe80e051564f09c1c/invoke.js"></script>
+</div>
 
 <script>
-    document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // সব ইনপুট ডেটা গ্রহণ
-        const name = document.getElementById('node_name').value.trim();
-        const wa = document.getElementById('node_whatsapp').value.trim();
-        const res = document.getElementById('node_res').value;
-        const job = document.getElementById('node_job').value.trim() || "উল্লেখ নেই";
-        const dob = document.getElementById('node_dob').value;
-        const gender = document.getElementById('node_gender').value;
-        const dist = document.getElementById('node_dist').value.trim();
-        const vill = document.getElementById('node_vill').value.trim();
-        const method = document.getElementById('node_method').value;
-        const sender = document.getElementById('node_sender').value.trim();
-        const trx = document.getElementById('node_trx').value.trim();
+    document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('node_name').value;
+        const wa = document.getElementById('node_whatsapp').value;
+        const res = document.getElementById('node_res').value;
+        const job = document.getElementById('node_job').value || 'উল্লেখ নেই';
+        const dob = document.getElementById('node_dob').value;
+        const gender = document.getElementById('node_gender').value;
+        const dist = document.getElementById('node_dist').value;
+        const vill = document.getElementById('node_vill').value;
+        const method = document.getElementById('node_method').value;
+        const sender = document.getElementById('node_sender').value;
+        const trx = document.getElementById('node_trx').value;
 
-        // ভ্যালিডেশন চেক (অতিরিক্ত নিরাপত্তা)
-        if(!name || !wa || !res || !dob || !gender || !dist || !vill || !method || !sender || !trx) {
-            alert("দয়া করে সব তারকাচিহ্নিত (*) ঘরগুলো পূরণ করুন।");
-            return;
-        }
+        const finalMsg = `*গানে গানে সেরা সিজন ৩ এশিয়া (রেজিস্ট্রেশন)*%0A%0A` +
+                         `👤 *নাম:* ${name}%0A` +
+                         `📱 *WhatsApp:* ${wa}%0A` +
+                         `🏠 *বসবাস:* ${res}%0A` +
+                         `💼 *পেশা:* ${job}%0A` +
+                         `📅 *জন্ম তারিখ:* ${dob}%0A` +
+                         `🚻 *লিঙ্গ:* ${gender}%0A` +
+                         `📍 *জেলা:* ${dist}%0A` +
+                         `🏡 *গ্রাম/মহল্লা:* ${vill}%0A%0A` +
+                         `💳 *পেমেন্ট মেথড:* ${method}%0A` +
+                         `📞 *প্রেরক নাম্বার:* ${sender}%0A` +
+                         `🆔 *TrxID:* ${trx}`;
 
-        // সুন্দর ফরম্যাটে হোয়াটসঅ্যাপ মেসেজ তৈরি
-        const finalMsg = `🎵 *গানে গানে সেরা সিজন ৩ এশিয়া - নতুন রেজিস্ট্রেশন* 🎵%0A` +
-                         `━━━━━━━━━━━━━━━━━━%0A` +
-                         `👤 *নাম:* ${encodeURIComponent(name)}%0A` +
-                         `📱 *WhatsApp:* ${encodeURIComponent(wa)}%0A` +
-                         `🌍 *বসবাস:* ${encodeURIComponent(res)}%0A` +
-                         `💼 *পেশা:* ${encodeURIComponent(job)}%0A` +
-                         `🎂 *জন্ম তারিখ:* ${encodeURIComponent(dob)}%0A` +
-                         `🚻 *লিঙ্গ:* ${encodeURIComponent(gender)}%0A` +
-                         `📍 *ঠিকানা:* ${encodeURIComponent(vill)}, ${encodeURIComponent(dist)}%0A` +
-                         `━━━━━━━━━━━━━━━━━━%0A` +
-                         `💳 *পেমেন্ট মেথড:* ${encodeURIComponent(method)}%0A` +
-                         `📲 *প্রেরক নাম্বার:* ${encodeURIComponent(sender)}%0A` +
-                         `🆔 *TrxID:* ${encodeURIComponent(trx)}%0A` +
-                         `━━━━━━━━━━━━━━━━━━%0A` +
-                         `*দ্রষ্টব্য:* আমি আমার গানের অডিও/ভিডিও নিচে পাঠাচ্ছি।`;
-
-        // হোয়াটসঅ্যাপে রিডাইরেক্ট
-        window.open(`https://wa.me/8801757331663?text=${finalMsg}`, '_blank');
-    });
+        window.open(`https://wa.me/8801757331663?text=${finalMsg}`, '_blank');
+    });
 </script>
 
 </body>
-</html> Etar moddhe kothay dibo?
+</html>
