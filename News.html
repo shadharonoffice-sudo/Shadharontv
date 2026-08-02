@@ -111,6 +111,15 @@
         #articleReader {
             display: none; position: fixed; inset: 0; background: white; z-index: 8000; overflow-y: auto;
         }
+        /* পুরো পোস্টার বা ছবি যেন না কেটে সুন্দরভাবে দেখায় */
+        #readerBody img {
+            width: 100% !important;
+            max-height: 85vh !important;
+            object-fit: contain !important;
+            background-color: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
 
         /* Footer */
         footer { background: var(--secondary); color: white; padding: 40px 0; margin-top: 60px; text-align: center; }
@@ -356,7 +365,7 @@
                         </div>
                     </div>`;
             } else {
-                document.getElementById('featuredMain').innerHTML = `<p style="padding:20px;">কোনো সংবাদ পাওয়া যায়নি।</p>`;
+                document.getElementById('featuredMain').innerHTML = `<p style="padding:20px;">কোনো সংবাদ পাওয়া যায়নি।</p>`;
             }
 
             // Sub Featured
@@ -387,7 +396,7 @@
                 <span class="cat-tag" style="margin-bottom:10px;">${n.category}</span>
                 <h1 style="font-size:32px; color:var(--secondary); margin-bottom:10px; line-height:1.3;">${n.title}</h1>
                 <p style="color:gray; font-size:14px; margin-bottom:20px;">📅 প্রকাশিত: ${n.date || 'সাম্প্রতিক'}</p>
-                <img src="${n.image}" onerror="this.src='https://via.placeholder.com/800x400?text=News'" style="width:100%; border-radius:10px; margin-bottom:20px; max-height:450px; object-fit:cover;">
+                <img src="${n.image}" onerror="this.src='https://via.placeholder.com/800x400?text=SHADHARON+TV'">
                 <div style="font-size:18px; line-height:1.8; color:#333; white-space: pre-line;">${n.body}</div>`;
             document.getElementById('articleReader').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -419,9 +428,9 @@
                 const res = await fetch("https://api.imgbb.com/1/upload?key=97d2bb9d4be7954b90bb864839a5fccf", {method:"POST", body:fd});
                 const d = await res.json();
                 document.getElementById('finalImg').value = d.data.url;
-                alert("ছবি সফলভাবে আপলোড হয়েছে!");
+                alert("ছবি সফলভাবে আপলোড হয়েছে!");
             } catch(e) {
-                alert("ছবি আপলোডে সমস্যা হয়েছে।");
+                alert("ছবি আপলোডে সমস্যা হয়েছে।");
             }
         }
 
@@ -471,10 +480,10 @@
                     })
                 });
 
-                alert("সংবাদ সফলভাবে পাবলিশ হয়েছে!");
+                alert("সংবাদ সফলভাবে পাবলিশ হয়েছে!");
                 location.reload();
             } catch(e) {
-                alert("পাবলিশ করতে ব্যর্থ হয়েছে। টোকেন বা নেটওয়ার্ক চেক করুন।");
+                alert("পাবলিশ করতে ব্যর্থ হয়েছে। টোকেন বা নেটওয়ার্ক চেক করুন।");
                 btn.innerText = "পাবলিশ করুন";
                 btn.disabled = false;
             }
