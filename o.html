@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>গানে গানে সেরা এশিয়া | সিজন ৩ - রেজিস্ট্রেশন</title>
     
-    <!-- FontAwesome Font -->
+    <!-- FontAwesome Font for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -22,7 +22,7 @@
             background-color: #080c14;
             background-image: radial-gradient(circle at top, #2a081e, #05080f);
             color: #ffffff;
-            padding: 30px 15px;
+            padding: 40px 15px;
             min-height: 100vh;
         }
 
@@ -38,7 +38,7 @@
         }
 
         .reg-card {
-            background: rgba(18, 25, 40, 0.9);
+            background: rgba(18, 25, 40, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 35px 30px;
             border-radius: 20px;
@@ -141,6 +141,10 @@
             box-shadow: 0 10px 20px rgba(255, 0, 85, 0.4);
             font-family: 'Hind Siliguri', sans-serif;
             transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .btn:hover {
@@ -152,7 +156,6 @@
 <body>
 
 <div class="main-layout">
-    <!-- Main Form Content -->
     <div class="content">
 
         <div class="reg-card">
@@ -238,7 +241,9 @@
                     <input type="text" id="node_trx" placeholder="যেমন: BN7A6D5E" required>
                 </div>
 
-                <button type="submit" class="btn">তথ্য জমা দিন ও গান পাঠান 🚀</button>
+                <button type="submit" class="btn">
+                    <i class="fab fa-whatsapp"></i> তথ্য জমা দিন ও গান পাঠান
+                </button>
             </form>
         </div>
 
