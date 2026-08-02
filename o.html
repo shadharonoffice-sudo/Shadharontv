@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>গানে গানে সেরা এশিয়া | সিজন ৩ - রেজিস্ট্রেশন</title>
     
+    <!-- FontAwesome Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -21,47 +22,25 @@
             background-color: #080c14;
             background-image: radial-gradient(circle at top, #2a081e, #05080f);
             color: #ffffff;
-            padding: 20px 10px;
+            padding: 30px 15px;
             min-height: 100vh;
         }
 
         .main-layout {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
+            max-width: 650px;
             margin: 0 auto;
-            align-items: flex-start;
-        }
-
-        .sidebar {
-            width: 160px;
-            position: sticky;
-            top: 20px;
-            display: none;
-        }
-
-        @media (min-width: 1024px) {
-            .sidebar { display: block; }
         }
 
         .content {
-            flex: 1;
-            max-width: 600px;
             width: 100%;
-            margin: 0 auto;
-        }
-
-        .ad-row {
-            text-align: center;
-            margin-bottom: 20px;
-            overflow: hidden;
         }
 
         .reg-card {
             background: rgba(18, 25, 40, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 30px 25px;
+            padding: 35px 30px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
         }
@@ -91,13 +70,16 @@
             padding: 10px 12px;
             border-radius: 8px;
             font-weight: 700;
-            margin: 20px 0 15px 0;
+            margin: 25px 0 15px 0;
             border-left: 4px solid #ff0055;
             font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         label {
@@ -117,6 +99,7 @@
             font-size: 15px;
             font-family: 'Hind Siliguri', sans-serif;
             outline: none;
+            transition: all 0.3s ease;
         }
 
         input:focus, select:focus {
@@ -154,53 +137,23 @@
             cursor: pointer;
             color: #ffffff;
             background: linear-gradient(90deg, #ff0055, #8000ff);
-            margin-top: 15px;
+            margin-top: 20px;
             box-shadow: 0 10px 20px rgba(255, 0, 85, 0.4);
             font-family: 'Hind Siliguri', sans-serif;
+            transition: transform 0.2s ease;
         }
 
         .btn:hover {
+            transform: translateY(-2px);
             opacity: 0.95;
-        }
-
-        .mobile-footer-ad {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #000;
-            text-align: center;
-            padding: 5px 0;
-            z-index: 999;
-            display: block;
-        }
-
-        @media (min-width: 768px) {
-            .mobile-footer-ad { display: none; }
         }
     </style>
 </head>
 <body>
 
 <div class="main-layout">
-    <!-- Left Sidebar Ad -->
-    <div class="sidebar">
-        <script>
-            atOptions = { 'key' : '3c5f9f51b2c86015b0e375d754c8ed06', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
-        </script>
-        <script src="https://www.highperformanceformat.com/3c5f9f51b2c86015b0e375d754c8ed06/invoke.js"></script>
-    </div>
-
     <!-- Main Form Content -->
     <div class="content">
-        
-        <!-- Top Ad -->
-        <div class="ad-row">
-            <script>
-                atOptions = { 'key' : '94b95297e478e03fe80e051564f09c1c', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
-            </script>
-            <script src="https://www.highperformanceformat.com/94b95297e478e03fe80e051564f09c1c/invoke.js"></script>
-        </div>
 
         <div class="reg-card">
             <div class="header">
@@ -209,7 +162,7 @@
             </div>
 
             <form id="asiaFullForm">
-                <div class="section-title">ব্যক্তিগত তথ্য</div>
+                <div class="section-title"><i class="fas fa-user"></i> ব্যক্তিগত তথ্য</div>
                 
                 <div class="input-group">
                     <label>পূর্ণ নাম *</label>
@@ -248,15 +201,7 @@
                     </select>
                 </div>
 
-                <!-- Middle Ad -->
-                <div class="ad-row">
-                    <script>
-                        atOptions = { 'key' : 'e088f6495a85bd83d691c5fc9b24d89e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-                    </script>
-                    <script src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
-                </div>
-
-                <div class="section-title">ঠিকানা</div>
+                <div class="section-title"><i class="fas fa-map-marker-alt"></i> ঠিকানা</div>
                 
                 <div class="input-group">
                     <label>জেলা *</label>
@@ -268,7 +213,7 @@
                     <input type="text" id="node_vill" placeholder="গ্রাম বা এলাকার নাম" required>
                 </div>
 
-                <div class="section-title">💰 পেমেন্ট ডিটেইলস (১০০০ টাকা)</div>
+                <div class="section-title"><i class="fas fa-wallet"></i> 💰 পেমেন্ট ডিটেইলস (১০০০ টাকা)</div>
                 
                 <div class="payment-box">
                     <p>Send Money (Personal): 01757331663</p>
@@ -297,22 +242,7 @@
             </form>
         </div>
 
-        <div class="ad-row" style="margin-top: 20px;">
-             <script src="https://www.highperformanceformat.com/e088f6495a85bd83d691c5fc9b24d89e/invoke.js"></script>
-        </div>
     </div>
-
-    <!-- Right Sidebar Ad -->
-    <div class="sidebar">
-        <script>
-            atOptions = { 'key' : '134191c03fe43e00a66dce8e11b988b8', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
-        </script>
-        <script src="https://www.highperformanceformat.com/134191c03fe43e00a66dce8e11b988b8/invoke.js"></script>
-    </div>
-</div>
-
-<div class="mobile-footer-ad">
-    <script src="https://www.highperformanceformat.com/94b95297e478e03fe80e051564f09c1c/invoke.js"></script>
 </div>
 
 <script>
