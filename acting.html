@@ -1,1 +1,284 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অভিনয় অডিশন ও রেজিস্ট্রেশন | Shadharon TV</title>
+    
+    <!-- FontAwesome Icon & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #080c14;
+            background-image: radial-gradient(circle at top, #1a082a, #05080f);
+            color: #ffffff;
+            padding: 40px 15px;
+            min-height: 100vh;
+        }
+
+        .main-layout {
+            display: flex;
+            justify-content: center;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .content {
+            width: 100%;
+        }
+
+        .reg-card {
+            background: rgba(18, 25, 40, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 35px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+            padding-bottom: 15px;
+        }
+
+        .header h1 {
+            color: #00ffcc;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .section-title {
+            background: rgba(153, 0, 255, 0.15);
+            color: #bd00ff;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            border-left: 4px solid #bd00ff;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #e2e8f0;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 15px;
+            font-family: 'Hind Siliguri', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #00ffcc;
+            background: rgba(0, 255, 204, 0.05);
+        }
+
+        select option {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .payment-box {
+            background: rgba(255, 204, 0, 0.08);
+            border: 1px dashed #ffcc00;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .payment-box p {
+            color: #ffcc00;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #ffffff;
+            background: linear-gradient(90deg, #9900ff, #ff0055);
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(153, 0, 255, 0.4);
+            font-family: 'Hind Siliguri', sans-serif;
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-layout">
+    <div class="content">
+
+        <div class="reg-card">
+            <div class="header">
+                <h1>🎭 অভিনয় অডিশন রেজিস্ট্রেশন</h1>
+                <p>সাধারণ টিভি (Shadharon TV) নাটক ও শর্টফিল্ম প্রজেক্ট</p>
+            </div>
+
+            <form id="actingForm">
+                <!-- ১. ব্যক্তিগত তথ্য -->
+                <div class="section-title"><i class="fas fa-user-ninja"></i> ব্যক্তিগত তথ্য</div>
+                
+                <div class="input-group">
+                    <label>পূর্ণ নাম *</label>
+                    <input type="text" id="act_name" placeholder="আপনার পুরো নাম লিখুন" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>WhatsApp নাম্বার *</label>
+                    <input type="tel" id="act_whatsapp" placeholder="017XXXXXXXX" required>
+                </div>
+
+                <div class="input-group">
+                    <label>বয়স ও উচ্চতা *</label>
+                    <input type="text" id="act_physical" placeholder="যেমন: বয়স ২৩, উচ্চতা ৫ ফুট ৬ ইঞ্চি" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>লিঙ্গ *</label>
+                    <select id="act_gender">
+                        <option value="পুরুষ">পুরুষ</option>
+                        <option value="নারী">নারী</option>
+                        <option value="অন্যান্য">অন্যান্য</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>পূর্ব অভিজ্ঞতা আছে? *</label>
+                    <select id="act_experience">
+                        <option value="নতুন (কোন অভিজ্ঞতা নেই)">নতুন (কোন অভিজ্ঞতা নেই)</option>
+                        <option value="থিয়েটার / মঞ্চ নাটক">থিয়েটার / মঞ্চ নাটক</option>
+                        <option value="শর্টফিল্ম / নাটকে কাজ করেছি">শর্টফিল্ম / নাটকে কাজ করেছি</option>
+                    </select>
+                </div>
+
+                <!-- ২. ঠিকানা -->
+                <div class="section-title"><i class="fas fa-map-marker-alt"></i> ঠিকানা</div>
+                
+                <div class="input-group">
+                    <label>জেলা *</label>
+                    <input type="text" id="act_dist" placeholder="আপনার জেলা" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>বর্তমান অবস্থান / এলাকা *</label>
+                    <input type="text" id="act_location" placeholder="যেমন: ধানমন্ডি, ঢাকা" required>
+                </div>
+
+                <!-- ৩. পেমেন্ট ও তথ্য জমা -->
+                <div class="section-title"><i class="fas fa-wallet"></i> 💰 রেজিস্ট্রেশন ফি (১০০০ টাকা)</div>
+                
+                <div class="payment-box">
+                    <p>Send Money (Personal): 01757331663</p>
+                </div>
+
+                <div class="input-group">
+                    <label>পেমেন্ট মেথড *</label>
+                    <select id="act_method">
+                        <option value="বিকাশ">বিকাশ</option>
+                        <option value="নগদ">নগদ</option>
+                        <option value="রকেট">রকেট</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label>পেমেন্টকৃত নাম্বার *</label>
+                    <input type="tel" id="act_sender" placeholder="যে নাম্বার থেকে টাকা পাঠিয়েছেন" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>TrxID *</label>
+                    <input type="text" id="act_trx" placeholder="যেমন: BN7A6D5E" required>
+                </div>
+
+                <button type="submit" class="btn">
+                    <i class="fab fa-whatsapp"></i> তথ্য পাঠান ও অভিনয় ভিডিও দিন
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById('actingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('act_name').value;
+        const wa = document.getElementById('act_whatsapp').value;
+        const physical = document.getElementById('act_physical').value;
+        const gender = document.getElementById('act_gender').value;
+        const exp = document.getElementById('act_experience').value;
+        const dist = document.getElementById('act_dist').value;
+        const loc = document.getElementById('act_location').value;
+        const method = document.getElementById('act_method').value;
+        const sender = document.getElementById('act_sender').value;
+        const trx = document.getElementById('act_trx').value;
+
+        const finalMsg = `*🎭 অভিনয় অডিশন রেজিস্ট্রেশন (Shadharon TV)*%0A%0A` +
+                         `👤 *নাম:* ${name}%0A` +
+                         `📱 *WhatsApp:* ${wa}%0A` +
+                         `📏 *বয়স ও উচ্চতা:* ${physical}%0A` +
+                         `🚻 *লিঙ্গ:* ${gender}%0A` +
+                         `🎬 *অভিজ্ঞতা:* ${exp}%0A` +
+                         `📍 *জেলা:* ${dist}%0A` +
+                         `🏡 *বর্তমান ঠিকানা:* ${loc}%0A%0A` +
+                         `💳 *পেমেন্ট মেথড:* ${method}%0A` +
+                         `📞 *প্রেরক নাম্বার:* ${sender}%0A` +
+                         `🆔 *TrxID:* ${trx}`;
+
+        window.open(`https://wa.me/8801757331663?text=${finalMsg}`, '_blank');
+    });
+</script>
+
+</body>
+</html>
