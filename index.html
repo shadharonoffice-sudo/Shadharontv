@@ -147,6 +147,17 @@
         }
         .btn-large:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255,0,85,0.4); }
 
+        /* --- About Section --- */
+        .about-summary-section {
+            padding: 60px 10%; background: #02050a; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .about-summary-card {
+            max-width: 900px; margin: 0 auto; background: rgba(255,255,255,0.02); padding: 40px; border-radius: 20px; border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+        .about-summary-card h2 { font-size: 30px; margin-bottom: 15px; color: #fff; }
+        .about-summary-card h2 span { color: var(--secondary); }
+        .about-summary-card p { color: #cbd5e1; font-size: 16px; line-height: 1.8; margin-bottom: 15px; }
+
         /* --- Social Grid --- */
         .social-section { padding: 80px 10%; background: #010306; position: relative; z-index: 2; }
         .section-title { text-align: center; margin-bottom: 50px; font-size: 32px; }
@@ -165,6 +176,8 @@
 
         footer { padding: 40px 20px; text-align: center; background: #000; border-top: 1px solid var(--primary); }
         footer p { color: #64748b; font-size: 14px; }
+        .footer-logo { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
+        .footer-logo span { color: var(--secondary); }
 
         @media (max-width: 768px) {
             * { cursor: auto !important; }
@@ -172,6 +185,8 @@
             .hero-title { font-size: 28px; }
             .brand-name { font-size: 22px; }
             .official-notice-box { padding: 15px; }
+            .about-summary-section { padding: 40px 5%; }
+            .about-summary-card { padding: 20px; }
         }
     </style>
 </head>
@@ -196,7 +211,7 @@
         </div>
         <nav class="nav-bar">
             <a href="#home" class="nav-btn"><i class="fas fa-home"></i> হোম</a>
-            <a href="com.html" class="nav-btn">আমাদের সম্পর্কে</a>
+            <a href="about.html" class="nav-btn">আমাদের সম্পর্কে</a>
             <a href="News.html" class="nav-btn">নিউজ পোর্টাল</a>
             <a href="#social" class="nav-btn">চ্যানেল সমূহ</a>
             <a href="o.html" class="nav-btn audition-btn"><i class="fas fa-microphone-alt"></i> অডিশন দিন</a>
@@ -210,8 +225,8 @@
                 <p class="hero-subtitle"><span id="typed-text"></span></p>
                 
                 <div class="video-box">
-                    <!-- এখানে আপনার ইউটিউব প্রমোশনাল ভিডিওর ID বসিয়ে দিন -->
-                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=476&t=0" width="100%" height="100%" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>                </div>
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1347952573837535%2F&show_text=false&width=476&t=0" width="100%" height="100%" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
 
                 <div class="reg-running-box">
                     <h2 class="reg-status-text">রেজিস্ট্রেশন চলছে...</h2>
@@ -252,6 +267,19 @@
             </div>
         </section>
 
+        <!-- --- About Summary Section for AdSense Trust --- -->
+        <section class="about-summary-section">
+            <div class="about-summary-card">
+                <h2>সাধারণ টিভিতে <span>স্বাগতম</span></h2>
+                <p>
+                    <strong>সাধারণ টিভি (Shadharon TV)</strong> একটি স্বনামধন্য ডিজিটাল স্যাটেলাইট ও অনলাইন বিনোদন নেটওয়ার্ক। আমরা দেশীয় শিল্প, গান এবং নতুন প্রতিভাকে বিশ্বমঞ্চে তুলে ধরতে প্রতিনিয়ত কাজ করছি। আমাদের প্ল্যাটফর্মে সর্বশেষ খবর, নাটক, মিউজিক ভিডিও এবং বিনোদনমূলক অনুষ্ঠান সম্প্রচার করা হয়।
+                </p>
+                <p>
+                    আপনার ভেতরের লুকানো প্রতিভাকে বিকাশ করতে এবং দেশের বিশ্বস্ত সব আপডেটের সাথে যুক্ত থাকতে সবসময় সাধারণ টিভির সঙ্গেই থাকুন।
+                </p>
+            </div>
+        </section>
+
         <section class="social-section" id="social">
             <h2 class="section-title">আমাদের <span>অফিসিয়াল নেটওয়ার্ক</span></h2>
             <div class="social-grid">
@@ -284,15 +312,15 @@
     </main>
 
     <footer>
-    <div class="footer-logo">SHADHARON <span>TV</span></div>
-    
-    <div style="margin: 15px 0;">
-        <a href="about.html" style="color: #00ffcc; margin: 0 10px; text-decoration: none;">আমাদের সম্পর্কে</a> | 
-        <a href="contact.html" style="color: #00ffcc; margin: 0 10px; text-decoration: none;">যোগাযোগ</a> | 
-        <a href="privacy-policy.html" style="color: #00ffcc; margin: 0 10px; text-decoration: none;">প্রাইভেসি পলিসি</a>
-    </div>
+        <div class="footer-logo">SHADHARON <span>TV</span></div>
+        
+        <div style="margin: 15px 0;">
+            <a href="about.html" style="color: #00ffcc; margin: 0 10px; text-decoration: none;">আমাদের সম্পর্কে</a> | 
+            <a href="contact.html" style="color: #00ffcc; margin: 0 10px; text-decoration: none;">যোগাযোগ</a> | 
+            <a href="privacy-policy.html" style="color: #00ffcc; margin: 0 10px; text-decoration: none;">প্রাইভেসি পলিসি</a>
+        </div>
 
-    <p>&copy; 2026 Shadharon TV Team | All Rights Reserved</p>
+        <p>&copy; 2026 Shadharon TV Team | All Rights Reserved</p>
     </footer>
 
     <script>
