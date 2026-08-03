@@ -37,7 +37,7 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
 
         /* হেডার */
-        .about-header { text-align: center; margin-bottom: 25px; animation: fadeInDown 1s ease; }
+        .about-header { text-align: center; margin-bottom: 30px; animation: fadeInDown 1s ease; }
         .about-header h1 { 
             font-size: 2.8rem; font-weight: 700;
             background: linear-gradient(45deg, #e91e63, var(--secondary));
@@ -47,22 +47,43 @@
         .divider { width: 50px; height: 3px; background: #ff0055; margin: 0 auto 20px auto; border-radius: 10px; }
         .subtitle { font-size: 16px; color: #e0e0e0; font-weight: 500; }
 
-        /* "আমাদের সম্পর্কে" এর ঠিক নিচে স্যারের বড় ফটোর কন্টেইনার */
-        .big-photo-wrapper {
+        /* বড় ফটো ও ফটো-নিচের টেক্সট সেকশন */
+        .single-photo-section {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1.2s ease;
+        }
+
+        .big-photo-box {
             width: 100%;
-            margin-bottom: 35px;
+            max-width: 600px; /* ছবি কত বড় দেখাবে তা এখান থেকে কন্ট্রোল করা যাবে */
+            margin: 0 auto 15px auto;
             border-radius: 20px;
             overflow: hidden;
             border: 2px solid rgba(0, 255, 204, 0.3);
             box-shadow: 0 10px 30px rgba(0, 255, 204, 0.15);
             background: #111;
-            text-align: center;
         }
 
-        .big-photo-wrapper img {
+        .big-photo-box img {
             width: 100%;
-            max-height: 500px;
+            max-height: 450px;
             object-fit: cover;
+            display: block;
+        }
+
+        .photo-caption h2 {
+            font-size: 26px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 2px;
+            display: block;
+        }
+
+        .photo-caption span {
+            color: var(--secondary);
+            font-size: 16px;
+            font-weight: 600;
             display: block;
         }
 
@@ -106,7 +127,7 @@
         @media (max-width: 768px) {
             .about-grid { grid-template-columns: 1fr; }
             .about-header h1 { font-size: 2.2rem; }
-            .big-photo-wrapper img { max-height: 300px; }
+            .big-photo-box img { max-height: 300px; }
         }
     </style>
 </head>
@@ -122,10 +143,16 @@
         <p class="subtitle">সাধারণ টিভি: সত্য ও বস্তুনিষ্ঠ সংবাদ এবং বিনোদনের বিস্তৃত মাধ্যম</p>
     </header>
 
-    <!-- স্যারের বড় ফটো সেকশন -->
-    <div class="big-photo-wrapper">
-        <!-- এখানে akash.png যদি সার্ভারে আপলোড করা থাকে তবে সেটি লোড হবে, না হলে অনলাইন লিংক লোড হবে -->
-        <img src="akash.png" alt="আকাশ জোয়ার্দ্দার - চেয়ারম্যান, সাধারণ টিভি" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop';">
+    <!-- শুধু বড় ফটো এবং ছবির নিচে নাম ও পদবি -->
+    <div class="single-photo-section">
+        <div class="big-photo-box">
+            <!-- cPanel-এ akash.png ফাইল আপলোড করবেন অথবা src-তে কোনো অনলাইন ইমেজের ডিরেক্ট লিংক বসাবেন -->
+            <img src="akash.png" alt="আকাশ জোয়ার্দ্দার" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/000000/00ffcc?text=Akash+Joardar';">
+        </div>
+        <div class="photo-caption">
+            <h2>আকাশ জোয়ার্দ্দার</h2>
+            <span>চেয়ারম্যান — সাধারণ টিভি</span>
+        </div>
     </div>
 
     <!-- আমাদের যাত্রা -->
@@ -174,11 +201,6 @@
         <p><i>এই বিশ্বাস ও দায়বদ্ধতা থেকেই আমরা সূচনা করেছি “গানে গানে সেরা এশিয়া”—একটি প্ল্যাটফর্ম, যেখানে প্রতিটি নতুন কণ্ঠ, প্রতিটি অজানা শিল্পী পাবে নিজেকে তুলে ধরার সুযোগ। এখানে প্রতিভাই একমাত্র পরিচয়, আর সৃজনশীলতাই একমাত্র মানদণ্ড।</i></p>
         <p><i>আমরা দৃঢ়ভাবে প্রত্যয়ী যে, আজকের অবহেলিত শিল্পীরাই আগামী দিনের আলোকিত নক্ষত্র। তাদের পাশে দাঁড়ানো, তাদের স্বপ্নকে বাস্তবে রূপ দিতে সহায়তা করা এবং বিশ্ব দরবারে তাদের পরিচয় তুলে ধরা—এই লক্ষ্য নিয়েই “সাধারণ টিভি” তার যাত্রা অব্যাহত রাখবে।</i></p>
         <p><i>আমাদের এই উদ্যোগ শুধু একটি প্ল্যাটফর্ম নয়; এটি এক আন্দোলন—নতুনদের জন্য, স্বপ্নবাজদের জন্য, এবং সঙ্গীতপ্রেমী প্রতিটি মানুষের জন্য।</i></p>
-        
-        <p style="margin-top: 20px; color: var(--secondary); font-weight: 600;">
-            — আকাশ জোয়ার্দ্দার<br>
-            <span style="color: #aaa; font-weight: normal; font-size: 14px;">চেয়ারম্যান, সাধারণ টিভি</span>
-        </p>
     </div>
 
     <center>
