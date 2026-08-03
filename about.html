@@ -47,13 +47,10 @@
         .divider { width: 50px; height: 3px; background: #ff0055; margin: 0 auto 20px auto; border-radius: 10px; }
         .subtitle { font-size: 16px; color: #e0e0e0; font-weight: 500; }
 
-        /* বড় ফটো ও সেন্টারে নাম-পদবি সেকশন */
+        /* ফটো সেকশন */
         .single-photo-section {
             text-align: center;
             margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             animation: fadeInDown 1.2s ease;
         }
 
@@ -75,17 +72,19 @@
             object-fit: cover;
         }
 
+        /* নাম ও পদবি সেন্টারে আনার ফিক্স */
         .photo-caption {
             text-align: center;
-            width: 100%;
+            margin-top: 15px;
         }
 
         .photo-caption h2 {
+            display: block !important;
+            text-align: center !important;
             font-size: 30px;
             color: #ffffff;
             font-weight: 700;
             margin-bottom: 6px;
-            justify-content: center;
         }
 
         .photo-caption span {
@@ -93,6 +92,7 @@
             font-size: 18px;
             font-weight: 600;
             display: block;
+            text-align: center;
         }
 
         /* গ্লাস কার্ড */
@@ -153,7 +153,6 @@
     <!-- ফটো এবং সেন্টারে নাম সেকশন -->
     <div class="single-photo-section">
         <div class="big-photo-box">
-            <!--akash.PNG এবং akash.png উভয় ফরমেটের ব্যাকআপ রাখা হয়েছে-->
             <img src="akash.PNG" onerror="this.onerror=null; this.src='akash.png';" alt="আকাশ জোয়ার্দ্দার">
         </div>
         <div class="photo-caption">
@@ -200,7 +199,7 @@
         </div>
     </div>
 
-    <!-- চেয়ারম্যানের বার্তা -->
+    <!-- চেয়ারম্যানের বার্তা -->
     <div class="glass-card" style="margin-top: 40px; border-left: 4px solid var(--secondary);">
         <h2>✉️ চেয়ারম্যানের বার্তা</h2>
         <p><i>সংস্কৃতি, সঙ্গীত এবং মানবিক অনুভূতির যে অবিচ্ছেদ্য বন্ধন আমাদের সমাজকে আলোকিত করে, তার অন্তরালে লুকিয়ে আছে অসংখ্য অজানা প্রতিভা—যাদের কণ্ঠে আছে আবেগ, সুরে আছে স্বপ্ন, অথচ সুযোগের অভাবে তারা থেকে যায় অদেখা, অশ্রুত এবং অবহেলিত।</i></p>
