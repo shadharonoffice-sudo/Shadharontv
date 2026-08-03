@@ -36,7 +36,7 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
 
-        /* হিরো সেকশন */
+        /* হেডার */
         .about-header { text-align: center; margin-bottom: 30px; animation: fadeInDown 1s ease; }
         .about-header h1 { 
             font-size: 2.8rem; font-weight: 700;
@@ -47,22 +47,61 @@
         .divider { width: 50px; height: 3px; background: #ff0055; margin: 0 auto 20px auto; border-radius: 10px; }
         .subtitle { font-size: 16px; color: #e0e0e0; font-weight: 500; }
 
-        /* "আমাদের সম্পর্কে"-এর নিচের বড় ছবির স্টাইল */
-        .hero-banner-container {
-            width: 100%;
-            margin-bottom: 40px;
+        /* হেডার ও কার্ডের মাঝখানের বড় ছবি সেকশন */
+        .top-profile-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 204, 0.25);
             border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 255, 204, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             animation: fadeInDown 1.2s ease;
         }
 
-        .hero-banner-img {
+        .top-profile-img {
+            width: 160px;
+            height: 160px;
+            min-width: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--secondary);
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.3);
+            background: #111;
+        }
+
+        .top-profile-img img {
             width: 100%;
-            max-height: 450px;
+            height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        .top-profile-details h2 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .top-profile-details span {
+            color: var(--secondary);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .top-profile-details p {
+            color: #cccccc;
+            font-size: 14px;
+            margin: 0;
+            max-width: 500px;
         }
 
         /* গ্লাস কার্ড */
@@ -105,7 +144,8 @@
         @media (max-width: 768px) {
             .about-grid { grid-template-columns: 1fr; }
             .about-header h1 { font-size: 2.2rem; }
-            .hero-banner-img { max-height: 250px; }
+            .top-profile-card { flex-direction: column; text-align: center; padding: 20px; }
+            .top-profile-img { width: 140px; height: 140px; min-width: 140px; }
         }
     </style>
 </head>
@@ -121,9 +161,16 @@
         <p class="subtitle">সাধারণ টিভি: সত্য ও বস্তুনিষ্ঠ সংবাদ এবং বিনোদনের বিস্তৃত মাধ্যম</p>
     </header>
 
-    <!-- "আমাদের সম্পর্কে" এর নিচে বড় ফটো সেকশন -->
-    <div class="hero-banner-container">
-        <img src="akash.png" alt="আমাদের সম্পর্কে" class="hero-banner-img" onerror="this.onerror=null; this.src='akash.jpg';">
+    <!-- চিহ্নিত জায়গায় রাখা প্রোফাইল সেকশন -->
+    <div class="top-profile-card">
+        <div class="top-profile-img">
+            <img src="akash.png" alt="আকাশ জোয়ার্দ্দার" onerror="this.onerror=null; this.src='https://via.placeholder.com/160/00ffcc/000000?text=Akash+Sir';">
+        </div>
+        <div class="top-profile-details">
+            <h2>আকাশ জোয়ার্দ্দার</h2>
+            <span>চেয়ারম্যান — সাধারণ টিভি</span>
+            <p>সত্য, বস্তুনিষ্ঠ সংবাদ প্রকাশ এবং নতুন প্রতিভাকে লালন করার ব্রত নিয়ে পরিচালিত মিডিয়া প্ল্যাটফর্ম "সাধারণ টিভি"।</p>
+        </div>
     </div>
 
     <!-- আমাদের যাত্রা -->
@@ -172,11 +219,6 @@
         <p><i>এই বিশ্বাস ও দায়বদ্ধতা থেকেই আমরা সূচনা করেছি “গানে গানে সেরা এশিয়া”—একটি প্ল্যাটফর্ম, যেখানে প্রতিটি নতুন কণ্ঠ, প্রতিটি অজানা শিল্পী পাবে নিজেকে তুলে ধরার সুযোগ। এখানে প্রতিভাই একমাত্র পরিচয়, আর সৃজনশীলতাই একমাত্র মানদণ্ড।</i></p>
         <p><i>আমরা দৃঢ়ভাবে প্রত্যয়ী যে, আজকের অবহেলিত শিল্পীরাই আগামী দিনের আলোকিত নক্ষত্র। তাদের পাশে দাঁড়ানো, তাদের স্বপ্নকে বাস্তবে রূপ দিতে সহায়তা করা এবং বিশ্ব দরবারে তাদের পরিচয় তুলে ধরা—এই লক্ষ্য নিয়েই “সাধারণ টিভি” তার যাত্রা অব্যাহত রাখবে।</i></p>
         <p><i>আমাদের এই উদ্যোগ শুধু একটি প্ল্যাটফর্ম নয়; এটি এক আন্দোলন—নতুনদের জন্য, স্বপ্নবাজদের জন্য, এবং সঙ্গীতপ্রেমী প্রতিটি মানুষের জন্য।</i></p>
-        
-        <p style="margin-top: 20px; color: var(--secondary); font-weight: 600;">
-            — আকাশ জোয়ার্দ্দার<br>
-            <span style="color: #aaa; font-weight: normal; font-size: 14px;">চেয়ারম্যান, সাধারণ টিভি</span>
-        </p>
     </div>
 
     <center>
