@@ -36,7 +36,8 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
 
-        .about-header { text-align: center; margin-bottom: 50px; animation: fadeInDown 1s ease; }
+        /* হিরো সেকশন */
+        .about-header { text-align: center; margin-bottom: 30px; animation: fadeInDown 1s ease; }
         .about-header h1 { 
             font-size: 2.8rem; font-weight: 700;
             background: linear-gradient(45deg, #e91e63, var(--secondary));
@@ -46,6 +47,25 @@
         .divider { width: 50px; height: 3px; background: #ff0055; margin: 0 auto 20px auto; border-radius: 10px; }
         .subtitle { font-size: 16px; color: #e0e0e0; font-weight: 500; }
 
+        /* "আমাদের সম্পর্কে"-এর নিচের বড় ছবির স্টাইল */
+        .hero-banner-container {
+            width: 100%;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1.2s ease;
+        }
+
+        .hero-banner-img {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* গ্লাস কার্ড */
         .glass-card {
             background: rgba(255, 255, 255, 0.03); 
             backdrop-filter: blur(15px);
@@ -61,39 +81,7 @@
         h2 { color: var(--secondary); margin-bottom: 15px; font-size: 22px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
         p { color: #b3b3b3; font-size: 15px; line-height: 1.8; margin-bottom: 12px; }
 
-        /* চেয়ারম্যান প্রোফাইল বক্স */
-        .chairman-profile-box {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: rgba(0, 255, 204, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 255, 204, 0.2);
-            margin-bottom: 25px;
-        }
-
-        .chairman-img-wrapper {
-            width: 100px;
-            height: 100px;
-            min-width: 100px;
-            border-radius: 50%;
-            border: 3px solid var(--secondary);
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-            background: #111;
-        }
-
-        .chairman-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .chairman-info h3 { color: #ffffff; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-        .chairman-info span { color: var(--secondary); font-size: 15px; font-weight: 600; display: block; }
-
+        /* ফিচার বক্স */
         .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
         .feature-box {
             background: rgba(255, 255, 255, 0.03); padding: 25px 20px; border-radius: 16px;
@@ -103,6 +91,7 @@
         .feature-box i { font-size: 28px; color: var(--secondary); display: block; margin-bottom: 12px; }
         .feature-box h3 { font-size: 17px; color: #fff; font-weight: 600; }
 
+        /* বাটন */
         .btn-home {
             display: inline-block; padding: 14px 35px; background: linear-gradient(45deg, var(--primary), var(--accent));
             color: #fff; text-decoration: none; border-radius: 50px; font-weight: 600;
@@ -116,7 +105,7 @@
         @media (max-width: 768px) {
             .about-grid { grid-template-columns: 1fr; }
             .about-header h1 { font-size: 2.2rem; }
-            .chairman-profile-box { flex-direction: column; text-align: center; }
+            .hero-banner-img { max-height: 250px; }
         }
     </style>
 </head>
@@ -125,18 +114,26 @@
 <div class="bg-glow"></div>
 
 <div class="container">
+    <!-- হেডার -->
     <header class="about-header">
         <h1>আমাদের সম্পর্কে</h1>
         <div class="divider"></div>
         <p class="subtitle">সাধারণ টিভি: সত্য ও বস্তুনিষ্ঠ সংবাদ এবং বিনোদনের বিস্তৃত মাধ্যম</p>
     </header>
 
+    <!-- "আমাদের সম্পর্কে" এর নিচে বড় ফটো সেকশন -->
+    <div class="hero-banner-container">
+        <img src="akash.png" alt="আমাদের সম্পর্কে" class="hero-banner-img" onerror="this.onerror=null; this.src='akash.jpg';">
+    </div>
+
+    <!-- আমাদের যাত্রা -->
     <div class="glass-card">
         <h2>🎵 আমাদের যাত্রা ও সংবাদ পরিবেশনা</h2>
         <p><strong>"সাধারণ টিভি (Shadharon TV)"</strong> একটি আধুনিক অনলাইন নিউজ পোর্টাল ও মিডিয়া প্ল্যাটফর্ম। আমরা জাতীয়, আন্তর্জাতিক, রাজনীতি, খেলাধুলা ও প্রযুক্তির বস্তুনিষ্ঠ খবর দ্রুত ও সঠিকভাবে পাঠকের কাছে পৌঁছাতে প্রতিশ্রুতিবদ্ধ।</p>
         <p>সংবাদ পরিবেশনার পাশাপাশি দক্ষিণ এশিয়ার অন্যতম জনপ্রিয় বাংলা গানের রিয়ালিটি শো <strong>"গানে গানে সেরা এশিয়া"</strong> আমাদের একটি বিশেষ আয়োজন। আমাদের মূল লক্ষ্য দেশ থেকে প্রবাস—সবখানে লুকিয়ে থাকা প্রতিভাকে আলোর মুখ দেখানো এবং পাঠকদের নির্ভরযোগ্য সংবাদ পরিবেশন করা।</p>
     </div>
 
+    <!-- লক্ষ্য ও বৈশিষ্ট্য -->
     <div class="about-grid">
         <div class="glass-card">
             <h2>🎯 আমাদের লক্ষ্য</h2>
@@ -148,6 +145,7 @@
         </div>
     </div>
 
+    <!-- ফিচার সেকশন -->
     <div class="feature-grid">
         <div class="feature-box">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -169,24 +167,16 @@
     <!-- চেয়ারম্যানের বার্তা -->
     <div class="glass-card" style="margin-top: 40px; border-left: 4px solid var(--secondary);">
         <h2>✉️ চেয়ারম্যানের বার্তা</h2>
-
-        <!-- চেয়ারম্যান প্রোফাইল -->
-        <div class="chairman-profile-box">
-            <div class="chairman-img-wrapper">
-                <!-- অনলাইন লিংক ব্যবহার করলে নিচের কোডে লিংকটি বসান -->
-                <img src="akash.png" alt="আকাশ জোয়ার্দ্দার" onerror="this.onerror=null; this.src='https://via.placeholder.com/100/ff0055/ffffff?text=Akash';">
-            </div>
-            <div class="chairman-info">
-                <h3>আকাশ জোয়ার্দ্দার</h3>
-                <span>চেয়ারম্যান — সাধারণ টিভি</span>
-            </div>
-        </div>
-
         <p><i>সংস্কৃতি, সঙ্গীত এবং মানবিক অনুভূতির যে অবিচ্ছেদ্য বন্ধন আমাদের সমাজকে আলোকিত করে, তার অন্তরালে লুকিয়ে আছে অসংখ্য অজানা প্রতিভা—যাদের কণ্ঠে আছে আবেগ, সুরে আছে স্বপ্ন, অথচ সুযোগের অভাবে তারা থেকে যায় অদেখা, অশ্রুত এবং অবহেলিত।</i></p>
         <p><i>“সাধারণ টিভি” সেই নীরব প্রতিভাদের কণ্ঠস্বর হয়ে উঠতে চায়। আমরা বিশ্বাস করি, প্রকৃত শিল্প কখনো সীমাবদ্ধ নয়—তা ছড়িয়ে পড়ার জন্য প্রয়োজন সঠিক মঞ্চ, আন্তরিক উদ্যোগ এবং সাহসী এক পদক্ষেপ। আমাদের লক্ষ্য সেইসব শিল্পীদের সামনে নিয়ে আসা, যারা গানকে ভালোবাসে, সঙ্গীতকে হৃদয়ে ধারণ করে, কিন্তু সমাজের মূলধারায় নিজেদের প্রকাশের সুযোগ পায় না।</i></p>
         <p><i>এই বিশ্বাস ও দায়বদ্ধতা থেকেই আমরা সূচনা করেছি “গানে গানে সেরা এশিয়া”—একটি প্ল্যাটফর্ম, যেখানে প্রতিটি নতুন কণ্ঠ, প্রতিটি অজানা শিল্পী পাবে নিজেকে তুলে ধরার সুযোগ। এখানে প্রতিভাই একমাত্র পরিচয়, আর সৃজনশীলতাই একমাত্র মানদণ্ড।</i></p>
         <p><i>আমরা দৃঢ়ভাবে প্রত্যয়ী যে, আজকের অবহেলিত শিল্পীরাই আগামী দিনের আলোকিত নক্ষত্র। তাদের পাশে দাঁড়ানো, তাদের স্বপ্নকে বাস্তবে রূপ দিতে সহায়তা করা এবং বিশ্ব দরবারে তাদের পরিচয় তুলে ধরা—এই লক্ষ্য নিয়েই “সাধারণ টিভি” তার যাত্রা অব্যাহত রাখবে।</i></p>
         <p><i>আমাদের এই উদ্যোগ শুধু একটি প্ল্যাটফর্ম নয়; এটি এক আন্দোলন—নতুনদের জন্য, স্বপ্নবাজদের জন্য, এবং সঙ্গীতপ্রেমী প্রতিটি মানুষের জন্য।</i></p>
+        
+        <p style="margin-top: 20px; color: var(--secondary); font-weight: 600;">
+            — আকাশ জোয়ার্দ্দার<br>
+            <span style="color: #aaa; font-weight: normal; font-size: 14px;">চেয়ারম্যান, সাধারণ টিভি</span>
+        </p>
     </div>
 
     <center>
