@@ -47,17 +47,20 @@
         .divider { width: 50px; height: 3px; background: #ff0055; margin: 0 auto 20px auto; border-radius: 10px; }
         .subtitle { font-size: 16px; color: #e0e0e0; font-weight: 500; }
 
-        /* বড় ফটো ও ক্যাপশন সেকশন */
+        /* বড় ফটো ও সেন্টারে নাম-পদবি সেকশন */
         .single-photo-section {
             text-align: center;
             margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             animation: fadeInDown 1.2s ease;
         }
 
         .big-photo-box {
             width: 100%;
-            max-width: 550px;
-            margin: 0 auto 15px auto;
+            max-width: 500px;
+            margin: 0 auto 20px auto;
             border-radius: 20px;
             overflow: hidden;
             border: 2px solid rgba(0, 255, 204, 0.3);
@@ -72,16 +75,22 @@
             object-fit: cover;
         }
 
+        .photo-caption {
+            text-align: center;
+            width: 100%;
+        }
+
         .photo-caption h2 {
-            font-size: 28px;
+            font-size: 30px;
             color: #ffffff;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            justify-content: center;
         }
 
         .photo-caption span {
             color: var(--secondary);
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             display: block;
         }
@@ -141,11 +150,11 @@
         <p class="subtitle">সাধারণ টিভি: সত্য ও বস্তুনিষ্ঠ সংবাদ এবং বিনোদনের বিস্তৃত মাধ্যম</p>
     </header>
 
-    <!-- বড় ফটো সেকশন -->
+    <!-- ফটো এবং সেন্টারে নাম সেকশন -->
     <div class="single-photo-section">
         <div class="big-photo-box">
-            <!-- গিটহাব র ডিরেক্ট লিংক এবং লোকাল পাথ উভয়ই হ্যান্ডেল করা হয়েছে -->
-            <img src="akash.PNG" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/shadharonoffice-sudo/Shadharontv/main/akash.PNG';" alt="আকাশ জোয়ার্দ্দার">
+            <!--akash.PNG এবং akash.png উভয় ফরমেটের ব্যাকআপ রাখা হয়েছে-->
+            <img src="akash.PNG" onerror="this.onerror=null; this.src='akash.png';" alt="আকাশ জোয়ার্দ্দার">
         </div>
         <div class="photo-caption">
             <h2>আকাশ জোয়ার্দ্দার</h2>
