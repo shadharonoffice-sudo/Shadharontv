@@ -179,7 +179,7 @@
                 
                 <div class="input-group">
                     <label>বসবাস *</label>
-                    <select id="node_res">
+                    <select id="node_res" required>
                         <option value="বাংলাদেশ">বাংলাদেশ</option>
                         <option value="প্রবাসে">প্রবাসে</option>
                     </select>
@@ -197,7 +197,7 @@
                 
                 <div class="input-group">
                     <label>লিঙ্গ *</label>
-                    <select id="node_gender">
+                    <select id="node_gender" required>
                         <option value="পুরুষ">পুরুষ</option>
                         <option value="নারী">নারী</option>
                         <option value="অন্যান্য">অন্যান্য</option>
@@ -224,7 +224,7 @@
 
                 <div class="input-group">
                     <label>পেমেন্ট মেথড *</label>
-                    <select id="node_method">
+                    <select id="node_method" required>
                         <option value="বিকাশ">বিকাশ</option>
                         <option value="নগদ">নগদ</option>
                         <option value="রকেট">রকেট</option>
@@ -233,7 +233,7 @@
                 
                 <div class="input-group">
                     <label>পেমেন্টকৃত নাম্বার *</label>
-                    <input type="tel" id="node_sender" placeholder="যে নাম্বার থেকে টাকা পাঠিয়েছেন" required>
+                    <input type="tel" id="node_sender" placeholder="যে নাম্বার থেকে টাকা পাঠিয়েছেন" required>
                 </div>
                 
                 <div class="input-group">
@@ -254,32 +254,33 @@
     document.getElementById('asiaFullForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const name = document.getElementById('node_name').value;
-        const wa = document.getElementById('node_whatsapp').value;
+        const name = document.getElementById('node_name').value.trim();
+        const wa = document.getElementById('node_whatsapp').value.trim();
         const res = document.getElementById('node_res').value;
-        const job = document.getElementById('node_job').value || 'উল্লেখ নেই';
+        const job = document.getElementById('node_job').value.trim() || 'উল্লেখ নেই';
         const dob = document.getElementById('node_dob').value;
         const gender = document.getElementById('node_gender').value;
-        const dist = document.getElementById('node_dist').value;
-        const vill = document.getElementById('node_vill').value;
+        const dist = document.getElementById('node_dist').value.trim();
+        const vill = document.getElementById('node_vill').value.trim();
         const method = document.getElementById('node_method').value;
-        const sender = document.getElementById('node_sender').value;
-        const trx = document.getElementById('node_trx').value;
+        const sender = document.getElementById('node_sender').value.trim();
+        const trx = document.getElementById('node_trx').value.trim();
 
-        const finalMsg = `*গানে গানে সেরা সিজন ৩ এশিয়া (রেজিস্ট্রেশন)*%0A%0A` +
-                         `👤 *নাম:* ${name}%0A` +
-                         `📱 *WhatsApp:* ${wa}%0A` +
-                         `🏠 *বসবাস:* ${res}%0A` +
-                         `💼 *পেশা:* ${job}%0A` +
-                         `📅 *জন্ম তারিখ:* ${dob}%0A` +
-                         `🚻 *লিঙ্গ:* ${gender}%0A` +
-                         `📍 *জেলা:* ${dist}%0A` +
-                         `🏡 *গ্রাম/মহল্লা:* ${vill}%0A%0A` +
-                         `💳 *পেমেন্ট মেথড:* ${method}%0A` +
-                         `📞 *প্রেরক নাম্বার:* ${sender}%0A` +
-                         `🆔 *TrxID:* ${trx}`;
+        const messageText = `*গানে গানে সেরা সিজন ৩ এশিয়া (রেজিস্ট্রেশন)*\n\n` +
+                             `👤 *নাম:* ${name}\n` +
+                             `📱 *WhatsApp:* ${wa}\n` +
+                             `🏠 *বসবাস:* ${res}\n` +
+                             `💼 *পেশা:* ${job}\n` +
+                             `📅 *জন্ম তারিখ:* ${dob}\n` +
+                             `🚻 *লিঙ্গ:* ${gender}\n` +
+                             `📍 *জেলা:* ${dist}\n` +
+                             `🏡 *গ্রাম/মহল্লা:* ${vill}\n\n` +
+                             `💳 *পেমেন্ট মেথড:* ${method}\n` +
+                             `📞 *প্রেরক নাম্বার:* ${sender}\n` +
+                             `🆔 *TrxID:* ${trx}`;
 
-        window.open(`https://wa.me/8801757331663?text=${finalMsg}`, '_blank');
+        const encodedMsg = encodeURIComponent(messageText);
+        window.open(`https://wa.me/8801757331663?text=${encodedMsg}`, '_blank');
     });
 </script>
 
